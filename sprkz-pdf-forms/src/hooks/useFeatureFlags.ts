@@ -80,7 +80,10 @@ export const useConditionalFeature = (flagName: keyof FeatureFlags, context?: Re
     children: React.ReactNode;
     fallback?: React.ReactNode;
   }) => {
-    return isEnabled ? <>{children}</> : <>{fallback}</>;
+    if (isEnabled) {
+      return React.createElement(React.Fragment, null, children);
+    }
+    return React.createElement(React.Fragment, null, fallback);
   }, [isEnabled]);
 
   return { isEnabled, ConditionalComponent };
