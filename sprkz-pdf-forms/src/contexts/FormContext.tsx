@@ -36,6 +36,7 @@ interface FormContextType {
   getFieldValidation: (fieldName: string) => ValidationResult | null;
   // Utility
   resetForm: () => void;
+  resetAfterSubmission: () => void;
   initializeFields: (fields: FormField[]) => void;
 }
 
@@ -498,7 +499,20 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const resetForm = useCallback(() => {
     dispatch({ type: 'RESET_FORM' });
     ValidationService.clearValidationCache();
+    console.log('Form has been reset to initial state');
   }, []);
+
+  // Reset form after successful submission
+  const resetAfterSubmission = useCallback(() => {
+    resetForm();
+    
+    // Additional cleanup for post-submission reset
+    setTimeout(() => {
+      // Clear any temporary data
+      sessionStorage.removeItem('sprkz-form-draft');
+      console.log('Post-submission cleanup completed');
+    }, 100);
+  }, [resetForm]);
 
   // Update isValid when state changes
   useEffect(() => {
@@ -524,6 +538,7 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
     getFormErrors,
     getFieldValidation,
     resetForm,
+    resetAfterSubmission,
     initializeFields
   };
 
