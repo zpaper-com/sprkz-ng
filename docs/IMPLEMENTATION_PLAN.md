@@ -4,18 +4,16 @@
 
 This document provides a comprehensive, step-by-step implementation plan for the Sprkz interactive PDF form completion platform. It resolves inconsistencies found across existing documentation and establishes a single source of truth for development.
 
-## ⚠️ CRITICAL INFRASTRUCTURE REQUIREMENTS
+## Development Philosophy
 
-**BEFORE STARTING DEVELOPMENT**: The project has existing infrastructure that **MUST BE PRESERVED**:
+**Phase-Based Testing Approach**: This project follows a methodical development approach:
 
-- ✅ **server.js** is running on port 7779 managed by PM2
-- ✅ **ALB target group** requires `/health` endpoint for health checks
-- ✅ **Domain sprkz-ng.zpaper.com** is configured and operational
-- ✅ **PM2 service** must continue running during all development phases
+- ✅ **Each phase** implements specific functionality
+- ✅ **Testing required** after each phase completion
+- ✅ **User validation** before proceeding to next phase
+- ✅ **Manual testing** in browser at each phase
 
-**⚠️ DO NOT REMOVE server.js** until Phase 11 when React app implements `/health` endpoint.
-
-**Read `CURRENT_INFRASTRUCTURE.md` for complete transition guidelines.**
+This ensures steady progress and catches issues early in development.
 
 ## Architecture Decision
 
@@ -30,10 +28,8 @@ This document provides a comprehensive, step-by-step implementation plan for the
 - **Framework**: React 18+ with TypeScript
 - **UI Library**: Material-UI (MUI) v5
 - **State Management**: React Context + useReducer
-- **Feature Flags**: Unleash Client
-- **Error Monitoring**: Sentry
-- **Build Tool**: Vite (for faster development)
-- **Development Methodology**: Test-Driven Development (TDD)
+- **Build Tool**: Create React App (standard React build tool)
+- **Development Methodology**: Test-Driven Development (TDD) with phase-based testing
 
 ### PDF Processing
 - **PDF Rendering**: PDF.js (pdfjs-dist package, not CDN)
@@ -82,8 +78,6 @@ npm install @mui/icons-material
 npm install pdfjs-dist pdf-lib
 npm install react-signature-canvas
 npm install @types/react-signature-canvas
-npm install unleash-client
-npm install @sentry/react @sentry/tracing
 
 # 1.3 Install development dependencies
 npm install --save-dev @typescript-eslint/eslint-plugin
@@ -95,8 +89,6 @@ npm install --save-dev @testing-library/user-event jest-environment-jsdom
 # 1.4 Configure development server port and environment
 echo "PORT=7779" > .env
 echo "REACT_APP_PDF_WORKER_URL=/pdf.worker.min.js" >> .env
-echo "REACT_APP_UNLEASH_URL=https://flags.zpaper.com/" >> .env
-echo "REACT_APP_SENTRY_DSN=https://44ccefc5d4243eeb0b845f4e109db800@o4508654732247040.ingest.us.sentry.io/4509710429061120" >> .env
 echo "REACT_APP_DEFAULT_PDF=/pdfs/makana2025.pdf" >> .env
 ```
 
@@ -141,24 +133,27 @@ cp ../makana2025.pdf public/pdfs/
 - Environment variables setup (.env file with PORT=7779)
 - Development server port configuration (7779 - spells "SPRZ" on phone keypad)
 - **Default PDF file configuration** (`REACT_APP_DEFAULT_PDF=/pdfs/makana2025.pdf`)
-- **Unleash feature flags configuration** (https://flags.zpaper.com/)
-- **Sentry error monitoring configuration**
 
-### Step 1.8: Sentry Error Monitoring Setup
-Create `src/config/sentry.ts`:
-- Initialize Sentry with DSN configuration
-- Setup performance monitoring and tracing
-- Configure error filtering and sampling
-- Integrate with React error boundaries
-- **Test Sentry integration** with temporary debug error button (see GETTING_STARTED.md validation section)
+### Step 1.8: Testing Setup
+Prepare for phase-based testing:
+- Setup testing environment with Jest and React Testing Library
+- Configure test scripts in package.json
+- Ensure development server can start on port 7779
+- Prepare for manual testing after each phase
 
 ### Step 1.9: Basic App Shell
 - Create main App component structure
 - Setup Material-UI theme provider
-- **Initialize Unleash feature flags provider**
-- **Wrap app with Sentry error boundary**
 - Create basic routing (if needed)
 - Add global styles and CSS reset
+
+### Step 1.10: Phase 1 Testing
+**CRITICAL**: After completing Phase 1:
+1. Start development server: `npm start`
+2. Verify app loads at `http://localhost:7779`
+3. Check basic UI renders correctly
+4. Ensure no console errors
+5. **Stop and validate with user before proceeding to Phase 2**
 
 ---
 
@@ -200,6 +195,15 @@ Create `components/pdf/ThumbnailSidebar.tsx`:
 - File upload dialog when no URL provided
 - Error messaging for missing/invalid PDFs
 
+### Step 2.6: Phase 2 Testing
+**CRITICAL**: After completing Phase 2:
+1. Start development server: `npm start`
+2. Test PDF loading with default PDF (makana2025.pdf)
+3. Test PDF rendering in browser
+4. Verify thumbnails display correctly
+5. Test zoom and navigation controls
+6. **Stop and validate with user before proceeding to Phase 3**
+
 ---
 
 ## Phase 3: Form Field Detection & Management (Week 3-4)
@@ -235,6 +239,15 @@ Create `components/forms/FieldOverlay.tsx`:
 - Position overlays correctly over PDF annotations
 - Handle field focus and blur events
 - Coordinate with PDF.js annotation layer
+
+### Step 3.5: Phase 3 Testing
+**CRITICAL**: After completing Phase 3:
+1. Start development server: `npm start`
+2. Test form field detection and highlighting
+3. Test different field types (text, checkbox, radio, dropdown)
+4. Verify field overlays position correctly
+5. Test form state management
+6. **Stop and validate with user before proceeding to Phase 4**
 
 ---
 
@@ -275,6 +288,15 @@ Create `components/ui/ProgressTracker.tsx`:
 - Progress bar showing completion percentage
 - Text indicator: "X of Y required fields completed"
 - Visual completion status
+
+### Step 4.6: Phase 4 Testing
+**CRITICAL**: After completing Phase 4:
+1. Start development server: `npm start`
+2. Test wizard navigation between fields
+3. Test dynamic button states (Start/Next/Sign/Submit)
+4. Verify progress tracking works correctly
+5. Test field tooltips and navigation
+6. **Stop and validate with user before proceeding to Phase 5**
 
 ---
 
@@ -320,6 +342,16 @@ Create `services/signatureService.ts`:
 - Proper scaling for PDF coordinates
 - PNG generation for PDF-lib embedding
 
+### Step 5.6: Phase 5 Testing
+**CRITICAL**: After completing Phase 5:
+1. Start development server: `npm start`
+2. Test signature modal opening and closing
+3. Test drawing signature with mouse/touch
+4. Test typed signature with different fonts
+5. Verify signature preview and confirmation
+6. Test signature embedding in PDF fields
+7. **Stop and validate with user before proceeding to Phase 6**
+
 ---
 
 ## Phase 6: Validation & Error Handling (Week 6-7)
@@ -350,6 +382,15 @@ Create `components/ui/ErrorDisplay.tsx`:
 - Pre-submission validation check
 - Visual error indicators
 - Accessibility-compliant error messaging
+
+### Step 6.4: Phase 6 Testing
+**CRITICAL**: After completing Phase 6:
+1. Start development server: `npm start`
+2. Test form validation with required fields
+3. Test error display for invalid data
+4. Verify validation messages appear correctly
+5. Test validation recovery and error clearing
+6. **Stop and validate with user before proceeding to Phase 7**
 
 ---
 
@@ -384,6 +425,15 @@ Create `services/submissionService.ts`:
 - Confirmation dialog
 - Form reset capability
 
+### Step 7.4: Phase 7 Testing
+**CRITICAL**: After completing Phase 7:
+1. Start development server: `npm start`
+2. Test complete form filling workflow
+3. Test PDF generation with form data
+4. Test form submission process
+5. Verify success/error handling
+6. **Stop and validate with user before proceeding to Phase 8**
+
 ---
 
 ## Phase 8: UI/UX Polish & Responsive Design (Week 8-9)
@@ -412,9 +462,17 @@ Create `services/submissionService.ts`:
 - Progress bar animations
 - Page transition effects
 
----
+### Step 8.5: Phase 8 Testing
+**CRITICAL**: After completing Phase 8:
+1. Start development server: `npm start`
+2. Test responsive design on different screen sizes
+3. Test Material-UI theme and styling
+4. Test loading states and animations
+5. Verify mobile-friendly interface
+6. **Stop and validate with user before proceeding to Phase 9**
 
-## Phase 9: Accessibility & Browser Testing (Week 9-10)
+
+## Phase 9: Accessibility & Browser Testing (Week 9)
 
 ### Step 9.1: Accessibility Implementation
 - ARIA labels for all interactive elements
@@ -437,44 +495,14 @@ Create `services/submissionService.ts`:
 - Memory leak prevention
 - Large file handling
 
----
-
-## Phase 9: Feature Flags Integration (Week 9)
-
-### Step 9.1: Unleash Client Setup
-Create `src/config/unleash.ts`:
-- Initialize Unleash client with server URL: https://flags.zpaper.com/
-- Configure client with appropriate app name and environment
-- Setup error handling and fallback behavior
-- Implement client refresh strategy
-
-### Step 9.2: Feature Flags Context
-Create `src/contexts/FeatureFlagsContext.tsx`:
-- Wrap Unleash client in React context
-- Provide hooks for feature flag checking
-- Handle loading states and fallbacks
-- Implement flag refresh mechanisms
-
-### Step 9.3: Feature Flag Service
-Create `src/services/featureFlagsService.ts`:
-- `isFeatureEnabled(flagName: string): boolean`
-- `getFeatureVariant(flagName: string): any`
-- Flag caching and performance optimization
-- Analytics integration for flag usage
-
-### Step 9.4: Strategic Feature Flag Implementation
-Implement feature flags for:
-- **New signature features**: Typed signature fonts, color options
-- **Advanced wizard features**: Smart field navigation, auto-validation
-- **PDF processing features**: Enhanced field detection, batch processing
-- **UI/UX experiments**: Theme variations, layout options
-- **Performance optimizations**: Lazy loading strategies, caching options
-
-### Step 9.5: Feature Flag Testing Strategy
-- Test both enabled and disabled states for all flags
-- Implement feature flag mocks for testing
-- Create integration tests for flag-dependent features
-- Add feature flag status to test reporting
+### Step 9.4: Phase 9 Testing
+**CRITICAL**: After completing Phase 9:
+1. Start development server: `npm start`
+2. Test accessibility features (keyboard navigation, screen reader)
+3. Test across different browsers
+4. Test performance with large PDF files
+5. Verify mobile compatibility
+6. **Stop and validate with user before proceeding to Phase 10**
 
 ---
 
@@ -504,6 +532,15 @@ Implement feature flags for:
 - Edge cases and error scenarios
 - Large file handling
 
+### Step 10.5: Phase 10 Testing
+**CRITICAL**: After completing Phase 10:
+1. Start development server: `npm start`
+2. Run all test suites and verify passing
+3. Test complete end-to-end workflows
+4. Verify cross-browser compatibility
+5. Test with different PDF types
+6. **Stop and validate with user before proceeding to Phase 11**
+
 ---
 
 ## Phase 11: Documentation & Deployment (Week 11-12)
@@ -523,41 +560,30 @@ Implement feature flags for:
 ### Step 11.3: Deployment Preparation
 - Production build optimization
 - Environment configuration
-- CDN setup for static assets
+- Static asset optimization
 - HTTPS configuration requirements
-- **CRITICAL: Implement /health endpoint for ALB target group**
 
-### Step 11.4: Infrastructure Transition
-**⚠️ CRITICAL STEP**: Replace existing server.js with React application:
+### Step 11.4: Production Build & Testing
+1. **Create production build**: `npm run build`
+2. **Test production build locally**: `serve -s build -l 7779`
+3. **Verify all functionality** works in production build
+4. **Test performance** with production optimizations
+5. **Validate asset loading** and static file serving
 
-1. **Implement /health endpoint** in React application:
-```javascript
-// Must return JSON with 200 status for ALB health checks
-app.get('/health', (req, res) => {
-  res.status(200).json({
-    status: 'healthy',
-    service: 'sprkz-pdf-forms',
-    timestamp: new Date().toISOString(),
-    version: process.env.REACT_APP_VERSION || '1.0.0'
-  });
-});
-```
+### Step 11.5: Final Deployment
+- Deploy build directory to web server
+- Configure production environment variables
+- Set up production domain and SSL
+- Verify production functionality
+- Monitor application performance
 
-2. **Test health endpoint** on development port (e.g., 3000) first
-3. **Configure React production build** to serve on port 7779
-4. **CRITICAL**: Stop server.js with `pm2 stop sprkz-ng` to free port 7779
-5. **IMMEDIATELY** start React server on port 7779 to minimize downtime
-6. **Verify ALB health checks** pass with new React server
-7. **Monitor ALB target health** in AWS console for 2-3 minutes
-8. **Only after ALB confirms healthy**: Remove old PM2 service
-
-**⚠️ PORT BINDING REQUIREMENT**: server.js MUST be stopped before React can bind to port 7779. Only one process can use the port at a time.
-
-### Step 11.5: Monitoring & Analytics
-- Error tracking setup (Sentry already configured)
-- Performance monitoring and alerting
-- Usage analytics (if required)
-- User feedback collection
+### Step 11.6: Phase 11 Testing
+**FINAL VALIDATION**: After completing Phase 11:
+1. Test production build thoroughly
+2. Verify all features work in production environment
+3. Test performance and loading times
+4. Validate cross-browser compatibility in production
+5. **Complete final user acceptance testing**
 
 ---
 

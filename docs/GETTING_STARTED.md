@@ -4,17 +4,16 @@
 
 You are tasked with implementing the **Sprkz PDF Form Completion Platform**, a React-based interactive PDF form filling application. This is a **greenfield project** with comprehensive documentation but **no implementation code yet**.
 
-### ⚠️ CRITICAL INFRASTRUCTURE NOTE
+### Development Approach
 
-**BEFORE YOU BEGIN**: There is a **placeholder server.js running on port 7779** that is managed by PM2 and **MUST NOT BE REMOVED** during development. This server:
+**Testing-Driven Development**: This project follows a testing-first approach where at each phase you should:
 
-- ✅ Serves the ALB (Application Load Balancer) target group health checks
-- ✅ Runs at `sprkz-ng.zpaper.com` with a required `/health` endpoint  
-- ✅ Must continue running until the React app implements its own `/health` endpoint
-- ✅ **MUST be stopped with PM2** before React can bind to port 7779 (only one process can use the port)
-- ✅ Can only be removed in Phase 11 (Deployment) after proper transition
+- ✅ Implement the features for that phase
+- ✅ Get the development server running (`npm start`)
+- ✅ Test the functionality manually in the browser
+- ✅ Stop and validate with the user before proceeding to the next phase
 
-**Read `CURRENT_INFRASTRUCTURE.md` for complete details** before making any infrastructure changes.
+This ensures steady progress and catches issues early in the development process.
 
 ### Project Overview
 - **Objective**: Build a guided, wizard-style PDF form completion platform using React + PDF.js
@@ -26,22 +25,19 @@ You are tasked with implementing the **Sprkz PDF Form Completion Platform**, a R
 Before beginning implementation, **YOU MUST READ** these documentation files in order:
 
 1. **README.md** - Documentation hierarchy and navigation guide
-2. **CURRENT_INFRASTRUCTURE.md** - ⚠️ **CRITICAL**: Existing server and ALB configuration
-3. **IMPLEMENTATION_PLAN.md** - Master implementation plan with 11 phases (THIS IS YOUR PRIMARY GUIDE)
-4. **TECHNICAL_SPECIFICATIONS.md** - Detailed code patterns, PDF.js integration, signature specs, and performance requirements
-5. **PRD.md** - Business requirements and user experience specifications  
-6. **TDD_GUIDELINES.md** - Test-driven development methodology (this project REQUIRES TDD)
-7. **WIZARD_FEATURE.md** - Detailed wizard navigation specifications
+2. **IMPLEMENTATION_PLAN.md** - Master implementation plan with phases (THIS IS YOUR PRIMARY GUIDE)
+3. **TECHNICAL_SPECIFICATIONS.md** - Detailed code patterns, PDF.js integration, signature specs, and performance requirements
+4. **PRD.md** - Business requirements and user experience specifications  
+5. **TDD_GUIDELINES.md** - Test-driven development methodology (this project REQUIRES TDD)
+6. **WIZARD_FEATURE.md** - Detailed wizard navigation specifications
 
 ### Architecture Overview
 - **Framework**: React 18+ with TypeScript
 - **UI Library**: Material-UI (MUI) v5
 - **PDF Processing**: PDF.js with native annotation layer (NOT CDN - use npm package)
 - **State Management**: React Context + useReducer
-- **Feature Flags**: Unleash Client (https://flags.zpaper.com/)
-- **Error Monitoring**: Sentry for error tracking and performance monitoring
 - **Testing**: Jest + React Testing Library with TDD methodology
-- **Build Tool**: Vite for faster development
+- **Build Tool**: Create React App (standard React build tool)
 - **Port**: 7779 (spells "SPRZ" on phone keypad)
 
 ## Your First Implementation Task
@@ -72,12 +68,6 @@ npm install pdfjs-dist pdf-lib
 # Signature Capture
 npm install react-signature-canvas
 npm install @types/react-signature-canvas
-
-# Feature Flags
-npm install unleash-client
-
-# Error Monitoring
-npm install @sentry/react @sentry/tracing
 ```
 
 #### 1.3 Install Development Dependencies
@@ -97,8 +87,6 @@ npm install --save-dev @testing-library/user-event jest-environment-jsdom
 # Set the project-specific port (spells "SPRZ")
 echo "PORT=7779" > .env
 echo "REACT_APP_PDF_WORKER_URL=/pdf.worker.min.js" >> .env
-echo "REACT_APP_UNLEASH_URL=https://flags.zpaper.com/" >> .env
-echo "REACT_APP_SENTRY_DSN=https://44ccefc5d4243eeb0b845f4e109db800@o4508654732247040.ingest.us.sentry.io/4509710429061120" >> .env
 echo "REACT_APP_DEFAULT_PDF=/pdfs/makana2025.pdf" >> .env
 ```
 
@@ -141,63 +129,28 @@ After completing the setup, verify the following:
 4. **TypeScript compilation**: No TypeScript errors in default setup
 5. **PDF.js worker**: Worker file exists in `public/pdf.worker.min.js`
 6. **Default PDF file**: `makana2025.pdf` exists in `public/pdfs/` directory
-7. **Sentry error tracking**: Test error reporting with debug endpoint (see below)
 
 ### ✅ Environment Validation
 1. **Port configuration**: App should be accessible at `http://localhost:7779`
-2. **Environment variables**: `.env` file contains PORT=7779, PDF worker URL, Unleash URL, Sentry DSN, and default PDF path
+2. **Environment variables**: `.env` file contains PORT=7779, PDF worker URL, and default PDF path
 3. **Development server**: Hot reloading works correctly
 
-### ✅ Sentry Error Tracking Validation
+### ✅ Phase Testing Protocol
 
-**IMPORTANT**: After Sentry is configured, test error reporting by temporarily adding this debug endpoint:
+**IMPORTANT**: After each phase implementation, follow this testing protocol:
 
-1. **Add temporary debug endpoint** to your main App.tsx or create a temporary component:
-```typescript
-// Add this temporarily for testing Sentry integration
-useEffect(() => {
-  // Create a debug endpoint for testing Sentry
-  const testSentryError = () => {
-    throw new Error("My first Sentry error!");
-  };
-  
-  // Add button for testing (remove after validation)
-  const debugButton = document.createElement('button');
-  debugButton.innerHTML = 'Test Sentry Error';
-  debugButton.style.position = 'fixed';
-  debugButton.style.top = '10px';
-  debugButton.style.right = '10px';
-  debugButton.style.zIndex = '9999';
-  debugButton.style.backgroundColor = 'red';
-  debugButton.style.color = 'white';
-  debugButton.style.padding = '10px';
-  debugButton.onclick = testSentryError;
-  document.body.appendChild(debugButton);
-  
-  // Cleanup function
-  return () => {
-    if (document.body.contains(debugButton)) {
-      document.body.removeChild(debugButton);
-    }
-  };
-}, []);
-```
+1. **Start the development server**: `npm start`
+2. **Manual testing**: Test all features implemented in the current phase
+3. **Browser testing**: Verify functionality works correctly
+4. **Console check**: Ensure no errors in the browser console
+5. **Stop and validate**: Pause development and validate with the user before proceeding
 
-2. **Test the error reporting**:
-   - Start the development server: `npm start`
-   - Click the "Test Sentry Error" button that appears in the top-right
-   - Verify the error appears in your Sentry dashboard
-   - Check that error context includes environment and application details
-
-3. **Remove the debug code** after successful validation:
-   - Delete the debug button code from your component
-   - Confirm Sentry is working by checking the dashboard for the test error
-
-4. **Validation success criteria**:
-   - Error appears in Sentry dashboard within 30 seconds
-   - Error includes correct environment (development)
-   - Error includes stack trace and component information
-   - No console errors related to Sentry configuration
+**Phase Testing Checklist**:
+- [ ] Features work as expected in browser
+- [ ] No console errors or warnings
+- [ ] Performance is acceptable (no lag or freezing)
+- [ ] UI looks correct and responsive
+- [ ] User tested and approved to proceed to next phase
 
 ## Next Steps After Validation
 
@@ -207,6 +160,7 @@ Once basic setup is complete and validated:
 2. **Proceed to Phase 1, Step 1.7** in IMPLEMENTATION_PLAN.md - Basic App Shell creation
 3. **Begin TDD cycle**: Write failing tests first, then implement components
 4. **Reference TECHNICAL_SPECIFICATIONS.md** for detailed implementation patterns
+5. **Test each phase**: After completing each phase, run the server and test with the user before proceeding
 
 ## Critical Implementation Notes
 
@@ -234,15 +188,15 @@ Once basic setup is complete and validated:
 - **TypeScript strict mode** - No `any` types without justification
 - **Material-UI consistency** - All UI components must use MUI
 - **State management** - Use React Context + useReducer, not external libraries
-- **Feature flags** - Use Unleash client for controlled feature rollouts
 
 ## Development Workflow
 
 1. **Always start with tests** (TDD requirement)
 2. **Reference TECHNICAL_SPECIFICATIONS.md** for implementation patterns
 3. **Follow IMPLEMENTATION_PLAN.md phases** sequentially
-4. **Validate each component** before moving to next phase
-5. **Run tests continuously** during development
+4. **Test each phase** - Get server running and test with user before proceeding
+5. **Validate each component** before moving to next phase
+6. **Run tests continuously** during development
 
 ## Warning: Common Pitfalls to Avoid
 

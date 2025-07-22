@@ -65,8 +65,6 @@ echo "PORT=7779" > .env
 - **PDF Processing**: PDF.js (pdfjs-dist) with native annotation layer
 - **Form Data Processing**: PDF-lib for final PDF generation
 - **Signature Component**: React-signature-canvas with font selection
-- **Feature Flags**: Unleash Client (https://flags.zpaper.com/)
-- **Error Monitoring**: Sentry for error tracking and performance monitoring
 - **HTTP Client**: Axios or Fetch API
 
 ### Core Component Structure
