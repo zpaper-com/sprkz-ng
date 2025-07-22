@@ -5,6 +5,7 @@ import { ErrorBoundary } from '@sentry/react';
 import { Container, Typography, Box, Button } from '@mui/material';
 import { FeatureFlagsProvider } from './contexts/FeatureFlagsContext';
 import { FormProvider } from './contexts/FormContext';
+import { WizardProvider } from './contexts/WizardContext';
 import { PDFFormContainer } from './components/pdf/PDFFormContainer';
 
 // Material-UI theme configuration
@@ -86,8 +87,10 @@ function App() {
         <CssBaseline />
         <FeatureFlagsProvider>
           <FormProvider>
-            <PDFFormContainer />
-            <SentryTestComponent />
+            <WizardProvider>
+              <PDFFormContainer />
+              <SentryTestComponent />
+            </WizardProvider>
           </FormProvider>
         </FeatureFlagsProvider>
       </ThemeProvider>

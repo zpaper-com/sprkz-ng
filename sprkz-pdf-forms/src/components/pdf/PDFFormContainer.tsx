@@ -22,6 +22,11 @@ import {
 import { PDFViewer } from './PDFViewer';
 import { ThumbnailSidebar } from './ThumbnailSidebar';
 import { PDFService, PDFServiceError } from '../../services/pdfService';
+import { FormFieldService } from '../../services/formFieldService';
+import { WizardButton } from '../wizard/WizardButton';
+import { ProgressTracker } from '../ui/ProgressTracker';
+import { useForm } from '../../contexts/FormContext';
+import { useWizard } from '../../contexts/WizardContext';
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 
 interface PDFFormContainerProps {
@@ -31,6 +36,8 @@ interface PDFFormContainerProps {
 export const PDFFormContainer: React.FC<PDFFormContainerProps> = ({ className }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const formContext = useForm();
+  const wizard = useWizard();
   
   // PDF state
   const [pdfDoc, setPdfDoc] = useState<PDFDocumentProxy | null>(null);
@@ -50,40 +57,43 @@ export const PDFFormContainer: React.FC<PDFFormContainerProps> = ({ className })
   const pdfUrl = PDFService.getDefaultPDFUrl();
 
   // Handle document load
-  const handleDocumentLoad = useCallback((document: PDFDocumentProxy) => {
+  const handleDocumentLoad = useCallback(async (document: PDFDocumentProxy) => {
     setPdfDoc(document);
     setCurrentPage(1);
     console.log(`PDF document loaded: ${document.numPages} pages`);
     
-    // Extract form fields from all pages
-    const extractFormFields = async () => {
-      const pagesWithForms = new Set<number>();
+    try {
+      // Extract all form fields from the document
+      const allFormFields = await FormFieldService.extractAllFormFields(document);
       
-      for (let pageNum = 1; pageNum <= document.numPages; pageNum++) {
-        try {
-          const page = await PDFService.getPage(document, pageNum);
-          const formFields = await PDFService.extractFormFields(page);
-          
-          if (formFields.length > 0) {
-            pagesWithForms.add(pageNum);
-            console.log(`Page ${pageNum} has ${formFields.length} form fields`);
-          }
-        } catch (error) {
-          console.warn(`Failed to extract form fields from page ${pageNum}:`, error);
-        }
-      }
+      // Initialize form context with extracted fields
+      formContext.initializeFields(allFormFields);
+      
+      // Initialize wizard with form fields
+      wizard.initializeWizard(allFormFields);
+      
+      // Track pages with form fields
+      const pagesWithForms = new Set<number>();
+      allFormFields.forEach(field => {
+        pagesWithForms.add(field.page);
+      });
       
       setPagesWithFormFields(pagesWithForms);
       
-      if (pagesWithForms.size > 0) {
-        setSnackbarMessage(`Found form fields on ${pagesWithForms.size} page(s)`);
+      // Show status message
+      if (allFormFields.length > 0) {
+        const categories = FormFieldService.categorizeFields(allFormFields);
+        setSnackbarMessage(
+          `Found ${categories.required.length} required fields and ${categories.signature.length} signatures across ${pagesWithForms.size} page(s)`
+        );
       } else {
         setSnackbarMessage('No form fields found in this PDF');
       }
-    };
-    
-    extractFormFields();
-  }, []);
+    } catch (error) {
+      console.error('Failed to extract form fields:', error);
+      setSnackbarMessage('Error extracting form fields from PDF');
+    }
+  }, [formContext, wizard]);
 
   // Handle page load
   const handlePageLoad = useCallback((page: PDFPageProxy) => {
@@ -176,6 +186,13 @@ export const PDFFormContainer: React.FC<PDFFormContainerProps> = ({ className })
             )}
           </Typography>
 
+          {/* Wizard button in toolbar */}
+          {wizard.state.totalRequiredFields > 0 && (
+            <Box sx={{ mr: 2 }}>
+              <WizardButton size="small" showProgress={false} showGuidance={false} />
+            </Box>
+          )}
+
           {/* Navigation controls */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <IconButton
@@ -227,16 +244,29 @@ export const PDFFormContainer: React.FC<PDFFormContainerProps> = ({ className })
 
       {/* Main content area */}
       <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-        {/* Sidebar */}
-        <ThumbnailSidebar
-          pdfDoc={pdfDoc}
-          currentPage={currentPage}
-          completedPages={completedPages}
-          pagesWithFormFields={pagesWithFormFields}
-          onPageSelect={handlePageSelect}
-          open={sidebarOpen}
-          onToggle={handleToggleSidebar}
-        />
+        {/* Sidebar with thumbnails and progress */}
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <ThumbnailSidebar
+            pdfDoc={pdfDoc}
+            currentPage={currentPage}
+            completedPages={completedPages}
+            pagesWithFormFields={pagesWithFormFields}
+            onPageSelect={handlePageSelect}
+            open={sidebarOpen}
+            onToggle={handleToggleSidebar}
+          />
+          
+          {/* Progress tracker (visible when sidebar is open and has form fields) */}
+          {sidebarOpen && !isMobile && wizard.state.totalRequiredFields > 0 && (
+            <Box sx={{ width: 160, p: 1, borderTop: '1px solid', borderColor: 'divider' }}>
+              <ProgressTracker 
+                compact={false}
+                showFieldList={false}
+                showStats={true}
+              />
+            </Box>
+          )}
+        </Box>
 
         {/* PDF viewer */}
         <Box 
