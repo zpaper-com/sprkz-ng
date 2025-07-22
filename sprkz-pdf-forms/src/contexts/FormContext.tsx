@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useReducer, useCallback, useEffect } from 'react';
 import { FormField, FormState, FormFieldValue } from '../types/pdf';
 import { FormFieldService } from '../services/formFieldService';
+import { ValidationService, ValidationResult } from '../services/validationService';
 
 // Form Actions
 type FormAction = 
@@ -9,6 +10,7 @@ type FormAction =
   | { type: 'SET_CURRENT_FIELD'; payload: number }
   | { type: 'MARK_FIELD_COMPLETE'; payload: string }
   | { type: 'SET_FIELD_ERRORS'; payload: { fieldName: string; errors: string[] } }
+  | { type: 'SET_FIELD_VALIDATION'; payload: { fieldName: string; validation: ValidationResult } }
   | { type: 'RESET_FORM' }
   | { type: 'CALCULATE_PROGRESS' };
 
@@ -19,7 +21,8 @@ interface FormContextType {
   updateFieldValue: (fieldName: string, value: any, page: number) => void;
   setCurrentField: (index: number) => void;
   markFieldComplete: (fieldName: string) => void;
-  validateField: (fieldName: string) => boolean;
+  validateField: (fieldName: string) => Promise<ValidationResult>;
+  validateAllFields: () => Promise<Record<string, ValidationResult>>;
   // Navigation helpers
   getNextIncompleteField: () => FormField | null;
   getCurrentField: () => FormField | null;
@@ -30,6 +33,7 @@ interface FormContextType {
   // Form validation
   isFormValid: () => boolean;
   getFormErrors: () => Record<string, string[]>;
+  getFieldValidation: (fieldName: string) => ValidationResult | null;
   // Utility
   resetForm: () => void;
   initializeFields: (fields: FormField[]) => void;
@@ -45,7 +49,8 @@ const initialState: FormState = {
   requiredFields: [],
   totalRequiredFields: 0,
   completionPercentage: 0,
-  isValid: false
+  isValid: false,
+  validationResults: new Map()
 };
 
 // Form reducer
@@ -144,6 +149,29 @@ function formReducer(state: FormState, action: FormAction): FormState {
       };
     }
 
+    case 'SET_FIELD_VALIDATION': {
+      const { fieldName, validation } = action.payload;
+      const newValidationResults = new Map(state.validationResults);
+      const newFields = new Map(state.fields);
+      const field = newFields.get(fieldName);
+
+      newValidationResults.set(fieldName, validation);
+
+      if (field) {
+        newFields.set(fieldName, {
+          ...field,
+          errors: validation.errors,
+          isValid: validation.isValid
+        });
+      }
+
+      return {
+        ...state,
+        fields: newFields,
+        validationResults: newValidationResults
+      };
+    }
+
     case 'CALCULATE_PROGRESS': {
       const completedRequiredFields = state.completedFields.filter(fieldName =>
         state.requiredFields.includes(fieldName)
@@ -192,8 +220,10 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const updateFieldValue = useCallback((fieldName: string, value: any, page: number) => {
     dispatch({ type: 'UPDATE_FIELD_VALUE', payload: { fieldName, value, page } });
     
-    // Auto-validate the field
-    setTimeout(() => validateField(fieldName), 0);
+    // Auto-validate the field after a short delay
+    setTimeout(async () => {
+      await validateField(fieldName);
+    }, 100);
   }, []);
 
   // Set current field
@@ -207,35 +237,143 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
     dispatch({ type: 'CALCULATE_PROGRESS' });
   }, []);
 
-  // Validate field
-  const validateField = useCallback((fieldName: string): boolean => {
+  // Validate field using ValidationService
+  const validateField = useCallback(async (fieldName: string): Promise<ValidationResult> => {
     const fieldValue = state.fields.get(fieldName);
-    if (!fieldValue) return false;
+    if (!fieldValue) {
+      const emptyResult: ValidationResult = {
+        isValid: false,
+        errors: ['Field not found'],
+        warnings: [],
+        fieldName,
+        validatedAt: Date.now()
+      };
+      return emptyResult;
+    }
 
     // Create a temporary FormField for validation
     const tempField: FormField = {
       name: fieldName,
-      type: 'text', // Default type, should be enhanced
+      type: 'text', // Default type, should be enhanced based on field analysis
       value: fieldValue.value,
       required: state.requiredFields.includes(fieldName),
       readOnly: false,
       page: fieldValue.page,
       rect: [0, 0, 0, 0],
-      isComplete: false,
+      isComplete: state.completedFields.includes(fieldName),
       validationErrors: [],
       id: fieldName,
       subtype: ''
     };
 
-    const errors = FormFieldService.validateFieldValue(tempField, fieldValue.value);
-    dispatch({ type: 'SET_FIELD_ERRORS', payload: { fieldName, errors } });
+    // Get all fields for dependency validation
+    const allFields: FormField[] = Array.from(state.fields.entries()).map(([name, value]) => ({
+      name,
+      type: 'text',
+      value: value.value,
+      required: state.requiredFields.includes(name),
+      readOnly: false,
+      page: value.page,
+      rect: [0, 0, 0, 0],
+      isComplete: state.completedFields.includes(name),
+      validationErrors: value.errors,
+      id: name,
+      subtype: ''
+    }));
 
-    if (errors.length === 0) {
-      markFieldComplete(fieldName);
+    try {
+      const validationResult = await ValidationService.validateField(
+        tempField, 
+        fieldValue.value, 
+        allFields,
+        {
+          validateRequired: true,
+          validateFormat: true,
+          validateDependencies: true,
+          excludeReadOnly: true
+        }
+      );
+
+      // Update state with validation result
+      dispatch({ 
+        type: 'SET_FIELD_VALIDATION', 
+        payload: { fieldName, validation: validationResult } 
+      });
+
+      // Mark field as complete if valid
+      if (validationResult.isValid && !state.completedFields.includes(fieldName)) {
+        markFieldComplete(fieldName);
+      }
+
+      return validationResult;
+
+    } catch (error) {
+      console.error(`Validation failed for field "${fieldName}":`, error);
+      const errorResult: ValidationResult = {
+        isValid: false,
+        errors: ['Validation error occurred'],
+        warnings: [],
+        fieldName,
+        validatedAt: Date.now()
+      };
+      
+      dispatch({ 
+        type: 'SET_FIELD_VALIDATION', 
+        payload: { fieldName, validation: errorResult } 
+      });
+      
+      return errorResult;
     }
+  }, [state.fields, state.requiredFields, state.completedFields, markFieldComplete]);
 
-    return errors.length === 0;
-  }, [state.fields, state.requiredFields, markFieldComplete]);
+  // Validate all fields
+  const validateAllFields = useCallback(async (): Promise<Record<string, ValidationResult>> => {
+    const allFields: FormField[] = Array.from(state.fields.entries()).map(([name, value]) => ({
+      name,
+      type: 'text',
+      value: value.value,
+      required: state.requiredFields.includes(name),
+      readOnly: false,
+      page: value.page,
+      rect: [0, 0, 0, 0],
+      isComplete: state.completedFields.includes(name),
+      validationErrors: value.errors,
+      id: name,
+      subtype: ''
+    }));
+
+    const fieldValues: Record<string, any> = {};
+    state.fields.forEach((value, name) => {
+      fieldValues[name] = value.value;
+    });
+
+    try {
+      const validationResults = await ValidationService.validateFields(
+        allFields,
+        fieldValues,
+        {
+          validateRequired: true,
+          validateFormat: true,
+          validateDependencies: true,
+          excludeReadOnly: true
+        }
+      );
+
+      // Update all validation results in state
+      Object.entries(validationResults).forEach(([fieldName, result]) => {
+        dispatch({
+          type: 'SET_FIELD_VALIDATION',
+          payload: { fieldName, validation: result }
+        });
+      });
+
+      return validationResults;
+
+    } catch (error) {
+      console.error('Bulk validation failed:', error);
+      return {};
+    }
+  }, [state.fields, state.requiredFields, state.completedFields]);
 
   // Get next incomplete field
   const getNextIncompleteField = useCallback((): FormField | null => {
@@ -351,9 +489,15 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return errors;
   }, [state.fields]);
 
+  // Get field validation result
+  const getFieldValidation = useCallback((fieldName: string): ValidationResult | null => {
+    return state.validationResults.get(fieldName) || null;
+  }, [state.validationResults]);
+
   // Reset form
   const resetForm = useCallback(() => {
     dispatch({ type: 'RESET_FORM' });
+    ValidationService.clearValidationCache();
   }, []);
 
   // Update isValid when state changes
@@ -370,6 +514,7 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCurrentField,
     markFieldComplete,
     validateField,
+    validateAllFields,
     getNextIncompleteField,
     getCurrentField,
     getFieldByName,
@@ -377,6 +522,7 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
     getRequiredFieldsStatus,
     isFormValid,
     getFormErrors,
+    getFieldValidation,
     resetForm,
     initializeFields
   };

@@ -85,4 +85,5 @@ export interface FormState {
   totalRequiredFields: number;
   completionPercentage: number;
   isValid: boolean;
+  validationResults: Map<string, import('../services/validationService').ValidationResult>;
 }
