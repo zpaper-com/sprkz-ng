@@ -79,6 +79,16 @@ This directory contains the active documentation for the Sprkz PDF form completi
 - Performance monitoring implementation
 - Production monitoring and alerting
 
+### CODE_QUALITY.md
+**Code quality standards and automation** - Comprehensive guide for maintaining professional code quality with automated tools and workflows.
+
+**Use for:**
+- ESLint and Prettier configuration
+- Husky and lint-staged setup for Git hooks
+- Pre-commit automation and quality enforcement
+- TypeScript strict mode configuration
+- Development workflow best practices
+
 
 ## Documentation Hierarchy
 
@@ -86,8 +96,9 @@ This directory contains the active documentation for the Sprkz PDF form completi
 1. **GETTING_STARTED.md** - First step prompt for Claude Code implementation
 2. **IMPLEMENTATION_PLAN.md** - Master plan (supersedes all others for technical decisions)
 3. **TDD_GUIDELINES.md** - Required development methodology
-4. **FEATURE_FLAGS.md** - Feature flags strategy and implementation
-5. **ERROR_MONITORING.md** - Error monitoring and tracking with Sentry
+4. **CODE_QUALITY.md** - Code quality standards and automation tools
+5. **FEATURE_FLAGS.md** - Feature flags strategy and implementation
+6. **ERROR_MONITORING.md** - Error monitoring and tracking with Sentry
 
 ### For Understanding Requirements
 6. **PRD.md** - Business requirements baseline

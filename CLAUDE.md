@@ -31,11 +31,14 @@ npm test -- --watch
 # Run tests with coverage
 npm test -- --coverage
 
-# Linting
-npm run lint
+# Code Quality Commands
+npm run lint              # Check for linting errors (strict)
+npm run lint:fix          # Auto-fix linting issues
+npm run format            # Format all source files
+npm run format:check      # Verify formatting compliance
 
-# Type checking (if TypeScript)
-npm run type-check
+# Type checking (TypeScript strict mode)
+npx tsc --noEmit
 ```
 
 ## Development Server
@@ -137,6 +140,24 @@ See `docs/TDD_GUIDELINES.md` for comprehensive TDD implementation guidance.
 - All new features must include tests
 - Bug fixes must include regression tests
 
+### Code Quality Standards
+This project maintains professional code quality through automated tooling:
+
+- **ESLint**: JavaScript/TypeScript linting with strict rules (`--max-warnings 0`)
+- **Prettier**: Automatic code formatting for consistent style
+- **Husky**: Git hooks for pre-commit quality enforcement
+- **lint-staged**: Process only staged files for fast commits
+- **TypeScript**: Strict mode compilation with enhanced type checking
+
+#### Pre-commit Automation
+Git commits automatically trigger:
+1. ESLint fixes for common issues
+2. Prettier formatting for consistency
+3. Test execution to prevent regressions
+4. Commit succeeds only if all checks pass
+
+See `docs/CODE_QUALITY.md` for complete configuration and workflow details.
+
 ## Development Guidelines
 
 ### PDF.js Integration
@@ -237,7 +258,39 @@ Key documentation files in this repository:
 - `docs/ERROR_MONITORING.md`: Error monitoring and tracking strategy using Sentry
 - `docs/PRD.md`: Product requirements and user experience specifications
 - `docs/WIZARD_FEATURE.md`: Detailed wizard navigation feature specification
+- `docs/CODE_QUALITY.md`: Code quality standards, linting, formatting, and Git hooks setup
 - `archive/`: Historical documentation that has been superseded
+
+## Code Quality Standards
+
+This project maintains professional code quality through automated tooling:
+
+### Pre-commit Hooks (Husky + lint-staged)
+- **Automatic Formatting**: Prettier formats code on every commit
+- **Linting Enforcement**: ESLint fixes issues and prevents commits with errors
+- **Test Validation**: Tests run before commits to prevent regressions
+- **TypeScript Strict**: Enhanced compiler checks catch issues early
+
+### Quality Commands
+```bash
+# Manual quality checks
+npm run lint              # Zero warnings allowed
+npm run format:check      # Verify formatting compliance
+npm test -- --coverage   # Comprehensive test coverage
+
+# Auto-fix quality issues
+npm run lint:fix          # Fix linting problems automatically
+npm run format            # Format all source files
+```
+
+### Standards Enforced
+- ✅ **ESLint Clean**: No warnings or errors allowed
+- ✅ **Prettier Formatted**: Consistent code formatting
+- ✅ **TypeScript Strict**: Enhanced type checking enabled
+- ✅ **TDD Coverage**: 80% overall, 90% for critical components
+- ✅ **Professional Workflow**: Industry-standard development practices
+
+See `docs/CODE_QUALITY.md` for comprehensive setup and configuration details.
 
 ## Development Notes
 

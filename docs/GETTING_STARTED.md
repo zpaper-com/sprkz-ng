@@ -79,7 +79,55 @@ npm install --save-dev prettier eslint-config-prettier
 # Testing (Required for TDD)
 npm install --save-dev @testing-library/react @testing-library/jest-dom
 npm install --save-dev @testing-library/user-event jest-environment-jsdom
+
+# Code Quality Tools (RECOMMENDED: Install for professional development workflow)
+npm install --save-dev husky lint-staged
 ```
+
+#### 1.3.1 Setup Code Quality Tools (Optional but Recommended)
+
+For professional development with automatic code formatting and linting:
+
+```bash
+# Install Husky for Git hooks and lint-staged for pre-commit processing
+npm install --save-dev husky lint-staged
+
+# Initialize Husky (creates .husky directory and pre-commit hook)
+npx husky init
+```
+
+**Configure lint-staged in package.json:**
+```json
+{
+  "scripts": {
+    "lint": "eslint src --ext .ts,.tsx --max-warnings 0",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.{json,css,scss,md}": [
+      "prettier --write"
+    ]
+  }
+}
+```
+
+**Update .husky/pre-commit:**
+```bash
+npx lint-staged
+npm run test -- --run --watchAll=false --passWithNoTests
+```
+
+**Benefits of Code Quality Setup:**
+- ✅ **Automatic Formatting**: Code is automatically formatted on commit
+- ✅ **Linting Enforcement**: Pre-commit hooks prevent commits with linting errors
+- ✅ **Team Standards**: Consistent code style across all developers
+- ✅ **Professional Workflow**: Industry-standard development practices
 
 #### 1.4 Configure Development Server Port
 ```bash
