@@ -38,14 +38,14 @@ class PDFService {
    * Render PDF page to canvas
    */
   async renderPage(
-    page: PDFPageProxy, 
-    canvas: HTMLCanvasElement, 
+    page: PDFPageProxy,
+    canvas: HTMLCanvasElement,
     scale: number = 1.0
   ): Promise<PageDimensions> {
     try {
       const viewport = page.getViewport({ scale });
       const context = canvas.getContext('2d');
-      
+
       if (!context) {
         throw new Error('Could not get canvas context');
       }
@@ -74,7 +74,7 @@ class PDFService {
 
       return {
         width: viewport.width,
-        height: viewport.height
+        height: viewport.height,
       };
     } catch (error) {
       console.error('Error rendering PDF page:', error);
@@ -86,13 +86,13 @@ class PDFService {
    * Render PDF page to canvas with cancellation support
    */
   renderPageWithCancellation(
-    page: PDFPageProxy, 
-    canvas: HTMLCanvasElement, 
+    page: PDFPageProxy,
+    canvas: HTMLCanvasElement,
     scale: number = 1.0
   ): any {
     const viewport = page.getViewport({ scale });
     const context = canvas.getContext('2d');
-    
+
     if (!context) {
       throw new Error('Could not get canvas context');
     }
@@ -124,7 +124,7 @@ class PDFService {
    */
   async getFormFields(page: PDFPageProxy): Promise<FormField[]> {
     const annotations = await page.getAnnotations({ intent: 'display' });
-    
+
     return annotations
       .filter((annotation: any) => annotation.fieldType)
       .map((annotation: any) => {
@@ -177,7 +177,7 @@ class PDFService {
     viewport: any
   ): Promise<void> {
     const textContent = await page.getTextContent();
-    
+
     // Clear existing text layer
     textLayerDiv.innerHTML = '';
     textLayerDiv.className = 'textLayer';
@@ -187,13 +187,13 @@ class PDFService {
       const textDiv = document.createElement('span');
       textDiv.textContent = textItem.str;
       textDiv.style.position = 'absolute';
-      
+
       // Transform coordinates from PDF coordinate system to viewport
       const tx = textItem.transform;
       const left = tx[4];
-      const bottom = tx[5]; 
+      const bottom = tx[5];
       const top = viewport.height - bottom - textItem.height;
-      
+
       textDiv.style.left = `${left}px`;
       textDiv.style.top = `${top}px`;
       textDiv.style.fontSize = `${textItem.height}px`;
@@ -202,7 +202,7 @@ class PDFService {
       textDiv.style.color = 'transparent';
       textDiv.style.userSelect = 'text';
       textDiv.style.cursor = 'text';
-      
+
       textLayerDiv.appendChild(textDiv);
     });
   }
@@ -217,7 +217,10 @@ class PDFService {
   /**
    * Get specific page from PDF document
    */
-  async getPage(pdfDocument: PDFDocumentProxy, pageNumber: number): Promise<PDFPageProxy> {
+  async getPage(
+    pdfDocument: PDFDocumentProxy,
+    pageNumber: number
+  ): Promise<PDFPageProxy> {
     return await pdfDocument.getPage(pageNumber);
   }
 }

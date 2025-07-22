@@ -5,8 +5,8 @@ import * as pdfjsLib from 'pdfjs-dist';
 jest.mock('pdfjs-dist', () => ({
   getDocument: jest.fn(),
   GlobalWorkerOptions: {
-    workerSrc: ''
-  }
+    workerSrc: '',
+  },
 }));
 
 describe('PDFService', () => {
@@ -14,11 +14,11 @@ describe('PDFService', () => {
     it('should load PDF from URL', async () => {
       const mockPDFDocument = {
         numPages: 2,
-        getPage: jest.fn()
+        getPage: jest.fn(),
       };
 
       const mockLoadingTask = {
-        promise: Promise.resolve(mockPDFDocument)
+        promise: Promise.resolve(mockPDFDocument),
       };
 
       (pdfjsLib.getDocument as jest.Mock).mockReturnValue(mockLoadingTask);
@@ -32,12 +32,14 @@ describe('PDFService', () => {
     it('should handle PDF loading errors', async () => {
       const error = new Error('Failed to load PDF');
       const mockLoadingTask = {
-        promise: Promise.reject(error)
+        promise: Promise.reject(error),
       };
 
       (pdfjsLib.getDocument as jest.Mock).mockReturnValue(mockLoadingTask);
 
-      await expect(pdfService.loadPDF('/invalid.pdf')).rejects.toThrow('Failed to load PDF');
+      await expect(pdfService.loadPDF('/invalid.pdf')).rejects.toThrow(
+        'Failed to load PDF'
+      );
     });
   });
 
@@ -47,9 +49,9 @@ describe('PDFService', () => {
         getViewport: jest.fn().mockReturnValue({
           width: 800,
           height: 600,
-          transform: [1, 0, 0, 1, 0, 0]
+          transform: [1, 0, 0, 1, 0, 0],
         }),
-        render: jest.fn().mockResolvedValue(undefined)
+        render: jest.fn().mockResolvedValue(undefined),
       };
 
       const mockCanvas = document.createElement('canvas');
@@ -60,11 +62,11 @@ describe('PDFService', () => {
       expect(mockPage.getViewport).toHaveBeenCalledWith({ scale: 1.0 });
       expect(mockPage.render).toHaveBeenCalledWith({
         canvasContext: mockContext,
-        viewport: expect.any(Object)
+        viewport: expect.any(Object),
       });
       expect(result).toEqual({
         width: 800,
-        height: 600
+        height: 600,
       });
     });
   });
@@ -76,30 +78,32 @@ describe('PDFService', () => {
           fieldType: 'Tx',
           fieldName: 'name',
           rect: [100, 100, 200, 120],
-          readOnly: false
+          readOnly: false,
         },
         {
           fieldType: 'Ch',
           fieldName: 'dropdown',
           rect: [100, 150, 200, 170],
-          readOnly: false
-        }
+          readOnly: false,
+        },
       ];
 
       const mockPage = {
-        getAnnotations: jest.fn().mockResolvedValue(mockAnnotations)
+        getAnnotations: jest.fn().mockResolvedValue(mockAnnotations),
       };
 
       const result = await pdfService.getFormFields(mockPage);
 
-      expect(mockPage.getAnnotations).toHaveBeenCalledWith({ intent: 'display' });
+      expect(mockPage.getAnnotations).toHaveBeenCalledWith({
+        intent: 'display',
+      });
       expect(result).toHaveLength(2);
       expect(result[0]).toEqual({
         type: 'text',
         name: 'name',
         rect: [100, 100, 200, 120],
         required: false,
-        readOnly: false
+        readOnly: false,
       });
     });
 
@@ -109,12 +113,12 @@ describe('PDFService', () => {
           fieldType: 'Tx',
           fieldName: 'readonly_field',
           rect: [100, 100, 200, 120],
-          readOnly: true
-        }
+          readOnly: true,
+        },
       ];
 
       const mockPage = {
-        getAnnotations: jest.fn().mockResolvedValue(mockAnnotations)
+        getAnnotations: jest.fn().mockResolvedValue(mockAnnotations),
       };
 
       const result = await pdfService.getFormFields(mockPage);
