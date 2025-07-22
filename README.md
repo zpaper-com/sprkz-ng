@@ -24,15 +24,6 @@ This directory contains the active documentation for the Sprkz PDF form completi
 - Phase-by-phase implementation steps
 - Quality gates and success metrics
 
-### TECHNICAL_SPECIFICATIONS.md
-**Detailed technical reference** - Comprehensive technical specifications, code patterns, and implementation guidelines for all core components.
-
-**Use for:**
-- PDF.js integration patterns and multi-layer rendering
-- Signature component specifications and font requirements
-- Form field extraction and state management patterns
-- Performance optimization strategies
-- Error handling categories and browser compatibility
 
 ### CLAUDE.md
 **Claude Code guidance** - Instructions for AI-assisted development with this codebase.
@@ -88,33 +79,22 @@ This directory contains the active documentation for the Sprkz PDF form completi
 - Performance monitoring implementation
 - Production monitoring and alerting
 
-### CURRENT_INFRASTRUCTURE.md
-**⚠️ CRITICAL infrastructure documentation** - Information about the existing placeholder server that **MUST BE PRESERVED** during development.
-
-**Use for:**
-- Understanding ALB target group requirements  
-- PM2 service management (DO NOT STOP)
-- Required /health endpoint specifications
-- Infrastructure transition planning for Phase 11
-- Server removal guidelines (ONLY after React /health is working)
 
 ## Documentation Hierarchy
 
 ### For Implementation (Start Here)
 1. **GETTING_STARTED.md** - First step prompt for Claude Code implementation
 2. **IMPLEMENTATION_PLAN.md** - Master plan (supersedes all others for technical decisions)
-3. **TECHNICAL_SPECIFICATIONS.md** - Detailed technical patterns and code examples
-4. **TDD_GUIDELINES.md** - Required development methodology
-5. **FEATURE_FLAGS.md** - Feature flags strategy and implementation
-6. **ERROR_MONITORING.md** - Error monitoring and tracking with Sentry
+3. **TDD_GUIDELINES.md** - Required development methodology
+4. **FEATURE_FLAGS.md** - Feature flags strategy and implementation
+5. **ERROR_MONITORING.md** - Error monitoring and tracking with Sentry
 
 ### For Understanding Requirements
-7. **PRD.md** - Business requirements baseline
-8. **WIZARD_FEATURE.md** - Detailed feature specification
+6. **PRD.md** - Business requirements baseline
+7. **WIZARD_FEATURE.md** - Detailed feature specification
 
 ### For Reference
-9. **CLAUDE.md** - Development guidance and project context
-10. **CURRENT_INFRASTRUCTURE.md** - Existing server setup
+8. **CLAUDE.md** - Development guidance and project context
 
 ## Archive
 
@@ -125,7 +105,6 @@ Historical documentation that has been superseded is located in the `../archive/
 ### For Claude Code Implementation
 - **Start with `GETTING_STARTED.md`** - This is your implementation entry point and contains the complete first-step prompt
 - Always refer to `IMPLEMENTATION_PLAN.md` for architectural and technical decisions
-- Use `TECHNICAL_SPECIFICATIONS.md` for detailed implementation patterns and code examples
 - Follow `TDD_GUIDELINES.md` strictly - TDD is mandatory for this project
 
 ### For Understanding the Project

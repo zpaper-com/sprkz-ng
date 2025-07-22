@@ -26,10 +26,9 @@ Before beginning implementation, **YOU MUST READ** these documentation files in 
 
 1. **README.md** - Documentation hierarchy and navigation guide
 2. **IMPLEMENTATION_PLAN.md** - Master implementation plan with phases (THIS IS YOUR PRIMARY GUIDE)
-3. **TECHNICAL_SPECIFICATIONS.md** - Detailed code patterns, PDF.js integration, signature specs, and performance requirements
-4. **PRD.md** - Business requirements and user experience specifications  
-5. **TDD_GUIDELINES.md** - Test-driven development methodology (this project REQUIRES TDD)
-6. **WIZARD_FEATURE.md** - Detailed wizard navigation specifications
+3. **PRD.md** - Business requirements and user experience specifications  
+4. **TDD_GUIDELINES.md** - Test-driven development methodology (this project REQUIRES TDD)
+5. **WIZARD_FEATURE.md** - Detailed wizard navigation specifications
 
 ### Architecture Overview
 - **Framework**: React 18+ with TypeScript
@@ -49,8 +48,8 @@ Execute the following setup exactly as specified in IMPLEMENTATION_PLAN.md Phase
 #### 1.1 Create React TypeScript Project
 ```bash
 # Create the project
-npx create-react-app sprkz-pdf-forms --template typescript
-cd sprkz-pdf-forms
+npx create-react-app sprkz --template typescript
+cd sprkz
 
 # Verify creation was successful
 ls -la

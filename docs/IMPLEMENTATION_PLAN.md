@@ -169,7 +169,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
 ### Step 2.2: PDF Service Implementation
 Create `services/pdfService.ts`:
 - PDF document loading from URL/file
-- **Multi-layer rendering**: Canvas, Text, and Annotation layers (see TECHNICAL_SPECIFICATIONS.md)
+- **Multi-layer rendering**: Canvas, Text, and Annotation layers
 - Error handling for invalid/corrupted PDFs
 - Memory management and cleanup
 - **Lazy loading**: Load pages on-demand for performance

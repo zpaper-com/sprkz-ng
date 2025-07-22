@@ -232,20 +232,18 @@ Key documentation files in this repository:
 - `README.md`: Documentation directory guide and file hierarchy
 - `docs/GETTING_STARTED.md`: **START HERE** - Claude Code implementation prompt with complete first-step instructions
 - `docs/IMPLEMENTATION_PLAN.md`: Master implementation plan (supersedes all others for technical decisions)
-- `docs/TECHNICAL_SPECIFICATIONS.md`: Detailed technical patterns, code examples, and implementation guidelines
 - `docs/TDD_GUIDELINES.md`: Test-driven development methodology and guidelines (MANDATORY)
 - `docs/FEATURE_FLAGS.md`: Feature flags strategy and implementation using Unleash
 - `docs/ERROR_MONITORING.md`: Error monitoring and tracking strategy using Sentry
 - `docs/PRD.md`: Product requirements and user experience specifications
 - `docs/WIZARD_FEATURE.md`: Detailed wizard navigation feature specification
-- `docs/CURRENT_INFRASTRUCTURE.md`: Existing server setup and deployment information
 - `archive/`: Historical documentation that has been superseded
 
 ## Development Notes
 
 - This is a greenfield project - no implementation code exists yet
 - **For implementation: START with `docs/GETTING_STARTED.md`** - This contains the complete first-step prompt and setup instructions
-- All development should follow the React + Material-UI architecture documented in IMPLEMENTATION_PLAN.md and TECHNICAL_SPECIFICATIONS.md
+- All development should follow the React + Material-UI architecture documented in IMPLEMENTATION_PLAN.md
 - **TDD is mandatory** - Follow docs/TDD_GUIDELINES.md strictly
 - Focus on PDF.js annotation layer integration for native form field rendering
 - Implement proper separation of concerns between PDF rendering, form management, and UI components
