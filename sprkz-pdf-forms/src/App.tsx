@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ErrorBoundary } from '@sentry/react';
 import { Container, Typography, Box, Button } from '@mui/material';
 import { FeatureFlagsProvider } from './contexts/FeatureFlagsContext';
+import { PDFFormContainer } from './components/pdf/PDFFormContainer';
 
 // Material-UI theme configuration
 const theme = createTheme({
@@ -83,19 +84,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <FeatureFlagsProvider>
-          <Container maxWidth="lg">
-            <Box sx={{ py: 4, textAlign: 'center' }}>
-              <Typography variant="h4" component="h1" gutterBottom>
-                Sprkz PDF Form Completion Platform
-              </Typography>
-              <Typography variant="body1" color="textSecondary" gutterBottom>
-                Interactive PDF form completion with guided wizard navigation
-              </Typography>
-              <Typography variant="body2" sx={{ mt: 2 }}>
-                Phase 1 Setup Complete - Ready for PDF.js Integration
-              </Typography>
-            </Box>
-          </Container>
+          <PDFFormContainer />
           <SentryTestComponent />
         </FeatureFlagsProvider>
       </ThemeProvider>
