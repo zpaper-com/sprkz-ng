@@ -30,7 +30,9 @@ describe('App Component', () => {
     test('should not show any error boundaries on initial load', () => {
       render(<App />);
       // Should not contain error messages
-      expect(screen.queryByText(/something went wrong/i)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/something went wrong/i)
+      ).not.toBeInTheDocument();
     });
   });
 

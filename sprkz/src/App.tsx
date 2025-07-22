@@ -49,7 +49,11 @@ const App: React.FC = () => {
             >
               PDF Form Completion Platform
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600 }}>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ maxWidth: 600 }}
+            >
               Interactive PDF form filling with guided wizard-style navigation,
               signature capture, and real-time validation.
             </Typography>
