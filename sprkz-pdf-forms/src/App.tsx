@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ErrorBoundary } from '@sentry/react';
 import { Container, Typography, Box, Button } from '@mui/material';
 import { FeatureFlagsProvider } from './contexts/FeatureFlagsContext';
+import FeatureFlagsDebug from './components/debug/FeatureFlagsDebug';
 import { FormProvider } from './contexts/FormContext';
 import { WizardProvider } from './contexts/WizardContext';
 import { PDFFormContainer } from './components/pdf/PDFFormContainer';
@@ -60,11 +61,25 @@ function App() {
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <FeatureFlagsProvider>
+        <FeatureFlagsProvider
+          config={{
+            url: process.env.REACT_APP_UNLEASH_PROXY_URL,
+            clientKey: process.env.REACT_APP_UNLEASH_CLIENT_KEY,
+            environment: process.env.REACT_APP_UNLEASH_ENVIRONMENT || process.env.NODE_ENV,
+            userId: process.env.REACT_APP_USER_ID,
+            refreshInterval: 15
+          }}
+          enableLogging={process.env.NODE_ENV === 'development'}
+        >
           <FormProvider>
             <WizardProvider>
               <PDFFormContainer />
               <SentryTestComponent />
+              
+              {/* Feature flags debug panel (development only) */}
+              {process.env.NODE_ENV === 'development' && (
+                <FeatureFlagsDebug position="bottom-left" />
+              )}
             </WizardProvider>
           </FormProvider>
         </FeatureFlagsProvider>

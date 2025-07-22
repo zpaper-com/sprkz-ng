@@ -26,11 +26,23 @@ export class PDFService {
   static async loadDocument(options: PDFLoadOptions): Promise<PDFDocumentProxy> {
     const startTime = performance.now();
     
+    // Check feature flags for PDF processing options
+    const enableLazyLoading = isFeatureEnabled('PDF_LAZY_LOADING');
+    const enablePerformanceMonitoring = isFeatureEnabled('PERFORMANCE_MONITORING');
+    
+    if (enablePerformanceMonitoring) {
+      console.log('PDF loading started:', options);
+    }
+    
     try {
       const cacheKey = options.url || 'data-pdf';
       
-      // Check cache first
-      if (options.url && this.loadedDocuments.has(cacheKey)) {
+      // Check cache first (if lazy loading is enabled)
+      if (enableLazyLoading && options.url && this.loadedDocuments.has(cacheKey)) {
+        if (enablePerformanceMonitoring) {
+          const duration = performance.now() - startTime;
+          console.log(`PDF loaded from cache in ${duration.toFixed(2)}ms`);
+        }
         return this.loadedDocuments.get(cacheKey)!;
       }
 
@@ -43,13 +55,15 @@ export class PDFService {
 
       const pdfDoc = await loadingTask.promise;
       
-      // Cache the document
-      if (options.url) {
+      // Cache the document (if lazy loading is enabled)
+      if (enableLazyLoading && options.url) {
         this.loadedDocuments.set(cacheKey, pdfDoc);
       }
 
-      const duration = performance.now() - startTime;
-      console.log(`PDF loaded successfully in ${duration.toFixed(2)}ms. Pages: ${pdfDoc.numPages}`);
+      if (enablePerformanceMonitoring) {
+        const duration = performance.now() - startTime;
+        console.log(`PDF loaded successfully in ${duration.toFixed(2)}ms. Pages: ${pdfDoc.numPages}`);
+      }
       
       return pdfDoc;
     } catch (error) {
@@ -72,9 +86,17 @@ export class PDFService {
     const startTime = performance.now();
     const cacheKey = `${pdfDoc.fingerprints[0]}-page-${pageNumber}`;
     
+    // Feature flags
+    const enableLazyLoading = isFeatureEnabled('PDF_LAZY_LOADING');
+    const enablePerformanceMonitoring = isFeatureEnabled('PERFORMANCE_MONITORING');
+    
     try {
-      // Check cache first
-      if (this.loadedPages.has(cacheKey)) {
+      // Check cache first (if lazy loading enabled)
+      if (enableLazyLoading && this.loadedPages.has(cacheKey)) {
+        if (enablePerformanceMonitoring) {
+          const duration = performance.now() - startTime;
+          console.log(`Page ${pageNumber} loaded from cache in ${duration.toFixed(2)}ms`);
+        }
         return this.loadedPages.get(cacheKey)!;
       }
 

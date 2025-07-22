@@ -17,6 +17,7 @@ import {
 } from '@mui/icons-material';
 import { useWizard, WizardState } from '../../contexts/WizardContext';
 import { microInteractionStyles, presets, createMicroInteraction } from '../../utils/microInteractions';
+import { useFeatureFlag } from '../../contexts/FeatureFlagsContext';
 
 export interface WizardButtonProps {
   size?: 'small' | 'medium' | 'large';
@@ -36,6 +37,12 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
   const theme = useTheme();
   const wizard = useWizard();
   const buttonState = wizard.getCurrentButtonState();
+  
+  // Feature flags for wizard functionality
+  const { isEnabled: enhancedWizardMode } = useFeatureFlag('ENHANCED_WIZARD_MODE');
+  const { isEnabled: progressiveFormFilling } = useFeatureFlag('PROGRESSIVE_FORM_FILLING');
+  const { isEnabled: animationEffects } = useFeatureFlag('ANIMATION_EFFECTS');
+  const { isEnabled: smartFieldDetection } = useFeatureFlag('SMART_FIELD_DETECTION');
 
   // Get button color mapping for Material-UI
   const getButtonColor = (color: string): 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'error' => {
@@ -121,8 +128,8 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
 
   return (
     <Box className={className} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-      {/* Progress indicator */}
-      {showProgress && wizard.state.totalRequiredFields > 0 && (
+      {/* Progress indicator - controlled by feature flag */}
+      {showProgress && enhancedWizardMode && wizard.state.totalRequiredFields > 0 && (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
           <Box sx={{ position: 'relative', display: 'inline-flex' }}>
             <CircularProgress
@@ -132,7 +139,7 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
               thickness={4}
               sx={{
                 color: getProgressColor(),
-                ...microInteractionStyles.pulseLoading,
+                ...(animationEffects ? microInteractionStyles.pulseLoading : {}),
                 '& .MuiCircularProgress-circle': {
                   strokeLinecap: 'round',
                 }
@@ -188,7 +195,7 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
               fontWeight: 600,
               borderRadius: 3,
               boxShadow: theme.shadows[3],
-              ...createMicroInteraction.hoverLift(1, theme.shadows[6]),
+              ...(animationEffects ? createMicroInteraction.hoverLift(1, theme.shadows[6]) : {}),
               ...microInteractionStyles.focusRing,
               '&.Mui-disabled': {
                 backgroundColor: theme.palette.action.disabledBackground,
@@ -214,8 +221,8 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
         </span>
       </Tooltip>
 
-      {/* Guidance text */}
-      {showGuidance && (
+      {/* Guidance text - enhanced in wizard mode */}
+      {showGuidance && enhancedWizardMode && (
         <Typography 
           variant="caption" 
           color="textSecondary" 
@@ -224,21 +231,21 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
             maxWidth: 200,
             lineHeight: 1.2,
             mt: 0.5,
-            ...microInteractionStyles.fadeIn
+            ...(animationEffects ? microInteractionStyles.fadeIn : {})
           }}
         >
           {getGuidanceText()}
         </Typography>
       )}
 
-      {/* Warning indicators */}
-      {wizard.state.currentField && wizard.state.currentField.validationErrors.length > 0 && (
+      {/* Warning indicators - enhanced with smart field detection */}
+      {smartFieldDetection && wizard.state.currentField && wizard.state.currentField.validationErrors.length > 0 && (
         <Box sx={{ 
           display: 'flex', 
           alignItems: 'center', 
           gap: 0.5, 
           mt: 1,
-          ...microInteractionStyles.errorShake
+          ...(animationEffects ? microInteractionStyles.errorShake : {})
         }}>
           <Warning color="warning" fontSize="small" />
           <Typography variant="caption" color="warning.main">

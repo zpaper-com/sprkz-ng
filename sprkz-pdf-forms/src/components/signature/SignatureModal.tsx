@@ -86,6 +86,12 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   
+  // Feature flags for signature functionality
+  const { isEnabled: signatureDrawingMode } = useFeatureFlag('SIGNATURE_DRAWING_MODE');
+  const { isEnabled: signatureTypedMode } = useFeatureFlag('SIGNATURE_TYPED_MODE');
+  const { isEnabled: multiSignatureSupport } = useFeatureFlag('MULTI_SIGNATURE_SUPPORT');
+  const { isEnabled: animationEffects } = useFeatureFlag('ANIMATION_EFFECTS');
+  
   // Tab state
   const [activeTab, setActiveTab] = useState(0);
   

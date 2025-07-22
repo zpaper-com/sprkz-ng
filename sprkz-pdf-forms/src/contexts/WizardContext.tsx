@@ -159,6 +159,15 @@ function wizardReducer(state: WizardContextState, action: WizardAction): WizardC
         ...initialState
       };
     }
+    
+    case 'UPDATE_FEATURE_FLAGS': {
+      return {
+        ...state,
+        enhancedMode: action.payload.enhancedMode,
+        progressiveMode: action.payload.progressiveMode,
+        smartDetection: action.payload.smartDetection
+      };
+    }
 
     default:
       return state;
@@ -169,6 +178,23 @@ function wizardReducer(state: WizardContextState, action: WizardAction): WizardC
 export const WizardProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(wizardReducer, initialState);
   const formContext = useForm();
+  
+  // Feature flags for wizard behavior
+  const { isEnabled: enhancedWizardMode } = useFeatureFlag('ENHANCED_WIZARD_MODE');
+  const { isEnabled: progressiveFormFilling } = useFeatureFlag('PROGRESSIVE_FORM_FILLING');
+  const { isEnabled: smartFieldDetection } = useFeatureFlag('SMART_FIELD_DETECTION');
+  
+  // Update feature flags in wizard state
+  useEffect(() => {
+    dispatch({
+      type: 'UPDATE_FEATURE_FLAGS',
+      payload: {
+        enhancedMode: enhancedWizardMode,
+        progressiveMode: progressiveFormFilling,
+        smartDetection: smartFieldDetection
+      }
+    });
+  }, [enhancedWizardMode, progressiveFormFilling, smartFieldDetection]);
 
   // Initialize wizard with form fields
   const initializeWizard = useCallback((allFields: FormField[]) => {

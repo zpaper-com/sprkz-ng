@@ -155,14 +155,25 @@ export class ValidationService {
   ): Promise<ValidationResult> {
     const startTime = performance.now();
     
+    // Check feature flags
+    const enhancedValidation = isFeatureEnabled('ENHANCED_FIELD_VALIDATION');
+    const performanceMonitoring = isFeatureEnabled('PERFORMANCE_MONITORING');
+    const securityAuditLogging = isFeatureEnabled('SECURITY_AUDIT_LOGGING');
+    
     try {
+      // Use enhanced validation options if feature is enabled
       const {
-        validateRequired = true,
-        validateFormat = true,
-        validateDependencies = true,
+        validateRequired = enhancedValidation ? true : true,
+        validateFormat = enhancedValidation ? true : false,
+        validateDependencies = enhancedValidation ? true : false,
         excludeReadOnly = true,
-        performanceMode = false
+        performanceMode = performanceMonitoring ? false : true
       } = options;
+      
+      // Security audit logging
+      if (securityAuditLogging) {
+        console.log(`Validating field: ${field.name}, type: ${field.type}, value length: ${value?.toString().length || 0}`);
+      }
 
       // Create cache key
       const cacheKey = `${field.name}_${JSON.stringify(value)}_${field.type}`;
