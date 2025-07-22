@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ErrorBoundary } from '@sentry/react';
 import { Container, Typography, Box, Button } from '@mui/material';
@@ -7,32 +7,7 @@ import { FeatureFlagsProvider } from './contexts/FeatureFlagsContext';
 import { FormProvider } from './contexts/FormContext';
 import { WizardProvider } from './contexts/WizardContext';
 import { PDFFormContainer } from './components/pdf/PDFFormContainer';
-
-// Material-UI theme configuration
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#2196F3', // Blue for "Start" button
-    },
-    secondary: {
-      main: '#FF9800', // Orange for "Next" button
-    },
-    success: {
-      main: '#4CAF50', // Green for "Submit" button
-    },
-    info: {
-      main: '#9C27B0', // Purple for "Sign" button
-    },
-  },
-  typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h4: {
-      fontWeight: 600,
-      marginBottom: '1rem',
-    },
-  },
-});
+import theme from './theme/theme';
 
 // Temporary Sentry validation component (REMOVE after testing)
 const SentryTestComponent: React.FC = () => {

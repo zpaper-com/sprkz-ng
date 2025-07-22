@@ -16,6 +16,7 @@ import {
   Warning
 } from '@mui/icons-material';
 import { useWizard, WizardState } from '../../contexts/WizardContext';
+import { microInteractionStyles, presets, createMicroInteraction } from '../../utils/microInteractions';
 
 export interface WizardButtonProps {
   size?: 'small' | 'medium' | 'large';
@@ -131,6 +132,7 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
               thickness={4}
               sx={{
                 color: getProgressColor(),
+                ...microInteractionStyles.pulseLoading,
                 '& .MuiCircularProgress-circle': {
                   strokeLinecap: 'round',
                 }
@@ -186,13 +188,8 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
               fontWeight: 600,
               borderRadius: 3,
               boxShadow: theme.shadows[3],
-              '&:hover': {
-                boxShadow: theme.shadows[6],
-                transform: 'translateY(-1px)'
-              },
-              '&:active': {
-                transform: 'translateY(0px)'
-              },
+              ...createMicroInteraction.hoverLift(1, theme.shadows[6]),
+              ...microInteractionStyles.focusRing,
               '&.Mui-disabled': {
                 backgroundColor: theme.palette.action.disabledBackground,
                 color: theme.palette.action.disabled
@@ -226,7 +223,8 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
           sx={{ 
             maxWidth: 200,
             lineHeight: 1.2,
-            mt: 0.5
+            mt: 0.5,
+            ...microInteractionStyles.fadeIn
           }}
         >
           {getGuidanceText()}
@@ -235,7 +233,13 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
 
       {/* Warning indicators */}
       {wizard.state.currentField && wizard.state.currentField.validationErrors.length > 0 && (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 1 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 0.5, 
+          mt: 1,
+          ...microInteractionStyles.errorShake
+        }}>
           <Warning color="warning" fontSize="small" />
           <Typography variant="caption" color="warning.main">
             {wizard.state.currentField.validationErrors[0]}

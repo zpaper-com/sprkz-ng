@@ -25,6 +25,7 @@ import {
 } from '@mui/icons-material';
 import { useWizard } from '../../contexts/WizardContext';
 import { useForm } from '../../contexts/FormContext';
+import { microInteractionStyles, presets, createMicroInteraction } from '../../utils/microInteractions';
 
 export interface ProgressTrackerProps {
   compact?: boolean;
@@ -106,7 +107,10 @@ export const ProgressTracker: React.FC<ProgressTrackerProps> = ({
   }
 
   return (
-    <Paper className={className} elevation={2} sx={{ p: 2 }}>
+    <Paper className={className} elevation={2} sx={{ 
+      p: 2,
+      ...presets.card
+    }}>
       {/* Header */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
         <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -115,7 +119,11 @@ export const ProgressTracker: React.FC<ProgressTrackerProps> = ({
         </Typography>
         
         {showFieldList && (
-          <IconButton onClick={handleExpandClick} size="small">
+          <IconButton 
+            onClick={handleExpandClick} 
+            size="small"
+            sx={presets.iconButton}
+          >
             {expanded ? <ExpandLess /> : <ExpandMore />}
           </IconButton>
         )}
@@ -141,7 +149,8 @@ export const ProgressTracker: React.FC<ProgressTrackerProps> = ({
             borderRadius: 6,
             '& .MuiLinearProgress-bar': {
               borderRadius: 6
-            }
+            },
+            ...createMicroInteraction.progressFill(wizard.state.completionPercentage, 1200)
           }}
         />
       </Box>
@@ -156,6 +165,10 @@ export const ProgressTracker: React.FC<ProgressTrackerProps> = ({
               size="small"
               color={fieldStats.completedRequired === fieldStats.totalRequired ? 'success' : 'default'}
               variant={fieldStats.completedRequired === fieldStats.totalRequired ? 'filled' : 'outlined'}
+              sx={fieldStats.completedRequired === fieldStats.totalRequired ? 
+                microInteractionStyles.successBounce : 
+                microInteractionStyles.hoverScale
+              }
             />
             
             {fieldStats.totalSignatures > 0 && (

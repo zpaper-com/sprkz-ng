@@ -37,6 +37,7 @@ import {
   WifiOff
 } from '@mui/icons-material';
 import * as Sentry from '@sentry/react';
+import { microInteractionStyles, presets } from '../../utils/microInteractions';
 
 export type ErrorType = 
   | 'network' 

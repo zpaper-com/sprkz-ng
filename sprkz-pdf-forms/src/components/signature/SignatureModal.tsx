@@ -26,6 +26,7 @@ import {
 } from '@mui/icons-material';
 import { SignatureCanvas } from './SignatureCanvas';
 import { TypedSignature } from './TypedSignature';
+import { microInteractionStyles, presets } from '../../utils/microInteractions';
 
 export interface SignatureData {
   type: 'canvas' | 'typed';
