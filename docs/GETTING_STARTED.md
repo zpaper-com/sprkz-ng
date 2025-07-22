@@ -83,8 +83,9 @@ npm install --save-dev @testing-library/user-event jest-environment-jsdom
 
 #### 1.4 Configure Development Server Port
 ```bash
-# Set the project-specific port (spells "SPRZ")
+# Set the project-specific port (spells "SPRZ") and bind to all IPs
 echo "PORT=7779" > .env
+echo "HOST=0.0.0.0" >> .env
 echo "REACT_APP_PDF_WORKER_URL=/pdf.worker.min.js" >> .env
 echo "REACT_APP_DEFAULT_PDF=/pdfs/makana2025.pdf" >> .env
 ```
@@ -130,8 +131,8 @@ After completing the setup, verify the following:
 6. **Default PDF file**: `makana2025.pdf` exists in `public/pdfs/` directory
 
 ### ✅ Environment Validation
-1. **Port configuration**: App should be accessible at `http://localhost:7779`
-2. **Environment variables**: `.env` file contains PORT=7779, PDF worker URL, and default PDF path
+1. **Port configuration**: App should be accessible at `http://localhost:7779` and externally via `http://<your-ip>:7779`
+2. **Environment variables**: `.env` file contains PORT=7779, HOST=0.0.0.0, PDF worker URL, and default PDF path
 3. **Development server**: Hot reloading works correctly
 
 ### ✅ Phase Testing Protocol
