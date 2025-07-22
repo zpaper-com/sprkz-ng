@@ -1,0 +1,369 @@
+name: Release Management
+
+on:
+  push:
+    tags:
+      - 'v*'
+  release:
+    types: [published]
+
+env:
+  NODE_VERSION: '18'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Validate Release
+  validate-release:
+    name: Validate Release
+    runs-on: ubuntu-latest
+    
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      is-prerelease: ${{ steps.version.outputs.prerelease }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Validate tag format
+      id: version
+      run: |
+        TAG=${GITHUB_REF#refs/tags/}
+        
+        # Validate semantic version format
+        if [[ ! $TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.-]+)?$ ]]; then
+          echo "❌ Invalid tag format: $TAG"
+          echo "Expected format: v1.0.0 or v1.0.0-beta.1"
+          exit 1
+        fi
+        
+        VERSION=${TAG#v}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        
+        # Check if prerelease
+        if [[ $VERSION =~ -[a-zA-Z] ]]; then
+          echo "prerelease=true" >> $GITHUB_OUTPUT
+          echo "📦 Prerelease version: $VERSION"
+        else
+          echo "prerelease=false" >> $GITHUB_OUTPUT
+          echo "🎉 Production release: $VERSION"
+        fi
+
+    - name: Validate package.json version
+      run: |
+        PACKAGE_VERSION=$(node -p "require('./package.json').version")
+        TAG_VERSION="${{ steps.version.outputs.version }}"
+        
+        if [[ "$PACKAGE_VERSION" != "$TAG_VERSION" ]]; then
+          echo "❌ Version mismatch:"
+          echo "  package.json: $PACKAGE_VERSION"
+          echo "  Git tag: $TAG_VERSION"
+          exit 1
+        fi
+        
+        echo "✅ Version validation passed: $PACKAGE_VERSION"
+
+  # Build Release Assets
+  build-release:
+    name: Build Release Assets
+    runs-on: ubuntu-latest
+    needs: validate-release
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run full test suite
+      run: npm run test:all
+      env:
+        CI: true
+
+    - name: Build production application
+      run: npm run build
+      env:
+        NODE_ENV: production
+        REACT_APP_VERSION: ${{ needs.validate-release.outputs.version }}
+        GENERATE_SOURCEMAP: false
+
+    - name: Create source package
+      run: |
+        tar -czf sprkz-pdf-forms-${{ needs.validate-release.outputs.version }}-source.tar.gz \
+          --exclude=node_modules \
+          --exclude=build \
+          --exclude=.git \
+          .
+
+    - name: Create build package
+      run: |
+        cd build
+        tar -czf ../sprkz-pdf-forms-${{ needs.validate-release.outputs.version }}-build.tar.gz *
+
+    - name: Generate checksums
+      run: |
+        sha256sum *.tar.gz > checksums.txt
+        echo "## Checksums" >> release-notes.md
+        echo "\`\`\`" >> release-notes.md
+        cat checksums.txt >> release-notes.md
+        echo "\`\`\`" >> release-notes.md
+
+    - name: Upload release artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-assets
+        path: |
+          *.tar.gz
+          checksums.txt
+          release-notes.md
+        retention-days: 30
+
+  # Build and Push Docker Images
+  build-docker:
+    name: Build Release Docker Images
+    runs-on: ubuntu-latest
+    needs: [validate-release, build-release]
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=semver,pattern={{major}},enable=${{ needs.validate-release.outputs.is-prerelease == 'false' }}
+          type=raw,value=latest,enable=${{ needs.validate-release.outputs.is-prerelease == 'false' }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        target: production
+        platforms: linux/amd64,linux/arm64
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        build-args: |
+          BUILD_VERSION=${{ needs.validate-release.outputs.version }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: Generate image manifest
+      run: |
+        echo "## Docker Images" >> image-info.md
+        echo "- \`${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.validate-release.outputs.version }}\`" >> image-info.md
+        
+        if [[ "${{ needs.validate-release.outputs.is-prerelease }}" == "false" ]]; then
+          echo "- \`${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest\`" >> image-info.md
+        fi
+
+    - name: Upload image info
+      uses: actions/upload-artifact@v4
+      with:
+        name: image-info
+        path: image-info.md
+
+  # Security Scan for Release
+  security-scan:
+    name: Security Scan Release
+    runs-on: ubuntu-latest
+    needs: build-docker
+    
+    steps:
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.validate-release.outputs.version }}'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+    - name: Create security report
+      run: |
+        echo "## Security Scan Results" >> security-report.md
+        echo "Vulnerability scan completed for release ${{ needs.validate-release.outputs.version }}" >> security-report.md
+        echo "See Security tab for detailed results." >> security-report.md
+
+    - name: Upload security report
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-report
+        path: security-report.md
+
+  # Create GitHub Release
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [validate-release, build-release, build-docker, security-scan]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Download release artifacts
+      uses: actions/download-artifact@v4
+      with:
+        pattern: '*'
+        merge-multiple: true
+
+    - name: Generate release notes
+      id: release-notes
+      run: |
+        VERSION="${{ needs.validate-release.outputs.version }}"
+        
+        # Get previous tag for changelog
+        PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo "")
+        
+        echo "# Release v$VERSION" > full-release-notes.md
+        echo "" >> full-release-notes.md
+        
+        if [[ "${{ needs.validate-release.outputs.is-prerelease }}" == "true" ]]; then
+          echo "⚠️ **This is a pre-release version**" >> full-release-notes.md
+          echo "" >> full-release-notes.md
+        fi
+        
+        # Add changelog
+        if [[ -n "$PREVIOUS_TAG" ]]; then
+          echo "## 📋 Changes since $PREVIOUS_TAG" >> full-release-notes.md
+          git log --pretty=format:"- %s (%h)" $PREVIOUS_TAG..HEAD | head -20 >> full-release-notes.md
+        else
+          echo "## 📋 Initial Release" >> full-release-notes.md
+        fi
+        
+        echo "" >> full-release-notes.md
+        
+        # Add build info
+        echo "## 🏗️ Build Information" >> full-release-notes.md
+        echo "- **Version:** $VERSION" >> full-release-notes.md
+        echo "- **Commit:** ${{ github.sha }}" >> full-release-notes.md
+        echo "- **Build Date:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> full-release-notes.md
+        echo "" >> full-release-notes.md
+        
+        # Add Docker images
+        if [[ -f "image-info.md" ]]; then
+          cat image-info.md >> full-release-notes.md
+          echo "" >> full-release-notes.md
+        fi
+        
+        # Add checksums
+        if [[ -f "release-notes.md" ]]; then
+          cat release-notes.md >> full-release-notes.md
+          echo "" >> full-release-notes.md
+        fi
+        
+        # Add security info
+        if [[ -f "security-report.md" ]]; then
+          cat security-report.md >> full-release-notes.md
+          echo "" >> full-release-notes.md
+        fi
+        
+        # Add installation instructions
+        echo "## 📦 Installation" >> full-release-notes.md
+        echo "" >> full-release-notes.md
+        echo "### Docker" >> full-release-notes.md
+        echo "\`\`\`bash" >> full-release-notes.md
+        echo "docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$VERSION" >> full-release-notes.md
+        echo "docker run -p 8080:8080 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$VERSION" >> full-release-notes.md
+        echo "\`\`\`" >> full-release-notes.md
+        echo "" >> full-release-notes.md
+        echo "### Docker Compose" >> full-release-notes.md
+        echo "See \`docker-compose.yml\` in the repository for full deployment options." >> full-release-notes.md
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ github.ref_name }}
+        name: Release v${{ needs.validate-release.outputs.version }}
+        body_path: full-release-notes.md
+        draft: false
+        prerelease: ${{ needs.validate-release.outputs.is-prerelease == 'true' }}
+        files: |
+          *.tar.gz
+          checksums.txt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Update latest release badge
+      if: needs.validate-release.outputs.is-prerelease == 'false'
+      run: |
+        echo "Latest stable release: v${{ needs.validate-release.outputs.version }}"
+
+  # Deploy to Production (stable releases only)
+  deploy-production:
+    name: Deploy to Production
+    needs: [validate-release, create-release]
+    if: needs.validate-release.outputs.is-prerelease == 'false'
+    uses: ./.github/workflows/cd.yml
+    secrets: inherit
+
+  # Notify Release
+  notify-release:
+    name: Notify Release
+    runs-on: ubuntu-latest
+    needs: [validate-release, create-release]
+    if: always()
+    
+    steps:
+    - name: Notify Slack
+      uses: 8398a7/action-slack@v3
+      with:
+        status: success
+        channel: '#releases'
+        text: |
+          🎉 New release published: v${{ needs.validate-release.outputs.version }}
+          
+          ${{ needs.validate-release.outputs.is-prerelease == 'true' && '⚠️ Pre-release' || '✅ Stable release' }}
+          
+          📦 Docker: `${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.validate-release.outputs.version }}`
+          🔗 Release: ${{ github.event.release.html_url }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: Notify Discord
+      uses: Ilshidur/action-discord@master
+      with:
+        args: |
+          🚀 **Sprkz PDF Forms v${{ needs.validate-release.outputs.version }}** has been released!
+          
+          ${{ needs.validate-release.outputs.is-prerelease == 'true' && '⚠️ This is a pre-release version' || '🎉 This is a stable release' }}
+          
+          Download: ${{ github.event.release.html_url }}
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+
+    - name: Update project status
+      run: |
+        echo "Release v${{ needs.validate-release.outputs.version }} completed successfully!"
+        echo "Release type: ${{ needs.validate-release.outputs.is-prerelease == 'true' && 'pre-release' || 'stable' }}"

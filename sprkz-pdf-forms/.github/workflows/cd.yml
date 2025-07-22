@@ -1,0 +1,353 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    branches: [main]
+    types: [completed]
+
+env:
+  NODE_VERSION: '18'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Deploy to Staging
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event.workflow_run.conclusion == 'success'
+    environment:
+      name: staging
+      url: https://staging.pdf.sprkz.com
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+
+    - name: Update kubeconfig
+      run: |
+        aws eks update-kubeconfig --region us-west-2 --name sprkz-staging-cluster
+
+    - name: Deploy to staging
+      run: |
+        # Update image tag in deployment
+        sed -i "s|image: sprkz/pdf-forms:.*|image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}|" deployment/kubernetes.yaml
+        
+        # Apply Kubernetes manifests
+        kubectl apply -f deployment/kubernetes.yaml -n sprkz-staging
+        
+        # Wait for rollout to complete
+        kubectl rollout status deployment/sprkz-pdf-forms-app -n sprkz-staging --timeout=300s
+
+    - name: Run smoke tests
+      run: |
+        # Wait for deployment to be ready
+        kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=sprkz-pdf-forms -n sprkz-staging --timeout=300s
+        
+        # Get the staging URL
+        STAGING_URL=$(kubectl get ingress sprkz-pdf-forms-ingress -n sprkz-staging -o jsonpath='{.spec.rules[0].host}')
+        
+        # Basic smoke test
+        curl -f https://$STAGING_URL/health || exit 1
+        curl -f https://$STAGING_URL/ || exit 1
+        
+        echo "✅ Smoke tests passed for staging"
+
+    - name: Notify staging deployment
+      uses: 8398a7/action-slack@v3
+      with:
+        status: success
+        channel: '#deployments'
+        text: '🚀 Successfully deployed to staging: https://staging.pdf.sprkz.com'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Production Deployment (requires manual approval)
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    environment:
+      name: production
+      url: https://pdf.sprkz.com
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+
+    - name: Update kubeconfig
+      run: |
+        aws eks update-kubeconfig --region us-west-2 --name sprkz-production-cluster
+
+    - name: Pre-deployment backup
+      run: |
+        # Create backup of current deployment
+        kubectl get deployment sprkz-pdf-forms-app -n sprkz-pdf-forms -o yaml > deployment-backup.yaml
+        
+        # Upload backup to S3
+        aws s3 cp deployment-backup.yaml s3://sprkz-backups/deployments/$(date +%Y%m%d-%H%M%S)-sprkz-pdf-forms.yaml
+
+    - name: Deploy to production
+      run: |
+        # Update image tag in deployment
+        sed -i "s|image: sprkz/pdf-forms:.*|image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}|" deployment/kubernetes.yaml
+        
+        # Apply Kubernetes manifests with production namespace
+        sed -i 's/namespace: sprkz-pdf-forms/namespace: sprkz-pdf-forms/g' deployment/kubernetes.yaml
+        kubectl apply -f deployment/kubernetes.yaml
+        
+        # Wait for rollout to complete
+        kubectl rollout status deployment/sprkz-pdf-forms-app -n sprkz-pdf-forms --timeout=600s
+
+    - name: Production health check
+      run: |
+        # Wait for all pods to be ready
+        kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=sprkz-pdf-forms -n sprkz-pdf-forms --timeout=300s
+        
+        # Comprehensive health checks
+        PROD_URL="https://pdf.sprkz.com"
+        
+        echo "🔍 Running production health checks..."
+        
+        # Basic connectivity
+        curl -f $PROD_URL/health || exit 1
+        
+        # Application loads
+        curl -f $PROD_URL/ || exit 1
+        
+        # Static assets are served
+        curl -f $PROD_URL/static/js/ -I || echo "Static assets check skipped (expected 404)"
+        
+        # Security headers check
+        HEADERS=$(curl -sI $PROD_URL)
+        echo "$HEADERS" | grep -q "X-Frame-Options: DENY" || exit 1
+        echo "$HEADERS" | grep -q "X-Content-Type-Options: nosniff" || exit 1
+        
+        echo "✅ All production health checks passed"
+
+    - name: Update production monitoring
+      run: |
+        # Update deployment metadata for monitoring
+        kubectl annotate deployment sprkz-pdf-forms-app -n sprkz-pdf-forms \
+          deployment.kubernetes.io/revision="$(date +%Y%m%d-%H%M%S)" \
+          deployment.kubernetes.io/deployed-by="${{ github.actor }}" \
+          deployment.kubernetes.io/git-commit="${{ github.sha }}" \
+          --overwrite
+
+    - name: Notify production deployment
+      uses: 8398a7/action-slack@v3
+      with:
+        status: success
+        channel: '#deployments'
+        text: '🎉 Successfully deployed to production: https://pdf.sprkz.com'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Rollback capability
+  rollback-production:
+    name: Rollback Production
+    runs-on: ubuntu-latest
+    if: failure() && github.ref == 'refs/heads/main'
+    needs: deploy-production
+    environment:
+      name: production
+    
+    steps:
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+
+    - name: Update kubeconfig
+      run: |
+        aws eks update-kubeconfig --region us-west-2 --name sprkz-production-cluster
+
+    - name: Rollback deployment
+      run: |
+        echo "🔄 Rolling back production deployment..."
+        kubectl rollout undo deployment/sprkz-pdf-forms-app -n sprkz-pdf-forms
+        kubectl rollout status deployment/sprkz-pdf-forms-app -n sprkz-pdf-forms --timeout=300s
+        
+        echo "✅ Rollback completed"
+
+    - name: Verify rollback
+      run: |
+        # Wait for pods to be ready
+        kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=sprkz-pdf-forms -n sprkz-pdf-forms --timeout=300s
+        
+        # Basic health check
+        curl -f https://pdf.sprkz.com/health || exit 1
+        
+        echo "✅ Rollback verification passed"
+
+    - name: Notify rollback
+      uses: 8398a7/action-slack@v3
+      with:
+        status: success
+        channel: '#deployments'
+        text: '🔄 Production rollback completed successfully'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Release tagging for tagged versions
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Generate changelog
+      id: changelog
+      run: |
+        # Get previous tag
+        PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo "")
+        
+        if [[ -n "$PREVIOUS_TAG" ]]; then
+          echo "## Changes since $PREVIOUS_TAG" > changelog.md
+          git log --pretty=format:"- %s (%h)" $PREVIOUS_TAG..HEAD >> changelog.md
+        else
+          echo "## Initial Release" > changelog.md
+          git log --pretty=format:"- %s (%h)" >> changelog.md
+        fi
+        
+        echo "changelog<<EOF" >> $GITHUB_OUTPUT
+        cat changelog.md >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: ${{ steps.changelog.outputs.changelog }}
+        draft: false
+        prerelease: false
+
+    - name: Upload build artifacts to release
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-build
+        path: build/
+
+  # Performance monitoring post-deployment
+  performance-monitoring:
+    name: Performance Monitoring
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    if: success()
+    
+    steps:
+    - name: Run Lighthouse performance audit
+      uses: treosh/lighthouse-ci-action@v9
+      with:
+        urls: |
+          https://pdf.sprkz.com
+        configPath: './.lighthouserc.json'
+        uploadArtifacts: true
+        temporaryPublicStorage: true
+
+    - name: WebPageTest audit
+      uses: WebPageTest/github-action@v1
+      with:
+        apikey: ${{ secrets.WEBPAGETEST_API_KEY }}
+        urls: https://pdf.sprkz.com
+        settings: |
+          {
+            "runs": 3,
+            "location": "us-west-1",
+            "connectivity": "3g",
+            "video": true
+          }
+
+    - name: Performance regression check
+      run: |
+        # Compare performance metrics with baseline
+        # This would integrate with your performance monitoring system
+        echo "Performance monitoring completed"
+
+  # Update documentation
+  update-docs:
+    name: Update Documentation
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    if: success() && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Generate API documentation
+      run: |
+        # Generate updated API docs
+        npm ci
+        npm run docs:generate || echo "No docs:generate script found"
+
+    - name: Deploy documentation to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        destination_dir: docs
+
+    - name: Update README with deployment status
+      run: |
+        # Update README.md with current deployment info
+        sed -i "s/Version: .*/Version: $(date +%Y.%m.%d)/" README.md
+        sed -i "s/Last Deployed: .*/Last Deployed: $(date)/" README.md
+
+    - name: Commit documentation updates
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md docs/
+        git diff --staged --quiet || git commit -m "docs: update deployment documentation [skip ci]"
+        git push

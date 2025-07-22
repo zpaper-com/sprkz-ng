@@ -1,0 +1,279 @@
+# Prometheus alerting rules for Sprkz PDF Forms
+groups:
+  - name: sprkz_pdf_forms_alerts
+    rules:
+      # Application availability
+      - alert: ApplicationDown
+        expr: up{job="sprkz-pdf-forms"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: sprkz-pdf-forms
+        annotations:
+          summary: "Sprkz PDF Forms application is down"
+          description: "The Sprkz PDF Forms application has been down for more than 1 minute."
+
+      - alert: HighErrorRate
+        expr: rate(nginx_http_requests_total{status=~"5..",job="sprkz-pdf-forms"}[5m]) / rate(nginx_http_requests_total{job="sprkz-pdf-forms"}[5m]) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }} for the last 5 minutes."
+
+      - alert: CriticalErrorRate  
+        expr: rate(nginx_http_requests_total{status=~"5..",job="sprkz-pdf-forms"}[5m]) / rate(nginx_http_requests_total{job="sprkz-pdf-forms"}[5m]) > 0.15
+        for: 1m
+        labels:
+          severity: critical
+          service: sprkz-pdf-forms
+        annotations:
+          summary: "Critical error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }} for the last 5 minutes."
+
+      # Response time alerts
+      - alert: HighResponseTime
+        expr: histogram_quantile(0.95, rate(nginx_http_request_duration_seconds_bucket{job="sprkz-pdf-forms"}[5m])) > 2
+        for: 3m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+        annotations:
+          summary: "High response time"
+          description: "95th percentile response time is {{ $value }}s for the last 5 minutes."
+
+      - alert: VeryHighResponseTime
+        expr: histogram_quantile(0.95, rate(nginx_http_request_duration_seconds_bucket{job="sprkz-pdf-forms"}[5m])) > 5
+        for: 1m
+        labels:
+          severity: critical
+          service: sprkz-pdf-forms
+        annotations:
+          summary: "Very high response time"
+          description: "95th percentile response time is {{ $value }}s for the last 5 minutes."
+
+      # PDF processing alerts
+      - alert: PDFProcessingErrors
+        expr: rate(pdf_processing_errors{job="sprkz-pdf-forms"}[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          component: pdf-processing
+        annotations:
+          summary: "PDF processing errors detected"
+          description: "PDF processing error rate is {{ $value }} errors/sec for the last 5 minutes."
+
+      - alert: SlowPDFProcessing
+        expr: histogram_quantile(0.95, rate(pdf_processing_duration_bucket{job="sprkz-pdf-forms"}[5m])) > 10
+        for: 3m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          component: pdf-processing
+        annotations:
+          summary: "Slow PDF processing"
+          description: "95th percentile PDF processing time is {{ $value }}s."
+
+      # Form submission alerts
+      - alert: FormValidationErrors
+        expr: rate(form_validation_errors{job="sprkz-pdf-forms"}[5m]) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          component: form-validation
+        annotations:
+          summary: "High form validation error rate"
+          description: "Form validation error rate is {{ $value }} errors/sec for the last 5 minutes."
+
+      - alert: NoFormSubmissions
+        expr: rate(form_submissions_total{job="sprkz-pdf-forms"}[15m]) == 0
+        for: 10m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          component: form-submission
+        annotations:
+          summary: "No form submissions"
+          description: "No form submissions received for the last 15 minutes."
+
+      # Resource usage alerts
+      - alert: HighMemoryUsage
+        expr: container_memory_usage_bytes{name="sprkz-pdf-forms"} / container_spec_memory_limit_bytes{name="sprkz-pdf-forms"} > 0.8
+        for: 3m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          resource: memory
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage is {{ $value | humanizePercentage }} of the limit."
+
+      - alert: VeryHighMemoryUsage
+        expr: container_memory_usage_bytes{name="sprkz-pdf-forms"} / container_spec_memory_limit_bytes{name="sprkz-pdf-forms"} > 0.95
+        for: 1m
+        labels:
+          severity: critical
+          service: sprkz-pdf-forms
+          resource: memory
+        annotations:
+          summary: "Very high memory usage"
+          description: "Memory usage is {{ $value | humanizePercentage }} of the limit."
+
+      - alert: HighCPUUsage
+        expr: rate(container_cpu_usage_seconds_total{name="sprkz-pdf-forms"}[5m]) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          resource: cpu
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is {{ $value | humanizePercentage }} for the last 5 minutes."
+
+      # Feature flag alerts
+      - alert: FeatureFlagErrors
+        expr: rate(feature_flag_evaluations{result="error",job="sprkz-pdf-forms"}[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          component: feature-flags
+        annotations:
+          summary: "Feature flag evaluation errors"
+          description: "Feature flag error rate is {{ $value }} errors/sec for the last 5 minutes."
+
+      # Signature creation alerts
+      - alert: SignatureCreationErrors
+        expr: rate(signature_creation_errors{job="sprkz-pdf-forms"}[5m]) > 0.05
+        for: 3m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          component: signature
+        annotations:
+          summary: "Signature creation errors"
+          description: "Signature creation error rate is {{ $value }} errors/sec for the last 5 minutes."
+
+      # Network and connectivity alerts
+      - alert: LowRequestVolume
+        expr: rate(nginx_http_requests_total{job="sprkz-pdf-forms"}[5m]) < 0.01
+        for: 10m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+        annotations:
+          summary: "Low request volume"
+          description: "Request rate is {{ $value }} requests/sec, which is unusually low."
+
+      - alert: HighLatency
+        expr: histogram_quantile(0.50, rate(nginx_http_request_duration_seconds_bucket{job="sprkz-pdf-forms"}[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+        annotations:
+          summary: "High median latency"
+          description: "Median response time is {{ $value }}s for the last 5 minutes."
+
+  - name: sprkz_pdf_forms_business_alerts
+    rules:
+      # Business metric alerts
+      - alert: FormCompletionRateDropped
+        expr: (rate(form_submissions_total{job="sprkz-pdf-forms"}[1h]) / rate(nginx_http_requests_total{path=~".*pdf.*",job="sprkz-pdf-forms"}[1h])) < 0.3
+        for: 15m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          type: business
+        annotations:
+          summary: "Form completion rate dropped"
+          description: "Form completion rate is {{ $value | humanizePercentage }}, below normal threshold."
+
+      - alert: HighSignatureFailureRate
+        expr: rate(signature_creation_errors{job="sprkz-pdf-forms"}[10m]) / rate(signature_creation_total{job="sprkz-pdf-forms"}[10m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          type: business
+          component: signature
+        annotations:
+          summary: "High signature failure rate"
+          description: "{{ $value | humanizePercentage }} of signature creations are failing."
+
+      - alert: PDFLoadFailureSpike
+        expr: increase(pdf_processing_errors{type="load_error",job="sprkz-pdf-forms"}[5m]) > 10
+        for: 1m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          type: business
+          component: pdf-processing
+        annotations:
+          summary: "PDF load failure spike"
+          description: "{{ $value }} PDF load failures in the last 5 minutes."
+
+  - name: sprkz_pdf_forms_security_alerts
+    rules:
+      # Security-related alerts
+      - alert: HighNumberOfClientErrors
+        expr: rate(nginx_http_requests_total{status=~"4..",job="sprkz-pdf-forms"}[5m]) > 2
+        for: 3m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          type: security
+        annotations:
+          summary: "High number of client errors"
+          description: "{{ $value }} 4xx errors/sec for the last 5 minutes. Possible attack or misconfiguration."
+
+      - alert: SuspiciousRequestPattern
+        expr: rate(nginx_http_requests_total{status="404",job="sprkz-pdf-forms"}[1m]) > 5
+        for: 2m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          type: security
+        annotations:
+          summary: "Suspicious 404 request pattern"
+          description: "{{ $value }} 404 errors/sec, possible scanning activity."
+
+      - alert: LargePDFUploads
+        expr: increase(nginx_http_request_size_bytes{quantile="0.95",job="sprkz-pdf-forms"}[5m]) > 52428800  # 50MB
+        for: 1m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          type: security
+        annotations:
+          summary: "Large PDF upload detected"
+          description: "95th percentile request size exceeded 50MB limit."
+
+  - name: sprkz_pdf_forms_sla_alerts
+    rules:
+      # SLA-based alerts
+      - alert: SLAViolationAvailability
+        expr: (rate(nginx_http_requests_total{status!~"5..",job="sprkz-pdf-forms"}[1h]) / rate(nginx_http_requests_total{job="sprkz-pdf-forms"}[1h])) < 0.99
+        for: 5m
+        labels:
+          severity: critical
+          service: sprkz-pdf-forms
+          type: sla
+        annotations:
+          summary: "SLA violation: Availability below 99%"
+          description: "Availability is {{ $value | humanizePercentage }} for the last hour."
+
+      - alert: SLAViolationResponseTime
+        expr: histogram_quantile(0.95, rate(nginx_http_request_duration_seconds_bucket{job="sprkz-pdf-forms"}[1h])) > 3
+        for: 10m
+        labels:
+          severity: warning
+          service: sprkz-pdf-forms
+          type: sla
+        annotations:
+          summary: "SLA violation: Response time above 3s"
+          description: "95th percentile response time is {{ $value }}s for the last hour."

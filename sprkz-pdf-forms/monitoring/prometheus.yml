@@ -1,0 +1,160 @@
+# Prometheus configuration for Sprkz PDF Forms monitoring
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - "rules/*.yml"
+
+scrape_configs:
+  # Sprkz PDF Forms application metrics
+  - job_name: 'sprkz-pdf-forms'
+    static_configs:
+      - targets: ['sprkz-pdf-forms-service:80']
+    metrics_path: '/nginx_status'
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  # Node exporter for system metrics
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 15s
+
+  # Container metrics (if using cAdvisor)
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+    scrape_interval: 30s
+
+  # Kubernetes cluster metrics (if deployed on K8s)
+  - job_name: 'kubernetes-nodes'
+    kubernetes_sd_configs:
+      - role: node
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '(.*):10250'
+        replacement: '${1}:9100'
+        target_label: __address__
+        
+  # Kubernetes pod metrics
+  - job_name: 'kubernetes-pods'
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+
+  # Application-specific metrics from Sentry
+  - job_name: 'sentry-metrics'
+    static_configs:
+      - targets: ['sentry-relay:3000']
+    scrape_interval: 60s
+    honor_labels: true
+
+  # Feature flag metrics from Unleash
+  - job_name: 'unleash-metrics'
+    static_configs:
+      - targets: ['unleash-server:4242']
+    metrics_path: '/internal-backstage/prometheus'
+    scrape_interval: 30s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+# Recording rules for commonly used queries
+recording_rules:
+  - name: sprkz_pdf_forms_rules
+    rules:
+      # Request rate
+      - record: sprkz:request_rate
+        expr: rate(nginx_http_requests_total[5m])
+        
+      # Error rate
+      - record: sprkz:error_rate
+        expr: rate(nginx_http_requests_total{status=~"5.."}[5m]) / rate(nginx_http_requests_total[5m])
+        
+      # Response time percentiles
+      - record: sprkz:response_time_99p
+        expr: histogram_quantile(0.99, rate(nginx_http_request_duration_seconds_bucket[5m]))
+        
+      - record: sprkz:response_time_95p
+        expr: histogram_quantile(0.95, rate(nginx_http_request_duration_seconds_bucket[5m]))
+        
+      - record: sprkz:response_time_50p
+        expr: histogram_quantile(0.50, rate(nginx_http_request_duration_seconds_bucket[5m]))
+
+# Custom application metrics
+application_metrics:
+  # PDF processing metrics
+  pdf_processing_duration: 
+    help: "Time spent processing PDF files"
+    type: "histogram"
+    buckets: [0.1, 0.5, 1.0, 2.5, 5.0, 10.0]
+    
+  pdf_processing_errors:
+    help: "Number of PDF processing errors"
+    type: "counter"
+    
+  form_fields_extracted:
+    help: "Number of form fields extracted from PDFs"
+    type: "histogram"
+    buckets: [1, 5, 10, 25, 50, 100]
+    
+  # Form completion metrics  
+  form_completion_time:
+    help: "Time to complete forms"
+    type: "histogram" 
+    buckets: [30, 60, 120, 300, 600, 1200]
+    
+  form_submissions_total:
+    help: "Total number of form submissions"
+    type: "counter"
+    
+  form_validation_errors:
+    help: "Number of form validation errors"
+    type: "counter"
+    
+  # Signature metrics
+  signature_creation_time:
+    help: "Time to create signatures"
+    type: "histogram"
+    buckets: [1, 5, 10, 30, 60, 120]
+    
+  signature_creation_total:
+    help: "Total number of signatures created"
+    type: "counter"
+    labels: ["type"] # draw, type, upload
+    
+  # Feature flag metrics
+  feature_flag_evaluations:
+    help: "Number of feature flag evaluations"
+    type: "counter"
+    labels: ["flag_name", "result"]
+    
+  # Performance metrics
+  page_load_time:
+    help: "Page load time"
+    type: "histogram"
+    buckets: [0.1, 0.5, 1.0, 2.0, 5.0]
+    
+  memory_usage:
+    help: "Application memory usage"
+    type: "gauge"
+    
+  cpu_usage:
+    help: "Application CPU usage"
+    type: "gauge"

@@ -1,0 +1,184 @@
+# Docker Compose configuration for Sprkz PDF Forms
+version: '3.8'
+
+services:
+  # Production service
+  app-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+      args:
+        BUILD_VERSION: ${BUILD_VERSION:-latest}
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_VERSION=${BUILD_VERSION:-latest}
+    restart: unless-stopped
+    healthcheck:
+      test: ["/usr/local/bin/health-check.sh"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sprkz-pdf.rule=Host(`pdf.sprkz.com`)"
+      - "traefik.http.routers.sprkz-pdf.tls=true"
+      - "traefik.http.routers.sprkz-pdf.tls.certresolver=letsencrypt"
+    profiles:
+      - production
+
+  # Development service
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "7779:7779"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=7779
+      - WATCHPACK_POLLING=true
+      - REACT_APP_UNLEASH_PROXY_URL=http://localhost:3002/proxy
+      - REACT_APP_UNLEASH_CLIENT_KEY=development-key
+    restart: unless-stopped
+    profiles:
+      - development
+      - dev
+
+  # Testing service
+  app-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: testing
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=test
+      - CI=true
+    command: npm run test:ci
+    profiles:
+      - testing
+      - test
+
+  # Nginx reverse proxy (for production)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deployment/nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+      - ./deployment/proxy-default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app-prod
+    restart: unless-stopped
+    profiles:
+      - production
+
+  # Unleash feature flags (development)
+  unleash-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: unleash
+      POSTGRES_USER: unleash_user
+      POSTGRES_PASSWORD: password123
+    volumes:
+      - unleash_db_data:/var/lib/postgresql/data
+    profiles:
+      - development
+      - unleash
+
+  unleash-server:
+    image: unleashorg/unleash-server:latest
+    ports:
+      - "4242:4242"
+    environment:
+      DATABASE_URL: "postgres://unleash_user:password123@unleash-db/unleash"
+      DATABASE_SSL: "false"
+      LOG_LEVEL: "info"
+      INIT_FRONTEND_API_TOKENS: "development-key:development"
+      INIT_CLIENT_API_TOKENS: "development-key:development"
+    depends_on:
+      - unleash-db
+    command: ["node", "index.js"]
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:4242/health || exit 1
+      interval: 1m
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    profiles:
+      - development
+      - unleash
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    profiles:
+      - production
+      - development
+
+  # Monitoring with Prometheus (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    profiles:
+      - monitoring
+
+  # Log aggregation with Grafana
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+      - GF_USERS_ALLOW_SIGN_UP=false
+    profiles:
+      - monitoring
+
+volumes:
+  unleash_db_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

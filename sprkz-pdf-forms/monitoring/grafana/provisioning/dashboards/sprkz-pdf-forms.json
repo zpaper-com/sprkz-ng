@@ -1,0 +1,305 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Sprkz PDF Forms - Application Dashboard",
+    "tags": ["sprkz", "pdf", "forms", "application"],
+    "style": "dark",
+    "timezone": "browser",
+    "refresh": "30s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Application Overview",
+        "type": "stat",
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 0},
+        "targets": [
+          {
+            "expr": "up{job=\"sprkz-pdf-forms\"}",
+            "legendFormat": "Application Status"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "thresholds": {
+              "steps": [
+                {"color": "red", "value": 0},
+                {"color": "green", "value": 1}
+              ]
+            }
+          }
+        }
+      },
+      
+      {
+        "id": 2,
+        "title": "Request Rate",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+        "targets": [
+          {
+            "expr": "rate(nginx_http_requests_total{job=\"sprkz-pdf-forms\"}[5m])",
+            "legendFormat": "Requests/sec"
+          }
+        ],
+        "yAxes": [
+          {"label": "Requests per second", "min": 0}
+        ]
+      },
+      
+      {
+        "id": 3,
+        "title": "Error Rate",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+        "targets": [
+          {
+            "expr": "rate(nginx_http_requests_total{status=~\"5..\",job=\"sprkz-pdf-forms\"}[5m]) / rate(nginx_http_requests_total{job=\"sprkz-pdf-forms\"}[5m]) * 100",
+            "legendFormat": "Error Rate %"
+          }
+        ],
+        "yAxes": [
+          {"label": "Error Rate (%)", "min": 0, "max": 100}
+        ],
+        "alert": {
+          "conditions": [
+            {
+              "query": {"params": ["A", "5m", "now"]},
+              "reducer": {"params": [], "type": "avg"},
+              "evaluator": {"params": [5], "type": "gt"}
+            }
+          ],
+          "executionErrorState": "alerting",
+          "frequency": "10s",
+          "handler": 1,
+          "name": "High Error Rate",
+          "noDataState": "no_data"
+        }
+      },
+      
+      {
+        "id": 4,
+        "title": "Response Time Percentiles",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 16},
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(nginx_http_request_duration_seconds_bucket{job=\"sprkz-pdf-forms\"}[5m]))",
+            "legendFormat": "50th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(nginx_http_request_duration_seconds_bucket{job=\"sprkz-pdf-forms\"}[5m]))",
+            "legendFormat": "95th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.99, rate(nginx_http_request_duration_seconds_bucket{job=\"sprkz-pdf-forms\"}[5m]))",
+            "legendFormat": "99th percentile"
+          }
+        ],
+        "yAxes": [
+          {"label": "Response Time (seconds)", "min": 0}
+        ]
+      },
+      
+      {
+        "id": 5,
+        "title": "PDF Processing Metrics",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 24},
+        "targets": [
+          {
+            "expr": "rate(pdf_processing_duration_count{job=\"sprkz-pdf-forms\"}[5m])",
+            "legendFormat": "PDFs Processed/sec"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(pdf_processing_duration_bucket{job=\"sprkz-pdf-forms\"}[5m]))",
+            "legendFormat": "Processing Time (95th percentile)"
+          }
+        ],
+        "yAxes": [
+          {"label": "Rate / Time", "min": 0}
+        ]
+      },
+      
+      {
+        "id": 6,
+        "title": "Form Completion Metrics",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 24},
+        "targets": [
+          {
+            "expr": "rate(form_submissions_total{job=\"sprkz-pdf-forms\"}[5m])",
+            "legendFormat": "Form Submissions/sec"
+          },
+          {
+            "expr": "rate(form_validation_errors{job=\"sprkz-pdf-forms\"}[5m])",
+            "legendFormat": "Validation Errors/sec"
+          }
+        ],
+        "yAxes": [
+          {"label": "Rate", "min": 0}
+        ]
+      },
+      
+      {
+        "id": 7,
+        "title": "Memory Usage",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 32},
+        "targets": [
+          {
+            "expr": "container_memory_usage_bytes{name=\"sprkz-pdf-forms\"} / 1024 / 1024",
+            "legendFormat": "Memory Usage (MB)"
+          },
+          {
+            "expr": "container_spec_memory_limit_bytes{name=\"sprkz-pdf-forms\"} / 1024 / 1024",
+            "legendFormat": "Memory Limit (MB)"
+          }
+        ],
+        "yAxes": [
+          {"label": "Memory (MB)", "min": 0}
+        ]
+      },
+      
+      {
+        "id": 8,
+        "title": "CPU Usage",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 32},
+        "targets": [
+          {
+            "expr": "rate(container_cpu_usage_seconds_total{name=\"sprkz-pdf-forms\"}[5m]) * 100",
+            "legendFormat": "CPU Usage %"
+          }
+        ],
+        "yAxes": [
+          {"label": "CPU Usage (%)", "min": 0, "max": 100}
+        ]
+      },
+      
+      {
+        "id": 9,
+        "title": "Signature Creation Metrics",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 40},
+        "targets": [
+          {
+            "expr": "rate(signature_creation_total{job=\"sprkz-pdf-forms\",type=\"draw\"}[5m])",
+            "legendFormat": "Drawn Signatures/sec"
+          },
+          {
+            "expr": "rate(signature_creation_total{job=\"sprkz-pdf-forms\",type=\"type\"}[5m])",
+            "legendFormat": "Typed Signatures/sec"
+          },
+          {
+            "expr": "rate(signature_creation_total{job=\"sprkz-pdf-forms\",type=\"upload\"}[5m])",
+            "legendFormat": "Uploaded Signatures/sec"
+          }
+        ],
+        "yAxes": [
+          {"label": "Signatures/sec", "min": 0}
+        ]
+      },
+      
+      {
+        "id": 10,
+        "title": "Feature Flag Usage",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 40},
+        "targets": [
+          {
+            "expr": "rate(feature_flag_evaluations{job=\"sprkz-pdf-forms\",result=\"true\"}[5m])",
+            "legendFormat": "Enabled Flags/sec"
+          },
+          {
+            "expr": "rate(feature_flag_evaluations{job=\"sprkz-pdf-forms\",result=\"false\"}[5m])",
+            "legendFormat": "Disabled Flags/sec"
+          }
+        ],
+        "yAxes": [
+          {"label": "Flag Evaluations/sec", "min": 0}
+        ]
+      },
+      
+      {
+        "id": 11,
+        "title": "Error Distribution",
+        "type": "piechart",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 48},
+        "targets": [
+          {
+            "expr": "increase(pdf_processing_errors{job=\"sprkz-pdf-forms\"}[1h])",
+            "legendFormat": "PDF Processing Errors"
+          },
+          {
+            "expr": "increase(form_validation_errors{job=\"sprkz-pdf-forms\"}[1h])",
+            "legendFormat": "Validation Errors"
+          }
+        ]
+      },
+      
+      {
+        "id": 12,
+        "title": "User Activity Heatmap",
+        "type": "heatmap",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 48},
+        "targets": [
+          {
+            "expr": "increase(nginx_http_requests_total{job=\"sprkz-pdf-forms\"}[1h])",
+            "legendFormat": "{{method}} {{status}}"
+          }
+        ],
+        "heatmap": {
+          "xAxis": {
+            "show": true
+          },
+          "yAxis": {
+            "show": true,
+            "logBase": 1
+          }
+        }
+      }
+    ],
+    "annotations": {
+      "list": [
+        {
+          "name": "Deployments",
+          "datasource": "prometheus",
+          "enable": true,
+          "expr": "changes(up{job=\"sprkz-pdf-forms\"}[1h]) > 0",
+          "iconColor": "green",
+          "tags": ["deployment"]
+        }
+      ]
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "instance",
+          "type": "query",
+          "query": "label_values(up{job=\"sprkz-pdf-forms\"}, instance)",
+          "refresh": 1,
+          "includeAll": true,
+          "multi": true
+        },
+        {
+          "name": "interval",
+          "type": "interval",
+          "query": "5m,15m,30m,1h,6h,12h,1d,7d",
+          "refresh": 2,
+          "current": {
+            "text": "5m",
+            "value": "5m"
+          }
+        }
+      ]
+    }
+  },
+  "overwrite": true,
+  "folderId": 0,
+  "folderTitle": "Sprkz PDF Forms"
+}
