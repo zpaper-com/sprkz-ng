@@ -10,7 +10,6 @@
     "@sentry/react": "^9.40.0",
     "@sentry/tracing": "^7.120.3",
     "@testing-library/dom": "^10.4.0",
-    "@types/jest": "^27.5.2",
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
@@ -27,10 +26,19 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=7779 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:unit": "react-scripts test --testPathIgnorePatterns=integration,e2e,performance",
+    "test:integration": "react-scripts test --testNamePattern=integration",
+    "test:performance": "react-scripts test --testNamePattern=performance --runInBand",
+    "test:coverage": "react-scripts test --coverage --testPathIgnorePatterns=e2e --watchAll=false",
+    "test:ci": "CI=true react-scripts test --coverage --testPathIgnorePatterns=e2e,performance --watchAll=false",
+    "test:watch": "react-scripts test --testPathIgnorePatterns=e2e,performance",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": [
@@ -54,8 +62,12 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "eslint-config-prettier": "^10.1.8",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^30.0.5",
+    "msw": "^2.10.4",
     "prettier": "^3.6.2"
   }
 }
