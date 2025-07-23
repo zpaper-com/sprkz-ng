@@ -2,6 +2,11 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../../App';
 
+// Mock mobile detection to avoid redirect during tests
+jest.mock('../../utils/mobileDetection', () => ({
+  redirectToMobileIfNeeded: jest.fn(),
+}));
+
 describe('App Component', () => {
   describe('Basic App Shell', () => {
     test('should render without crashing', () => {
@@ -15,10 +20,10 @@ describe('App Component', () => {
       expect(appContainer).toBeInTheDocument();
     });
 
-    test('should display the application title', () => {
+    test('should render PDF form container initially', () => {
       render(<App />);
-      const title = screen.getByText(/sprkz/i);
-      expect(title).toBeInTheDocument();
+      const pdfContainer = screen.getByTestId('pdf-form-container');
+      expect(pdfContainer).toBeInTheDocument();
     });
 
     test('should have proper layout structure', () => {

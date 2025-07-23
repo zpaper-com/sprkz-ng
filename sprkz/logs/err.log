@@ -239,3 +239,868 @@
 2025-07-23T00:20:54:     70 |             inline
 2025-07-23T00:20:54:     71 |           });
 2025-07-23T00:20:54: 
+2025-07-23T03:34:50: ERROR in src/components/forms/SignatureModal.tsx:32:3
+2025-07-23T03:34:50: TS6133: 'fieldDimensions' is declared but its value is never read.
+2025-07-23T03:34:50:     30 |   onSave,
+2025-07-23T03:34:50:     31 |   fieldName = 'Signature',
+2025-07-23T03:34:50:   > 32 |   fieldDimensions,
+2025-07-23T03:34:50:        |   ^^^^^^^^^^^^^^^
+2025-07-23T03:34:50:     33 | }) => {
+2025-07-23T03:34:50:     34 |   const [activeTab, setActiveTab] = useState(0);
+2025-07-23T03:34:50:     35 |   const [typedSignature, setTypedSignature] = useState('');
+2025-07-23T03:34:50: 
+2025-07-23T03:34:56: ERROR in src/components/forms/SignatureModal.tsx:76:9
+2025-07-23T03:34:56: TS6133: 'canvasDimensions' is declared but its value is never read.
+2025-07-23T03:34:56:     74 |   };
+2025-07-23T03:34:56:     75 |
+2025-07-23T03:34:56:   > 76 |   const canvasDimensions = getCanvasDimensions();
+2025-07-23T03:34:56:        |         ^^^^^^^^^^^^^^^^
+2025-07-23T03:34:56:     77 |
+2025-07-23T03:34:56:     78 |   const fonts = [
+2025-07-23T03:34:56:     79 |     { value: 'cursive', label: 'Cursive', style: 'cursive' },
+2025-07-23T03:34:56: 
+2025-07-23T03:35:54: ERROR in src/components/pdf/PDFViewer.tsx:59:10
+2025-07-23T03:35:54: TS6133: 'currentSignatureFieldDimensions' is declared but its value is never read.
+2025-07-23T03:35:54:     57 |     string | null
+2025-07-23T03:35:54:     58 |   >(null);
+2025-07-23T03:35:54:   > 59 |   const [currentSignatureFieldDimensions, setCurrentSignatureFieldDimensions] = useState<
+2025-07-23T03:35:54:        |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T03:35:54:     60 |     { width: number; height: number } | null
+2025-07-23T03:35:54:     61 |   >(null);
+2025-07-23T03:35:54:     62 |
+2025-07-23T03:35:54: 
+2025-07-23T03:35:54: ERROR in src/components/pdf/PDFViewer.tsx:59:43
+2025-07-23T03:35:54: TS6133: 'setCurrentSignatureFieldDimensions' is declared but its value is never read.
+2025-07-23T03:35:54:     57 |     string | null
+2025-07-23T03:35:54:     58 |   >(null);
+2025-07-23T03:35:54:   > 59 |   const [currentSignatureFieldDimensions, setCurrentSignatureFieldDimensions] = useState<
+2025-07-23T03:35:54:        |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T03:35:54:     60 |     { width: number; height: number } | null
+2025-07-23T03:35:54:     61 |   >(null);
+2025-07-23T03:35:54:     62 |
+2025-07-23T03:35:54: 
+2025-07-23T03:36:31: ERROR in src/components/pdf/PDFViewer.tsx:59:10
+2025-07-23T03:36:31: TS6133: 'currentSignatureFieldDimensions' is declared but its value is never read.
+2025-07-23T03:36:31:     57 |     string | null
+2025-07-23T03:36:31:     58 |   >(null);
+2025-07-23T03:36:31:   > 59 |   const [currentSignatureFieldDimensions, setCurrentSignatureFieldDimensions] = useState<
+2025-07-23T03:36:31:        |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T03:36:31:     60 |     { width: number; height: number } | null
+2025-07-23T03:36:31:     61 |   >(null);
+2025-07-23T03:36:31:     62 |
+2025-07-23T03:36:31: 
+2025-07-23T03:49:46: ERROR in src/components/forms/SignatureModal.tsx:39:10
+2025-07-23T03:49:46: TS6133: 'calculatedFontSize' is declared but its value is never read.
+2025-07-23T03:49:46:     37 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+2025-07-23T03:49:46:     38 |   const [isDrawing, setIsDrawing] = useState(false);
+2025-07-23T03:49:46:   > 39 |   const [calculatedFontSize, setCalculatedFontSize] = useState<number | null>(null);
+2025-07-23T03:49:46:        |          ^^^^^^^^^^^^^^^^^^
+2025-07-23T03:49:46:     40 |
+2025-07-23T03:49:46:     41 |   // Calculate optimal canvas dimensions based on field size
+2025-07-23T03:49:46:     42 |   const getCanvasDimensions = () => {
+2025-07-23T03:49:46: 
+2025-07-23T03:49:46: ERROR in src/components/forms/SignatureModal.tsx:39:30
+2025-07-23T03:49:46: TS6133: 'setCalculatedFontSize' is declared but its value is never read.
+2025-07-23T03:49:46:     37 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+2025-07-23T03:49:46:     38 |   const [isDrawing, setIsDrawing] = useState(false);
+2025-07-23T03:49:46:   > 39 |   const [calculatedFontSize, setCalculatedFontSize] = useState<number | null>(null);
+2025-07-23T03:49:46:        |                              ^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T03:49:46:     40 |
+2025-07-23T03:49:46:     41 |   // Calculate optimal canvas dimensions based on field size
+2025-07-23T03:49:46:     42 |   const getCanvasDimensions = () => {
+2025-07-23T03:49:46: 
+2025-07-23T03:49:52: ERROR in src/components/forms/SignatureModal.tsx:39:10
+2025-07-23T03:49:52: TS6133: 'calculatedFontSize' is declared but its value is never read.
+2025-07-23T03:49:52:     37 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+2025-07-23T03:49:52:     38 |   const [isDrawing, setIsDrawing] = useState(false);
+2025-07-23T03:49:52:   > 39 |   const [calculatedFontSize, setCalculatedFontSize] = useState<number | null>(null);
+2025-07-23T03:49:52:        |          ^^^^^^^^^^^^^^^^^^
+2025-07-23T03:49:52:     40 |
+2025-07-23T03:49:52:     41 |   // Calculate optimal canvas dimensions based on field size
+2025-07-23T03:49:52:     42 |   const getCanvasDimensions = () => {
+2025-07-23T03:49:52: 
+2025-07-23T03:50:06: ERROR in src/components/forms/SignatureModal.tsx:312:9
+2025-07-23T03:50:06: TS6133: 'getLivePreviewFontSize' is declared but its value is never read.
+2025-07-23T03:50:06:     310 |
+2025-07-23T03:50:06:     311 |   // Live preview calculation for font size
+2025-07-23T03:50:06:   > 312 |   const getLivePreviewFontSize = (): number | null => {
+2025-07-23T03:50:06:         |         ^^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T03:50:06:     313 |     if (!typedSignature.trim()) return null;
+2025-07-23T03:50:06:     314 |     
+2025-07-23T03:50:06:     315 |     const tempCanvas = document.createElement('canvas');
+2025-07-23T03:50:06: 
+2025-07-23T03:50:12: ERROR in src/components/forms/SignatureModal.tsx:39:10
+2025-07-23T03:50:12: TS6133: 'calculatedFontSize' is declared but its value is never read.
+2025-07-23T03:50:12:     37 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+2025-07-23T03:50:12:     38 |   const [isDrawing, setIsDrawing] = useState(false);
+2025-07-23T03:50:12:   > 39 |   const [calculatedFontSize, setCalculatedFontSize] = useState<number | null>(null);
+2025-07-23T03:50:12:        |          ^^^^^^^^^^^^^^^^^^
+2025-07-23T03:50:12:     40 |
+2025-07-23T03:50:12:     41 |   // Calculate optimal canvas dimensions based on field size
+2025-07-23T03:50:12:     42 |   const getCanvasDimensions = () => {
+2025-07-23T03:50:12: 
+2025-07-23T04:07:56: ERROR in src/components/forms/SignatureModal.tsx:278:7
+2025-07-23T04:07:56: TS2304: Cannot find name 'setCalculatedFontSize'.
+2025-07-23T04:07:56:     276 |       
+2025-07-23T04:07:56:     277 |       ctx.font = `${optimalFontSize}px ${selectedFontStyle}`;
+2025-07-23T04:07:56:   > 278 |       ctx.fillText(typedSignature, canvas.width / 2, canvas.height / 2);
+2025-07-23T04:07:56:         |       ^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:07:56:     279 |     }
+2025-07-23T04:07:56:     280 |
+2025-07-23T04:07:56:     281 |     return canvas.toDataURL();
+2025-07-23T04:07:56: 
+2025-07-23T04:07:56: ERROR in src/components/forms/SignatureModal.tsx:334:5
+2025-07-23T04:07:56: TS2304: Cannot find name 'setCalculatedFontSize'.
+2025-07-23T04:07:56:     332 |     onClose();
+2025-07-23T04:07:56:     333 |   };
+2025-07-23T04:07:56:   > 334 |
+2025-07-23T04:07:56:         | ^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:07:56:     335 |   return (
+2025-07-23T04:07:56:     336 |     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+2025-07-23T04:07:56:     337 |       <DialogTitle>Sign {fieldName}</DialogTitle>
+2025-07-23T04:07:56: 
+2025-07-23T04:08:02: ERROR in src/components/forms/SignatureModal.tsx:331:5
+2025-07-23T04:08:02: TS2304: Cannot find name 'setCalculatedFontSize'.
+2025-07-23T04:08:02:     329 |     clearCanvas();
+2025-07-23T04:08:02:     330 |     setActiveTab(0);
+2025-07-23T04:08:02:   > 331 |     onClose();
+2025-07-23T04:08:02:         |     ^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:08:02:     332 |   };
+2025-07-23T04:08:02:     333 |
+2025-07-23T04:08:02:     334 |   return (
+2025-07-23T04:08:02: 
+2025-07-23T04:10:26: ERROR in src/components/forms/SignatureModal.tsx:1:46
+2025-07-23T04:10:26: TS6133: 'useMemo' is declared but its value is never read.
+2025-07-23T04:10:26:   > 1 | import React, { useState, useRef, useEffect, useMemo } from 'react';
+2025-07-23T04:10:26:       |                                              ^^^^^^^
+2025-07-23T04:10:26:     2 | import {
+2025-07-23T04:10:26:     3 |   Dialog,
+2025-07-23T04:10:26:     4 |   DialogTitle,
+2025-07-23T04:10:26: 
+2025-07-23T04:11:16: ERROR in src/components/forms/SignatureModal.tsx:39:10
+2025-07-23T04:11:16: TS6133: 'canvasInitialized' is declared but its value is never read.
+2025-07-23T04:11:16:     37 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+2025-07-23T04:11:16:     38 |   const [isDrawing, setIsDrawing] = useState(false);
+2025-07-23T04:11:16:   > 39 |   const [canvasInitialized, setCanvasInitialized] = useState(false);
+2025-07-23T04:11:16:        |          ^^^^^^^^^^^^^^^^^
+2025-07-23T04:11:16:     40 |
+2025-07-23T04:11:16:     41 |   // Calculate optimal canvas dimensions based on field size
+2025-07-23T04:11:16:     42 |   const getCanvasDimensions = () => {
+2025-07-23T04:11:16: 
+2025-07-23T04:11:16: ERROR in src/components/forms/SignatureModal.tsx:39:29
+2025-07-23T04:11:16: TS6133: 'setCanvasInitialized' is declared but its value is never read.
+2025-07-23T04:11:16:     37 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+2025-07-23T04:11:16:     38 |   const [isDrawing, setIsDrawing] = useState(false);
+2025-07-23T04:11:16:   > 39 |   const [canvasInitialized, setCanvasInitialized] = useState(false);
+2025-07-23T04:11:16:        |                             ^^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:11:16:     40 |
+2025-07-23T04:11:16:     41 |   // Calculate optimal canvas dimensions based on field size
+2025-07-23T04:11:16:     42 |   const getCanvasDimensions = () => {
+2025-07-23T04:11:16: 
+2025-07-23T04:18:32: ERROR in src/components/pdf/PDFFormContainer.tsx:2:42
+2025-07-23T04:18:32: TS6133: 'IconButton' is declared but its value is never read.
+2025-07-23T04:18:32:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:32:   > 2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:32:       |                                          ^^^^^^^^^^
+2025-07-23T04:18:32:     3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:32:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:32:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:32: 
+2025-07-23T04:18:32: ERROR in src/components/pdf/PDFFormContainer.tsx:2:54
+2025-07-23T04:18:32: TS6133: 'Tooltip' is declared but its value is never read.
+2025-07-23T04:18:32:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:32:   > 2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:32:       |                                                      ^^^^^^^
+2025-07-23T04:18:32:     3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:32:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:32:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:32: 
+2025-07-23T04:18:32: ERROR in src/components/pdf/PDFFormContainer.tsx:3:1
+2025-07-23T04:18:32: TS6192: All imports in import declaration are unused.
+2025-07-23T04:18:32:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:32:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:32:   > 3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:32:       | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:18:32:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:32:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:32:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:18:32: 
+2025-07-23T04:18:32: ERROR in src/components/pdf/PDFFormContainer.tsx:3:21
+2025-07-23T04:18:32: TS2305: Module '"@mui/icons-material"' has no exported member 'HeightIcon'.
+2025-07-23T04:18:32:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:32:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:32:   > 3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:32:       |                     ^^^^^^^^^^
+2025-07-23T04:18:32:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:32:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:32:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:18:32: 
+2025-07-23T04:18:32: ERROR in src/components/pdf/PDFFormContainer.tsx:3:33
+2025-07-23T04:18:32: TS2305: Module '"@mui/icons-material"' has no exported member 'WidthIcon'.
+2025-07-23T04:18:32:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:32:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:32:   > 3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:32:       |                                 ^^^^^^^^^
+2025-07-23T04:18:32:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:32:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:32:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:18:32: 
+2025-07-23T04:18:39: ERROR in src/components/pdf/PDFFormContainer.tsx:2:42
+2025-07-23T04:18:39: TS6133: 'IconButton' is declared but its value is never read.
+2025-07-23T04:18:39:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:39:   > 2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:39:       |                                          ^^^^^^^^^^
+2025-07-23T04:18:39:     3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:39:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:39:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:39: 
+2025-07-23T04:18:39: ERROR in src/components/pdf/PDFFormContainer.tsx:2:54
+2025-07-23T04:18:39: TS6133: 'Tooltip' is declared but its value is never read.
+2025-07-23T04:18:39:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:39:   > 2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:39:       |                                                      ^^^^^^^
+2025-07-23T04:18:39:     3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:39:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:39:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:39: 
+2025-07-23T04:18:39: ERROR in src/components/pdf/PDFFormContainer.tsx:3:1
+2025-07-23T04:18:39: TS6192: All imports in import declaration are unused.
+2025-07-23T04:18:39:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:39:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:39:   > 3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:39:       | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:18:39:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:39:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:39:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:18:39: 
+2025-07-23T04:18:39: ERROR in src/components/pdf/PDFFormContainer.tsx:3:21
+2025-07-23T04:18:39: TS2305: Module '"@mui/icons-material"' has no exported member 'HeightIcon'.
+2025-07-23T04:18:39:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:39:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:39:   > 3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:39:       |                     ^^^^^^^^^^
+2025-07-23T04:18:39:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:39:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:39:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:18:39: 
+2025-07-23T04:18:39: ERROR in src/components/pdf/PDFFormContainer.tsx:3:33
+2025-07-23T04:18:39: TS2305: Module '"@mui/icons-material"' has no exported member 'WidthIcon'.
+2025-07-23T04:18:39:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:39:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:39:   > 3 | import { FitScreen, HeightIcon, WidthIcon } from '@mui/icons-material';
+2025-07-23T04:18:39:       |                                 ^^^^^^^^^
+2025-07-23T04:18:39:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:39:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:39:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:18:39: 
+2025-07-23T04:18:39: ERROR in src/components/pdf/PDFFormContainer.tsx:30:10
+2025-07-23T04:18:39: TS6133: 'signatureFitMode' is declared but its value is never read.
+2025-07-23T04:18:39:     28 |   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
+2025-07-23T04:18:39:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:18:39:   > 30 |   const [signatureFitMode, setSignatureFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:18:39:        |          ^^^^^^^^^^^^^^^^
+2025-07-23T04:18:39:     31 |
+2025-07-23T04:18:39:     32 |   // Use form context
+2025-07-23T04:18:39:     33 |   const {
+2025-07-23T04:18:39: 
+2025-07-23T04:18:39: ERROR in src/components/pdf/PDFFormContainer.tsx:30:28
+2025-07-23T04:18:39: TS6133: 'setSignatureFitMode' is declared but its value is never read.
+2025-07-23T04:18:39:     28 |   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
+2025-07-23T04:18:39:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:18:39:   > 30 |   const [signatureFitMode, setSignatureFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:18:39:        |                            ^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:18:39:     31 |
+2025-07-23T04:18:39:     32 |   // Use form context
+2025-07-23T04:18:39:     33 |   const {
+2025-07-23T04:18:39: 
+2025-07-23T04:18:43: ERROR in src/components/pdf/PDFFormContainer.tsx:2:42
+2025-07-23T04:18:43: TS6133: 'IconButton' is declared but its value is never read.
+2025-07-23T04:18:43:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:43:   > 2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:43:       |                                          ^^^^^^^^^^
+2025-07-23T04:18:43:     3 | import { FitScreen, Height, SwapHoriz } from '@mui/icons-material';
+2025-07-23T04:18:43:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:43:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:43: 
+2025-07-23T04:18:43: ERROR in src/components/pdf/PDFFormContainer.tsx:2:54
+2025-07-23T04:18:43: TS6133: 'Tooltip' is declared but its value is never read.
+2025-07-23T04:18:43:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:43:   > 2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:43:       |                                                      ^^^^^^^
+2025-07-23T04:18:43:     3 | import { FitScreen, Height, SwapHoriz } from '@mui/icons-material';
+2025-07-23T04:18:43:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:43:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:43: 
+2025-07-23T04:18:43: ERROR in src/components/pdf/PDFFormContainer.tsx:3:1
+2025-07-23T04:18:43: TS6192: All imports in import declaration are unused.
+2025-07-23T04:18:43:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:43:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:43:   > 3 | import { FitScreen, Height, SwapHoriz } from '@mui/icons-material';
+2025-07-23T04:18:43:       | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:18:43:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:43:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:43:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:18:43: 
+2025-07-23T04:18:43: ERROR in src/components/pdf/PDFFormContainer.tsx:30:10
+2025-07-23T04:18:43: TS6133: 'signatureFitMode' is declared but its value is never read.
+2025-07-23T04:18:43:     28 |   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
+2025-07-23T04:18:43:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:18:43:   > 30 |   const [signatureFitMode, setSignatureFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:18:43:        |          ^^^^^^^^^^^^^^^^
+2025-07-23T04:18:43:     31 |
+2025-07-23T04:18:43:     32 |   // Use form context
+2025-07-23T04:18:43:     33 |   const {
+2025-07-23T04:18:43: 
+2025-07-23T04:18:43: ERROR in src/components/pdf/PDFFormContainer.tsx:30:28
+2025-07-23T04:18:43: TS6133: 'setSignatureFitMode' is declared but its value is never read.
+2025-07-23T04:18:43:     28 |   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
+2025-07-23T04:18:43:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:18:43:   > 30 |   const [signatureFitMode, setSignatureFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:18:43:        |                            ^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:18:43:     31 |
+2025-07-23T04:18:43:     32 |   // Use form context
+2025-07-23T04:18:43:     33 |   const {
+2025-07-23T04:18:43: 
+2025-07-23T04:18:53: ERROR in src/components/pdf/PDFFormContainer.tsx:3:10
+2025-07-23T04:18:53: TS6133: 'FitScreen' is declared but its value is never read.
+2025-07-23T04:18:53:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:18:53:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:18:53:   > 3 | import { FitScreen, Height, SwapHoriz } from '@mui/icons-material';
+2025-07-23T04:18:53:       |          ^^^^^^^^^
+2025-07-23T04:18:53:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:18:53:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:18:53:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:18:53: 
+2025-07-23T04:19:08: ERROR in src/components/pdf/PDFFormContainer.tsx:3:10
+2025-07-23T04:19:08: TS6133: 'FitScreen' is declared but its value is never read.
+2025-07-23T04:19:08:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:19:08:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:19:08:   > 3 | import { FitScreen, Height, SwapHoriz } from '@mui/icons-material';
+2025-07-23T04:19:08:       |          ^^^^^^^^^
+2025-07-23T04:19:08:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:19:08:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:19:08:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:19:08: 
+2025-07-23T04:19:08: ERROR in src/components/pdf/PDFFormContainer.tsx:312:13
+2025-07-23T04:19:08: TS2322: Type '{ pdfUrl: string; currentPage: number; scale: number; onFormFieldsDetected: (fields: FormField[]) => void; onPageChange: Dispatch<SetStateAction<number>>; ... 7 more ...; signatureFitMode: "default" | ... 1 more ... | "height"; }' is not assignable to type 'IntrinsicAttributes & PDFViewerProps'.
+2025-07-23T04:19:08:   Property 'signatureFitMode' does not exist on type 'IntrinsicAttributes & PDFViewerProps'.
+2025-07-23T04:19:08:     310 |             validationErrors={validationErrors}
+2025-07-23T04:19:08:     311 |             showFieldNames={showFieldNames}
+2025-07-23T04:19:08:   > 312 |             signatureFitMode={signatureFitMode}
+2025-07-23T04:19:08:         |             ^^^^^^^^^^^^^^^^
+2025-07-23T04:19:08:     313 |           />
+2025-07-23T04:19:08:     314 |
+2025-07-23T04:19:08:     315 |           {/* Field Tooltip */}
+2025-07-23T04:19:08: 
+2025-07-23T04:19:12: ERROR in src/components/pdf/PDFFormContainer.tsx:312:13
+2025-07-23T04:19:12: TS2322: Type '{ pdfUrl: string; currentPage: number; scale: number; onFormFieldsDetected: (fields: FormField[]) => void; onPageChange: Dispatch<SetStateAction<number>>; ... 7 more ...; signatureFitMode: "default" | ... 1 more ... | "height"; }' is not assignable to type 'IntrinsicAttributes & PDFViewerProps'.
+2025-07-23T04:19:12:   Property 'signatureFitMode' does not exist on type 'IntrinsicAttributes & PDFViewerProps'.
+2025-07-23T04:19:12:     310 |             validationErrors={validationErrors}
+2025-07-23T04:19:12:     311 |             showFieldNames={showFieldNames}
+2025-07-23T04:19:12:   > 312 |             signatureFitMode={signatureFitMode}
+2025-07-23T04:19:12:         |             ^^^^^^^^^^^^^^^^
+2025-07-23T04:19:12:     313 |           />
+2025-07-23T04:19:12:     314 |
+2025-07-23T04:19:12:     315 |           {/* Field Tooltip */}
+2025-07-23T04:19:12: 
+2025-07-23T04:19:32: ERROR in src/components/pdf/PDFViewer.tsx:40:3
+2025-07-23T04:19:32: TS6133: 'signatureFitMode' is declared but its value is never read.
+2025-07-23T04:19:32:     38 |   validationErrors = {},
+2025-07-23T04:19:32:     39 |   showFieldNames = false,
+2025-07-23T04:19:32:   > 40 |   signatureFitMode = 'default',
+2025-07-23T04:19:32:        |   ^^^^^^^^^^^^^^^^
+2025-07-23T04:19:32:     41 | }) => {
+2025-07-23T04:19:32:     42 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+2025-07-23T04:19:32:     43 |   const textLayerRef = useRef<HTMLDivElement>(null);
+2025-07-23T04:19:32: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:30:10
+2025-07-23T04:20:57: TS6133: 'pdfFitMode' is declared but its value is never read.
+2025-07-23T04:20:57:     28 |   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
+2025-07-23T04:20:57:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:20:57:   > 30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:20:57:        |          ^^^^^^^^^^
+2025-07-23T04:20:57:     31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:20:57:     32 |
+2025-07-23T04:20:57:     33 |   // Use form context
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:30:22
+2025-07-23T04:20:57: TS6133: 'setPdfFitMode' is declared but its value is never read.
+2025-07-23T04:20:57:     28 |   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
+2025-07-23T04:20:57:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:20:57:   > 30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:20:57:        |                      ^^^^^^^^^^^^^
+2025-07-23T04:20:57:     31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:20:57:     32 |
+2025-07-23T04:20:57:     33 |   // Use form context
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:31:10
+2025-07-23T04:20:57: TS6133: 'pdfScale' is declared but its value is never read.
+2025-07-23T04:20:57:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:20:57:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:20:57:   > 31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:20:57:        |          ^^^^^^^^
+2025-07-23T04:20:57:     32 |
+2025-07-23T04:20:57:     33 |   // Use form context
+2025-07-23T04:20:57:     34 |   const {
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:31:20
+2025-07-23T04:20:57: TS6133: 'setPdfScale' is declared but its value is never read.
+2025-07-23T04:20:57:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:20:57:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:20:57:   > 31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:20:57:        |                    ^^^^^^^^^^^
+2025-07-23T04:20:57:     32 |
+2025-07-23T04:20:57:     33 |   // Use form context
+2025-07-23T04:20:57:     34 |   const {
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:247:32
+2025-07-23T04:20:57: TS2304: Cannot find name 'setSignatureFitMode'.
+2025-07-23T04:20:57:     245 |               <IconButton
+2025-07-23T04:20:57:     246 |                 size="small"
+2025-07-23T04:20:57:   > 247 |                 onClick={() => setSignatureFitMode(signatureFitMode === 'width' ? 'default' : 'width')}
+2025-07-23T04:20:57:         |                                ^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     248 |                 color={signatureFitMode === 'width' ? 'primary' : 'default'}
+2025-07-23T04:20:57:     249 |                 sx={{ 
+2025-07-23T04:20:57:     250 |                   border: signatureFitMode === 'width' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:247:52
+2025-07-23T04:20:57: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:20:57:     245 |               <IconButton
+2025-07-23T04:20:57:     246 |                 size="small"
+2025-07-23T04:20:57:   > 247 |                 onClick={() => setSignatureFitMode(signatureFitMode === 'width' ? 'default' : 'width')}
+2025-07-23T04:20:57:         |                                                    ^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     248 |                 color={signatureFitMode === 'width' ? 'primary' : 'default'}
+2025-07-23T04:20:57:     249 |                 sx={{ 
+2025-07-23T04:20:57:     250 |                   border: signatureFitMode === 'width' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:248:24
+2025-07-23T04:20:57: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:20:57:     246 |                 size="small"
+2025-07-23T04:20:57:     247 |                 onClick={() => setSignatureFitMode(signatureFitMode === 'width' ? 'default' : 'width')}
+2025-07-23T04:20:57:   > 248 |                 color={signatureFitMode === 'width' ? 'primary' : 'default'}
+2025-07-23T04:20:57:         |                        ^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     249 |                 sx={{ 
+2025-07-23T04:20:57:     250 |                   border: signatureFitMode === 'width' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57:     251 |                   borderColor: signatureFitMode === 'width' ? 'primary.main' : 'transparent'
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:250:27
+2025-07-23T04:20:57: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:20:57:     248 |                 color={signatureFitMode === 'width' ? 'primary' : 'default'}
+2025-07-23T04:20:57:     249 |                 sx={{ 
+2025-07-23T04:20:57:   > 250 |                   border: signatureFitMode === 'width' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57:         |                           ^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     251 |                   borderColor: signatureFitMode === 'width' ? 'primary.main' : 'transparent'
+2025-07-23T04:20:57:     252 |                 }}
+2025-07-23T04:20:57:     253 |               >
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:251:32
+2025-07-23T04:20:57: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:20:57:     249 |                 sx={{ 
+2025-07-23T04:20:57:     250 |                   border: signatureFitMode === 'width' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57:   > 251 |                   borderColor: signatureFitMode === 'width' ? 'primary.main' : 'transparent'
+2025-07-23T04:20:57:         |                                ^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     252 |                 }}
+2025-07-23T04:20:57:     253 |               >
+2025-07-23T04:20:57:     254 |                 <SwapHoriz />
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:261:32
+2025-07-23T04:20:57: TS2304: Cannot find name 'setSignatureFitMode'.
+2025-07-23T04:20:57:     259 |               <IconButton
+2025-07-23T04:20:57:     260 |                 size="small"
+2025-07-23T04:20:57:   > 261 |                 onClick={() => setSignatureFitMode(signatureFitMode === 'height' ? 'default' : 'height')}
+2025-07-23T04:20:57:         |                                ^^^^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     262 |                 color={signatureFitMode === 'height' ? 'primary' : 'default'}
+2025-07-23T04:20:57:     263 |                 sx={{ 
+2025-07-23T04:20:57:     264 |                   border: signatureFitMode === 'height' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:261:52
+2025-07-23T04:20:57: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:20:57:     259 |               <IconButton
+2025-07-23T04:20:57:     260 |                 size="small"
+2025-07-23T04:20:57:   > 261 |                 onClick={() => setSignatureFitMode(signatureFitMode === 'height' ? 'default' : 'height')}
+2025-07-23T04:20:57:         |                                                    ^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     262 |                 color={signatureFitMode === 'height' ? 'primary' : 'default'}
+2025-07-23T04:20:57:     263 |                 sx={{ 
+2025-07-23T04:20:57:     264 |                   border: signatureFitMode === 'height' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:262:24
+2025-07-23T04:20:57: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:20:57:     260 |                 size="small"
+2025-07-23T04:20:57:     261 |                 onClick={() => setSignatureFitMode(signatureFitMode === 'height' ? 'default' : 'height')}
+2025-07-23T04:20:57:   > 262 |                 color={signatureFitMode === 'height' ? 'primary' : 'default'}
+2025-07-23T04:20:57:         |                        ^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     263 |                 sx={{ 
+2025-07-23T04:20:57:     264 |                   border: signatureFitMode === 'height' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57:     265 |                   borderColor: signatureFitMode === 'height' ? 'primary.main' : 'transparent'
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:264:27
+2025-07-23T04:20:57: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:20:57:     262 |                 color={signatureFitMode === 'height' ? 'primary' : 'default'}
+2025-07-23T04:20:57:     263 |                 sx={{ 
+2025-07-23T04:20:57:   > 264 |                   border: signatureFitMode === 'height' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57:         |                           ^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     265 |                   borderColor: signatureFitMode === 'height' ? 'primary.main' : 'transparent'
+2025-07-23T04:20:57:     266 |                 }}
+2025-07-23T04:20:57:     267 |               >
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:265:32
+2025-07-23T04:20:57: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:20:57:     263 |                 sx={{ 
+2025-07-23T04:20:57:     264 |                   border: signatureFitMode === 'height' ? '1px solid' : '1px solid transparent',
+2025-07-23T04:20:57:   > 265 |                   borderColor: signatureFitMode === 'height' ? 'primary.main' : 'transparent'
+2025-07-23T04:20:57:         |                                ^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     266 |                 }}
+2025-07-23T04:20:57:     267 |               >
+2025-07-23T04:20:57:     268 |                 <Height />
+2025-07-23T04:20:57: 
+2025-07-23T04:20:57: ERROR in src/components/pdf/PDFFormContainer.tsx:313:31
+2025-07-23T04:20:57: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:20:57:     311 |             validationErrors={validationErrors}
+2025-07-23T04:20:57:     312 |             showFieldNames={showFieldNames}
+2025-07-23T04:20:57:   > 313 |             signatureFitMode={signatureFitMode}
+2025-07-23T04:20:57:         |                               ^^^^^^^^^^^^^^^^
+2025-07-23T04:20:57:     314 |           />
+2025-07-23T04:20:57:     315 |
+2025-07-23T04:20:57:     316 |           {/* Field Tooltip */}
+2025-07-23T04:20:57: 
+2025-07-23T04:21:06: ERROR in src/components/pdf/PDFFormContainer.tsx:31:10
+2025-07-23T04:21:06: TS6133: 'pdfScale' is declared but its value is never read.
+2025-07-23T04:21:06:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:21:06:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:21:06:   > 31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:21:06:        |          ^^^^^^^^
+2025-07-23T04:21:06:     32 |
+2025-07-23T04:21:06:     33 |   // Use form context
+2025-07-23T04:21:06:     34 |   const {
+2025-07-23T04:21:06: 
+2025-07-23T04:21:06: ERROR in src/components/pdf/PDFFormContainer.tsx:331:31
+2025-07-23T04:21:06: TS2304: Cannot find name 'signatureFitMode'.
+2025-07-23T04:21:06:     329 |             validationErrors={validationErrors}
+2025-07-23T04:21:06:     330 |             showFieldNames={showFieldNames}
+2025-07-23T04:21:06:   > 331 |             signatureFitMode={signatureFitMode}
+2025-07-23T04:21:06:         |                               ^^^^^^^^^^^^^^^^
+2025-07-23T04:21:06:     332 |           />
+2025-07-23T04:21:06:     333 |
+2025-07-23T04:21:06:     334 |           {/* Field Tooltip */}
+2025-07-23T04:21:06: 
+2025-07-23T04:21:19: ERROR in src/components/pdf/PDFViewer.tsx:39:3
+2025-07-23T04:21:19: TS2339: Property 'signatureFitMode' does not exist on type 'PDFViewerProps'.
+2025-07-23T04:21:19:     37 |   validationErrors = {},
+2025-07-23T04:21:19:     38 |   showFieldNames = false,
+2025-07-23T04:21:19:   > 39 |   signatureFitMode = 'default',
+2025-07-23T04:21:19:        |   ^^^^^^^^^^^^^^^^
+2025-07-23T04:21:19:     40 | }) => {
+2025-07-23T04:21:19:     41 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+2025-07-23T04:21:19:     42 |   const textLayerRef = useRef<HTMLDivElement>(null);
+2025-07-23T04:21:19: 
+2025-07-23T04:21:24: ERROR in src/components/pdf/PDFViewer.tsx:474:17
+2025-07-23T04:21:24: TS2552: Cannot find name 'signatureFitMode'. Did you mean 'SignatureModal'?
+2025-07-23T04:21:24:     472 |             
+2025-07-23T04:21:24:     473 |             // Apply signature fit mode
+2025-07-23T04:21:24:   > 474 |             if (signatureFitMode === 'width') {
+2025-07-23T04:21:24:         |                 ^^^^^^^^^^^^^^^^
+2025-07-23T04:21:24:     475 |               // Maximize width, maintain aspect ratio
+2025-07-23T04:21:24:     476 |               const originalAspectRatio = width / height;
+2025-07-23T04:21:24:     477 |               width = Math.max(width * 1.5, 400); // Make wider
+2025-07-23T04:21:24: 
+2025-07-23T04:21:24: ERROR in src/components/pdf/PDFViewer.tsx:479:24
+2025-07-23T04:21:24: TS2552: Cannot find name 'signatureFitMode'. Did you mean 'SignatureModal'?
+2025-07-23T04:21:24:     477 |               width = Math.max(width * 1.5, 400); // Make wider
+2025-07-23T04:21:24:     478 |               height = width / originalAspectRatio;
+2025-07-23T04:21:24:   > 479 |             } else if (signatureFitMode === 'height') {
+2025-07-23T04:21:24:         |                        ^^^^^^^^^^^^^^^^
+2025-07-23T04:21:24:     480 |               // Maximize height, maintain aspect ratio  
+2025-07-23T04:21:24:     481 |               const originalAspectRatio = width / height;
+2025-07-23T04:21:24:     482 |               height = Math.max(height * 1.5, 150); // Make taller
+2025-07-23T04:21:24: 
+2025-07-23T04:21:37: ERROR in src/components/pdf/PDFFormContainer.tsx:1:38
+2025-07-23T04:21:37: TS6133: 'useRef' is declared but its value is never read.
+2025-07-23T04:21:37:   > 1 | import React, { useState, useEffect, useRef } from 'react';
+2025-07-23T04:21:37:       |                                      ^^^^^^
+2025-07-23T04:21:37:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:21:37:     3 | import { Height, SwapHoriz } from '@mui/icons-material';
+2025-07-23T04:21:37:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:21:37: 
+2025-07-23T04:21:42: ERROR in src/components/pdf/PDFFormContainer.tsx:32:9
+2025-07-23T04:21:42: TS6133: 'pdfContainerRef' is declared but its value is never read.
+2025-07-23T04:21:42:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:21:42:     31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:21:42:   > 32 |   const pdfContainerRef = useRef<HTMLDivElement>(null);
+2025-07-23T04:21:42:        |         ^^^^^^^^^^^^^^^
+2025-07-23T04:21:42:     33 |
+2025-07-23T04:21:42:     34 |   // Use form context
+2025-07-23T04:21:42:     35 |   const {
+2025-07-23T04:21:42: 
+2025-07-23T04:21:49: ERROR in src/components/pdf/PDFFormContainer.tsx:32:9
+2025-07-23T04:21:49: TS6133: 'pdfContainerRef' is declared but its value is never read.
+2025-07-23T04:21:49:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:21:49:     31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:21:49:   > 32 |   const pdfContainerRef = useRef<HTMLDivElement>(null);
+2025-07-23T04:21:49:        |         ^^^^^^^^^^^^^^^
+2025-07-23T04:21:49:     33 |
+2025-07-23T04:21:49:     34 |   // Use form context
+2025-07-23T04:21:49:     35 |   const {
+2025-07-23T04:21:49: 
+2025-07-23T04:21:55: ERROR in src/components/pdf/PDFFormContainer.tsx:32:9
+2025-07-23T04:21:55: TS6133: 'pdfContainerRef' is declared but its value is never read.
+2025-07-23T04:21:55:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:21:55:     31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:21:55:   > 32 |   const pdfContainerRef = useRef<HTMLDivElement>(null);
+2025-07-23T04:21:55:        |         ^^^^^^^^^^^^^^^
+2025-07-23T04:21:55:     33 |
+2025-07-23T04:21:55:     34 |   // Use form context
+2025-07-23T04:21:55:     35 |   const {
+2025-07-23T04:21:55: 
+2025-07-23T04:22:00: ERROR in src/components/pdf/PDFFormContainer.tsx:32:9
+2025-07-23T04:22:00: TS6133: 'pdfContainerRef' is declared but its value is never read.
+2025-07-23T04:22:00:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:22:00:     31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:22:00:   > 32 |   const pdfContainerRef = useRef<HTMLDivElement>(null);
+2025-07-23T04:22:00:        |         ^^^^^^^^^^^^^^^
+2025-07-23T04:22:00:     33 |
+2025-07-23T04:22:00:     34 |   // Use form context
+2025-07-23T04:22:00:     35 |   const {
+2025-07-23T04:22:00: 
+2025-07-23T04:22:00: ERROR in src/components/pdf/PDFFormContainer.tsx:32:27
+2025-07-23T04:22:00: TS2304: Cannot find name 'useRef'.
+2025-07-23T04:22:00:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:22:00:     31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:22:00:   > 32 |   const pdfContainerRef = useRef<HTMLDivElement>(null);
+2025-07-23T04:22:00:        |                           ^^^^^^
+2025-07-23T04:22:00:     33 |
+2025-07-23T04:22:00:     34 |   // Use form context
+2025-07-23T04:22:00:     35 |   const {
+2025-07-23T04:22:00: 
+2025-07-23T04:23:59: ERROR in src/components/pdf/PDFFormContainer.tsx:31:20
+2025-07-23T04:23:59: TS6133: 'setPdfScale' is declared but its value is never read.
+2025-07-23T04:23:59:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:23:59:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:23:59:   > 31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:23:59:        |                    ^^^^^^^^^^^
+2025-07-23T04:23:59:     32 |
+2025-07-23T04:23:59:     33 |   // Use form context
+2025-07-23T04:23:59:     34 |   const {
+2025-07-23T04:23:59: 
+2025-07-23T04:24:05: ERROR in src/components/pdf/PDFFormContainer.tsx:31:10
+2025-07-23T04:24:05: TS6133: 'pdfScale' is declared but its value is never read.
+2025-07-23T04:24:05:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:24:05:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:24:05:   > 31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:24:05:        |          ^^^^^^^^
+2025-07-23T04:24:05:     32 |
+2025-07-23T04:24:05:     33 |   // Use form context
+2025-07-23T04:24:05:     34 |   const {
+2025-07-23T04:24:05: 
+2025-07-23T04:24:05: ERROR in src/components/pdf/PDFFormContainer.tsx:31:20
+2025-07-23T04:24:05: TS6133: 'setPdfScale' is declared but its value is never read.
+2025-07-23T04:24:05:     29 |   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+2025-07-23T04:24:05:     30 |   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+2025-07-23T04:24:05:   > 31 |   const [pdfScale, setPdfScale] = useState<number>(1.0);
+2025-07-23T04:24:05:        |                    ^^^^^^^^^^^
+2025-07-23T04:24:05:     32 |
+2025-07-23T04:24:05:     33 |   // Use form context
+2025-07-23T04:24:05:     34 |   const {
+2025-07-23T04:24:05: 
+2025-07-23T04:24:05: ERROR in src/components/pdf/PDFFormContainer.tsx:317:13
+2025-07-23T04:24:05: TS2322: Type '{ pdfUrl: string; currentPage: number; scale: number; onFormFieldsDetected: (fields: FormField[]) => void; onPageChange: Dispatch<SetStateAction<number>>; ... 7 more ...; fitMode: "default" | ... 1 more ... | "height"; }' is not assignable to type 'IntrinsicAttributes & PDFViewerProps'.
+2025-07-23T04:24:05:   Property 'fitMode' does not exist on type 'IntrinsicAttributes & PDFViewerProps'.
+2025-07-23T04:24:05:     315 |             validationErrors={validationErrors}
+2025-07-23T04:24:05:     316 |             showFieldNames={showFieldNames}
+2025-07-23T04:24:05:   > 317 |             fitMode={pdfFitMode}
+2025-07-23T04:24:05:         |             ^^^^^^^
+2025-07-23T04:24:05:     318 |           />
+2025-07-23T04:24:05:     319 |
+2025-07-23T04:24:05:     320 |           {/* Field Tooltip */}
+2025-07-23T04:24:05: 
+2025-07-23T04:24:10: ERROR in src/components/pdf/PDFFormContainer.tsx:316:13
+2025-07-23T04:24:10: TS2322: Type '{ pdfUrl: string; currentPage: number; scale: number; onFormFieldsDetected: (fields: FormField[]) => void; onPageChange: Dispatch<SetStateAction<number>>; ... 7 more ...; fitMode: "default" | ... 1 more ... | "height"; }' is not assignable to type 'IntrinsicAttributes & PDFViewerProps'.
+2025-07-23T04:24:10:   Property 'fitMode' does not exist on type 'IntrinsicAttributes & PDFViewerProps'.
+2025-07-23T04:24:10:     314 |             validationErrors={validationErrors}
+2025-07-23T04:24:10:     315 |             showFieldNames={showFieldNames}
+2025-07-23T04:24:10:   > 316 |             fitMode={pdfFitMode}
+2025-07-23T04:24:10:         |             ^^^^^^^
+2025-07-23T04:24:10:     317 |           />
+2025-07-23T04:24:10:     318 |
+2025-07-23T04:24:10:     319 |           {/* Field Tooltip */}
+2025-07-23T04:24:10: 
+2025-07-23T04:24:19: ERROR in src/components/pdf/PDFViewer.tsx:40:3
+2025-07-23T04:24:19: TS6133: 'fitMode' is declared but its value is never read.
+2025-07-23T04:24:19:     38 |   validationErrors = {},
+2025-07-23T04:24:19:     39 |   showFieldNames = false,
+2025-07-23T04:24:19:   > 40 |   fitMode = 'default',
+2025-07-23T04:24:19:        |   ^^^^^^^
+2025-07-23T04:24:19:     41 | }) => {
+2025-07-23T04:24:19:     42 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+2025-07-23T04:24:19:     43 |   const textLayerRef = useRef<HTMLDivElement>(null);
+2025-07-23T04:24:19: 
+2025-07-23T04:24:35: ERROR in src/components/pdf/PDFViewer.tsx:66:9
+2025-07-23T04:24:35: TS6133: 'calculateScale' is declared but its value is never read.
+2025-07-23T04:24:35:     64 |
+2025-07-23T04:24:35:     65 |   // Calculate scale based on fit mode
+2025-07-23T04:24:35:   > 66 |   const calculateScale = useCallback((pageObj: PDFPageProxy, containerElement: HTMLElement): number => {
+2025-07-23T04:24:35:        |         ^^^^^^^^^^^^^^
+2025-07-23T04:24:35:     67 |     if (fitMode === 'default') {
+2025-07-23T04:24:35:     68 |       return scale;
+2025-07-23T04:24:35:     69 |     }
+2025-07-23T04:24:35: 
+2025-07-23T04:35:05: ERROR in src/components/pdf/PDFFormContainer.tsx:3:29
+2025-07-23T04:35:05: TS6133: 'Visibility' is declared but its value is never read.
+2025-07-23T04:35:05:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:35:05:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:35:05:   > 3 | import { Height, SwapHoriz, Visibility, VisibilityOff } from '@mui/icons-material';
+2025-07-23T04:35:05:       |                             ^^^^^^^^^^
+2025-07-23T04:35:05:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:35:05:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:35:05:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:35:05: 
+2025-07-23T04:35:05: ERROR in src/components/pdf/PDFFormContainer.tsx:3:41
+2025-07-23T04:35:05: TS6133: 'VisibilityOff' is declared but its value is never read.
+2025-07-23T04:35:05:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:35:05:     2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:35:05:   > 3 | import { Height, SwapHoriz, Visibility, VisibilityOff } from '@mui/icons-material';
+2025-07-23T04:35:05:       |                                         ^^^^^^^^^^^^^
+2025-07-23T04:35:05:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:35:05:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:35:05:     6 | import { FormProvider, useForm } from '../../contexts/FormContext';
+2025-07-23T04:35:05: 
+2025-07-23T04:35:14: ERROR in src/components/pdf/PDFFormContainer.tsx:2:42
+2025-07-23T04:35:14: TS6133: 'IconButton' is declared but its value is never read.
+2025-07-23T04:35:14:     1 | import React, { useState, useEffect } from 'react';
+2025-07-23T04:35:14:   > 2 | import { Box, Typography, Alert, Button, IconButton, Tooltip } from '@mui/material';
+2025-07-23T04:35:14:       |                                          ^^^^^^^^^^
+2025-07-23T04:35:14:     3 | import { Height, SwapHoriz, Visibility, VisibilityOff } from '@mui/icons-material';
+2025-07-23T04:35:14:     4 | import { PDFViewer } from './PDFViewer';
+2025-07-23T04:35:14:     5 | import { ThumbnailSidebar } from './ThumbnailSidebar';
+2025-07-23T04:35:14: 
+2025-07-23T04:43:23: 
+2025-07-23T04:43:23: <--- Last few GCs --->
+2025-07-23T04:43:23: 
+2025-07-23T04:43:23: [1514401:0x55f2b654e340] 16994484 ms: Mark-sweep (reduce) 2044.9 (2083.3) -> 2044.0 (2083.1) MB, 4451.7 / 0.0 ms  (average mu = 0.086, current mu = 0.002) allocation failure; scavenge might not succeed
+2025-07-23T04:43:23: [1514401:0x55f2b654e340] 16998164 ms: Mark-sweep (reduce) 2045.2 (2083.1) -> 2044.2 (2083.1) MB, 3628.8 / 0.0 ms  (average mu = 0.050, current mu = 0.014) allocation failure; scavenge might not succeed
+2025-07-23T04:43:23: 
+2025-07-23T04:43:23: 
+2025-07-23T04:43:23: <--- JS stacktrace --->
+2025-07-23T04:43:23: 
+2025-07-23T04:43:23: FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+2025-07-23T04:43:23:  1: 0x55f2b2330904 node::Abort() [/usr/bin/node-18]
+2025-07-23T04:43:23:  2: 0x55f2b2213026  [/usr/bin/node-18]
+2025-07-23T04:43:23:  3: 0x55f2b2bfee84 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T04:43:23:  4: 0x55f2b2bff26c v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T04:43:23:  5: 0x55f2b2dfa8f9  [/usr/bin/node-18]
+2025-07-23T04:43:23:  6: 0x55f2b2dfb926 v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [/usr/bin/node-18]
+2025-07-23T04:43:23:  7: 0x55f2b2e0d68b v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::internal::GarbageCollectionReason, char const*, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-23T04:43:23:  8: 0x55f2b2e0e79e v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-23T04:43:23:  9: 0x55f2b2de5a8a v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T04:43:23: 10: 0x55f2b2de6cc7 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T04:43:23: 11: 0x55f2b2dc7933 v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/usr/bin/node-18]
+2025-07-23T04:43:23: 12: 0x55f2b3220507 v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/usr/bin/node-18]
+2025-07-23T04:43:23: 13: 0x55f2b3653b39  [/usr/bin/node-18]
+2025-07-23T04:46:58: RpcIpcMessagePortClosedError: Process 1514401 exited [SIGABRT].
+2025-07-23T04:46:58: Issues checking service aborted - probably out of memory. Check the `memoryLimit` option in the ForkTsCheckerWebpackPlugin configuration.
+2025-07-23T04:46:58: If increasing the memory doesn't solve the issue, it's most probably a bug in the TypeScript or EsLint.
+2025-07-23T04:46:58: RpcIpcMessagePortClosedError: Process 1514401 exited [SIGABRT].
+2025-07-23T04:46:58: Issues checking service aborted - probably out of memory. Check the `memoryLimit` option in the ForkTsCheckerWebpackPlugin configuration.
+2025-07-23T04:46:58: If increasing the memory doesn't solve the issue, it's most probably a bug in the TypeScript or EsLint.
+2025-07-23T04:51:01: 
+2025-07-23T04:51:01: <--- Last few GCs --->
+2025-07-23T04:51:01: 
+2025-07-23T04:51:01: [1514376:0x56195bd79100] 17458890 ms: Mark-sweep (reduce) 2037.1 (2082.1) -> 2036.7 (2082.7) MB, 4262.6 / 0.0 ms  (average mu = 0.271, current mu = 0.001) allocation failure; scavenge might not succeed
+2025-07-23T04:51:01: [1514376:0x56195bd79100] 17462694 ms: Mark-sweep (reduce) 2037.7 (2082.7) -> 2037.5 (2083.2) MB, 3801.5 / 0.0 ms  (average mu = 0.160, current mu = 0.001) allocation failure; scavenge might not succeed
+2025-07-23T04:51:01: 
+2025-07-23T04:51:01: 
+2025-07-23T04:51:01: <--- JS stacktrace --->
+2025-07-23T04:51:01: 
+2025-07-23T04:51:01: FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+2025-07-23T04:51:01:  1: 0x561958930904 node::Abort() [/usr/bin/node-18]
+2025-07-23T04:51:01:  2: 0x561958813026  [/usr/bin/node-18]
+2025-07-23T04:51:01:  3: 0x5619591fee84 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T04:51:01:  4: 0x5619591ff26c v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T04:51:01:  5: 0x5619593fa8f9  [/usr/bin/node-18]
+2025-07-23T04:51:01:  6: 0x56195940e64b v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-23T04:51:01:  7: 0x5619593e5a8a v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T04:51:01:  8: 0x5619593e6cc7 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T04:51:01:  9: 0x5619593c7933 v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/usr/bin/node-18]
+2025-07-23T04:51:01: 10: 0x561959820507 v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/usr/bin/node-18]
+2025-07-23T04:51:01: 11: 0x561959c53b39  [/usr/bin/node-18]
+2025-07-23T04:56:07: (node:1579894) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T04:56:07: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
+2025-07-23T04:56:07: (node:1579894) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T04:58:08: 
+2025-07-23T04:58:08: <--- Last few GCs --->
+2025-07-23T04:58:08: 
+2025-07-23T04:58:08: [1579925:0x55a44e7d6340]   117058 ms: Mark-sweep (reduce) 2042.5 (2082.9) -> 2041.6 (2083.1) MB, 2387.4 / 0.0 ms  (average mu = 0.120, current mu = 0.003) allocation failure; scavenge might not succeed
+2025-07-23T04:58:08: [1579925:0x55a44e7d6340]   119200 ms: Mark-sweep (reduce) 2042.9 (2083.1) -> 2041.6 (2083.1) MB, 2119.8 / 0.0 ms  (average mu = 0.068, current mu = 0.011) allocation failure; scavenge might not succeed
+2025-07-23T04:58:08: 
+2025-07-23T04:58:08: 
+2025-07-23T04:58:08: <--- JS stacktrace --->
+2025-07-23T04:58:08: 
+2025-07-23T04:58:08: FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+2025-07-23T04:58:08:  1: 0x55a44b730904 node::Abort() [/usr/bin/node-18]
+2025-07-23T04:58:08:  2: 0x55a44b613026  [/usr/bin/node-18]
+2025-07-23T04:58:08:  3: 0x55a44bffee84 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T04:58:08:  4: 0x55a44bfff26c v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T04:58:08:  5: 0x55a44c1fa8f9  [/usr/bin/node-18]
+2025-07-23T04:58:08:  6: 0x55a44c1fb926 v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [/usr/bin/node-18]
+2025-07-23T04:58:08:  7: 0x55a44c20d68b v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::internal::GarbageCollectionReason, char const*, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-23T04:58:08:  8: 0x55a44c20e79e v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-23T04:58:08:  9: 0x55a44c1e5a8a v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T04:58:08: 10: 0x55a44c1e6cc7 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T04:58:08: 11: 0x55a44c1c7933 v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/usr/bin/node-18]
+2025-07-23T04:58:08: 12: 0x55a44c620507 v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/usr/bin/node-18]
+2025-07-23T04:58:08: 13: 0x55a44ca53b39  [/usr/bin/node-18]
+2025-07-23T05:03:13: RpcIpcMessagePortClosedError: Process 1579925 exited [SIGABRT].
+2025-07-23T05:03:13: Issues checking service aborted - probably out of memory. Check the `memoryLimit` option in the ForkTsCheckerWebpackPlugin configuration.
+2025-07-23T05:03:13: If increasing the memory doesn't solve the issue, it's most probably a bug in the TypeScript or EsLint.
+2025-07-23T05:03:13: RpcIpcMessagePortClosedError: Process 1579925 exited [SIGABRT].
+2025-07-23T05:03:13: Issues checking service aborted - probably out of memory. Check the `memoryLimit` option in the ForkTsCheckerWebpackPlugin configuration.
+2025-07-23T05:03:13: If increasing the memory doesn't solve the issue, it's most probably a bug in the TypeScript or EsLint.
+2025-07-23T05:04:55: 
+2025-07-23T05:04:55: <--- Last few GCs --->
+2025-07-23T05:04:55: 
+2025-07-23T05:04:55: [1579894:0x557173f93100]   527674 ms: Scavenge (reduce) 2024.3 (2079.7) -> 2024.1 (2080.4) MB, 4.6 / 0.0 ms  (average mu = 0.507, current mu = 0.398) allocation failure; 
+2025-07-23T05:04:55: [1579894:0x557173f93100]   531239 ms: Mark-sweep (reduce) 2031.6 (2087.1) -> 2026.1 (2082.4) MB, 3540.1 / 0.0 ms  (average mu = 0.302, current mu = 0.025) allocation failure; scavenge might not succeed
+2025-07-23T05:04:55: 
+2025-07-23T05:04:55: 
+2025-07-23T05:04:55: <--- JS stacktrace --->
+2025-07-23T05:04:55: 
+2025-07-23T05:04:55: FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+2025-07-23T05:04:55:  1: 0x557170d30904 node::Abort() [/usr/bin/node-18]
+2025-07-23T05:04:55:  2: 0x557170c13026  [/usr/bin/node-18]
+2025-07-23T05:04:55:  3: 0x5571715fee84 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T05:04:55:  4: 0x5571715ff26c v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T05:04:55:  5: 0x5571717fa8f9  [/usr/bin/node-18]
+2025-07-23T05:04:55:  6: 0x55717180e64b v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-23T05:04:55:  7: 0x5571717e5a8a v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T05:04:55:  8: 0x5571717e6cc7 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T05:04:55:  9: 0x5571717c7933 v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/usr/bin/node-18]
+2025-07-23T05:04:55: 10: 0x557171c20507 v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/usr/bin/node-18]
+2025-07-23T05:04:55: 11: 0x557172053b39  [/usr/bin/node-18]
+2025-07-23T05:10:01: (node:1583771) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T05:10:01: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
+2025-07-23T05:10:01: (node:1583771) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T05:11:28: 
+2025-07-23T05:11:28: <--- Last few GCs --->
+2025-07-23T05:11:28: 
+2025-07-23T05:11:28: [1583787:0x55f2a687b340]    83713 ms: Mark-sweep (reduce) 2043.6 (2082.9) -> 2042.4 (2083.1) MB, 1799.1 / 0.0 ms  (average mu = 0.101, current mu = 0.073) allocation failure; scavenge might not succeed
+2025-07-23T05:11:28: [1583787:0x55f2a687b340]    85671 ms: Mark-sweep (reduce) 2043.7 (2083.1) -> 2042.5 (2083.1) MB, 1943.0 / 0.0 ms  (average mu = 0.055, current mu = 0.007) allocation failure; scavenge might not succeed
+2025-07-23T05:11:28: 
+2025-07-23T05:11:28: 
+2025-07-23T05:11:28: <--- JS stacktrace --->
+2025-07-23T05:11:28: 
+2025-07-23T05:11:28: FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+2025-07-23T05:11:28:  1: 0x55f2a3930904 node::Abort() [/usr/bin/node-18]
+2025-07-23T05:11:28:  2: 0x55f2a3813026  [/usr/bin/node-18]
+2025-07-23T05:11:28:  3: 0x55f2a41fee84 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T05:11:28:  4: 0x55f2a41ff26c v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T05:11:28:  5: 0x55f2a43fa8f9  [/usr/bin/node-18]
+2025-07-23T05:11:28:  6: 0x55f2a43fb926 v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [/usr/bin/node-18]
+2025-07-23T05:11:28:  7: 0x55f2a440d68b v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::internal::GarbageCollectionReason, char const*, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-23T05:11:28:  8: 0x55f2a440e79e v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-23T05:11:28:  9: 0x55f2a43e5a8a v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T05:11:28: 10: 0x55f2a43e6cc7 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T05:11:28: 11: 0x55f2a43c7933 v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/usr/bin/node-18]
+2025-07-23T05:11:28: 12: 0x55f2a4820507 v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/usr/bin/node-18]
+2025-07-23T05:11:28: 13: 0x55f2a4c53b39  [/usr/bin/node-18]
+2025-07-23T05:16:29: RpcIpcMessagePortClosedError: Process 1583787 exited [SIGABRT].
+2025-07-23T05:16:29: Issues checking service aborted - probably out of memory. Check the `memoryLimit` option in the ForkTsCheckerWebpackPlugin configuration.
+2025-07-23T05:16:29: If increasing the memory doesn't solve the issue, it's most probably a bug in the TypeScript or EsLint.

@@ -11,27 +11,41 @@ export const getPDFUrlFromParams = (
   const pdfParam =
     urlParams.get('f') || urlParams.get('file') || urlParams.get('pdf');
 
-  if (!pdfParam || pdfParam.trim() === '') {
-    return defaultPdf;
-  }
-
-  // Decode URL if needed
-  const decodedParam = decodeURIComponent(pdfParam.trim());
-
-  // Extract filename if it's a full URL
-  let filename = decodedParam;
-  if (decodedParam.includes('://') || decodedParam.startsWith('/')) {
-    const parts = decodedParam.split('/');
+  // Handle default PDF - extract filename if it's a path
+  let filename = defaultPdf;
+  if (defaultPdf.includes('/')) {
+    const parts = defaultPdf.split('/');
     filename = parts[parts.length - 1];
   }
+  
+  if (pdfParam && pdfParam.trim() !== '') {
+    // Decode URL if needed
+    const decodedParam = decodeURIComponent(pdfParam.trim());
 
-  // Ensure filename has .pdf extension (if not already)
-  if (!filename.toLowerCase().endsWith('.pdf')) {
-    filename += '.pdf';
+    // Extract filename if it's a full URL
+    if (decodedParam.includes('://') || decodedParam.startsWith('/')) {
+      const parts = decodedParam.split('/');
+      filename = parts[parts.length - 1];
+    } else {
+      filename = decodedParam;
+    }
+
+    // Ensure filename has .pdf extension (if not already)
+    if (!filename.toLowerCase().endsWith('.pdf')) {
+      filename += '.pdf';
+    }
   }
 
-  // Return path to pdfs directory
-  return `/pdfs/${filename}`;
+  // Construct absolute URL based on current origin
+  const origin = window.location?.origin;
+  
+  // If we have an origin (in browser), use absolute URL
+  // If not (in tests), use relative URL
+  if (origin) {
+    return `${origin}/pdfs/${filename}`;
+  } else {
+    return `/pdfs/${filename}`;
+  }
 };
 
 /**
