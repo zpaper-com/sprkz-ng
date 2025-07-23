@@ -56,6 +56,9 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   const [currentSignatureField, setCurrentSignatureField] = useState<
     string | null
   >(null);
+  const [currentSignatureFieldDimensions, setCurrentSignatureFieldDimensions] = useState<
+    { width: number; height: number } | null
+  >(null);
 
   // Function to render PDF.js annotation layer using native PDF.js rendering
   const renderAnnotationLayer = useCallback(
@@ -417,14 +420,19 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
           // Display existing signature
           const img = document.createElement('img');
           img.src = existingSignature;
-          img.style.maxWidth = '100%';
-          img.style.maxHeight = '100%';
+          img.style.width = '100%';
+          img.style.height = '100%';
           img.style.objectFit = 'contain';
+          img.style.transform = 'scale(1.5)'; // Make signature 50% larger
           img.style.display = 'block';
           sigDiv.appendChild(img);
-          sigDiv.style.padding = '2px';
+          sigDiv.style.padding = '0';
           sigDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-          sigDiv.style.border = '1px solid #999';
+          sigDiv.style.border = '1px solid #666';
+          sigDiv.style.overflow = 'hidden';
+          sigDiv.style.display = 'flex';
+          sigDiv.style.alignItems = 'center';
+          sigDiv.style.justifyContent = 'center';
         } else if (
           annotation.fieldValue &&
           annotation.fieldValue.startsWith('data:image/')
@@ -432,14 +440,19 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
           // Display PDF's existing signature
           const img = document.createElement('img');
           img.src = annotation.fieldValue;
-          img.style.maxWidth = '100%';
-          img.style.maxHeight = '100%';
+          img.style.width = '100%';
+          img.style.height = '100%';
           img.style.objectFit = 'contain';
+          img.style.transform = 'scale(1.5)'; // Make signature 50% larger
           img.style.display = 'block';
           sigDiv.appendChild(img);
-          sigDiv.style.padding = '2px';
+          sigDiv.style.padding = '0';
           sigDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-          sigDiv.style.border = '1px solid #999';
+          sigDiv.style.border = '1px solid #666';
+          sigDiv.style.overflow = 'hidden';
+          sigDiv.style.display = 'flex';
+          sigDiv.style.alignItems = 'center';
+          sigDiv.style.justifyContent = 'center';
         } else {
           sigDiv.textContent = 'Click to sign';
         }
@@ -449,6 +462,16 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
           e.preventDefault();
           e.stopPropagation();
           setCurrentSignatureField(fieldId);
+          
+          // Calculate field dimensions from annotation rect
+          if (annotation.rect && viewport) {
+            const rect = viewport.convertToViewportRectangle(annotation.rect);
+            const [left, top, right, bottom] = rect;
+            const width = Math.abs(right - left);
+            const height = Math.abs(bottom - top);
+            setCurrentSignatureFieldDimensions({ width, height });
+          }
+          
           setSignatureModalOpen(true);
         });
 
@@ -653,6 +676,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
     }
     setSignatureModalOpen(false);
     setCurrentSignatureField(null);
+    setCurrentSignatureFieldDimensions(null);
   };
 
   // Update the visual appearance of a signature field
@@ -674,16 +698,21 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
       // Create and add signature image
       const img = document.createElement('img');
       img.src = signatureDataUrl;
-      img.style.maxWidth = '100%';
-      img.style.maxHeight = '100%';
-      img.style.objectFit = 'contain';
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'contain'; // Maintain aspect ratio but scale up
+      img.style.transform = 'scale(1.5)'; // Make signature 50% larger
       img.style.display = 'block';
       signatureElement.appendChild(img);
 
       // Update the styling to better display the signature
-      signatureElement.style.padding = '2px';
+      signatureElement.style.padding = '0'; // Remove padding to maximize space
       signatureElement.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-      signatureElement.style.border = '1px solid #999';
+      signatureElement.style.border = '1px solid #666';
+      signatureElement.style.overflow = 'hidden'; // Ensure clean edges
+      signatureElement.style.display = 'flex';
+      signatureElement.style.alignItems = 'center';
+      signatureElement.style.justifyContent = 'center';
     }
   };
 
@@ -691,6 +720,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   const handleSignatureModalClose = () => {
     setSignatureModalOpen(false);
     setCurrentSignatureField(null);
+    setCurrentSignatureFieldDimensions(null);
   };
 
   if (loading) {
@@ -791,6 +821,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
         onClose={handleSignatureModalClose}
         onSave={handleSignatureSave}
         fieldName={currentSignatureField || 'Signature'}
+        fieldDimensions={currentSignatureFieldDimensions || undefined}
       />
     </Box>
   );
