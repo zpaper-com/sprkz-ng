@@ -7,6 +7,7 @@ import { theme } from './config/theme';
 import { PDFFormContainer } from './components/pdf/PDFFormContainer';
 import MobileInterface from './components/mobile/MobileInterface';
 import { redirectToMobileIfNeeded } from './utils/mobileDetection';
+import AdminInterface from './admin/AdminInterface';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -22,6 +23,10 @@ const App: React.FC = () => {
           <Route 
             path="/mobile" 
             element={<MobileInterface />} 
+          />
+          <Route 
+            path="/admin/*" 
+            element={<AdminInterface />} 
           />
           <Route 
             path="/" 
