@@ -21,6 +21,7 @@ export interface PDFViewerProps {
   formData?: Record<string, any>;
   validationErrors?: Record<string, string>;
   showFieldNames?: boolean;
+  fitMode?: 'default' | 'width' | 'height';
 }
 
 export const PDFViewer: React.FC<PDFViewerProps> = ({
@@ -36,6 +37,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   formData = {},
   validationErrors = {},
   showFieldNames = false,
+  fitMode = 'default',
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const textLayerRef = useRef<HTMLDivElement>(null);
@@ -59,6 +61,32 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   const [currentSignatureFieldDimensions, setCurrentSignatureFieldDimensions] = useState<
     { width: number; height: number } | null
   >(null);
+
+  // Calculate scale based on fit mode using proper PDF.js approach
+  const calculateScale = useCallback((pageObj: PDFPageProxy, containerElement: HTMLElement): number => {
+    if (fitMode === 'default') {
+      return scale;
+    }
+
+    // Get the natural page viewport at scale 1.0 (PDF.js standard approach)
+    const unscaledViewport = pageObj.getViewport({ scale: 1.0 });
+    const containerRect = containerElement.getBoundingClientRect();
+    
+    // Account for padding/margins in the container
+    const MARGIN_PADDING = 40;
+    const availableWidth = containerRect.width - MARGIN_PADDING;
+    const availableHeight = containerRect.height - MARGIN_PADDING;
+
+    if (fitMode === 'width') {
+      // PDF.js fit-to-width: scale = container width / natural page width
+      return availableWidth / unscaledViewport.width;
+    } else if (fitMode === 'height') {
+      // PDF.js fit-to-height: scale = container height / natural page height
+      return availableHeight / unscaledViewport.height;
+    }
+
+    return scale;
+  }, [fitMode, scale]);
 
   // Function to render PDF.js annotation layer using native PDF.js rendering
   const renderAnnotationLayer = useCallback(
@@ -538,11 +566,17 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
 
         console.log('Rendering page...', currentPageObj.pageNumber);
 
+        // Calculate the appropriate scale based on fit mode
+        const containerElement = canvasRef.current!.parentElement!;
+        const actualScale = calculateScale(currentPageObj, containerElement);
+
+        console.log('Calculated scale:', actualScale, 'for fit mode:', fitMode);
+
         // Start new render task with cancellation tracking
         const task = pdfService.renderPageWithCancellation(
           currentPageObj,
           canvasRef.current!,
-          scale
+          actualScale
         );
 
         renderTaskRef.current = task;
@@ -551,9 +585,9 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
         await task.promise;
         renderTaskRef.current = null;
 
-        console.log('Page rendered successfully');
+        console.log('Page rendered successfully at scale:', actualScale);
 
-        const pageViewport = currentPageObj.getViewport({ scale });
+        const pageViewport = currentPageObj.getViewport({ scale: actualScale });
         setViewport(pageViewport);
 
         // Ensure annotation layer container matches canvas styled dimensions (not device pixel ratio)
@@ -622,7 +656,33 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
         renderTaskRef.current = null;
       }
     };
-  }, [currentPageObj, scale, onFormFieldsDetected, renderAnnotationLayer]);
+  }, [currentPageObj, scale, onFormFieldsDetected, renderAnnotationLayer, fitMode, calculateScale]);
+
+  // Handle container resize for fit modes
+  useEffect(() => {
+    if (fitMode === 'default' || !currentPageObj) return;
+
+    const handleResize = () => {
+      // Trigger re-render when container size changes for fit modes
+      if (canvasRef.current) {
+        const containerElement = canvasRef.current.parentElement!;
+        const newScale = calculateScale(currentPageObj, containerElement);
+        console.log('Container resized, new scale:', newScale);
+        
+        // Force re-render by updating a dependency
+        setCurrentPageObj((prev) => prev);
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(handleResize);
+    if (canvasRef.current?.parentElement) {
+      resizeObserver.observe(canvasRef.current.parentElement);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [fitMode, currentPageObj, calculateScale]);
 
   // Handle page changes
   useEffect(() => {
