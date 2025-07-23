@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Alert, Button } from '@mui/material';
+import { Box, Typography, Alert, Button, Tooltip } from '@mui/material';
+import { Height, SwapHoriz, Visibility, VisibilityOff } from '@mui/icons-material';
 import { PDFViewer } from './PDFViewer';
 import { ThumbnailSidebar } from './ThumbnailSidebar';
 import { FormProvider, useForm } from '../../contexts/FormContext';
@@ -26,6 +27,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
+  const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
 
   // Use form context
   const {
@@ -226,16 +228,59 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
 
           {/* Controls */}
           <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={() => setShowFieldNames(!showFieldNames)}
-              sx={{
-                fontSize: '12px',
-              }}
-            >
-              {showFieldNames ? 'Hide' : 'Show'} Field Names
-            </Button>
+            {/* Show/Hide Field Names with Eye Icon */}
+            <Tooltip title={showFieldNames ? 'Hide field names' : 'Show field names'}>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => setShowFieldNames(!showFieldNames)}
+                sx={{
+                  fontSize: '12px',
+                  minWidth: 'auto',
+                  px: 1,
+                }}
+                startIcon={showFieldNames ? <Visibility /> : <VisibilityOff />}
+              >
+                Fields
+              </Button>
+            </Tooltip>
+
+            {/* PDF Fit Controls */}
+            <Tooltip title="Fit PDF to width">
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => {
+                  setPdfFitMode(pdfFitMode === 'width' ? 'default' : 'width');
+                }}
+                color={pdfFitMode === 'width' ? 'primary' : 'inherit'}
+                sx={{ 
+                  minWidth: 'auto',
+                  px: 1,
+                }}
+                startIcon={<SwapHoriz />}
+              >
+                Width
+              </Button>
+            </Tooltip>
+
+            <Tooltip title="Fit PDF to height">
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => {
+                  setPdfFitMode(pdfFitMode === 'height' ? 'default' : 'height');
+                }}
+                color={pdfFitMode === 'height' ? 'primary' : 'inherit'}
+                sx={{ 
+                  minWidth: 'auto',
+                  px: 1,
+                }}
+                startIcon={<Height />}
+              >
+                Height
+              </Button>
+            </Tooltip>
             
             {/* Wizard Button */}
             <WizardButton 
@@ -278,6 +323,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             formData={formData}
             validationErrors={validationErrors}
             showFieldNames={showFieldNames}
+            fitMode={pdfFitMode}
           />
 
           {/* Field Tooltip */}
