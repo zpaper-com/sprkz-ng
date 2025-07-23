@@ -3,6 +3,9 @@ import { Box, Typography, Alert, Button } from '@mui/material';
 import { PDFViewer } from './PDFViewer';
 import { ThumbnailSidebar } from './ThumbnailSidebar';
 import { FormProvider, useForm } from '../../contexts/FormContext';
+import { WizardButton, WizardStatus } from '../WizardButton';
+import { FieldTooltip } from '../FieldTooltip';
+import { ProgressTracker, MiniProgressIndicator } from '../ProgressTracker';
 import { getPDFUrlFromParams } from '../../utils/urlParams';
 import { pdfService } from '../../services/pdfService';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
@@ -22,13 +25,15 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
+  const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
 
   // Use form context
   const {
     setFieldValue,
     setCurrentField,
     setCurrentPage: setFormCurrentPage,
-    state: { formData, validationErrors, currentFieldId },
+    setFormFields,
+    state: { formData, validationErrors, currentFieldId, wizard },
   } = useForm();
 
   // Initialize PDF URL from parameters
@@ -45,6 +50,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
       try {
         setLoading(true);
         setError(null);
+        setFieldsAlreadySet(false); // Reset field detection flag for new PDF
 
         const doc = await pdfService.loadPDF(pdfUrl);
         setPdfDocument(doc);
@@ -65,6 +71,45 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
   };
 
   const handleFormFieldsDetected = (fields: EnhancedFormField[]) => {
+    // Prevent re-detection loop - only process fields once
+    if (fieldsAlreadySet || fields.length === 0) {
+      console.log('🔄 Skipping field detection - already processed or no fields');
+      return;
+    }
+    
+    console.log('🔗 PDFFormContainer received fields:', fields.length);
+    
+    // Convert fields to PageFormFields format for FormContext
+    const pageFieldsMap = new Map<number, EnhancedFormField[]>();
+    
+    // Group fields by page number
+    fields.forEach(field => {
+      if (!pageFieldsMap.has(field.pageNumber)) {
+        pageFieldsMap.set(field.pageNumber, []);
+      }
+      pageFieldsMap.get(field.pageNumber)!.push(field);
+    });
+    
+    // Convert to PageFormFields array
+    const allPageFields = Array.from(pageFieldsMap.entries())
+      .sort(([a], [b]) => a - b) // Sort by page number
+      .map(([pageNumber, pageFields]) => ({
+        pageNumber,
+        fields: pageFields,
+        radioGroups: [], // TODO: Handle radio groups if needed
+      }));
+    
+    console.log('🔗 Converted to PageFormFields:', {
+      pages: allPageFields.length,
+      totalFields: fields.length,
+      pageBreakdown: allPageFields.map(p => ({ page: p.pageNumber, fields: p.fields.length }))
+    });
+    
+    // Set fields in FormContext (only once)
+    setFormFields(allPageFields);
+    setFieldsAlreadySet(true);
+    
+    // Also call the original callback if provided
     if (onFormFieldsDetected) {
       onFormFieldsDetected(fields);
     }
@@ -158,9 +203,11 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: 2,
           }}
         >
-          <Box>
+          <Box sx={{ flex: 1, minWidth: 200 }}>
             <Typography variant="h6" component="h1">
               Sprkz PDF Form - Page {currentPage} of {pdfDocument.numPages}
             </Typography>
@@ -168,17 +215,43 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
               {pdfUrl.replace('/pdfs/', '')}
             </Typography>
           </Box>
-          <Button
-            variant="outlined"
-            size="small"
-            onClick={() => setShowFieldNames(!showFieldNames)}
-            sx={{
-              fontSize: '12px',
-            }}
-          >
-            {showFieldNames ? 'Hide' : 'Show'} Field Names
-          </Button>
+
+          {/* Wizard Status */}
+          {wizard.isWizardMode && (
+            <WizardStatus />
+          )}
+
+          {/* Mini Progress Indicator */}
+          <MiniProgressIndicator />
+
+          {/* Controls */}
+          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={() => setShowFieldNames(!showFieldNames)}
+              sx={{
+                fontSize: '12px',
+              }}
+            >
+              {showFieldNames ? 'Hide' : 'Show'} Field Names
+            </Button>
+            
+            {/* Wizard Button */}
+            <WizardButton 
+              size="medium"
+              showProgress={false}
+            />
+          </Box>
         </Box>
+
+        {/* Progress Tracker - only show when wizard is active */}
+        {wizard.isWizardMode && (
+          <ProgressTracker 
+            variant="compact" 
+            showSteps={false}
+          />
+        )}
 
         {/* PDF Viewer */}
         <Box
@@ -189,6 +262,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             display: 'flex',
             justifyContent: 'center',
             backgroundColor: 'grey.50',
+            position: 'relative',
           }}
         >
           <PDFViewer
@@ -205,8 +279,38 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             validationErrors={validationErrors}
             showFieldNames={showFieldNames}
           />
+
+          {/* Field Tooltip */}
+          <FieldTooltip 
+            placement="top"
+            autoHide={true}
+            autoHideDelay={8000}
+          />
         </Box>
       </Box>
+
+      {/* Sidebar Progress Tracker for detailed view */}
+      {wizard.isWizardMode && (
+        <Box
+          sx={{
+            width: 300,
+            borderLeft: '1px solid',
+            borderColor: 'divider',
+            backgroundColor: 'background.paper',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+          }}
+        >
+          <ProgressTracker 
+            variant="detailed" 
+            showSteps={true}
+            allowNavigation={true}
+            collapsible={false}
+            maxHeight={400}
+          />
+        </Box>
+      )}
     </Box>
   );
 };

@@ -1,0 +1,765 @@
+2025-07-22T23:59:58: 
+2025-07-22T23:59:58: > sprkz@0.1.0 start
+2025-07-22T23:59:58: > react-scripts start
+2025-07-22T23:59:58: 
+2025-07-22T23:59:59: Attempting to bind to HOST environment variable: 0.0.0.0
+2025-07-22T23:59:59: If this was unintentional, check that you haven't mistakenly set it in your shell.
+2025-07-22T23:59:59: Learn more here: https://cra.link/advanced-config
+2025-07-22T23:59:59: 
+2025-07-23T00:00:01: Starting the development server...
+2025-07-23T00:00:01: 
+2025-07-23T00:00:20: Compiled with warnings.
+2025-07-23T00:00:20: 
+2025-07-23T00:00:20: [eslint] 
+2025-07-23T00:00:20: src/contexts/FormContext.tsx
+2025-07-23T00:00:20:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 330:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 331:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 393:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 410:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 696:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:00:20: 
+2025-07-23T00:00:20: Search for the keywords to learn more about each warning.
+2025-07-23T00:00:20: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:00:20: 
+2025-07-23T00:00:20: WARNING in [eslint] 
+2025-07-23T00:00:20: src/contexts/FormContext.tsx
+2025-07-23T00:00:20:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 330:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 331:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 393:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 410:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:00:20:   Line 696:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:00:20: 
+2025-07-23T00:00:20: webpack compiled with 1 warning
+2025-07-23T00:00:21: No issues found.
+2025-07-23T00:06:35: Compiling...
+2025-07-23T00:06:40: Compiled with warnings.
+2025-07-23T00:06:40: 
+2025-07-23T00:06:40: [eslint] 
+2025-07-23T00:06:40: src/contexts/FormContext.tsx
+2025-07-23T00:06:40:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:06:40: 
+2025-07-23T00:06:40: Search for the keywords to learn more about each warning.
+2025-07-23T00:06:40: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:06:40: 
+2025-07-23T00:06:40: WARNING in [eslint] 
+2025-07-23T00:06:40: src/contexts/FormContext.tsx
+2025-07-23T00:06:40:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:06:40:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:06:40: 
+2025-07-23T00:06:40: webpack compiled with 1 warning
+2025-07-23T00:06:40: No issues found.
+2025-07-23T00:07:05: Compiling...
+2025-07-23T00:07:09: Failed to compile.
+2025-07-23T00:07:09: 
+2025-07-23T00:07:09: [eslint] 
+2025-07-23T00:07:09: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:07:09:   Line 34:5:  'setFormFields' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:07:09: 
+2025-07-23T00:07:09: Search for the keywords to learn more about each error.
+2025-07-23T00:07:09: WARNING in [eslint] 
+2025-07-23T00:07:09: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:07:09:   Line 82:54:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:07:09:   Line 279:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:07:09: 
+2025-07-23T00:07:09: src/contexts/FormContext.tsx
+2025-07-23T00:07:09:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:09:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:09:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:09:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:09:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:09:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:09:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:07:09: 
+2025-07-23T00:07:09: ERROR in [eslint] 
+2025-07-23T00:07:09: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:07:09:   Line 34:5:  'setFormFields' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:07:09: 
+2025-07-23T00:07:09: Search for the keywords to learn more about each error.
+2025-07-23T00:07:09: 
+2025-07-23T00:07:09: webpack compiled with 1 error and 1 warning
+2025-07-23T00:07:18: Compiling...
+2025-07-23T00:07:21: Compiled with warnings.
+2025-07-23T00:07:21: 
+2025-07-23T00:07:21: [eslint] 
+2025-07-23T00:07:21: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:07:21:   Line 114:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 311:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21: 
+2025-07-23T00:07:21: src/contexts/FormContext.tsx
+2025-07-23T00:07:21:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:07:21: 
+2025-07-23T00:07:21: Search for the keywords to learn more about each warning.
+2025-07-23T00:07:21: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:07:21: 
+2025-07-23T00:07:21: WARNING in [eslint] 
+2025-07-23T00:07:21: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:07:21:   Line 114:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 311:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21: 
+2025-07-23T00:07:21: src/contexts/FormContext.tsx
+2025-07-23T00:07:21:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:07:21:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:07:21: 
+2025-07-23T00:07:21: webpack compiled with 1 warning
+2025-07-23T00:07:21: No issues found.
+2025-07-23T00:10:22: Compiling...
+2025-07-23T00:10:26: Failed to compile.
+2025-07-23T00:10:26: 
+2025-07-23T00:10:26: [eslint] 
+2025-07-23T00:10:26: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:10:26:   Line 28:10:  'fieldsAlreadySet' is assigned a value but never used     @typescript-eslint/no-unused-vars
+2025-07-23T00:10:26:   Line 28:28:  'setFieldsAlreadySet' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:10:26: 
+2025-07-23T00:10:26: Search for the keywords to learn more about each error.
+2025-07-23T00:10:26: WARNING in [eslint] 
+2025-07-23T00:10:26: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:10:26:   Line 115:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:26:   Line 312:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:26: 
+2025-07-23T00:10:26: src/contexts/FormContext.tsx
+2025-07-23T00:10:26:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:26:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:26:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:26:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:26:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:26:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:26:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:10:26: 
+2025-07-23T00:10:26: ERROR in [eslint] 
+2025-07-23T00:10:26: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:10:26:   Line 28:10:  'fieldsAlreadySet' is assigned a value but never used     @typescript-eslint/no-unused-vars
+2025-07-23T00:10:26:   Line 28:28:  'setFieldsAlreadySet' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:10:26: 
+2025-07-23T00:10:26: Search for the keywords to learn more about each error.
+2025-07-23T00:10:26: 
+2025-07-23T00:10:26: webpack compiled with 1 error and 1 warning
+2025-07-23T00:10:41: Compiling...
+2025-07-23T00:10:44: Compiled with warnings.
+2025-07-23T00:10:44: 
+2025-07-23T00:10:44: [eslint] 
+2025-07-23T00:10:44: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:10:44:   Line 122:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 319:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44: 
+2025-07-23T00:10:44: src/contexts/FormContext.tsx
+2025-07-23T00:10:44:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:10:44: 
+2025-07-23T00:10:44: Search for the keywords to learn more about each warning.
+2025-07-23T00:10:44: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:10:44: 
+2025-07-23T00:10:44: WARNING in [eslint] 
+2025-07-23T00:10:44: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:10:44:   Line 122:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 319:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44: 
+2025-07-23T00:10:44: src/contexts/FormContext.tsx
+2025-07-23T00:10:44:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:44:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:10:44: 
+2025-07-23T00:10:44: webpack compiled with 1 warning
+2025-07-23T00:10:44: No issues found.
+2025-07-23T00:10:52: Compiling...
+2025-07-23T00:10:55: Compiled with warnings.
+2025-07-23T00:10:55: 
+2025-07-23T00:10:55: [eslint] 
+2025-07-23T00:10:55: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:10:55:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55: 
+2025-07-23T00:10:55: src/contexts/FormContext.tsx
+2025-07-23T00:10:55:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:10:55: 
+2025-07-23T00:10:55: Search for the keywords to learn more about each warning.
+2025-07-23T00:10:55: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:10:55: 
+2025-07-23T00:10:55: WARNING in [eslint] 
+2025-07-23T00:10:55: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:10:55:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55: 
+2025-07-23T00:10:55: src/contexts/FormContext.tsx
+2025-07-23T00:10:55:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:10:55:   Line 708:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:10:55: 
+2025-07-23T00:10:55: webpack compiled with 1 warning
+2025-07-23T00:10:55: No issues found.
+2025-07-23T00:17:46: Compiling...
+2025-07-23T00:17:50: Compiled with warnings.
+2025-07-23T00:17:50: 
+2025-07-23T00:17:50: [eslint] 
+2025-07-23T00:17:50: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:17:50:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:17:50:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:17:50: 
+2025-07-23T00:17:50: src/contexts/FormContext.tsx
+2025-07-23T00:17:50:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:50:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:50:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:50:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:50:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:50:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:50:   Line 757:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:17:50: 
+2025-07-23T00:17:50: Search for the keywords to learn more about each warning.
+2025-07-23T00:17:50: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:17:50: 
+2025-07-23T00:17:51: WARNING in [eslint] 
+2025-07-23T00:17:51: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:17:51:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:17:51:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:17:51: 
+2025-07-23T00:17:51: src/contexts/FormContext.tsx
+2025-07-23T00:17:51:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:51:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:51:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:51:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:51:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:51:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:17:51:   Line 757:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:17:51: 
+2025-07-23T00:17:51: webpack compiled with 1 warning
+2025-07-23T00:17:52: No issues found.
+2025-07-23T00:18:25: Compiling...
+2025-07-23T00:18:30: Compiled with warnings.
+2025-07-23T00:18:30: 
+2025-07-23T00:18:30: [eslint] 
+2025-07-23T00:18:30: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:18:30:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30: 
+2025-07-23T00:18:30: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:18:30:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:18:30:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:18:30: 
+2025-07-23T00:18:30: src/contexts/FormContext.tsx
+2025-07-23T00:18:30:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 757:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:18:30: 
+2025-07-23T00:18:30: Search for the keywords to learn more about each warning.
+2025-07-23T00:18:30: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:18:30: 
+2025-07-23T00:18:30: WARNING in [eslint] 
+2025-07-23T00:18:30: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:18:30:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30: 
+2025-07-23T00:18:30: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:18:30:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:18:30:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:18:30: 
+2025-07-23T00:18:30: src/contexts/FormContext.tsx
+2025-07-23T00:18:30:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:30:   Line 757:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:18:30: 
+2025-07-23T00:18:30: webpack compiled with 1 warning
+2025-07-23T00:18:30: No issues found.
+2025-07-23T00:18:56: Compiling...
+2025-07-23T00:18:59: Compiled with warnings.
+2025-07-23T00:18:59: 
+2025-07-23T00:18:59: [eslint] 
+2025-07-23T00:18:59: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:18:59:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59: 
+2025-07-23T00:18:59: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:18:59:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:18:59:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:18:59: 
+2025-07-23T00:18:59: src/contexts/FormContext.tsx
+2025-07-23T00:18:59:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 757:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:18:59: 
+2025-07-23T00:18:59: Search for the keywords to learn more about each warning.
+2025-07-23T00:18:59: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:18:59: 
+2025-07-23T00:18:59: WARNING in [eslint] 
+2025-07-23T00:18:59: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:18:59:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59: 
+2025-07-23T00:18:59: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:18:59:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:18:59:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:18:59: 
+2025-07-23T00:18:59: src/contexts/FormContext.tsx
+2025-07-23T00:18:59:   Line 41:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 67:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 342:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 343:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 405:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 422:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:18:59:   Line 757:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:18:59: 
+2025-07-23T00:18:59: webpack compiled with 1 warning
+2025-07-23T00:19:03: Compiling...
+2025-07-23T00:19:06: Failed to compile.
+2025-07-23T00:19:06: 
+2025-07-23T00:19:06: [eslint] 
+2025-07-23T00:19:06: src/contexts/FormContext.tsx
+2025-07-23T00:19:06:   Line 14:10:  'useFieldFocus' is defined but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:06: 
+2025-07-23T00:19:06: Search for the keywords to learn more about each error.
+2025-07-23T00:19:06: WARNING in [eslint] 
+2025-07-23T00:19:06: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:19:06:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06: 
+2025-07-23T00:19:06: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:19:06:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:19:06:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:06: 
+2025-07-23T00:19:06: src/contexts/FormContext.tsx
+2025-07-23T00:19:06:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 406:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 423:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:06:   Line 758:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:06: 
+2025-07-23T00:19:06: ERROR in [eslint] 
+2025-07-23T00:19:06: src/contexts/FormContext.tsx
+2025-07-23T00:19:06:   Line 14:10:  'useFieldFocus' is defined but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:06: 
+2025-07-23T00:19:06: Search for the keywords to learn more about each error.
+2025-07-23T00:19:06: 
+2025-07-23T00:19:06: webpack compiled with 1 error and 1 warning
+2025-07-23T00:19:11: Compiling...
+2025-07-23T00:19:14: Failed to compile.
+2025-07-23T00:19:14: 
+2025-07-23T00:19:14: [eslint] 
+2025-07-23T00:19:14: src/contexts/FormContext.tsx
+2025-07-23T00:19:14:   Line 417:11:  'focusField' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:14: 
+2025-07-23T00:19:14: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:14:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:14: 
+2025-07-23T00:19:14: Search for the keywords to learn more about each error.
+2025-07-23T00:19:14: WARNING in [eslint] 
+2025-07-23T00:19:14: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:19:14:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14: 
+2025-07-23T00:19:14: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:19:14:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:19:14:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:14: 
+2025-07-23T00:19:14: src/contexts/FormContext.tsx
+2025-07-23T00:19:14:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 406:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 424:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:14:   Line 759:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:14: 
+2025-07-23T00:19:14: ERROR in [eslint] 
+2025-07-23T00:19:14: src/contexts/FormContext.tsx
+2025-07-23T00:19:14:   Line 417:11:  'focusField' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:14: 
+2025-07-23T00:19:14: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:14:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:14: 
+2025-07-23T00:19:14: Search for the keywords to learn more about each error.
+2025-07-23T00:19:14: 
+2025-07-23T00:19:14: webpack compiled with 1 error and 1 warning
+2025-07-23T00:19:29: Compiling...
+2025-07-23T00:19:31: Failed to compile.
+2025-07-23T00:19:31: 
+2025-07-23T00:19:31: [eslint] 
+2025-07-23T00:19:31: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:31:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:31: 
+2025-07-23T00:19:31: Search for the keywords to learn more about each error.
+2025-07-23T00:19:31: WARNING in [eslint] 
+2025-07-23T00:19:31: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:19:31:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31: 
+2025-07-23T00:19:31: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:19:31:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:19:31:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:31: 
+2025-07-23T00:19:31: src/contexts/FormContext.tsx
+2025-07-23T00:19:31:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 406:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 424:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:31:   Line 718:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:31: 
+2025-07-23T00:19:31: ERROR in [eslint] 
+2025-07-23T00:19:31: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:31:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:31: 
+2025-07-23T00:19:31: Search for the keywords to learn more about each error.
+2025-07-23T00:19:31: 
+2025-07-23T00:19:31: webpack compiled with 1 error and 1 warning
+2025-07-23T00:19:40: Compiling...
+2025-07-23T00:19:43: Failed to compile.
+2025-07-23T00:19:43: 
+2025-07-23T00:19:43: [eslint] 
+2025-07-23T00:19:43: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:43:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:43: 
+2025-07-23T00:19:43: Search for the keywords to learn more about each error.
+2025-07-23T00:19:43: WARNING in [eslint] 
+2025-07-23T00:19:43: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:19:43:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43: 
+2025-07-23T00:19:43: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:19:43:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:19:43:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:43: 
+2025-07-23T00:19:43: src/contexts/FormContext.tsx
+2025-07-23T00:19:43:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:43:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:43: 
+2025-07-23T00:19:43: ERROR in [eslint] 
+2025-07-23T00:19:43: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:43:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:43: 
+2025-07-23T00:19:43: Search for the keywords to learn more about each error.
+2025-07-23T00:19:43: 
+2025-07-23T00:19:43: webpack compiled with 1 error and 1 warning
+2025-07-23T00:19:49: Compiling...
+2025-07-23T00:19:52: Failed to compile.
+2025-07-23T00:19:52: 
+2025-07-23T00:19:52: [eslint] 
+2025-07-23T00:19:52: src/contexts/FormContext.tsx
+2025-07-23T00:19:52:   Line 798:9:  'focusCurrentField' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:52: 
+2025-07-23T00:19:52: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:52:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:52: 
+2025-07-23T00:19:52: Search for the keywords to learn more about each error.
+2025-07-23T00:19:52: WARNING in [eslint] 
+2025-07-23T00:19:52: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:19:52:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52: 
+2025-07-23T00:19:52: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:19:52:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:19:52:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:52: 
+2025-07-23T00:19:52: src/contexts/FormContext.tsx
+2025-07-23T00:19:52:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:52:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:52: 
+2025-07-23T00:19:52: ERROR in [eslint] 
+2025-07-23T00:19:52: src/contexts/FormContext.tsx
+2025-07-23T00:19:52:   Line 798:9:  'focusCurrentField' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:52: 
+2025-07-23T00:19:52: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:52:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:52: 
+2025-07-23T00:19:52: Search for the keywords to learn more about each error.
+2025-07-23T00:19:52: 
+2025-07-23T00:19:52: webpack compiled with 1 error and 1 warning
+2025-07-23T00:19:57: Compiling...
+2025-07-23T00:19:59: Failed to compile.
+2025-07-23T00:19:59: 
+2025-07-23T00:19:59: [eslint] 
+2025-07-23T00:19:59: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:59:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:59: 
+2025-07-23T00:19:59: Search for the keywords to learn more about each error.
+2025-07-23T00:19:59: WARNING in [eslint] 
+2025-07-23T00:19:59: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:19:59:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59: 
+2025-07-23T00:19:59: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:19:59:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:19:59:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:59: 
+2025-07-23T00:19:59: src/contexts/FormContext.tsx
+2025-07-23T00:19:59:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:19:59:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:19:59: 
+2025-07-23T00:19:59: ERROR in [eslint] 
+2025-07-23T00:19:59: src/hooks/useFieldFocus.ts
+2025-07-23T00:19:59:   Line 57:13:  'successSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+2025-07-23T00:19:59: 
+2025-07-23T00:19:59: Search for the keywords to learn more about each error.
+2025-07-23T00:19:59: 
+2025-07-23T00:19:59: webpack compiled with 1 error and 1 warning
+2025-07-23T00:20:50: Compiling...
+2025-07-23T00:20:54: Compiled with warnings.
+2025-07-23T00:20:54: 
+2025-07-23T00:20:54: [eslint] 
+2025-07-23T00:20:54: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:20:54:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54: 
+2025-07-23T00:20:54: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:20:54:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:20:54:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:20:54: 
+2025-07-23T00:20:54: src/contexts/FormContext.tsx
+2025-07-23T00:20:54:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:20:54: 
+2025-07-23T00:20:54: Search for the keywords to learn more about each warning.
+2025-07-23T00:20:54: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:20:54: 
+2025-07-23T00:20:54: WARNING in [eslint] 
+2025-07-23T00:20:54: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:20:54:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54: 
+2025-07-23T00:20:54: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:20:54:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:20:54:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:20:54: 
+2025-07-23T00:20:54: src/contexts/FormContext.tsx
+2025-07-23T00:20:54:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:20:54:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:20:54: 
+2025-07-23T00:20:54: webpack compiled with 1 warning
+2025-07-23T00:24:31: Compiling...
+2025-07-23T00:24:36: Compiled with warnings.
+2025-07-23T00:24:36: 
+2025-07-23T00:24:36: [eslint] 
+2025-07-23T00:24:36: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:24:36:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36: 
+2025-07-23T00:24:36: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:24:36:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:24:36:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:24:36: 
+2025-07-23T00:24:36: src/contexts/FormContext.tsx
+2025-07-23T00:24:36:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:24:36: 
+2025-07-23T00:24:36: Search for the keywords to learn more about each warning.
+2025-07-23T00:24:36: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T00:24:36: 
+2025-07-23T00:24:36: WARNING in [eslint] 
+2025-07-23T00:24:36: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T00:24:36:   Line 123:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 320:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36: 
+2025-07-23T00:24:36: src/components/pdf/PDFViewer.tsx
+2025-07-23T00:24:36:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 53:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 54:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 62:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 110:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 238:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T00:24:36:   Line 242:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 358:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 602:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:24:36: 
+2025-07-23T00:24:36: src/contexts/FormContext.tsx
+2025-07-23T00:24:36:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T00:24:36:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T00:24:36: 
+2025-07-23T00:24:36: webpack compiled with 1 warning
+2025-07-23T00:24:37: No issues found.

@@ -54,8 +54,13 @@ class FormFieldService {
       const fields: FormField[] = [];
       const radioGroups: Map<string, FormField[]> = new Map();
 
+      console.log(`📋 Page ${pageNumber} annotations:`, annotations.length);
+
       for (const annotation of annotations) {
-        if (!annotation.fieldType) continue;
+        if (!annotation.fieldType) {
+          console.log('⚠️ Skipping annotation without fieldType:', annotation);
+          continue;
+        }
 
         // Skip fields that start with "X_" or are system fields
         if (
@@ -67,13 +72,23 @@ class FormFieldService {
             annotation.fieldName === 'zPaper' ||
             annotation.fieldName === 'kbup')
         ) {
+          console.log(`🚫 Skipping system field: ${annotation.fieldName}`);
           continue;
         }
 
+        console.log(`📝 Processing field: ${annotation.fieldName || 'unnamed'}`, {
+          fieldType: annotation.fieldType,
+          fieldFlags: annotation.fieldFlags
+        });
+
         const field = this.createFormField(annotation, pageNumber);
-        if (!field) continue;
+        if (!field) {
+          console.log('❌ Failed to create field');
+          continue;
+        }
 
         fields.push(field);
+        console.log(`✅ Added field: ${field.name} (required: ${field.required})`);
 
         // Group radio buttons by name
         if (field.type === 'radio' && field.name) {
@@ -91,6 +106,14 @@ class FormFieldService {
         radioName,
         fields: groupFields,
       }));
+
+      const requiredFields = fields.filter(f => f.required);
+      console.log(`📊 Page ${pageNumber} summary:`, {
+        totalFields: fields.length,
+        requiredFields: requiredFields.length,
+        requiredFieldNames: requiredFields.map(f => f.name),
+        radioGroups: radioGroups.size
+      });
 
       return {
         pageNumber,
@@ -211,7 +234,27 @@ class FormFieldService {
     const hasAsterisk =
       fieldName.includes('*') || fieldName.includes('required');
 
-    return isRequired || hasAsterisk;
+    // Check for commonly required field names (case insensitive)
+    const fieldNameLower = fieldName.toLowerCase();
+    const isCommonlyRequired = [
+      'name', 'first name', 'last name', 'email', 'phone',
+      'signature', 'date', 'address', 'ssn', 'social security'
+    ].some(pattern => fieldNameLower.includes(pattern));
+
+    const finalRequired = isRequired || hasAsterisk || isCommonlyRequired;
+
+    // Debug logging
+    if (fieldName) {
+      console.log(`🔍 Field "${fieldName}":`, {
+        fieldFlags,
+        isRequired,
+        hasAsterisk,
+        isCommonlyRequired,
+        finalRequired
+      });
+    }
+
+    return finalRequired;
   }
 
   /**

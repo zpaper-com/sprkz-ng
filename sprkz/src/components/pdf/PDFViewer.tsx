@@ -639,6 +639,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
     completedFieldIds,
     validationErrors,
     currentFieldId || null,
+    null, // wizardHighlightedFieldId - TODO: implement wizard integration
     viewport
   );
 
@@ -779,6 +780,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
           viewport={viewport}
           highlightedFields={fieldHighlights}
           currentFieldId={currentFieldId || null}
+          wizardHighlightedFieldId={null} // TODO: connect to wizard state
           showTooltips={true}
         />
       )}

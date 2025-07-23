@@ -39,6 +39,23 @@ const OverlayContainer = styled(Box)(({ theme }) => ({
     border: `2px dashed ${theme.palette.secondary.main}`,
     backgroundColor: `${theme.palette.secondary.main}10`,
   },
+  '& .field-highlight--wizard': {
+    border: `3px solid ${theme.palette.warning.main}`,
+    backgroundColor: `${theme.palette.warning.main}20`,
+    boxShadow: `0 0 0 6px ${theme.palette.warning.main}30`,
+    animation: 'wizardPulse 2s ease-in-out infinite',
+  },
+  '@keyframes wizardPulse': {
+    '0%': {
+      boxShadow: `0 0 0 6px ${theme.palette.warning.main}30`,
+    },
+    '50%': {
+      boxShadow: `0 0 0 10px ${theme.palette.warning.main}20`,
+    },
+    '100%': {
+      boxShadow: `0 0 0 6px ${theme.palette.warning.main}30`,
+    },
+  },
   '& .field-indicator': {
     position: 'absolute',
     top: -8,
@@ -68,7 +85,7 @@ const OverlayContainer = styled(Box)(({ theme }) => ({
 interface FieldHighlight {
   fieldId: string;
   rect: { x: number; y: number; width: number; height: number };
-  type: 'current' | 'required' | 'error' | 'completed' | 'signature';
+  type: 'current' | 'required' | 'error' | 'completed' | 'signature' | 'wizard';
   field: FormField;
   errorMessage?: string;
 }
@@ -82,6 +99,9 @@ interface FieldOverlayProps {
 
   // Current field being focused
   currentFieldId: string | null;
+
+  // Wizard highlighted field
+  wizardHighlightedFieldId?: string | null;
 
   // Callback when a field highlight is clicked
   onFieldHighlightClick?: (fieldId: string) => void;
@@ -97,6 +117,7 @@ export const FieldOverlay: React.FC<FieldOverlayProps> = ({
   viewport,
   highlightedFields,
   currentFieldId,
+  wizardHighlightedFieldId,
   onFieldHighlightClick,
   showTooltips = true,
   animationDuration = 200,
@@ -110,14 +131,21 @@ export const FieldOverlay: React.FC<FieldOverlayProps> = ({
       const typeClass = `field-highlight--${highlight.type}`;
       const currentClass =
         highlight.fieldId === currentFieldId ? 'field-highlight--current' : '';
+      const wizardClass =
+        highlight.fieldId === wizardHighlightedFieldId ? 'field-highlight--wizard' : '';
 
-      return `${baseClass} ${typeClass} ${currentClass}`.trim();
+      return `${baseClass} ${typeClass} ${currentClass} ${wizardClass}`.trim();
     },
-    [currentFieldId]
+    [currentFieldId, wizardHighlightedFieldId]
   );
 
   // Get indicator content and class for field
   const getIndicatorInfo = useCallback((highlight: FieldHighlight) => {
+    // Priority order: wizard > error > completed > signature > required
+    if (highlight.fieldId === wizardHighlightedFieldId) {
+      return { content: '⚡', class: 'field-indicator--required' };
+    }
+    
     switch (highlight.type) {
       case 'required':
         return { content: '*', class: 'field-indicator--required' };
@@ -130,7 +158,7 @@ export const FieldOverlay: React.FC<FieldOverlayProps> = ({
       default:
         return null;
     }
-  }, []);
+  }, [wizardHighlightedFieldId]);
 
   // Create tooltip content for field
   const getTooltipContent = useCallback((highlight: FieldHighlight) => {
@@ -250,6 +278,7 @@ export const useFieldHighlights = (
   completedFieldIds: Set<string>,
   validationErrors: Record<string, string>,
   currentFieldId: string | null,
+  wizardHighlightedFieldId: string | null,
   viewport: any
 ): FieldHighlight[] => {
   return React.useMemo(() => {
@@ -283,6 +312,11 @@ export const useFieldHighlights = (
         type = 'current';
       }
 
+      // Override with wizard if this is the wizard highlighted field
+      if (field.id === wizardHighlightedFieldId) {
+        type = 'wizard';
+      }
+
       return {
         fieldId: field.id,
         rect,
@@ -291,5 +325,5 @@ export const useFieldHighlights = (
         errorMessage: validationErrors[field.id],
       };
     });
-  }, [fields, completedFieldIds, validationErrors, currentFieldId, viewport]);
+  }, [fields, completedFieldIds, validationErrors, currentFieldId, wizardHighlightedFieldId, viewport]);
 };

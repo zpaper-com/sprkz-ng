@@ -11,6 +11,27 @@ import type {
   FormValidationResult,
 } from '../services/formFieldService';
 import { formFieldService } from '../services/formFieldService';
+import { useFieldFocus } from '../hooks/useFieldFocus';
+
+// Wizard State Interface
+export interface WizardState {
+  // Wizard mode (true when actively guiding user through form)
+  isWizardMode: boolean;
+  
+  // Current wizard phase
+  currentPhase: 'start' | 'filling' | 'signing' | 'complete';
+  
+  // Field navigation history for back button
+  fieldHistory: string[];
+  
+  // Current field being highlighted in wizard
+  highlightedFieldId: string | null;
+  
+  // Tooltip state
+  showTooltip: boolean;
+  tooltipMessage: string;
+  tooltipFieldId: string | null;
+}
 
 // Form State Interface
 export interface FormState {
@@ -36,6 +57,9 @@ export interface FormState {
   isSubmitting: boolean;
   submissionError: string | null;
   isSubmitted: boolean;
+
+  // Wizard state
+  wizard: WizardState;
 }
 
 // Action Types
@@ -51,7 +75,15 @@ type FormAction =
   | { type: 'SET_SUBMITTING'; payload: boolean }
   | { type: 'SET_SUBMISSION_ERROR'; payload: string | null }
   | { type: 'SET_SUBMITTED'; payload: boolean }
-  | { type: 'RESET_FORM' };
+  | { type: 'RESET_FORM' }
+  | { type: 'START_WIZARD' }
+  | { type: 'STOP_WIZARD' }
+  | { type: 'SET_WIZARD_PHASE'; payload: 'start' | 'filling' | 'signing' | 'complete' }
+  | { type: 'SET_HIGHLIGHTED_FIELD'; payload: string | null }
+  | { type: 'NAVIGATE_TO_FIELD'; payload: string }
+  | { type: 'NAVIGATE_BACK' }
+  | { type: 'SHOW_TOOLTIP'; payload: { fieldId: string; message: string } }
+  | { type: 'HIDE_TOOLTIP' };
 
 // Initial State
 const initialState: FormState = {
@@ -66,6 +98,15 @@ const initialState: FormState = {
   isSubmitting: false,
   submissionError: null,
   isSubmitted: false,
+  wizard: {
+    isWizardMode: false,
+    currentPhase: 'start',
+    fieldHistory: [],
+    highlightedFieldId: null,
+    showTooltip: false,
+    tooltipMessage: '',
+    tooltipFieldId: null,
+  },
 };
 
 // Reducer Function
@@ -74,6 +115,18 @@ function formReducer(state: FormState, action: FormAction): FormState {
     case 'SET_FORM_FIELDS': {
       const allPageFields = action.payload;
       const requiredFields = formFieldService.getRequiredFields(allPageFields);
+
+      console.log('📋 FormContext SET_FORM_FIELDS:', {
+        pagesReceived: allPageFields.length,
+        totalFieldsAcrossPages: allPageFields.reduce((sum, page) => sum + page.fields.length, 0),
+        requiredFieldsFound: requiredFields.length,
+        requiredFieldNames: requiredFields.map(f => f.name),
+        allPageFieldsStructure: allPageFields.map(page => ({
+          pageNumber: page.pageNumber,
+          fieldCount: page.fields.length,
+          fieldNames: page.fields.map(f => f.name)
+        }))
+      });
 
       return {
         ...state,
@@ -173,6 +226,109 @@ function formReducer(state: FormState, action: FormAction): FormState {
         requiredFields: state.requiredFields, // Keep required fields
       };
 
+    case 'START_WIZARD':
+      return {
+        ...state,
+        wizard: {
+          ...state.wizard,
+          isWizardMode: true,
+          currentPhase: 'filling',
+          fieldHistory: [],
+        },
+      };
+
+    case 'STOP_WIZARD':
+      return {
+        ...state,
+        wizard: {
+          ...state.wizard,
+          isWizardMode: false,
+          currentPhase: 'start',
+          fieldHistory: [],
+          highlightedFieldId: null,
+          showTooltip: false,
+          tooltipMessage: '',
+          tooltipFieldId: null,
+        },
+      };
+
+    case 'SET_WIZARD_PHASE':
+      return {
+        ...state,
+        wizard: {
+          ...state.wizard,
+          currentPhase: action.payload,
+        },
+      };
+
+    case 'SET_HIGHLIGHTED_FIELD':
+      return {
+        ...state,
+        wizard: {
+          ...state.wizard,
+          highlightedFieldId: action.payload,
+        },
+      };
+
+    case 'NAVIGATE_TO_FIELD': {
+      const fieldId = action.payload;
+      const newFieldHistory = [...state.wizard.fieldHistory];
+      
+      // Add current field to history if it exists and is different
+      if (state.currentFieldId && state.currentFieldId !== fieldId) {
+        newFieldHistory.push(state.currentFieldId);
+      }
+      
+      return {
+        ...state,
+        currentFieldId: fieldId,
+        wizard: {
+          ...state.wizard,
+          fieldHistory: newFieldHistory,
+          highlightedFieldId: fieldId,
+        },
+      };
+    }
+
+    case 'NAVIGATE_BACK': {
+      const fieldHistory = [...state.wizard.fieldHistory];
+      const previousFieldId = fieldHistory.pop() || null;
+      
+      return {
+        ...state,
+        currentFieldId: previousFieldId,
+        wizard: {
+          ...state.wizard,
+          fieldHistory,
+          highlightedFieldId: previousFieldId,
+        },
+      };
+    }
+
+    case 'SHOW_TOOLTIP': {
+      const { fieldId, message } = action.payload;
+      return {
+        ...state,
+        wizard: {
+          ...state.wizard,
+          showTooltip: true,
+          tooltipMessage: message,
+          tooltipFieldId: fieldId,
+        },
+      };
+    }
+
+    case 'HIDE_TOOLTIP':
+      return {
+        ...state,
+        wizard: {
+          ...state.wizard,
+          showTooltip: false,
+          tooltipMessage: '',
+          tooltipFieldId: null,
+        },
+      };
+
     default:
       return state;
   }
@@ -220,6 +376,29 @@ interface FormContextType {
   hasRequiredFields: () => boolean;
   hasSignatureFields: () => boolean;
   areRequiredFieldsCompleted: () => boolean;
+
+  // Wizard Management
+  startWizard: () => void;
+  stopWizard: () => void;
+  setWizardPhase: (phase: 'start' | 'filling' | 'signing' | 'complete') => void;
+  navigateToField: (fieldId: string) => void;
+  navigateBack: () => void;
+  setHighlightedField: (fieldId: string | null) => void;
+  showTooltip: (fieldId: string, message: string) => void;
+  hideTooltip: () => void;
+
+  // Wizard Navigation Logic
+  getWizardButtonState: () => {
+    type: 'start' | 'next' | 'sign' | 'submit';
+    text: string;
+    color: 'primary' | 'secondary' | 'warning' | 'success';
+    disabled: boolean;
+  };
+  handleWizardButtonClick: () => void;
+
+  // Field Focus Utilities
+  focusFieldById: (fieldId: string) => void;
+  focusCurrentField: () => void;
 }
 
 // Create Context
@@ -239,6 +418,7 @@ export const FormProvider: React.FC<FormProviderProps> = ({
   const [state, dispatch] = useReducer(formReducer, initialState);
   const onSubmitRef = useRef(onSubmit);
   onSubmitRef.current = onSubmit;
+  const { focusField } = useFieldFocus();
 
   // Field Management
   const setFormFields = useCallback((fields: PageFormFields[]) => {
@@ -350,11 +530,18 @@ export const FormProvider: React.FC<FormProviderProps> = ({
   }, [state.requiredFields, state.completedFields]);
 
   const getNextRequiredField = useCallback(() => {
-    return (
-      state.requiredFields.find(
-        (field) => !state.completedFields.has(field.id)
-      ) || null
-    );
+    const nextField = state.requiredFields.find(
+      (field) => !state.completedFields.has(field.id)
+    ) || null;
+    
+    console.log('🔍 getNextRequiredField:', {
+      totalRequired: state.requiredFields.length,
+      requiredFieldNames: state.requiredFields.map(f => f.name),
+      completedFields: Array.from(state.completedFields),
+      nextField: nextField?.name || 'none'
+    });
+    
+    return nextField;
   }, [state.requiredFields, state.completedFields]);
 
   const getNextIncompleteField = useCallback(() => {
@@ -423,6 +610,197 @@ export const FormProvider: React.FC<FormProviderProps> = ({
     );
   }, [state.requiredFields, state.completedFields]);
 
+  // Wizard Management
+  const startWizard = useCallback(() => {
+    dispatch({ type: 'START_WIZARD' });
+  }, []);
+
+  const stopWizard = useCallback(() => {
+    dispatch({ type: 'STOP_WIZARD' });
+  }, []);
+
+  const setWizardPhase = useCallback((phase: 'start' | 'filling' | 'signing' | 'complete') => {
+    dispatch({ type: 'SET_WIZARD_PHASE', payload: phase });
+  }, []);
+
+  const navigateToField = useCallback((fieldId: string) => {
+    dispatch({ type: 'NAVIGATE_TO_FIELD', payload: fieldId });
+    
+    // Find the field and navigate to its page
+    const field = findFieldById(fieldId);
+    if (field) {
+      setCurrentPage(field.pageNumber);
+      
+      // Use the enhanced field focus hook
+      focusField(fieldId, field.name, {
+        behavior: 'smooth',
+        block: 'center',
+        highlightDuration: 3000,
+        delay: 400 // Slightly longer delay for page transitions
+      });
+    }
+  }, [findFieldById, setCurrentPage, focusField]);
+
+  const navigateBack = useCallback(() => {
+    dispatch({ type: 'NAVIGATE_BACK' });
+  }, []);
+
+  const setHighlightedField = useCallback((fieldId: string | null) => {
+    dispatch({ type: 'SET_HIGHLIGHTED_FIELD', payload: fieldId });
+  }, []);
+
+  const showTooltip = useCallback((fieldId: string, message: string) => {
+    dispatch({ type: 'SHOW_TOOLTIP', payload: { fieldId, message } });
+  }, []);
+
+  const hideTooltip = useCallback(() => {
+    dispatch({ type: 'HIDE_TOOLTIP' });
+  }, []);
+
+  // Wizard Navigation Logic
+  const getWizardButtonState = useCallback(() => {
+    const { isWizardMode } = state.wizard;
+    
+    console.log('🎯 Getting wizard button state:', {
+      isWizardMode,
+      totalRequiredFields: state.requiredFields.length,
+      completedFieldsCount: state.completedFields.size
+    });
+    
+    if (!isWizardMode) {
+      return {
+        type: 'start' as const,
+        text: 'Start',
+        color: 'primary' as const,
+        disabled: false,
+      };
+    }
+
+    const nextRequiredField = getNextRequiredField();
+    const hasRequiredFieldsToComplete = nextRequiredField !== null;
+    const hasSignatures = hasSignatureFields();
+    const signatureFields = getSignatureFields();
+    const signaturesComplete = signatureFields.every(field => 
+      state.completedFields.has(field.id)
+    );
+
+    console.log('🎯 Wizard state analysis:', {
+      nextRequiredField: nextRequiredField?.name || 'none',
+      hasRequiredFieldsToComplete,
+      hasSignatures,
+      signatureFieldsCount: signatureFields.length,
+      signaturesComplete
+    });
+
+    // If we have required fields to complete
+    if (hasRequiredFieldsToComplete) {
+      return {
+        type: 'next' as const,
+        text: 'Next',
+        color: 'warning' as const,
+        disabled: false,
+      };
+    }
+
+    // If we have signature fields and they're not complete
+    if (hasSignatures && !signaturesComplete) {
+      return {
+        type: 'sign' as const,
+        text: 'Sign',
+        color: 'secondary' as const,
+        disabled: false,
+      };
+    }
+
+    // All required fields and signatures are complete
+    return {
+      type: 'submit' as const,
+      text: 'Submit',
+      color: 'success' as const,
+      disabled: state.isSubmitting,
+    };
+  }, [
+    state.wizard,
+    state.completedFields,
+    state.isSubmitting,
+    getNextRequiredField,
+    hasSignatureFields,
+    getSignatureFields,
+  ]);
+
+  const handleWizardButtonClick = useCallback(() => {
+    const buttonState = getWizardButtonState();
+    
+    console.log('🎯 Wizard button clicked:', buttonState.type);
+    
+    switch (buttonState.type) {
+      case 'start':
+        console.log('🚀 Starting wizard...');
+        startWizard();
+        // Navigate to first required field
+        const firstRequiredField = getNextRequiredField();
+        console.log('🎯 First required field:', firstRequiredField?.name || 'none');
+        if (firstRequiredField) {
+          navigateToField(firstRequiredField.id);
+          showTooltip(firstRequiredField.id, `Fill out: ${firstRequiredField.name}`);
+        }
+        break;
+        
+      case 'next':
+        const nextField = getNextRequiredField();
+        if (nextField) {
+          navigateToField(nextField.id);
+          showTooltip(nextField.id, `Fill out: ${nextField.name}`);
+        }
+        break;
+        
+      case 'sign':
+        const nextSignatureField = getSignatureFields().find(field => 
+          !state.completedFields.has(field.id)
+        );
+        if (nextSignatureField) {
+          setWizardPhase('signing');
+          navigateToField(nextSignatureField.id);
+          showTooltip(nextSignatureField.id, 'Click to add your signature');
+        }
+        break;
+        
+      case 'submit':
+        setWizardPhase('complete');
+        submitForm();
+        break;
+    }
+  }, [
+    getWizardButtonState,
+    startWizard,
+    getNextRequiredField,
+    navigateToField,
+    showTooltip,
+    getSignatureFields,
+    state.completedFields,
+    setWizardPhase,
+    submitForm,
+  ]);
+
+  // Field Focus Utilities
+  const focusFieldById = useCallback((fieldId: string) => {
+    const field = findFieldById(fieldId);
+    if (field) {
+      focusField(fieldId, field.name, {
+        behavior: 'smooth',
+        block: 'center',
+        highlightDuration: 2000,
+        delay: 100
+      });
+    }
+  }, [findFieldById, focusField]);
+
+  const focusCurrentField = useCallback(() => {
+    if (state.currentFieldId) {
+      focusFieldById(state.currentFieldId);
+    }
+  }, [state.currentFieldId, focusFieldById]);
+
   const contextValue: FormContextType = {
     state,
     setFormFields,
@@ -446,6 +824,18 @@ export const FormProvider: React.FC<FormProviderProps> = ({
     hasRequiredFields,
     hasSignatureFields,
     areRequiredFieldsCompleted,
+    startWizard,
+    stopWizard,
+    setWizardPhase,
+    navigateToField,
+    navigateBack,
+    setHighlightedField,
+    showTooltip,
+    hideTooltip,
+    getWizardButtonState,
+    handleWizardButtonClick,
+    focusFieldById,
+    focusCurrentField,
   };
 
   return (
