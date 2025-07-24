@@ -111,6 +111,54 @@ This directory contains the active documentation for the Sprkz PDF form completi
 
 Historical documentation that has been superseded is located in the `../archive/` directory. See `../archive/README.md` for details on archived files.
 
+## Screenshots
+
+### Application Interface Screenshots
+
+The Sprkz application has several key interfaces accessible through different routes:
+
+#### Main Application Routes
+
+**Home Page (`/`)**
+![Home Page](sprkz/screenshots/home.png)
+- Default landing page with PDF loading interface
+- Redirects to configured PDF routes or file selection
+
+**Makana Form (`/makana`)**
+![Makana Form](sprkz/screenshots/makana.png)
+- Fully configured PDF form with all features enabled
+- Uses `makana2025.pdf` with custom field configurations
+- Includes wizard navigation, form validation, and signature capabilities
+
+**Tremfya Form (`/tremfya`)**
+![Tremfya Form](sprkz/screenshots/tremfya.png)
+- Complete PDF form interface for Tremfya pharmaceutical form
+- All features enabled with standard field configurations
+- Demonstrates dynamic routing capabilities
+
+**Test Route (`/test`)**
+![Test Route](sprkz/screenshots/test.png)
+- Minimal feature configuration for testing purposes
+- Only Fields Toggle Button and PDF Fit Height Button enabled
+- Uses `makana2025.pdf` with basic functionality
+
+#### Admin Interface
+
+**Admin Dashboard (`/admin`)**
+![Admin Interface](sprkz/screenshots/admin.png)
+- Configuration interface for managing URL routes, PDF files, and feature flags
+- Database-driven configuration system
+- Real-time feature toggle management
+
+### Database-Configured Routes
+
+The application uses a dynamic routing system where each URL path can be configured with:
+- **Custom PDF files** - Different PDFs for different routes
+- **Feature toggles** - Enable/disable specific UI components
+- **Field configurations** - Customize form field behavior (hidden, read-only, etc.)
+
+See the admin interface to manage these configurations dynamically.
+
 ## Usage Notes
 
 ### For Claude Code Implementation
