@@ -723,6 +723,61 @@ class FormFieldService {
     const highlighted = annotationLayer.querySelectorAll(`.${highlightClass}`);
     highlighted.forEach((el) => el.classList.remove(highlightClass));
   }
+
+  /**
+   * Extract all form fields from a PDF document (all pages)
+   * Useful for admin interfaces to analyze PDF structure
+   */
+  async extractAllFormFields(pdfUrl: string): Promise<{
+    fields: string[];
+    fieldDetails: { [fieldName: string]: { type: string; required: boolean; pages: number[] } };
+  }> {
+    try {
+      // Load PDF using PDF.js
+      const loadingTask = pdfjsLib.getDocument(pdfUrl);
+      const pdfDocument = await loadingTask.promise;
+      
+      const allFields = new Map<string, { type: string; required: boolean; pages: number[] }>();
+      
+      // Process each page
+      for (let pageNum = 1; pageNum <= pdfDocument.numPages; pageNum++) {
+        const page = await pdfDocument.getPage(pageNum);
+        const pageFields = await this.extractFormFields(page, pageNum);
+        
+        // Collect unique field names
+        for (const field of pageFields.fields) {
+          if (field.name) {
+            if (allFields.has(field.name)) {
+              // Add this page to existing field
+              const existing = allFields.get(field.name)!;
+              if (!existing.pages.includes(pageNum)) {
+                existing.pages.push(pageNum);
+              }
+            } else {
+              // New field
+              allFields.set(field.name, {
+                type: field.type,
+                required: field.required,
+                pages: [pageNum]
+              });
+            }
+          }
+        }
+      }
+      
+      // Convert to arrays and sort
+      const fieldNames = Array.from(allFields.keys()).sort();
+      const fieldDetails = Object.fromEntries(allFields.entries());
+      
+      return {
+        fields: fieldNames,
+        fieldDetails
+      };
+    } catch (error) {
+      console.error('Error extracting PDF fields:', error);
+      throw error;
+    }
+  }
 }
 
 export const formFieldService = new FormFieldService();

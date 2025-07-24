@@ -15,7 +15,7 @@ import {
   CircularProgress,
   Alert,
 } from '@mui/material';
-// import { adminAPI } from '../../services/api'; // TODO: Uncomment when server API is ready
+import { formFieldService } from '../../../services/formFieldService';
 
 interface PDFFieldConfigProps {
   pdfPath: string;
@@ -29,6 +29,7 @@ const PDFFieldConfig: React.FC<PDFFieldConfigProps> = ({
   onUpdateFields,
 }) => {
   const [fields, setFields] = useState<string[]>([]);
+  const [fieldDetails, setFieldDetails] = useState<{ [fieldName: string]: { type: string; required: boolean; pages: number[] } }>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -40,26 +41,18 @@ const PDFFieldConfig: React.FC<PDFFieldConfigProps> = ({
       setError(null);
       
       try {
-        // Mock PDF fields - replace with API call when server is ready
-        const mockFields = [
-          'patient_name',
-          'patient_dob',
-          'prescriber_name',
-          'prescriber_npi',
-          'diagnosis',
-          'medication',
-          'dosage',
-          'signature_patient',
-          'signature_prescriber',
-          'date_signed'
-        ];
+        // Construct full PDF URL from path
+        const pdfUrl = pdfPath.startsWith('/') ? pdfPath : `/pdfs/${pdfPath}`;
         
-        // Simulate loading time
-        await new Promise(resolve => setTimeout(resolve, 500));
+        // Extract fields from the actual PDF
+        const result = await formFieldService.extractAllFormFields(pdfUrl);
         
-        setFields(mockFields);
+        setFields(result.fields);
+        setFieldDetails(result.fieldDetails);
+        
+        console.log(`📋 Extracted ${result.fields.length} fields from ${pdfPath}:`, result.fields);
       } catch (err) {
-        setError('Failed to load PDF fields');
+        setError('Failed to load PDF fields. Please ensure the PDF file exists and is accessible.');
         console.error('Failed to load PDF fields:', err);
       } finally {
         setLoading(false);
@@ -129,6 +122,9 @@ const PDFFieldConfig: React.FC<PDFFieldConfigProps> = ({
           <TableHead>
             <TableRow>
               <TableCell><strong>Field Name</strong></TableCell>
+              <TableCell><strong>Type</strong></TableCell>
+              <TableCell><strong>Required</strong></TableCell>
+              <TableCell><strong>Pages</strong></TableCell>
               <TableCell><strong>Status</strong></TableCell>
               <TableCell align="right"><strong>Configuration</strong></TableCell>
             </TableRow>
@@ -136,11 +132,32 @@ const PDFFieldConfig: React.FC<PDFFieldConfigProps> = ({
           <TableBody>
             {fields.map((fieldName) => {
               const currentStatus = fieldConfig[fieldName] || 'normal';
+              const details = fieldDetails[fieldName];
               return (
                 <TableRow key={fieldName} hover>
                   <TableCell>
                     <Typography variant="body2" fontFamily="monospace">
                       {fieldName}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Chip
+                      label={details?.type || 'unknown'}
+                      size="small"
+                      variant="outlined"
+                      color="default"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    {details?.required ? (
+                      <Chip label="Required" size="small" color="error" variant="outlined" />
+                    ) : (
+                      <Chip label="Optional" size="small" color="default" variant="outlined" />
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2" color="textSecondary">
+                      {details?.pages?.join(', ') || 'N/A'}
                     </Typography>
                   </TableCell>
                   <TableCell>
