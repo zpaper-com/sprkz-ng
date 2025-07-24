@@ -22,6 +22,7 @@ export interface PDFViewerProps {
   validationErrors?: Record<string, string>;
   showFieldNames?: boolean;
   fitMode?: 'default' | 'width' | 'height';
+  fieldConfigs?: { [fieldName: string]: 'read-only' | 'hidden' | 'normal' };
 }
 
 export const PDFViewer: React.FC<PDFViewerProps> = ({
@@ -38,6 +39,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   validationErrors = {},
   showFieldNames = false,
   fitMode = 'default',
+  fieldConfigs = {},
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const textLayerRef = useRef<HTMLDivElement>(null);
@@ -660,7 +662,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
         // Extract enhanced form fields
         const pageFormFields = await formFieldService.extractFormFields(
           currentPageObj,
-          currentPage
+          currentPage,
+          fieldConfigs
         );
         const allFields = pageFormFields.fields;
         setEnhancedFormFields(allFields);

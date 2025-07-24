@@ -8,6 +8,7 @@ import { PDFFormContainer } from './components/pdf/PDFFormContainer';
 import MobileInterface from './components/mobile/MobileInterface';
 import { redirectToMobileIfNeeded } from './utils/mobileDetection';
 import AdminInterface from './admin/AdminInterface';
+import { DynamicRoute } from './components/routing/DynamicRoute';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -31,16 +32,22 @@ const App: React.FC = () => {
           <Route 
             path="/" 
             element={
-              <Box
-                data-testid="app-container"
-                sx={{
-                  minHeight: '100vh',
-                  backgroundColor: 'background.default',
-                }}
-              >
-                <PDFFormContainer />
-              </Box>
+              <DynamicRoute>
+                <Box
+                  data-testid="app-container"
+                  sx={{
+                    minHeight: '100vh',
+                    backgroundColor: 'background.default',
+                  }}
+                >
+                  <PDFFormContainer />
+                </Box>
+              </DynamicRoute>
             } 
+          />
+          <Route 
+            path="*" 
+            element={<DynamicRoute />} 
           />
         </Routes>
       </Router>

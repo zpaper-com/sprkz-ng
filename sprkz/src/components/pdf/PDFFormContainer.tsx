@@ -11,13 +11,21 @@ import { pdfService } from '../../services/pdfService';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import type { FormField as EnhancedFormField } from '../../services/formFieldService';
 
+export interface DynamicConfig {
+  pdfPath: string;
+  features: { [featureId: number]: boolean };
+  pdfFields: { [fieldName: string]: 'read-only' | 'hidden' | 'normal' };
+}
+
 export interface PDFFormContainerProps {
   onFormFieldsDetected?: (fields: EnhancedFormField[]) => void;
+  dynamicConfig?: DynamicConfig;
 }
 
 // Inner component that uses the form context
 const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
   onFormFieldsDetected,
+  dynamicConfig,
 }) => {
   const [pdfUrl, setPdfUrl] = useState<string>('');
   const [pdfDocument, setPdfDocument] = useState<PDFDocumentProxy | null>(null);
@@ -37,11 +45,17 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
     state: { formData, validationErrors, currentFieldId, wizard },
   } = useForm();
 
-  // Initialize PDF URL from parameters
+  // Initialize PDF URL from parameters or dynamic config
   useEffect(() => {
-    const url = getPDFUrlFromParams();
-    setPdfUrl(url);
-  }, []);
+    if (dynamicConfig?.pdfPath) {
+      // Use PDF path from dynamic config
+      setPdfUrl(dynamicConfig.pdfPath);
+    } else {
+      // Fallback to URL parameters
+      const url = getPDFUrlFromParams();
+      setPdfUrl(url);
+    }
+  }, [dynamicConfig]);
 
   // Load PDF document when URL changes
   useEffect(() => {
@@ -320,6 +334,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             validationErrors={validationErrors}
             showFieldNames={showFieldNames}
             fitMode={pdfFitMode}
+            fieldConfigs={dynamicConfig?.pdfFields}
           />
 
         </Box>

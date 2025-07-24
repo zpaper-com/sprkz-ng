@@ -9,6 +9,7 @@ export interface FormField {
   pageNumber: number;
   required: boolean;
   readOnly: boolean;
+  hidden?: boolean; // Added for URL config field hiding
   options?: string[];
   value?: string | boolean;
   maxLength?: number;
@@ -46,7 +47,8 @@ class FormFieldService {
    */
   async extractFormFields(
     page: PDFPageProxy,
-    pageNumber: number
+    pageNumber: number,
+    fieldConfigs?: { [fieldName: string]: 'read-only' | 'hidden' | 'normal' }
   ): Promise<PageFormFields> {
     try {
       const annotations = await page.getAnnotations({ intent: 'display' });
@@ -107,18 +109,38 @@ class FormFieldService {
         fields: groupFields,
       }));
 
-      const requiredFields = fields.filter(f => f.required);
+      // Apply field configurations if provided
+      let processedFields = fields;
+      let processedRadioGroups = radioGroupsArray;
+      
+      if (fieldConfigs) {
+        processedFields = this.applyFieldConfigurations(fields, fieldConfigs);
+        processedRadioGroups = radioGroupsArray.map(group => ({
+          ...group,
+          fields: this.applyFieldConfigurations(group.fields, fieldConfigs)
+        }));
+
+        // Filter out hidden fields
+        processedFields = processedFields.filter(field => !field.hidden);
+        processedRadioGroups = processedRadioGroups.map(group => ({
+          ...group,
+          fields: group.fields.filter(field => !field.hidden)
+        })).filter(group => group.fields.length > 0);
+      }
+
+      const requiredFields = processedFields.filter(f => f.required);
       console.log(`📊 Page ${pageNumber} summary:`, {
-        totalFields: fields.length,
+        totalFields: processedFields.length,
         requiredFields: requiredFields.length,
         requiredFieldNames: requiredFields.map(f => f.name),
-        radioGroups: radioGroups.size
+        radioGroups: processedRadioGroups.length,
+        appliedConfigs: fieldConfigs ? Object.keys(fieldConfigs).length : 0
       });
 
       return {
         pageNumber,
-        fields,
-        radioGroups: radioGroupsArray,
+        fields: processedFields,
+        radioGroups: processedRadioGroups,
       };
     } catch (error) {
       console.error(
@@ -134,10 +156,40 @@ class FormFieldService {
   }
 
   /**
+   * Apply field configurations from URL config to form fields
+   */
+  private applyFieldConfigurations(
+    fields: FormField[],
+    fieldConfigs: { [fieldName: string]: 'read-only' | 'hidden' | 'normal' }
+  ): FormField[] {
+    return fields.map(field => {
+      const config = fieldConfigs[field.name];
+      if (!config || config === 'normal') {
+        return field; // No override needed
+      }
+
+      // Apply configuration override
+      const updatedField = { ...field };
+      
+      if (config === 'read-only') {
+        updatedField.readOnly = true;
+        console.log(`🔒 Field "${field.name}" set to read-only via URL config`);
+      } else if (config === 'hidden') {
+        // Mark field as hidden (we'll filter these later)
+        updatedField.hidden = true;
+        console.log(`🙈 Field "${field.name}" set to hidden via URL config`);
+      }
+
+      return updatedField;
+    });
+  }
+
+  /**
    * Extract form fields from all pages of a PDF
    */
   async extractAllFormFields(
-    pdfDocument: pdfjsLib.PDFDocumentProxy
+    pdfDocument: pdfjsLib.PDFDocumentProxy,
+    fieldConfigs?: { [fieldName: string]: 'read-only' | 'hidden' | 'normal' }
   ): Promise<PageFormFields[]> {
     const allPageFields: PageFormFields[] = [];
     const numPages = pdfDocument.numPages;
@@ -146,6 +198,25 @@ class FormFieldService {
       try {
         const page = await pdfDocument.getPage(pageNum);
         const pageFields = await this.extractFormFields(page, pageNum);
+        
+        // Apply field configurations if provided
+        if (fieldConfigs) {
+          pageFields.fields = this.applyFieldConfigurations(pageFields.fields, fieldConfigs);
+          
+          // Apply configs to radio group fields as well
+          pageFields.radioGroups = pageFields.radioGroups.map(group => ({
+            ...group,
+            fields: this.applyFieldConfigurations(group.fields, fieldConfigs)
+          }));
+
+          // Filter out hidden fields
+          pageFields.fields = pageFields.fields.filter(field => !field.hidden);
+          pageFields.radioGroups = pageFields.radioGroups.map(group => ({
+            ...group,
+            fields: group.fields.filter(field => !field.hidden)
+          })).filter(group => group.fields.length > 0); // Remove empty radio groups
+        }
+        
         allPageFields.push(pageFields);
       } catch (error) {
         console.error(`Error processing page ${pageNum}:`, error);

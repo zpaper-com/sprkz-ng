@@ -16,6 +16,8 @@ const URLConfiguration: React.FC = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingURL, setEditingURL] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
 
   const handleCreateURL = () => {
     setEditingURL(null);
@@ -57,10 +59,24 @@ const URLConfiguration: React.FC = () => {
       // Update the URL in state with new feature configuration
       const updatedURL = state.urls.find(u => u.id === urlId);
       if (updatedURL) {
-        await actions.updateURL(urlId, { features });
+        // Send complete URL object with updated features to avoid database constraint violations
+        await actions.updateURL(urlId, {
+          path: updatedURL.path,
+          pdfPath: updatedURL.pdfPath,
+          features,
+          pdfFields: updatedURL.pdfFields
+        });
+        
+        // Show success message
+        setSnackbarMessage('Feature settings updated successfully!');
+        setSnackbarSeverity('success');
+        setSnackbarOpen(true);
       }
     } catch (error) {
       console.error('Failed to update features:', error);
+      setSnackbarMessage('Failed to update feature settings. Please try again.');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
     }
   };
 
@@ -70,9 +86,17 @@ const URLConfiguration: React.FC = () => {
       const updatedURL = state.urls.find(u => u.id === urlId);
       if (updatedURL) {
         await actions.updateURL(urlId, { ...updatedURL, pdfFields });
+        
+        // Show success message
+        setSnackbarMessage('PDF field settings updated successfully!');
+        setSnackbarSeverity('success');
+        setSnackbarOpen(true);
       }
     } catch (error) {
       console.error('Failed to update PDF fields:', error);
+      setSnackbarMessage('Failed to update PDF field settings. Please try again.');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
     }
   };
 
@@ -119,8 +143,8 @@ const URLConfiguration: React.FC = () => {
         autoHideDuration={4000}
         onClose={handleCloseSnackbar}
       >
-        <Alert onClose={handleCloseSnackbar} severity="success">
-          Operation completed successfully!
+        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity}>
+          {snackbarMessage || 'Operation completed successfully!'}
         </Alert>
       </Snackbar>
 
