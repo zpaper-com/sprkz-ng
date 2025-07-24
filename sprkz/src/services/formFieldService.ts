@@ -227,29 +227,25 @@ class FormFieldService {
    */
   private isFieldRequired(annotation: any): boolean {
     const fieldFlags = annotation.fieldFlags || 0;
-    const isRequired = (fieldFlags & 2) !== 0; // Required flag
+    const isRequired = (fieldFlags & 2) !== 0; // Required flag from PDF metadata
 
-    // Also check for visual indicators like asterisks in field name
+    // Trust the PDF's metadata as the primary authority
+    // Only use fallback methods if the PDF doesn't provide clear guidance
     const fieldName = annotation.fieldName || '';
-    const hasAsterisk =
-      fieldName.includes('*') || fieldName.includes('required');
+    
+    // Fallback 1: Check for explicit visual indicators (asterisks, "required" text)
+    const hasExplicitIndicator = fieldName.includes('*') || fieldName.includes('required');
 
-    // Check for commonly required field names (case insensitive)
-    const fieldNameLower = fieldName.toLowerCase();
-    const isCommonlyRequired = [
-      'name', 'first name', 'last name', 'email', 'phone',
-      'signature', 'date', 'address', 'ssn', 'social security'
-    ].some(pattern => fieldNameLower.includes(pattern));
-
-    const finalRequired = isRequired || hasAsterisk || isCommonlyRequired;
+    // Use PDF metadata first, then explicit visual indicators as fallback
+    // Remove name-based guessing as it overrides PDF author's intent
+    const finalRequired = isRequired || hasExplicitIndicator;
 
     // Debug logging
     if (fieldName) {
       console.log(`🔍 Field "${fieldName}":`, {
         fieldFlags,
         isRequired,
-        hasAsterisk,
-        isCommonlyRequired,
+        hasExplicitIndicator,
         finalRequired
       });
     }

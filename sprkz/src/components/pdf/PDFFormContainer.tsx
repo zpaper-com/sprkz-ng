@@ -5,8 +5,7 @@ import { PDFViewer } from './PDFViewer';
 import { ThumbnailSidebar } from './ThumbnailSidebar';
 import { FormProvider, useForm } from '../../contexts/FormContext';
 import { WizardButton, WizardStatus } from '../WizardButton';
-import { FieldTooltip } from '../FieldTooltip';
-import { ProgressTracker, MiniProgressIndicator } from '../ProgressTracker';
+import { ProgressTracker } from '../ProgressTracker';
 import { getPDFUrlFromParams } from '../../utils/urlParams';
 import { pdfService } from '../../services/pdfService';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
@@ -223,8 +222,6 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             <WizardStatus />
           )}
 
-          {/* Mini Progress Indicator */}
-          <MiniProgressIndicator />
 
           {/* Controls */}
           <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
@@ -290,13 +287,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
           </Box>
         </Box>
 
-        {/* Progress Tracker - only show when wizard is active */}
-        {wizard.isWizardMode && (
-          <ProgressTracker 
-            variant="compact" 
-            showSteps={false}
-          />
-        )}
+        {/* Progress Tracker removed - progress now shown in wizard button */}
 
         {/* PDF Viewer */}
         <Box
@@ -326,12 +317,6 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             fitMode={pdfFitMode}
           />
 
-          {/* Field Tooltip */}
-          <FieldTooltip 
-            placement="top"
-            autoHide={true}
-            autoHideDelay={8000}
-          />
         </Box>
       </Box>
 

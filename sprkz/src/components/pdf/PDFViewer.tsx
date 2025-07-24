@@ -269,6 +269,15 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
     [onFieldFocus, onFieldChange, onFieldBlur, showFieldNames, formData]
   );
 
+  // Helper function to detect required fields based on PDF metadata
+  const isFieldRequired = (annotation: any): boolean => {
+    const fieldFlags = annotation.fieldFlags || 0;
+    const isRequired = (fieldFlags & 2) !== 0; // Required flag from PDF metadata
+    const fieldName = annotation.fieldName || '';
+    const hasExplicitIndicator = fieldName.includes('*') || fieldName.includes('required');
+    return isRequired || hasExplicitIndicator;
+  };
+
   // Helper function to create clean native form elements
   const createNativeFormElement = (annotation: any): HTMLElement | null => {
     const fieldType = annotation.fieldType;
@@ -288,6 +297,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
             annotation.fieldName || annotation.id || ''
           );
           textarea.setAttribute('name', annotation.fieldName || '');
+          // Add required class for styling
+          if (isFieldRequired(annotation)) {
+            textarea.classList.add('required');
+          }
           // Clean styling for textarea
           textarea.style.width = '100%';
           textarea.style.height = '100%';
@@ -316,6 +329,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
             annotation.fieldName || annotation.id || ''
           );
           input.setAttribute('name', annotation.fieldName || '');
+          // Add required class for styling
+          if (isFieldRequired(annotation)) {
+            input.classList.add('required');
+          }
           // Clean styling for input
           input.style.width = '100%';
           input.style.height = '100%';
@@ -380,6 +397,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
           'data-field-id',
           annotation.fieldName || annotation.id || ''
         );
+        // Add required class for styling
+        if (isFieldRequired(annotation)) {
+          input.classList.add('required');
+        }
         input.setAttribute('name', annotation.fieldName || '');
         return input;
 
@@ -406,6 +427,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
           annotation.fieldName || annotation.id || ''
         );
         select.setAttribute('name', annotation.fieldName || '');
+        // Add required class for styling
+        if (isFieldRequired(annotation)) {
+          select.classList.add('required');
+        }
         // Clean dropdown styling
         select.style.width = '100%';
         select.style.height = '100%';
@@ -424,6 +449,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
         const fieldId = annotation.fieldName || annotation.id || '';
         sigDiv.setAttribute('data-field-id', fieldId);
         sigDiv.setAttribute('name', annotation.fieldName || '');
+        // Add required class for styling
+        if (isFieldRequired(annotation)) {
+          sigDiv.classList.add('required');
+        }
         sigDiv.style.width = '100%';
         sigDiv.style.height = '100%';
         sigDiv.style.border = '1px dashed #666';

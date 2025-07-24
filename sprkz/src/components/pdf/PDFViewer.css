@@ -167,3 +167,25 @@
 .annotationLayer.hide-field-names .choiceWidgetAnnotation::after {
   content: none !important;
 }
+
+/* Required field highlighting - subtle red borders */
+.annotationLayer input.required,
+.annotationLayer textarea.required,
+.annotationLayer select.required,
+.annotationLayer div.required {
+  border: 1px solid #e57373 !important; /* Subtle red border - thinner and lighter */
+  background-color: rgba(244, 67, 54, 0.02) !important; /* Very light red background */
+}
+
+/* Signature fields with subtle dashed red border when required */
+.annotationLayer div.required[data-field-id*="Sig"] {
+  border: 1px dashed #e57373 !important; /* Subtle red dashed border for signatures */
+  background-color: rgba(244, 67, 54, 0.02) !important;
+}
+
+/* Radio buttons and checkboxes - subtle red outline when required */
+.annotationLayer input[type="checkbox"].required,
+.annotationLayer input[type="radio"].required {
+  outline: 1px solid #e57373 !important;
+  outline-offset: 1px;
+}
