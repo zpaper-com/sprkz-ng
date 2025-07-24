@@ -72,14 +72,21 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
     const unscaledViewport = pageObj.getViewport({ scale: 1.0 });
     const containerRect = containerElement.getBoundingClientRect();
     
-    // Account for padding/margins in the container
-    const MARGIN_PADDING = 40;
+    // Account for padding/margins in the container - reduce for fit-width mode
+    const MARGIN_PADDING = fitMode === 'width' ? 20 : 40;
     const availableWidth = containerRect.width - MARGIN_PADDING;
     const availableHeight = containerRect.height - MARGIN_PADDING;
 
     if (fitMode === 'width') {
       // PDF.js fit-to-width: scale = container width / natural page width
-      return availableWidth / unscaledViewport.width;
+      const calculatedScale = availableWidth / unscaledViewport.width;
+      console.log('Fit-width calculation:', {
+        containerWidth: containerRect.width,
+        availableWidth,
+        pdfNaturalWidth: unscaledViewport.width,
+        calculatedScale
+      });
+      return Math.max(calculatedScale, 0.1); // Ensure minimum scale
     } else if (fitMode === 'height') {
       // PDF.js fit-to-height: scale = container height / natural page height
       return availableHeight / unscaledViewport.height;
@@ -575,10 +582,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   // Track if annotation layer has been rendered to prevent re-renders
   const annotationLayerRendered = useRef(false);
 
-  // Reset annotation layer flag when page changes or field name visibility changes
+  // Reset annotation layer flag when page changes, field name visibility changes, or fit mode changes
   useEffect(() => {
     annotationLayerRendered.current = false;
-  }, [currentPage, showFieldNames]);
+  }, [currentPage, showFieldNames, fitMode]);
 
   // Render current page
   useEffect(() => {
@@ -839,11 +846,14 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
     <Box
       data-testid="pdf-viewer"
       position="relative"
-      display="inline-block"
+      display={fitMode === 'width' ? 'block' : 'inline-block'}
       sx={{
         border: '1px solid #ccc',
         borderRadius: 1,
         overflow: 'hidden',
+        width: fitMode === 'width' ? '100%' : 'auto',
+        maxWidth: '100%',
+        minHeight: fitMode === 'width' ? 'auto' : 'initial',
       }}
     >
       {/* Canvas Layer - Visual PDF content */}
@@ -852,7 +862,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
         data-testid="pdf-canvas"
         style={{
           display: 'block',
-          maxWidth: '100%',
+          maxWidth: fitMode === 'width' ? 'none' : '100%',
+          width: fitMode === 'width' ? '100%' : 'auto',
           height: 'auto',
         }}
       />

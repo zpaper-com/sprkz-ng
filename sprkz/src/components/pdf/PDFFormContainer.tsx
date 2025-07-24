@@ -173,7 +173,8 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
       data-testid="pdf-form-container"
       sx={{
         display: 'flex',
-        height: '100vh',
+        minHeight: '100vh',
+        height: pdfFitMode === 'width' ? 'auto' : '100vh',
         overflow: 'hidden',
       }}
     >
@@ -191,7 +192,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          overflow: 'hidden',
+          overflow: pdfFitMode === 'width' ? 'visible' : 'hidden',
         }}
       >
         {/* Header */}
@@ -294,11 +295,15 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
           sx={{
             flex: 1,
             overflow: 'auto',
-            p: 2,
+            p: pdfFitMode === 'width' ? 1 : 2,
             display: 'flex',
-            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: pdfFitMode === 'width' ? 'flex-start' : 'center',
+            justifyContent: 'flex-start',
             backgroundColor: 'grey.50',
             position: 'relative',
+            width: '100%',
+            minHeight: '100%',
           }}
         >
           <PDFViewer
