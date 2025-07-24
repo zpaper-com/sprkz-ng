@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Box } from '@mui/material';
 import { theme } from './config/theme';
 import { PDFFormContainer } from './components/pdf/PDFFormContainer';
-import MobileInterface from './components/mobile/MobileInterface';
+import MobileViewer from './components/MobileViewer';
 import { redirectToMobileIfNeeded } from './utils/mobileDetection';
 import AdminInterface from './admin/AdminInterface';
 import { DynamicRoute } from './components/routing/DynamicRoute';
@@ -23,7 +23,7 @@ const App: React.FC = () => {
         <Routes>
           <Route 
             path="/mobile" 
-            element={<MobileInterface />} 
+            element={<MobileViewer />} 
           />
           <Route 
             path="/admin/*" 
