@@ -146,9 +146,23 @@ The Sprkz application has several key interfaces accessible through different ro
 
 **Admin Dashboard (`/admin`)**
 ![Admin Interface](sprkz/screenshots/admin.png)
-- Configuration interface for managing URL routes, PDF files, and feature flags
-- Database-driven configuration system
-- Real-time feature toggle management
+- Main admin dashboard with feature flags management
+- Real-time feature toggle interface
+- Global settings and configuration overview
+
+**URL Configuration Management**
+![URL Config](sprkz/screenshots/admin-url-config.png)
+- Dynamic routing configuration interface
+- Manage URL paths and their associated PDF files
+- Configure feature flags per route
+- Set PDF field customizations (hidden, read-only, etc.)
+
+**PDF File Management**
+![PDF Management](sprkz/screenshots/admin-pdf-management.png)
+- Upload and manage PDF files
+- View file metadata and storage information
+- Configure PDFs for use in URL routes
+- File size and upload timestamp tracking
 
 ### Database-Configured Routes
 
