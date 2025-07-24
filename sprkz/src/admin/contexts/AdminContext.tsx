@@ -1,6 +1,16 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { adminAPI } from '../services/api';
 import { useWebSocket } from '../hooks/useWebSocket';
+import {
+  isFeatureEnabled,
+  isCurrentFeatureEnabled,
+  getCurrentURLConfig,
+  getURLConfig,
+  getEnabledFeatures,
+  getFeatureConfigSummary,
+  FEATURE_FLAGS,
+  type FeatureFlagId,
+} from '../utils/featureFlags';
 
 export interface Feature {
   id: number;
@@ -139,6 +149,16 @@ interface AdminContextType {
     deletePDF: (filename: string) => Promise<void>;
     updateSettings: (settings: Partial<Settings>) => Promise<void>;
   };
+  // Feature flag utilities
+  featureFlags: {
+    isFeatureEnabled: (path: string, featureId: FeatureFlagId) => boolean;
+    isCurrentFeatureEnabled: (featureId: FeatureFlagId) => boolean;
+    getCurrentURLConfig: () => URLConfig | null;
+    getURLConfig: (path: string) => URLConfig | null;
+    getEnabledFeatures: (path: string) => FeatureFlagId[];
+    getFeatureConfigSummary: (path: string) => ReturnType<typeof getFeatureConfigSummary>;
+    FEATURE_FLAGS: typeof FEATURE_FLAGS;
+  };
 }
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
@@ -187,50 +207,21 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     loadInitialData: async () => {
       dispatch({ type: 'SET_LOADING', payload: true });
       try {
-        // Mock data for development - replace with API calls when server is ready
-        const mockFeatures: Feature[] = [
-          // Main Interface Buttons (from PDFFormContainer header)
-          { id: 1, name: 'Fields Toggle Button', description: 'Show/hide field names overlay on PDF with visibility icons and validation badge', notes: 'Uses Visibility/VisibilityOff icons, shows validation error count in badge, toggles field name display', creationDate: new Date().toISOString() },
-          { id: 2, name: 'PDF Fit Width Button', description: 'Fit PDF viewer to container width with SwapHoriz icon', notes: 'Part of PDF fit controls, toggles between default and width-fitted view modes', creationDate: new Date().toISOString() },
-          { id: 3, name: 'PDF Fit Height Button', description: 'Fit PDF viewer to container height with Height icon', notes: 'Part of PDF fit controls, toggles between default and height-fitted view modes', creationDate: new Date().toISOString() },
-          { id: 4, name: 'Wizard Button', description: 'Dynamic multi-state button for guided form completion (Start → Next → Sign → Submit)', notes: 'Changes color and icon based on state: Blue Start, Orange Next, Purple Sign, Green Submit with progress indicators', creationDate: new Date().toISOString() },
-          
-          // Top Bar Information Display
-          { id: 5, name: 'PDF Title Display', description: 'Shows "Sprkz PDF Form - Page X of Y" in the main interface header', notes: 'Typography component displaying current page position and total page count', creationDate: new Date().toISOString() },
-          { id: 6, name: 'PDF Filename Display', description: 'Shows current PDF filename in header subtitle', notes: 'Displays filename with path prefix removed for clean presentation', creationDate: new Date().toISOString() },
-          
-          // Page Navigation & Thumbnail Preview
-          { id: 7, name: 'Thumbnail Page Navigation', description: 'Clickable page thumbnails in left sidebar for quick page navigation', notes: 'Shows miniature PDF previews with current page highlighting and hover effects, 180px width', creationDate: new Date().toISOString() },
-          
-          // Progress & Status Features (shown when wizard is active)
-          { id: 8, name: 'Wizard Status Indicator', description: 'Shows wizard mode status with completion percentage when active', notes: 'Appears only during wizard mode, displays field completion progress with AutoMode icon', creationDate: new Date().toISOString() },
-          { id: 9, name: 'Mini Progress Indicator', description: 'Circular progress indicator with completion ratio display', notes: 'Shows completed vs total fields as circular progress with percentage', creationDate: new Date().toISOString() },
-          { id: 10, name: 'Progress Tracker', description: 'Compact linear progress bar showing form completion status', notes: 'Displays during wizard mode, shows overall form completion progress below header', creationDate: new Date().toISOString() },
-          
-          // Form Interaction Features
-          { id: 11, name: 'Field Tooltip System', description: 'Interactive tooltips providing field guidance and status information', notes: 'Shows field type, requirements, validation status with contextual help', creationDate: new Date().toISOString() },
-          { id: 12, name: 'Signature Modal', description: 'Popup interface for signature capture with drawing and typing modes', notes: 'Modal dialog with canvas drawing area and typed signature options with font selection', creationDate: new Date().toISOString() },
-          { id: 13, name: 'Form Validation Display', description: 'Real-time form field validation with error highlighting', notes: 'Shows validation errors, required field indicators, and completion status on PDF overlay', creationDate: new Date().toISOString() },
-        ];
+        // Load real data from API
+        const [features, urls, pdfs, settings] = await Promise.all([
+          adminAPI.getFeatures(),
+          adminAPI.getURLs(), 
+          adminAPI.getPDFs(),
+          adminAPI.getSettings()
+        ]);
         
-        const mockURLs: URLConfig[] = [
-          { id: 1, path: '/makana', pdfPath: 'makana2025.pdf', createdAt: new Date().toISOString(), features: { 1: true, 2: false }, pdfFields: {} },
-          { id: 2, path: '/tremfya', pdfPath: 'tremfya.pdf', createdAt: new Date().toISOString(), features: { 1: false, 2: true }, pdfFields: {} },
-        ];
-        
-        const mockPDFs: PDFFile[] = [
-          { filename: 'makana2025.pdf', size: 2048000, uploadDate: new Date().toISOString() },
-          { filename: 'tremfya.pdf', size: 1536000, uploadDate: new Date().toISOString() },
-        ];
-        
-        const mockSettings: Settings = { defaultPdf: 'makana2025.pdf', theme: 'light' };
-        
-        dispatch({ type: 'SET_FEATURES', payload: mockFeatures });
-        dispatch({ type: 'SET_URLS', payload: mockURLs });
-        dispatch({ type: 'SET_PDFS', payload: mockPDFs });
-        dispatch({ type: 'SET_SETTINGS', payload: mockSettings });
+        dispatch({ type: 'SET_FEATURES', payload: features });
+        dispatch({ type: 'SET_URLS', payload: urls });
+        dispatch({ type: 'SET_PDFS', payload: pdfs });
+        dispatch({ type: 'SET_SETTINGS', payload: settings });
         dispatch({ type: 'SET_ERROR', payload: null });
       } catch (error) {
+        console.error('Failed to load initial data:', error);
         dispatch({ type: 'SET_ERROR', payload: 'Failed to load initial data' });
       } finally {
         dispatch({ type: 'SET_LOADING', payload: false });
@@ -239,67 +230,60 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     createFeature: async (feature: Omit<Feature, 'id' | 'creationDate'>) => {
       try {
-        // Mock implementation - replace with API call when server is ready
-        const newFeature: Feature = {
-          ...feature,
-          id: Date.now(),
-          creationDate: new Date().toISOString(),
-        };
+        const newFeature = await adminAPI.createFeature(feature);
         dispatch({ type: 'ADD_FEATURE', payload: newFeature });
       } catch (error) {
+        console.error('Failed to create feature:', error);
         dispatch({ type: 'SET_ERROR', payload: 'Failed to create feature' });
       }
     },
 
     updateFeature: async (id: number, feature: Partial<Feature>) => {
       try {
-        // Mock implementation - replace with API call when server is ready
-        const updatedFeature = { ...state.features.find(f => f.id === id)!, ...feature };
+        const updatedFeature = await adminAPI.updateFeature(id, feature);
         dispatch({ type: 'UPDATE_FEATURE', payload: updatedFeature });
       } catch (error) {
+        console.error('Failed to update feature:', error);
         dispatch({ type: 'SET_ERROR', payload: 'Failed to update feature' });
       }
     },
 
     deleteFeature: async (id: number) => {
       try {
-        // Mock implementation - replace with API call when server is ready
+        await adminAPI.deleteFeature(id);
         dispatch({ type: 'DELETE_FEATURE', payload: id });
       } catch (error) {
+        console.error('Failed to delete feature:', error);
         dispatch({ type: 'SET_ERROR', payload: 'Failed to delete feature' });
       }
     },
 
     createURL: async (url: Omit<URLConfig, 'id' | 'createdAt'>) => {
       try {
-        // Mock implementation - replace with API call when server is ready
-        const newURL: URLConfig = {
-          ...url,
-          id: Date.now(),
-          createdAt: new Date().toISOString(),
-        };
+        const newURL = await adminAPI.createURL(url);
         dispatch({ type: 'ADD_URL', payload: newURL });
       } catch (error) {
+        console.error('Failed to create URL:', error);
         dispatch({ type: 'SET_ERROR', payload: 'Failed to create URL configuration' });
       }
     },
 
     updateURL: async (id: number, url: Partial<URLConfig>) => {
       try {
-        // Mock implementation - replace with API call when server is ready
-        const existingURL = state.urls.find(u => u.id === id);
-        const updatedURL = { ...existingURL!, ...url };
+        const updatedURL = await adminAPI.updateURL(id, url);
         dispatch({ type: 'UPDATE_URL', payload: updatedURL });
       } catch (error) {
+        console.error('Failed to update URL:', error);
         dispatch({ type: 'SET_ERROR', payload: 'Failed to update URL configuration' });
       }
     },
 
     deleteURL: async (id: number) => {
       try {
-        // Mock implementation - replace with API call when server is ready
+        await adminAPI.deleteURL(id);
         dispatch({ type: 'DELETE_URL', payload: id });
       } catch (error) {
+        console.error('Failed to delete URL:', error);
         dispatch({ type: 'SET_ERROR', payload: 'Failed to delete URL configuration' });
       }
     },
@@ -320,21 +304,37 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     deletePDF: async (filename: string) => {
       try {
-        // Mock implementation - replace with API call when server is ready
+        await adminAPI.deletePDF(filename);
         dispatch({ type: 'DELETE_PDF', payload: filename });
       } catch (error) {
+        console.error('Failed to delete PDF:', error);
         dispatch({ type: 'SET_ERROR', payload: 'Failed to delete PDF' });
       }
     },
 
     updateSettings: async (settings: Partial<Settings>) => {
       try {
-        // Mock implementation - replace with API call when server is ready
-        dispatch({ type: 'UPDATE_SETTINGS', payload: settings });
+        const updatedSettings = await adminAPI.updateSettings(settings);
+        dispatch({ type: 'UPDATE_SETTINGS', payload: updatedSettings });
       } catch (error) {
+        console.error('Failed to update settings:', error);
         dispatch({ type: 'SET_ERROR', payload: 'Failed to update settings' });
       }
     },
+  };
+
+  // Feature flag utilities
+  const featureFlags = {
+    isFeatureEnabled: (path: string, featureId: FeatureFlagId) => 
+      isFeatureEnabled(state.urls, path, featureId),
+    isCurrentFeatureEnabled: (featureId: FeatureFlagId) => 
+      isCurrentFeatureEnabled(state.urls, featureId),
+    getCurrentURLConfig: () => getCurrentURLConfig(state.urls),
+    getURLConfig: (path: string) => getURLConfig(state.urls, path),
+    getEnabledFeatures: (path: string) => getEnabledFeatures(state.urls, path),
+    getFeatureConfigSummary: (path: string) => 
+      getFeatureConfigSummary(state.urls, state.features, path),
+    FEATURE_FLAGS,
   };
 
   useEffect(() => {
@@ -342,7 +342,7 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []); // Empty dependency array - only run once on mount
 
   return (
-    <AdminContext.Provider value={{ state, dispatch, actions }}>
+    <AdminContext.Provider value={{ state, dispatch, actions, featureFlags }}>
       {children}
     </AdminContext.Provider>
   );

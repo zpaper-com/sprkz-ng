@@ -6,8 +6,10 @@ import { ThumbnailSidebar } from './ThumbnailSidebar';
 import { FormProvider, useForm } from '../../contexts/FormContext';
 import { WizardButton, WizardStatus } from '../WizardButton';
 import { ProgressTracker } from '../ProgressTracker';
+import { FieldTooltip } from '../FieldTooltip';
 import { getPDFUrlFromParams } from '../../utils/urlParams';
 import { pdfService } from '../../services/pdfService';
+import { usePDFViewerFeatures, useWizardFeatures, useFormFeatures } from '../../hooks/useFeatureFlags';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import type { FormField as EnhancedFormField } from '../../services/formFieldService';
 
@@ -35,6 +37,11 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
   const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
+  
+  // Feature flag hooks
+  const pdfViewerFeatures = usePDFViewerFeatures();
+  const wizardFeatures = useWizardFeatures();
+  const formFeatures = useFormFeatures();
 
   // Use form context
   const {
@@ -56,6 +63,18 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
       setPdfUrl(url);
     }
   }, [dynamicConfig]);
+
+  // Debug feature flags in development
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🎌 PDFFormContainer Feature Flags:', {
+        pdfViewerFeatures,
+        wizardFeatures,
+        formFeatures,
+        route: window.location.pathname
+      });
+    }
+  }, [pdfViewerFeatures, wizardFeatures, formFeatures]);
 
   // Load PDF document when URL changes
   useEffect(() => {
@@ -193,12 +212,14 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
       }}
     >
       {/* Thumbnail Sidebar */}
-      <ThumbnailSidebar
-        pdfDocument={pdfDocument}
-        currentPage={currentPage}
-        onPageSelect={handlePageSelect}
-        width={180}
-      />
+      {pdfViewerFeatures.showThumbnailNavigation && (
+        <ThumbnailSidebar
+          pdfDocument={pdfDocument}
+          currentPage={currentPage}
+          onPageSelect={handlePageSelect}
+          width={180}
+        />
+      )}
 
       {/* Main PDF Viewer Area */}
       <Box
@@ -224,16 +245,20 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
           }}
         >
           <Box sx={{ flex: 1, minWidth: 200 }}>
-            <Typography variant="h6" component="h1">
-              Sprkz PDF Form - Page {currentPage} of {pdfDocument.numPages}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {pdfUrl.replace('/pdfs/', '')}
-            </Typography>
+            {pdfViewerFeatures.showTitleDisplay && (
+              <Typography variant="h6" component="h1">
+                Sprkz PDF Form - Page {currentPage} of {pdfDocument.numPages}
+              </Typography>
+            )}
+            {pdfViewerFeatures.showFilenameDisplay && (
+              <Typography variant="body2" color="text.secondary">
+                {pdfUrl.replace('/pdfs/', '')}
+              </Typography>
+            )}
           </Box>
 
           {/* Wizard Status */}
-          {wizard.isWizardMode && (
+          {wizard.isWizardMode && wizardFeatures.showStatusIndicator && (
             <WizardStatus />
           )}
 
@@ -241,68 +266,79 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
           {/* Controls */}
           <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
             {/* Show/Hide Field Names with Eye Icon */}
-            <Tooltip title={showFieldNames ? 'Hide field names' : 'Show field names'}>
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={() => setShowFieldNames(!showFieldNames)}
-                sx={{
-                  fontSize: '12px',
-                  minWidth: 'auto',
-                  px: 1,
-                }}
-                startIcon={showFieldNames ? <Visibility /> : <VisibilityOff />}
-              >
-                Fields
-              </Button>
-            </Tooltip>
+            {pdfViewerFeatures.showFieldsToggle && (
+              <Tooltip title={showFieldNames ? 'Hide field names' : 'Show field names'}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={() => setShowFieldNames(!showFieldNames)}
+                  sx={{
+                    fontSize: '12px',
+                    minWidth: 'auto',
+                    px: 1,
+                  }}
+                  startIcon={showFieldNames ? <Visibility /> : <VisibilityOff />}
+                >
+                  Fields
+                </Button>
+              </Tooltip>
+            )}
 
             {/* PDF Fit Controls */}
-            <Tooltip title="Fit PDF to width">
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={() => {
-                  setPdfFitMode(pdfFitMode === 'width' ? 'default' : 'width');
-                }}
-                color={pdfFitMode === 'width' ? 'primary' : 'inherit'}
-                sx={{ 
-                  minWidth: 'auto',
-                  px: 1,
-                }}
-                startIcon={<SwapHoriz />}
-              >
-                Width
-              </Button>
-            </Tooltip>
+            {pdfViewerFeatures.showFitWidthButton && (
+              <Tooltip title="Fit PDF to width">
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={() => {
+                    setPdfFitMode(pdfFitMode === 'width' ? 'default' : 'width');
+                  }}
+                  color={pdfFitMode === 'width' ? 'primary' : 'inherit'}
+                  sx={{ 
+                    minWidth: 'auto',
+                    px: 1,
+                  }}
+                  startIcon={<SwapHoriz />}
+                >
+                  Width
+                </Button>
+              </Tooltip>
+            )}
 
-            <Tooltip title="Fit PDF to height">
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={() => {
-                  setPdfFitMode(pdfFitMode === 'height' ? 'default' : 'height');
-                }}
-                color={pdfFitMode === 'height' ? 'primary' : 'inherit'}
-                sx={{ 
-                  minWidth: 'auto',
-                  px: 1,
-                }}
-                startIcon={<Height />}
-              >
-                Height
-              </Button>
-            </Tooltip>
+            {pdfViewerFeatures.showFitHeightButton && (
+              <Tooltip title="Fit PDF to height">
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={() => {
+                    setPdfFitMode(pdfFitMode === 'height' ? 'default' : 'height');
+                  }}
+                  color={pdfFitMode === 'height' ? 'primary' : 'inherit'}
+                  sx={{ 
+                    minWidth: 'auto',
+                    px: 1,
+                  }}
+                  startIcon={<Height />}
+                >
+                  Height
+                </Button>
+              </Tooltip>
+            )}
             
             {/* Wizard Button */}
-            <WizardButton 
-              size="medium"
-              showProgress={false}
-            />
+            {wizardFeatures.showWizardButton && (
+              <WizardButton 
+                size="medium"
+                showProgress={wizardFeatures.showMiniProgress}
+              />
+            )}
           </Box>
         </Box>
 
-        {/* Progress Tracker removed - progress now shown in wizard button */}
+        {/* Progress Tracker */}
+        {wizardFeatures.showProgressTracker && (
+          <ProgressTracker />
+        )}
 
         {/* PDF Viewer */}
         <Box
@@ -341,7 +377,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
       </Box>
 
       {/* Sidebar Progress Tracker for detailed view */}
-      {wizard.isWizardMode && (
+      {wizard.isWizardMode && wizardFeatures.showProgressTracker && (
         <Box
           sx={{
             width: 300,
@@ -362,6 +398,9 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
           />
         </Box>
       )}
+
+      {/* Field Tooltip */}
+      {formFeatures.showTooltips && <FieldTooltip />}
     </Box>
   );
 };

@@ -9,6 +9,7 @@ import MobileInterface from './components/mobile/MobileInterface';
 import { redirectToMobileIfNeeded } from './utils/mobileDetection';
 import AdminInterface from './admin/AdminInterface';
 import { DynamicRoute } from './components/routing/DynamicRoute';
+import { AdminProvider } from './admin/contexts/AdminContext';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -32,22 +33,28 @@ const App: React.FC = () => {
           <Route 
             path="/" 
             element={
-              <DynamicRoute>
-                <Box
-                  data-testid="app-container"
-                  sx={{
-                    minHeight: '100vh',
-                    backgroundColor: 'background.default',
-                  }}
-                >
-                  <PDFFormContainer />
-                </Box>
-              </DynamicRoute>
+              <AdminProvider>
+                <DynamicRoute>
+                  <Box
+                    data-testid="app-container"
+                    sx={{
+                      minHeight: '100vh',
+                      backgroundColor: 'background.default',
+                    }}
+                  >
+                    <PDFFormContainer />
+                  </Box>
+                </DynamicRoute>
+              </AdminProvider>
             } 
           />
           <Route 
             path="*" 
-            element={<DynamicRoute />} 
+            element={
+              <AdminProvider>
+                <DynamicRoute />
+              </AdminProvider>
+            } 
           />
         </Routes>
       </Router>
