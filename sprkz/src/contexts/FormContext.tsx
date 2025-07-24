@@ -380,6 +380,7 @@ interface FormContextType {
   // Wizard Management
   startWizard: () => void;
   stopWizard: () => void;
+  toggleWizard: () => void;
   setWizardPhase: (phase: 'start' | 'filling' | 'signing' | 'complete') => void;
   navigateToField: (fieldId: string) => void;
   navigateBack: () => void;
@@ -728,59 +729,27 @@ export const FormProvider: React.FC<FormProviderProps> = ({
     getSignatureFields,
   ]);
 
-  const handleWizardButtonClick = useCallback(() => {
-    const buttonState = getWizardButtonState();
-    
-    console.log('🎯 Wizard button clicked:', buttonState.type);
-    
-    switch (buttonState.type) {
-      case 'start':
-        console.log('🚀 Starting wizard...');
-        startWizard();
-        // Navigate to first required field
-        const firstRequiredField = getNextRequiredField();
-        console.log('🎯 First required field:', firstRequiredField?.name || 'none');
-        if (firstRequiredField) {
-          navigateToField(firstRequiredField.id);
-          showTooltip(firstRequiredField.id, `Fill out: ${firstRequiredField.name}`);
-        }
-        break;
-        
-      case 'next':
-        const nextField = getNextRequiredField();
-        if (nextField) {
-          navigateToField(nextField.id);
-          showTooltip(nextField.id, `Fill out: ${nextField.name}`);
-        }
-        break;
-        
-      case 'sign':
-        const nextSignatureField = getSignatureFields().find(field => 
-          !state.completedFields.has(field.id)
-        );
-        if (nextSignatureField) {
-          setWizardPhase('signing');
-          navigateToField(nextSignatureField.id);
-          showTooltip(nextSignatureField.id, 'Click to add your signature');
-        }
-        break;
-        
-      case 'submit':
-        setWizardPhase('complete');
-        submitForm();
-        break;
+  // Toggle wizard mode
+  const toggleWizard = useCallback(() => {
+    if (state.wizard.isWizardMode) {
+      console.log('🎯 Stopping wizard mode');
+      stopWizard();
+    } else {
+      console.log('🎯 Starting wizard mode');
+      startWizard();
+      // Navigate to first required field
+      const firstRequiredField = getNextRequiredField();
+      console.log('🎯 First required field:', firstRequiredField?.name || 'none');
+      if (firstRequiredField) {
+        navigateToField(firstRequiredField.id);
+        showTooltip(firstRequiredField.id, `Fill out: ${firstRequiredField.name}`);
+      }
     }
-  }, [
-    getWizardButtonState,
-    startWizard,
-    getNextRequiredField,
-    navigateToField,
-    showTooltip,
-    getSignatureFields,
-    state.completedFields,
-    setWizardPhase,
-    submitForm,
-  ]);
+  }, [state.wizard.isWizardMode, startWizard, stopWizard, getNextRequiredField, navigateToField, showTooltip]);
+
+  const handleWizardButtonClick = useCallback(() => {
+    toggleWizard();
+  }, [toggleWizard]);
 
   // Field Focus Utilities
   const focusFieldById = useCallback((fieldId: string) => {
@@ -826,6 +795,7 @@ export const FormProvider: React.FC<FormProviderProps> = ({
     areRequiredFieldsCompleted,
     startWizard,
     stopWizard,
+    toggleWizard,
     setWizardPhase,
     navigateToField,
     navigateBack,

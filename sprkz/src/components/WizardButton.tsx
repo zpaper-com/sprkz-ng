@@ -4,8 +4,8 @@ import {
   Box,
   CircularProgress,
   Tooltip,
-  Badge,
   Typography,
+  LinearProgress,
 } from '@mui/material';
 import {
   PlayArrow as StartIcon,
@@ -79,6 +79,9 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
 
   // Tooltip content
   const getTooltipContent = () => {
+    if (wizard.isWizardMode) {
+      return `Click to exit wizard mode - ${progressText}`;
+    }
     switch (buttonState.type) {
       case 'start':
         return 'Begin guided form completion';
@@ -94,34 +97,48 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
   };
 
   const buttonContent = (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', width: '100%' }}>
       {isSubmitting && buttonState.type === 'submit' ? (
         <CircularProgress size={20} color="inherit" sx={{ mr: 1 }} />
       ) : (
         getButtonIcon()
       )}
       <Typography variant="button" sx={{ fontWeight: 'bold' }}>
-        {isSubmitting && buttonState.type === 'submit' ? 'Submitting...' : buttonState.text}
+        {wizard.isWizardMode ? 'Wizard Mode' : buttonState.text}
       </Typography>
+      
+      {/* Thin progress bar inside button when in wizard mode */}
+      {wizard.isWizardMode && showProgress && (
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 2,
+            left: 8,
+            right: 8,
+            height: 2,
+            backgroundColor: 'rgba(255,255,255,0.3)',
+            borderRadius: 1,
+            overflow: 'hidden',
+          }}
+        >
+          <LinearProgress
+            variant="determinate"
+            value={progress.percentage}
+            sx={{
+              height: '100%',
+              backgroundColor: 'transparent',
+              '& .MuiLinearProgress-bar': {
+                backgroundColor: 'rgba(255,255,255,0.8)',
+              },
+            }}
+          />
+        </Box>
+      )}
     </Box>
   );
 
-  // Progress badge for wizard mode
-  const withProgressBadge = showProgress && wizard.isWizardMode && (
-    <Badge
-      badgeContent={`${progress.completed}/${progress.total}`}
-      color="info"
-      sx={{
-        '& .MuiBadge-badge': {
-          fontSize: '0.75rem',
-          minWidth: '24px',
-          height: '20px',
-        },
-      }}
-    >
-      {buttonContent}
-    </Badge>
-  );
+  // Progress badge for wizard mode (now shown as tooltip content)
+  const progressText = `${progress.completed}/${progress.total} fields completed (${progress.percentage}%)`;
 
   return (
     <Tooltip title={getTooltipContent()} arrow>
@@ -147,7 +164,7 @@ export const WizardButton: React.FC<WizardButtonProps> = ({
             transition: 'all 0.2s ease-in-out',
           }}
         >
-          {showProgress && wizard.isWizardMode ? withProgressBadge : buttonContent}
+          {buttonContent}
         </Button>
       </span>
     </Tooltip>
