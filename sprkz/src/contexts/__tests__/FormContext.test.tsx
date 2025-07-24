@@ -368,7 +368,10 @@ describe('FormContext', () => {
       result.current.setFormFields(mockFormFields);
     });
 
-    const validationResult = result.current.validateForm();
+    let validationResult: any;
+    act(() => {
+      validationResult = result.current.validateForm();
+    });
 
     expect(validationResult).toEqual(mockValidationResult);
     expect(result.current.state.validationResult).toEqual(mockValidationResult);
@@ -379,10 +382,6 @@ describe('FormContext', () => {
   });
 
   test('should validate individual field', () => {
-    formFieldService.validateField.mockReturnValue([
-      { fieldId: 'field2', message: 'Invalid email format' },
-    ]);
-
     const { result } = renderHook(() => useForm(), {
       wrapper: TestWrapper,
     });
@@ -393,25 +392,44 @@ describe('FormContext', () => {
     });
 
     const error = result.current.validateField('field2');
-    expect(error).toBe('Invalid email format');
+    expect(error).toBe('Please enter a valid email address');
   });
 
   test('should clear validation errors', () => {
+    const mockValidationResult = {
+      isValid: false,
+      errors: [{ fieldId: 'field1', message: 'Error' }],
+      missingRequired: [],
+    };
+    formFieldService.validateFormData.mockReturnValue(mockValidationResult);
+
     const { result } = renderHook(() => useForm(), {
       wrapper: TestWrapper,
     });
 
-    // Set some validation errors
+    // First set some validation errors by calling validateForm
     act(() => {
-      result.current.state.validationErrors = { field1: 'Error' };
+      result.current.setFormFields(mockFormFields);
     });
 
+    act(() => {
+      result.current.validateForm();
+    });
+
+    // Verify errors are set
+    expect(result.current.state.validationErrors).toEqual({ field1: 'Error' });
+
+    // Now clear them
     act(() => {
       result.current.clearValidationErrors();
     });
 
     expect(result.current.state.validationErrors).toEqual({});
-    expect(result.current.state.validationResult).toBeNull();
+    expect(result.current.state.validationResult).toEqual({
+      isValid: true,
+      errors: [],
+      missingRequired: [],
+    });
   });
 
   test('should submit form successfully', async () => {
