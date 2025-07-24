@@ -17,6 +17,19 @@ jest.mock('../../services/formFieldService', () => ({
   },
 }));
 
+// Mock useFieldFocus hook
+jest.mock('../../hooks/useFieldFocus', () => ({
+  useFieldFocus: () => ({
+    focusField: jest.fn(),
+  }),
+}));
+
+// Mock validation utils
+const mockValidateFieldValue = jest.fn();
+jest.mock('../../utils/validationUtils', () => ({
+  validateFieldValue: mockValidateFieldValue,
+}));
+
 const { formFieldService } = jest.requireMock(
   '../../services/formFieldService'
 );
@@ -115,6 +128,7 @@ describe('FormContext', () => {
       missingRequired: [],
     });
     formFieldService.validateField.mockReturnValue([]);
+    mockValidateFieldValue.mockReturnValue('Please enter a valid email address');
   });
 
   test('should throw error when useForm is used outside provider', () => {
@@ -533,5 +547,503 @@ describe('FormContext', () => {
     // But should keep field definitions
     expect(result.current.state.allPageFields).toEqual(mockFormFields);
     expect(result.current.state.requiredFields).toEqual(mockRequiredFields);
+  });
+
+  describe('Wizard State Management', () => {
+    test('should start wizard mode', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+      });
+
+      // Initially not in wizard mode
+      expect(result.current.state.wizard.isWizardMode).toBe(false);
+      expect(result.current.state.wizard.currentPhase).toBe('start');
+
+      // Start wizard
+      act(() => {
+        result.current.startWizard();
+      });
+
+      expect(result.current.state.wizard.isWizardMode).toBe(true);
+      expect(result.current.state.wizard.currentPhase).toBe('filling');
+      expect(result.current.state.wizard.fieldHistory).toEqual([]);
+    });
+
+    test('should stop wizard mode', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        result.current.startWizard();
+      });
+
+      // Should be in wizard mode
+      expect(result.current.state.wizard.isWizardMode).toBe(true);
+
+      // Stop wizard
+      act(() => {
+        result.current.stopWizard();
+      });
+
+      expect(result.current.state.wizard.isWizardMode).toBe(false);
+      expect(result.current.state.wizard.currentPhase).toBe('start');
+      expect(result.current.state.wizard.fieldHistory).toEqual([]);
+      expect(result.current.state.wizard.highlightedFieldId).toBeNull();
+      expect(result.current.state.wizard.showTooltip).toBe(false);
+      expect(result.current.state.wizard.tooltipMessage).toBe('');
+      expect(result.current.state.wizard.tooltipFieldId).toBeNull();
+    });
+
+    test('should toggle wizard mode', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+      });
+
+      // Toggle to start wizard
+      act(() => {
+        result.current.toggleWizard();
+      });
+
+      expect(result.current.state.wizard.isWizardMode).toBe(true);
+
+      // Toggle to stop wizard
+      act(() => {
+        result.current.toggleWizard();
+      });
+
+      expect(result.current.state.wizard.isWizardMode).toBe(false);
+    });
+
+    test('should set wizard phase', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+
+      act(() => {
+        result.current.startWizard();
+        result.current.setWizardPhase('signing');
+      });
+
+      expect(result.current.state.wizard.currentPhase).toBe('signing');
+
+      act(() => {
+        result.current.setWizardPhase('complete');
+      });
+
+      expect(result.current.state.wizard.currentPhase).toBe('complete');
+    });
+
+    test('should navigate to field', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        result.current.navigateToField('field2');
+      });
+
+      expect(result.current.state.currentFieldId).toBe('field2');
+      expect(result.current.state.wizard.highlightedFieldId).toBe('field2');
+      expect(result.current.state.wizard.fieldHistory).toEqual([]);
+    });
+
+    test('should track field navigation history', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        result.current.setCurrentField('field1');
+        result.current.navigateToField('field2');
+      });
+
+      expect(result.current.state.currentFieldId).toBe('field2');
+      expect(result.current.state.wizard.fieldHistory).toEqual(['field1']);
+
+      act(() => {
+        result.current.navigateToField('signature1');
+      });
+
+      expect(result.current.state.currentFieldId).toBe('signature1');
+      expect(result.current.state.wizard.fieldHistory).toEqual(['field1', 'field2']);
+    });
+
+    test('should navigate back through field history', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        result.current.setCurrentField('field1');
+        result.current.navigateToField('field2');
+        result.current.navigateToField('signature1');
+      });
+
+      expect(result.current.state.wizard.fieldHistory).toEqual(['field1', 'field2']);
+
+      // Navigate back
+      act(() => {
+        result.current.navigateBack();
+      });
+
+      expect(result.current.state.currentFieldId).toBe('field2');
+      expect(result.current.state.wizard.highlightedFieldId).toBe('field2');
+      expect(result.current.state.wizard.fieldHistory).toEqual(['field1']);
+
+      // Navigate back again
+      act(() => {
+        result.current.navigateBack();
+      });
+
+      expect(result.current.state.currentFieldId).toBe('field1');
+      expect(result.current.state.wizard.fieldHistory).toEqual([]);
+    });
+
+    test('should navigate back with empty history', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      // Navigate back with no history
+      act(() => {
+        result.current.navigateBack();
+      });
+
+      expect(result.current.state.currentFieldId).toBeNull();
+      expect(result.current.state.wizard.highlightedFieldId).toBeNull();
+    });
+
+    test('should set highlighted field', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+
+      act(() => {
+        result.current.setHighlightedField('field1');
+      });
+
+      expect(result.current.state.wizard.highlightedFieldId).toBe('field1');
+
+      act(() => {
+        result.current.setHighlightedField(null);
+      });
+
+      expect(result.current.state.wizard.highlightedFieldId).toBeNull();
+    });
+
+    test('should show and hide tooltip', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+
+      // Show tooltip
+      act(() => {
+        result.current.showTooltip('field1', 'Fill out this field');
+      });
+
+      expect(result.current.state.wizard.showTooltip).toBe(true);
+      expect(result.current.state.wizard.tooltipMessage).toBe('Fill out this field');
+      expect(result.current.state.wizard.tooltipFieldId).toBe('field1');
+
+      // Hide tooltip
+      act(() => {
+        result.current.hideTooltip();
+      });
+
+      expect(result.current.state.wizard.showTooltip).toBe(false);
+      expect(result.current.state.wizard.tooltipMessage).toBe('');
+      expect(result.current.state.wizard.tooltipFieldId).toBeNull();
+    });
+  });
+
+  describe('Wizard Button State Logic', () => {
+    test('should return start state when not in wizard mode', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+      });
+
+      const buttonState = result.current.getWizardButtonState();
+      
+      expect(buttonState.type).toBe('start');
+      expect(buttonState.text).toBe('Start');
+      expect(buttonState.color).toBe('primary');
+      expect(buttonState.disabled).toBe(false);
+    });
+
+    test('should return next state when in wizard mode with incomplete required fields', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        result.current.startWizard();
+      });
+
+      const buttonState = result.current.getWizardButtonState();
+      
+      expect(buttonState.type).toBe('next');
+      expect(buttonState.text).toBe('Next');
+      expect(buttonState.color).toBe('warning');
+      expect(buttonState.disabled).toBe(false);
+    });
+
+    test('should return sign state when required fields complete but signatures incomplete', () => {
+      // Create mock fields where signature is NOT required but other fields are
+      const mockFieldsWithOptionalSignature: PageFormFields[] = [
+        {
+          pageNumber: 1,
+          fields: [
+            {
+              id: 'field1',
+              name: 'First Name',
+              type: 'text',
+              required: true,
+              readOnly: false,
+              rect: [0, 0, 100, 50],
+              pageNumber: 1,
+            },
+            {
+              id: 'field2',
+              name: 'Email',
+              type: 'text',
+              required: true,
+              readOnly: false,
+              rect: [0, 50, 100, 100],
+              pageNumber: 1,
+            },
+          ] as FormField[],
+          radioGroups: [],
+        },
+        {
+          pageNumber: 2,
+          fields: [
+            {
+              id: 'signature1',
+              name: 'Signature',
+              type: 'signature',
+              required: false, // Make signature optional for this test
+              readOnly: false,
+              rect: [0, 0, 200, 100],
+              pageNumber: 2,
+            },
+          ] as FormField[],
+          radioGroups: [],
+        },
+      ];
+
+      const requiredFieldsOnly = [
+        mockFieldsWithOptionalSignature[0].fields[0], // field1
+        mockFieldsWithOptionalSignature[0].fields[1], // field2 (email)
+      ];
+
+      // Mock the service to return only text fields as required
+      formFieldService.getRequiredFields.mockReturnValueOnce(requiredFieldsOnly);
+
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFieldsWithOptionalSignature);
+        result.current.startWizard();
+        // Complete required text fields but not signature
+        result.current.setFieldValue('field1', 'John');
+        result.current.setFieldValue('field2', 'john@example.com');
+      });
+
+      const buttonState = result.current.getWizardButtonState();
+      
+      expect(buttonState.type).toBe('sign');
+      expect(buttonState.text).toBe('Sign');
+      expect(buttonState.color).toBe('secondary');
+      expect(buttonState.disabled).toBe(false);
+    });
+
+    test('should return submit state when all fields are complete', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        result.current.startWizard();
+        // Complete all fields
+        result.current.setFieldValue('field1', 'John');
+        result.current.setFieldValue('field2', 'john@example.com');
+        result.current.setFieldValue('signature1', 'signature data');
+      });
+
+      const buttonState = result.current.getWizardButtonState();
+      
+      expect(buttonState.type).toBe('submit');
+      expect(buttonState.text).toBe('Submit');
+      expect(buttonState.color).toBe('success');
+      expect(buttonState.disabled).toBe(false);
+    });
+
+    test('should disable submit button when form is submitting', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        result.current.startWizard();
+        // Complete all fields
+        result.current.setFieldValue('field1', 'John');
+        result.current.setFieldValue('field2', 'john@example.com');
+        result.current.setFieldValue('signature1', 'signature data');
+      });
+
+      // Simulate submitting state
+      act(() => {
+        result.current.state.isSubmitting = true;
+      });
+
+      const buttonState = result.current.getWizardButtonState();
+      
+      expect(buttonState.type).toBe('submit');
+      expect(buttonState.disabled).toBe(true);
+    });
+
+    test('should handle wizard button click', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+      });
+
+      // Initially not in wizard mode
+      expect(result.current.state.wizard.isWizardMode).toBe(false);
+
+      // Click wizard button to start
+      act(() => {
+        result.current.handleWizardButtonClick();
+      });
+
+      expect(result.current.state.wizard.isWizardMode).toBe(true);
+
+      // Click again to stop
+      act(() => {
+        result.current.handleWizardButtonClick();
+      });
+
+      expect(result.current.state.wizard.isWizardMode).toBe(false);
+    });
+  });
+
+  describe('Field Navigation and Focus', () => {
+    test('should get next incomplete field (including optional fields)', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+      });
+
+      // First incomplete field should be field1
+      let nextField = result.current.getNextIncompleteField();
+      expect(nextField?.id).toBe('field1');
+
+      // Complete field1
+      act(() => {
+        result.current.setFieldValue('field1', 'John');
+      });
+
+      // Next should be field2
+      nextField = result.current.getNextIncompleteField();
+      expect(nextField?.id).toBe('field2');
+
+      // Complete field2
+      act(() => {
+        result.current.setFieldValue('field2', 'john@example.com');
+      });
+
+      // Next should be the optional field
+      nextField = result.current.getNextIncompleteField();
+      expect(nextField?.id).toBe('field3');
+    });
+
+    test('should return null when all fields are complete', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        // Complete all fields
+        result.current.setFieldValue('field1', 'John');
+        result.current.setFieldValue('field2', 'john@example.com');
+        result.current.setFieldValue('field3', 'Optional value');
+        result.current.setFieldValue('signature1', 'signature data');
+      });
+
+      const nextField = result.current.getNextIncompleteField();
+      expect(nextField).toBeNull();
+    });
+
+    test('should focus field by ID', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        result.current.focusFieldById('field1');
+      });
+
+      // This tests that the function executes without error
+      // The actual focusing behavior is tested in the useFieldFocus hook
+      expect(result.current).toBeDefined();
+    });
+
+    test('should focus current field', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.setFormFields(mockFormFields);
+        result.current.setCurrentField('field2');
+        result.current.focusCurrentField();
+      });
+
+      // This tests that the function executes without error
+      expect(result.current).toBeDefined();
+    });
+
+    test('should handle focus current field when no current field', () => {
+      const { result } = renderHook(() => useForm(), {
+        wrapper: TestWrapper,
+      });
+      
+      act(() => {
+        result.current.focusCurrentField();
+      });
+
+      // Should handle gracefully when no current field is set
+      expect(result.current.state.currentFieldId).toBeNull();
+    });
   });
 });
