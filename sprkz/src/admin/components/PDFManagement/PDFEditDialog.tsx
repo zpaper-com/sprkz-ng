@@ -32,6 +32,7 @@ import {
   Edit as EditIcon,
   Save as SaveIcon,
   Cancel as CancelIcon,
+  Close as CloseIcon,
 } from '@mui/icons-material';
 import { formFieldService, FormField } from '../../../services/formFieldService';
 import { pdfService } from '../../../services/pdfService';
@@ -230,11 +231,21 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
   if (!open || !filename) return null;
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth>
+    <Dialog open={open} onClose={onClose} fullScreen>
       <DialogTitle>
-        <Box display="flex" alignItems="center" gap={1}>
-          <EditIcon />
-          <Typography variant="h6">Edit PDF: {filename}</Typography>
+        <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
+          <Box display="flex" alignItems="center" gap={1}>
+            <EditIcon />
+            <Typography variant="h6">Edit PDF: {filename}</Typography>
+          </Box>
+          <IconButton 
+            onClick={onClose}
+            size="large"
+            edge="end"
+            aria-label="close"
+          >
+            <CloseIcon />
+          </IconButton>
         </Box>
       </DialogTitle>
 
@@ -363,8 +374,8 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
 
               <Collapse in={expandedSections.fields}>
                 <Box mt={2}>
-                  <TableContainer component={Paper} variant="outlined">
-                    <Table size="small">
+                  <TableContainer component={Paper} variant="outlined" sx={{ maxHeight: '60vh', overflow: 'auto' }}>
+                    <Table size="small" stickyHeader>
                       <TableHead>
                         <TableRow>
                           <TableCell>Field Name</TableCell>
@@ -414,7 +425,7 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
                                   </Select>
                                 </FormControl>
                               </TableCell>
-                              <TableCell>
+                              <TableCell sx={{ minWidth: 150 }}>
                                 {isEditing ? (
                                   <TextField
                                     size="small"
@@ -422,7 +433,7 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
                                     onChange={(e) =>
                                       handleFieldConfigChange(field.name, 'label', e.target.value)
                                     }
-                                    sx={{ minWidth: 120 }}
+                                    fullWidth
                                   />
                                 ) : (
                                   <Typography variant="body2">
@@ -430,7 +441,7 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
                                   </Typography>
                                 )}
                               </TableCell>
-                              <TableCell>
+                              <TableCell sx={{ minWidth: 150 }}>
                                 {isEditing ? (
                                   <TextField
                                     size="small"
@@ -438,7 +449,7 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
                                     onChange={(e) =>
                                       handleFieldConfigChange(field.name, 'placeholder', e.target.value)
                                     }
-                                    sx={{ minWidth: 120 }}
+                                    fullWidth
                                   />
                                 ) : (
                                   <Typography variant="body2" color="textSecondary">

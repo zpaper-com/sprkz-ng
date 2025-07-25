@@ -2133,3 +2133,30 @@
 2025-07-25T13:04:38: RpcIpcMessagePortClosedError: Process 201106 exited [SIGABRT].
 2025-07-25T13:04:38: Issues checking service aborted - probably out of memory. Check the `memoryLimit` option in the ForkTsCheckerWebpackPlugin configuration.
 2025-07-25T13:04:38: If increasing the memory doesn't solve the issue, it's most probably a bug in the TypeScript or EsLint.
+2025-07-25T14:37:27: 
+2025-07-25T14:37:27: <--- Last few GCs --->
+2025-07-25T14:37:27: 
+2025-07-25T14:37:27: [201034:0x55d5de0cf100]  6052466 ms: Scavenge (reduce) 2006.3 (2048.3) -> 2005.7 (2048.5) MB, 22.8 / 0.0 ms  (average mu = 0.254, current mu = 0.248) allocation failure; 
+2025-07-25T14:37:27: [201034:0x55d5de0cf100]  6052527 ms: Scavenge (reduce) 2006.7 (2048.8) -> 2006.1 (2049.0) MB, 11.8 / 0.0 ms  (average mu = 0.254, current mu = 0.248) allocation failure; 
+2025-07-25T14:37:27: 
+2025-07-25T14:37:27: 
+2025-07-25T14:37:27: <--- JS stacktrace --->
+2025-07-25T14:37:27: 
+2025-07-25T14:37:27: FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+2025-07-25T14:37:27:  1: 0x55d5d9b30904 node::Abort() [/usr/bin/node-18]
+2025-07-25T14:37:27:  2: 0x55d5d9a13026  [/usr/bin/node-18]
+2025-07-25T14:37:27:  3: 0x55d5da3fee84 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-25T14:37:27:  4: 0x55d5da3ff26c v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-25T14:37:27:  5: 0x55d5da5fa8f9  [/usr/bin/node-18]
+2025-07-25T14:37:27:  6: 0x55d5da5fb926 v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [/usr/bin/node-18]
+2025-07-25T14:37:27:  7: 0x55d5da60d68b v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::internal::GarbageCollectionReason, char const*, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-25T14:37:27:  8: 0x55d5da60e79e v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-25T14:37:27:  9: 0x55d5da5e5a8a v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-25T14:37:27: 10: 0x55d5da5e6cc7 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-25T14:37:27: 11: 0x55d5da5c6ab4 v8::internal::Factory::AllocateRaw(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-25T14:37:27: 12: 0x55d5da5bdf10 v8::internal::FactoryBase<v8::internal::Factory>::AllocateRawArray(int, v8::internal::AllocationType) [/usr/bin/node-18]
+2025-07-25T14:37:27: 13: 0x55d5da5be088 v8::internal::FactoryBase<v8::internal::Factory>::NewFixedArrayWithFiller(v8::internal::Handle<v8::internal::Map>, int, v8::internal::Handle<v8::internal::Oddball>, v8::internal::AllocationType) [/usr/bin/node-18]
+2025-07-25T14:37:27: 14: 0x55d5da8ee228 v8::internal::MaybeHandle<v8::internal::OrderedHashMap> v8::internal::OrderedHashTable<v8::internal::OrderedHashMap, 2>::Allocate<v8::internal::Isolate>(v8::internal::Isolate*, int, v8::internal::AllocationType) [/usr/bin/node-18]
+2025-07-25T14:37:27: 15: 0x55d5da8ee2ff v8::internal::MaybeHandle<v8::internal::OrderedHashMap> v8::internal::OrderedHashTable<v8::internal::OrderedHashMap, 2>::Rehash<v8::internal::Isolate>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::OrderedHashMap>, int) [/usr/bin/node-18]
+2025-07-25T14:37:27: 16: 0x55d5daa16b2b v8::internal::Runtime_MapGrow(int, unsigned long*, v8::internal::Isolate*) [/usr/bin/node-18]
+2025-07-25T14:37:27: 17: 0x55d5dae53b39  [/usr/bin/node-18]
