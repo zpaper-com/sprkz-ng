@@ -17,6 +17,7 @@ import { AdminProvider } from './contexts/AdminContext';
 import FeatureManagement from './components/FeatureManagement/FeatureManagement';
 import URLConfiguration from './components/URLConfiguration/URLConfiguration';
 import PDFManagement from './components/PDFManagement/PDFManagement';
+import LayoutManagement from './components/LayoutManagement/LayoutManagement';
 import { useTheme } from './hooks/useTheme';
 
 interface TabPanelProps {
@@ -95,6 +96,7 @@ const AdminInterface: React.FC = () => {
                 <Tab label="URL Configuration" {...a11yProps(0)} />
                 <Tab label="PDF Management" {...a11yProps(1)} />
                 <Tab label="Features" {...a11yProps(2)} />
+                <Tab label="Layouts" {...a11yProps(3)} />
               </Tabs>
             </Box>
 
@@ -106,6 +108,9 @@ const AdminInterface: React.FC = () => {
             </TabPanel>
             <TabPanel value={tabValue} index={2}>
               <FeatureManagement />
+            </TabPanel>
+            <TabPanel value={tabValue} index={3}>
+              <LayoutManagement />
             </TabPanel>
           </Container>
         </Box>
