@@ -1,0 +1,923 @@
+2025-07-23T05:58:25: 
+2025-07-23T05:58:25: > sprkz@0.1.0 start
+2025-07-23T05:58:25: > react-scripts start
+2025-07-23T05:58:25: 
+2025-07-23T05:58:28: Attempting to bind to HOST environment variable: 0.0.0.0
+2025-07-23T05:58:28: If this was unintentional, check that you haven't mistakenly set it in your shell.
+2025-07-23T05:58:28: Learn more here: https://cra.link/advanced-config
+2025-07-23T05:58:28: 
+2025-07-23T05:58:33: Starting the development server...
+2025-07-23T05:58:33: 
+2025-07-23T05:59:46: Compiled with warnings.
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: [eslint] 
+2025-07-23T05:59:46: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T05:59:46:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/admin/contexts/AdminContext.tsx
+2025-07-23T05:59:46:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/admin/hooks/useWebSocket.ts
+2025-07-23T05:59:46:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T05:59:46:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/ProgressTracker.tsx
+2025-07-23T05:59:46:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/forms/FieldOverlay.tsx
+2025-07-23T05:59:46:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/forms/SignatureModal.tsx
+2025-07-23T05:59:46:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T05:59:46:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T05:59:46:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T05:59:46:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T05:59:46:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/pdf/PDFViewer.tsx
+2025-07-23T05:59:46:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T05:59:46:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/contexts/FormContext.tsx
+2025-07-23T05:59:46:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/services/formFieldService.ts
+2025-07-23T05:59:46:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/services/pdfService.ts
+2025-07-23T05:59:46:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/utils/validationUtils.ts
+2025-07-23T05:59:46:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: Search for the keywords to learn more about each warning.
+2025-07-23T05:59:46: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: WARNING in [eslint] 
+2025-07-23T05:59:46: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T05:59:46:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/admin/contexts/AdminContext.tsx
+2025-07-23T05:59:46:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/admin/hooks/useWebSocket.ts
+2025-07-23T05:59:46:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T05:59:46:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/ProgressTracker.tsx
+2025-07-23T05:59:46:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/forms/FieldOverlay.tsx
+2025-07-23T05:59:46:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/forms/SignatureModal.tsx
+2025-07-23T05:59:46:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T05:59:46:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T05:59:46:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T05:59:46:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T05:59:46:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/components/pdf/PDFViewer.tsx
+2025-07-23T05:59:46:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T05:59:46:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/contexts/FormContext.tsx
+2025-07-23T05:59:46:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/services/formFieldService.ts
+2025-07-23T05:59:46:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/services/pdfService.ts
+2025-07-23T05:59:46:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: src/utils/validationUtils.ts
+2025-07-23T05:59:46:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T05:59:46: 
+2025-07-23T05:59:46: webpack compiled with 1 warning
+2025-07-23T05:59:47: Files successfully emitted, waiting for typecheck results...
+2025-07-23T05:59:47: Issues checking in progress...
+2025-07-23T06:02:16: Compiling...
+2025-07-23T06:02:24: Compiled with warnings.
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: [eslint] 
+2025-07-23T06:02:24: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T06:02:24:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/admin/contexts/AdminContext.tsx
+2025-07-23T06:02:24:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/admin/hooks/useWebSocket.ts
+2025-07-23T06:02:24:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T06:02:24:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/ProgressTracker.tsx
+2025-07-23T06:02:24:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/forms/FieldOverlay.tsx
+2025-07-23T06:02:24:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/forms/SignatureModal.tsx
+2025-07-23T06:02:24:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:24:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T06:02:24:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T06:02:24:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T06:02:24:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/pdf/PDFViewer.tsx
+2025-07-23T06:02:24:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T06:02:24:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/contexts/FormContext.tsx
+2025-07-23T06:02:24:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/services/formFieldService.ts
+2025-07-23T06:02:24:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/services/pdfService.ts
+2025-07-23T06:02:24:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/utils/validationUtils.ts
+2025-07-23T06:02:24:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: Search for the keywords to learn more about each warning.
+2025-07-23T06:02:24: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: WARNING in [eslint] 
+2025-07-23T06:02:24: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T06:02:24:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/admin/contexts/AdminContext.tsx
+2025-07-23T06:02:24:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/admin/hooks/useWebSocket.ts
+2025-07-23T06:02:24:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T06:02:24:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/ProgressTracker.tsx
+2025-07-23T06:02:24:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/forms/FieldOverlay.tsx
+2025-07-23T06:02:24:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/forms/SignatureModal.tsx
+2025-07-23T06:02:24:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:24:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T06:02:24:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T06:02:24:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T06:02:24:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/components/pdf/PDFViewer.tsx
+2025-07-23T06:02:24:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T06:02:24:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/contexts/FormContext.tsx
+2025-07-23T06:02:24:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/services/formFieldService.ts
+2025-07-23T06:02:24:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/services/pdfService.ts
+2025-07-23T06:02:24:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: src/utils/validationUtils.ts
+2025-07-23T06:02:24:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:24: 
+2025-07-23T06:02:24: webpack compiled with 1 warning
+2025-07-23T06:02:24: Files successfully emitted, waiting for typecheck results...
+2025-07-23T06:02:24: Issues checking in progress...
+2025-07-23T06:02:39: Compiling...
+2025-07-23T06:02:42: Compiled with warnings.
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: [eslint] 
+2025-07-23T06:02:42: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T06:02:42:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/admin/contexts/AdminContext.tsx
+2025-07-23T06:02:42:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/admin/hooks/useWebSocket.ts
+2025-07-23T06:02:42:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T06:02:42:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/ProgressTracker.tsx
+2025-07-23T06:02:42:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/forms/FieldOverlay.tsx
+2025-07-23T06:02:42:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/forms/SignatureModal.tsx
+2025-07-23T06:02:42:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:42:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T06:02:42:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T06:02:42:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T06:02:42:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/pdf/PDFViewer.tsx
+2025-07-23T06:02:42:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T06:02:42:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/contexts/FormContext.tsx
+2025-07-23T06:02:42:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/services/formFieldService.ts
+2025-07-23T06:02:42:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/services/pdfService.ts
+2025-07-23T06:02:42:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/utils/validationUtils.ts
+2025-07-23T06:02:42:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: Search for the keywords to learn more about each warning.
+2025-07-23T06:02:42: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: WARNING in [eslint] 
+2025-07-23T06:02:42: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T06:02:42:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/admin/contexts/AdminContext.tsx
+2025-07-23T06:02:42:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/admin/hooks/useWebSocket.ts
+2025-07-23T06:02:42:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T06:02:42:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/ProgressTracker.tsx
+2025-07-23T06:02:42:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/forms/FieldOverlay.tsx
+2025-07-23T06:02:42:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/forms/SignatureModal.tsx
+2025-07-23T06:02:42:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:42:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T06:02:42:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T06:02:42:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T06:02:42:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/components/pdf/PDFViewer.tsx
+2025-07-23T06:02:42:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T06:02:42:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/contexts/FormContext.tsx
+2025-07-23T06:02:42:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/services/formFieldService.ts
+2025-07-23T06:02:42:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/services/pdfService.ts
+2025-07-23T06:02:42:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: src/utils/validationUtils.ts
+2025-07-23T06:02:42:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:02:42: 
+2025-07-23T06:02:42: webpack compiled with 1 warning
+2025-07-23T06:02:42: Files successfully emitted, waiting for typecheck results...
+2025-07-23T06:02:42: Issues checking in progress...
+2025-07-23T06:02:45: 
+2025-07-23T06:02:45: > sprkz@0.1.0 start
+2025-07-23T06:02:45: > react-scripts start
+2025-07-23T06:02:45: 
+2025-07-23T06:02:48: Attempting to bind to HOST environment variable: 0.0.0.0
+2025-07-23T06:02:48: If this was unintentional, check that you haven't mistakenly set it in your shell.
+2025-07-23T06:02:48: Learn more here: https://cra.link/advanced-config
+2025-07-23T06:02:48: 
+2025-07-23T06:02:52: Starting the development server...
+2025-07-23T06:02:52: 
+2025-07-23T06:03:53: 
+2025-07-23T06:03:53: > sprkz@0.1.0 start
+2025-07-23T06:03:53: > react-scripts start
+2025-07-23T06:03:53: 
+2025-07-23T06:03:56: Attempting to bind to HOST environment variable: 0.0.0.0
+2025-07-23T06:03:56: If this was unintentional, check that you haven't mistakenly set it in your shell.
+2025-07-23T06:03:56: Learn more here: https://cra.link/advanced-config
+2025-07-23T06:03:56: 
+2025-07-23T06:03:59: Starting the development server...
+2025-07-23T06:03:59: 
+2025-07-23T06:04:03: 
+2025-07-23T06:04:03: > sprkz@0.1.0 start
+2025-07-23T06:04:03: > react-scripts start
+2025-07-23T06:04:03: 
+2025-07-23T06:04:05: Attempting to bind to HOST environment variable: 0.0.0.0
+2025-07-23T06:04:05: If this was unintentional, check that you haven't mistakenly set it in your shell.
+2025-07-23T06:04:05: Learn more here: https://cra.link/advanced-config
+2025-07-23T06:04:05: 
+2025-07-23T06:04:08: Starting the development server...
+2025-07-23T06:04:08: 
+2025-07-23T06:04:30: 
+2025-07-23T06:04:30: > sprkz@0.1.0 start
+2025-07-23T06:04:30: > react-scripts start
+2025-07-23T06:04:30: 
+2025-07-23T06:04:32: Attempting to bind to HOST environment variable: 0.0.0.0
+2025-07-23T06:04:32: If this was unintentional, check that you haven't mistakenly set it in your shell.
+2025-07-23T06:04:32: Learn more here: https://cra.link/advanced-config
+2025-07-23T06:04:32: 
+2025-07-23T06:04:35: Starting the development server...
+2025-07-23T06:04:35: 
+2025-07-23T06:06:09: Compiled with warnings.
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: [eslint] 
+2025-07-23T06:06:09: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T06:06:09:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/admin/contexts/AdminContext.tsx
+2025-07-23T06:06:09:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/admin/hooks/useWebSocket.ts
+2025-07-23T06:06:09:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T06:06:09:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/components/ProgressTracker.tsx
+2025-07-23T06:06:09:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/components/forms/FieldOverlay.tsx
+2025-07-23T06:06:09:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/components/forms/SignatureModal.tsx
+2025-07-23T06:06:09:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:09:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T06:06:09:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T06:06:09:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T06:06:09:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/components/pdf/PDFViewer.tsx
+2025-07-23T06:06:09:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T06:06:09:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/contexts/FormContext.tsx
+2025-07-23T06:06:09:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/services/formFieldService.ts
+2025-07-23T06:06:09:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/services/pdfService.ts
+2025-07-23T06:06:09:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: src/utils/validationUtils.ts
+2025-07-23T06:06:09:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:09: 
+2025-07-23T06:06:09: Search for the keywords to learn more about each warning.
+2025-07-23T06:06:09: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T06:06:09: 
+2025-07-23T06:06:10: WARNING in [eslint] 
+2025-07-23T06:06:10: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T06:06:10:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/admin/contexts/AdminContext.tsx
+2025-07-23T06:06:10:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/admin/hooks/useWebSocket.ts
+2025-07-23T06:06:10:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T06:06:10:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/components/ProgressTracker.tsx
+2025-07-23T06:06:10:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/components/forms/FieldOverlay.tsx
+2025-07-23T06:06:10:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/components/forms/SignatureModal.tsx
+2025-07-23T06:06:10:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:10:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T06:06:10:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T06:06:10:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T06:06:10:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/components/pdf/PDFViewer.tsx
+2025-07-23T06:06:10:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T06:06:10:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/contexts/FormContext.tsx
+2025-07-23T06:06:10:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/services/formFieldService.ts
+2025-07-23T06:06:10:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/services/pdfService.ts
+2025-07-23T06:06:10:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: src/utils/validationUtils.ts
+2025-07-23T06:06:10:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:10: 
+2025-07-23T06:06:10: webpack compiled with 1 warning
+2025-07-23T06:06:10: Files successfully emitted, waiting for typecheck results...
+2025-07-23T06:06:10: Issues checking in progress...
+2025-07-23T06:06:10: Compiling...
+2025-07-23T06:06:20: Compiled with warnings.
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: [eslint] 
+2025-07-23T06:06:20: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T06:06:20:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/admin/contexts/AdminContext.tsx
+2025-07-23T06:06:20:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/admin/hooks/useWebSocket.ts
+2025-07-23T06:06:20:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T06:06:20:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/ProgressTracker.tsx
+2025-07-23T06:06:20:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/forms/FieldOverlay.tsx
+2025-07-23T06:06:20:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/forms/SignatureModal.tsx
+2025-07-23T06:06:20:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:20:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T06:06:20:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T06:06:20:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T06:06:20:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/pdf/PDFViewer.tsx
+2025-07-23T06:06:20:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T06:06:20:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/contexts/FormContext.tsx
+2025-07-23T06:06:20:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/services/formFieldService.ts
+2025-07-23T06:06:20:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/services/pdfService.ts
+2025-07-23T06:06:20:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/utils/validationUtils.ts
+2025-07-23T06:06:20:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: Search for the keywords to learn more about each warning.
+2025-07-23T06:06:20: To ignore, add // eslint-disable-next-line to the line before.
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: WARNING in [eslint] 
+2025-07-23T06:06:20: src/admin/components/URLConfiguration/URLPanel.tsx
+2025-07-23T06:06:20:   Line 50:35:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/admin/contexts/AdminContext.tsx
+2025-07-23T06:06:20:   Line 186:9:  The 'actions' object makes the dependencies of useEffect Hook (at line 321) change on every render. To fix this, wrap the initialization of 'actions' in its own useMemo() Hook  react-hooks/exhaustive-deps
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/admin/hooks/useWebSocket.ts
+2025-07-23T06:06:20:   Line 50:42:  The ref value 'reconnectTimeoutRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'reconnectTimeoutRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+2025-07-23T06:06:20:   Line 56:6:   React Hook useEffect has a missing dependency: 'connect'. Either include it or remove the dependency array                                                                                                                                                                             react-hooks/exhaustive-deps
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/ProgressTracker.tsx
+2025-07-23T06:06:20:   Line 60:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/forms/FieldOverlay.tsx
+2025-07-23T06:06:20:   Line 95:13:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 282:13:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/forms/SignatureModal.tsx
+2025-07-23T06:06:20:   Line 77:65:   React Hook useMemo has a missing dependency: 'getCanvasDimensions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:20:   Line 525:46:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 534:38:  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/mobile/MobileFormContainer.tsx
+2025-07-23T06:06:20:   Line 67:61:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/mobile/MobilePDFViewer.tsx
+2025-07-23T06:06:20:   Line 13:31:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 30:50:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 63:60:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/pdf/PDFFormContainer.tsx
+2025-07-23T06:06:20:   Line 125:54:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 366:56:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/components/pdf/PDFViewer.tsx
+2025-07-23T06:06:20:   Line 18:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 21:29:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 55:44:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 56:32:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 93:42:   Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 141:26:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 269:5:   React Hook useCallback has a missing dependency: 'createNativeFormElement'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+2025-07-23T06:06:20:   Line 273:48:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 389:47:  Unexpected any. Specify a different type                                                                                            @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 659:6:   React Hook useEffect has missing dependencies: 'currentPage' and 'pdfDocument'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/contexts/FormContext.tsx
+2025-07-23T06:06:20:   Line 42:28:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 68:67:   Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 343:43:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 344:39:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 410:40:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 428:62:  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 722:6:   React Hook useCallback has a missing dependency: 'state.requiredFields.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/services/formFieldService.ts
+2025-07-23T06:06:20:   Line 168:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 197:36:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 219:43:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 228:39:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 264:17:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 285:64:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 370:30:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 417:12:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 467:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 486:45:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 580:6:   Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/services/pdfService.ts
+2025-07-23T06:06:20:   Line 92:6:    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 129:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 130:25:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 177:15:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 186:42:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: src/utils/validationUtils.ts
+2025-07-23T06:06:20:   Line 109:10:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 154:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 175:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 188:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20:   Line 205:28:  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+2025-07-23T06:06:20: 
+2025-07-23T06:06:20: webpack compiled with 1 warning
+2025-07-23T06:06:21: Files successfully emitted, waiting for typecheck results...
+2025-07-23T06:06:21: Issues checking in progress...

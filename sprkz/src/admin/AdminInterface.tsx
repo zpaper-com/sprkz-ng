@@ -92,20 +92,20 @@ const AdminInterface: React.FC = () => {
           <Container maxWidth="xl" sx={{ mt: 2, mb: 2, flexGrow: 1 }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={tabValue} onChange={handleTabChange} aria-label="admin tabs">
-                <Tab label="Features" {...a11yProps(0)} />
-                <Tab label="URL Configuration" {...a11yProps(1)} />
-                <Tab label="PDF Management" {...a11yProps(2)} />
+                <Tab label="URL Configuration" {...a11yProps(0)} />
+                <Tab label="PDF Management" {...a11yProps(1)} />
+                <Tab label="Features" {...a11yProps(2)} />
               </Tabs>
             </Box>
 
             <TabPanel value={tabValue} index={0}>
-              <FeatureManagement />
-            </TabPanel>
-            <TabPanel value={tabValue} index={1}>
               <URLConfiguration />
             </TabPanel>
-            <TabPanel value={tabValue} index={2}>
+            <TabPanel value={tabValue} index={1}>
               <PDFManagement />
+            </TabPanel>
+            <TabPanel value={tabValue} index={2}>
+              <FeatureManagement />
             </TabPanel>
           </Container>
         </Box>

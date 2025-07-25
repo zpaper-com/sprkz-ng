@@ -1,0 +1,39 @@
+# Playwright Docker setup for MCP compatibility
+FROM mcr.microsoft.com/playwright:v1.54.1-jammy
+
+# Set working directory
+WORKDIR /workspace
+
+# Install additional tools for development
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js LTS (if different from base image)
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs
+
+# Initialize npm package and install playwright
+RUN npm init -y && npm install playwright
+
+# Ensure all browsers are installed
+RUN npx playwright install --with-deps
+
+# Create a non-root user for better security
+RUN useradd -m -s /bin/bash playwright && \
+    chown -R playwright:playwright /workspace
+
+# Switch to non-root user
+USER playwright
+
+# Expose port for Playwright server (if needed)
+EXPOSE 9222
+
+# Set environment variables
+ENV DISPLAY=:99
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+
+# Default command
+CMD ["/bin/bash"]

@@ -23,6 +23,14 @@ export const FEATURE_FLAGS = {
   SIGNATURE_MODAL: 12,
   FORM_VALIDATION_DISPLAY: 13,
   EXPORT_BUTTON: 14,
+  // Markup Tools
+  MARKUP_TOOLBAR: 30,
+  MARKUP_IMAGE_STAMP: 31,
+  MARKUP_HIGHLIGHT_AREA: 32,
+  MARKUP_SIGNATURE: 33,
+  MARKUP_DATE_TIME_STAMP: 34,
+  MARKUP_TEXT_AREA: 35,
+  MARKUP_IMAGE_ATTACHMENT: 36,
 } as const;
 
 // Type for feature flag keys
@@ -213,6 +221,14 @@ export function getDefaultFeatureConfig(): Record<FeatureFlagId, boolean> {
     [FEATURE_FLAGS.SIGNATURE_MODAL]: true,
     [FEATURE_FLAGS.FORM_VALIDATION_DISPLAY]: true,
     [FEATURE_FLAGS.EXPORT_BUTTON]: false, // New features default to disabled
+    // Markup Tools - default to disabled for controlled rollout
+    [FEATURE_FLAGS.MARKUP_TOOLBAR]: false,
+    [FEATURE_FLAGS.MARKUP_IMAGE_STAMP]: false,
+    [FEATURE_FLAGS.MARKUP_HIGHLIGHT_AREA]: false,
+    [FEATURE_FLAGS.MARKUP_SIGNATURE]: false,
+    [FEATURE_FLAGS.MARKUP_DATE_TIME_STAMP]: false,
+    [FEATURE_FLAGS.MARKUP_TEXT_AREA]: false,
+    [FEATURE_FLAGS.MARKUP_IMAGE_ATTACHMENT]: false,
   };
 }
 

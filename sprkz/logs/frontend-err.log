@@ -1,0 +1,39 @@
+2025-07-23T05:58:31: (node:5533) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T05:58:31: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
+2025-07-23T05:58:31: (node:5533) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:00:34: 
+2025-07-23T06:00:34: <--- Last few GCs --->
+2025-07-23T06:00:34: 
+2025-07-23T06:00:34: [5580:0x55592a1b9340]   122545 ms: Scavenge (reduce) 2041.0 (2082.7) -> 2040.5 (2083.0) MB, 15.3 / 0.0 ms  (average mu = 0.315, current mu = 0.010) allocation failure; 
+2025-07-23T06:00:34: [5580:0x55592a1b9340]   124156 ms: Mark-sweep (reduce) 2041.2 (2083.0) -> 2040.7 (2084.0) MB, 1515.9 / 0.0 ms  (+ 166.6 ms in 32 steps since start of marking, biggest step 31.9 ms, walltime since start of marking 1768 ms) (average mu = 0.359, current mu =
+2025-07-23T06:00:34: 
+2025-07-23T06:00:34: <--- JS stacktrace --->
+2025-07-23T06:00:34: 
+2025-07-23T06:00:34: FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+2025-07-23T06:00:34:  1: 0x555925930904 node::Abort() [/usr/bin/node-18]
+2025-07-23T06:00:34:  2: 0x555925813026  [/usr/bin/node-18]
+2025-07-23T06:00:34:  3: 0x5559261fee84 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T06:00:34:  4: 0x5559261ff26c v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/bin/node-18]
+2025-07-23T06:00:34:  5: 0x5559263fa8f9  [/usr/bin/node-18]
+2025-07-23T06:00:34:  6: 0x55592640e64b v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/bin/node-18]
+2025-07-23T06:00:34:  7: 0x5559263e5a8a v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T06:00:34:  8: 0x5559263e6cc7 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T06:00:34:  9: 0x5559263c6ab4 v8::internal::Factory::AllocateRaw(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/usr/bin/node-18]
+2025-07-23T06:00:34: 10: 0x5559263bdf10 v8::internal::FactoryBase<v8::internal::Factory>::AllocateRawArray(int, v8::internal::AllocationType) [/usr/bin/node-18]
+2025-07-23T06:00:34: 11: 0x5559263be088 v8::internal::FactoryBase<v8::internal::Factory>::NewFixedArrayWithFiller(v8::internal::Handle<v8::internal::Map>, int, v8::internal::Handle<v8::internal::Oddball>, v8::internal::AllocationType) [/usr/bin/node-18]
+2025-07-23T06:00:34: 12: 0x5559266ee228 v8::internal::MaybeHandle<v8::internal::OrderedHashMap> v8::internal::OrderedHashTable<v8::internal::OrderedHashMap, 2>::Allocate<v8::internal::Isolate>(v8::internal::Isolate*, int, v8::internal::AllocationType) [/usr/bin/node-18]
+2025-07-23T06:00:34: 13: 0x5559266ee2ff v8::internal::MaybeHandle<v8::internal::OrderedHashMap> v8::internal::OrderedHashTable<v8::internal::OrderedHashMap, 2>::Rehash<v8::internal::Isolate>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::OrderedHashMap>, int) [/usr/bin/node-18]
+2025-07-23T06:00:34: 14: 0x555926816b2b v8::internal::Runtime_MapGrow(int, unsigned long*, v8::internal::Isolate*) [/usr/bin/node-18]
+2025-07-23T06:00:34: 15: 0x555926c53b39  [/usr/bin/node-18]
+2025-07-23T06:02:50: (node:7144) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:02:50: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
+2025-07-23T06:02:50: (node:7144) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:03:58: (node:7552) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:03:58: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
+2025-07-23T06:03:58: (node:7552) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:04:08: (node:7785) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:04:08: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
+2025-07-23T06:04:08: (node:7785) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:04:35: (node:7987) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:04:35: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
+2025-07-23T06:04:35: (node:7987) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.

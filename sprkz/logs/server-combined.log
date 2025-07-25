@@ -1,0 +1,7 @@
+2025-07-23T06:11:22: Server running on port 7779
+2025-07-23T06:11:22: Admin API available at http://localhost:7779/api/admin
+2025-07-23T06:11:22: Connected to SQLite database
+2025-07-23T06:11:22: PDFs table ready
+2025-07-23T06:11:22: Settings table ready
+2025-07-23T06:12:22: Shutting down server...
+2025-07-23T06:12:22: Database connection closed

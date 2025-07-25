@@ -1,0 +1,2517 @@
+[
+  {
+    "name": "Case.Account.PersonMailingStreet",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personmailingstreet",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.FirstName",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Firstname",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 0.8,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "NAME",
+          "confidence": 0.3333333333333333,
+          "context": "NAME (First, M, Last)",
+          "lineNumber": 42
+        },
+        {
+          "label": "By   Print name   Date",
+          "confidence": 0.3333333333333333,
+          "context": "By:   Print name:   Date:",
+          "lineNumber": 317
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_Holder_Name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Holder Name",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 0.8,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "NAME",
+          "confidence": 0.3333333333333333,
+          "context": "NAME (First, M, Last)",
+          "lineNumber": 42
+        },
+        {
+          "label": "back of insurance cards.)",
+          "confidence": 0.3333333333333333,
+          "context": "back of insurance cards.)",
+          "lineNumber": 57
+        },
+        {
+          "label": "By   Print name   Date",
+          "confidence": 0.3333333333333333,
+          "context": "By:   Print name:   Date:",
+          "lineNumber": 317
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_Group",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Group",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "back of insurance cards.)",
+          "confidence": 0.3333333333333333,
+          "context": "back of insurance cards.)",
+          "lineNumber": 57
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_ID",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Id",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "back of insurance cards.)",
+          "confidence": 0.3333333333333333,
+          "context": "back of insurance cards.)",
+          "lineNumber": 57
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonHomePhone",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personhomephone",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Cell phone number",
+          "confidence": 0.8,
+          "context": "Cell phone number:",
+          "lineNumber": 313
+        },
+        {
+          "label": "PHONE   EMAIL ADDRESS",
+          "confidence": 0.3333333333333333,
+          "context": "PHONE   EMAIL ADDRESS",
+          "lineNumber": 51
+        },
+        {
+          "label": "Select One",
+          "confidence": 0.3333333333333333,
+          "context": "Select One:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonMailingPostalCode",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personmailingpostalcode",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Other ICD-10 Code",
+          "confidence": 0.3333333333333333,
+          "context": "Other ICD-10 Code",
+          "lineNumber": 72
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_Plan_Name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Plan Name",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 0.8,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "NAME",
+          "confidence": 0.3333333333333333,
+          "context": "NAME (First, M, Last)",
+          "lineNumber": 42
+        },
+        {
+          "label": "back of insurance cards.)",
+          "confidence": 0.3333333333333333,
+          "context": "back of insurance cards.)",
+          "lineNumber": 57
+        },
+        {
+          "label": "By   Print name   Date",
+          "confidence": 0.3333333333333333,
+          "context": "By:   Print name:   Date:",
+          "lineNumber": 317
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Social_Security_Number",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Social Security Number",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Cell phone number",
+          "confidence": 0.3333333333333333,
+          "context": "Cell phone number:",
+          "lineNumber": 313
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.LastName",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Lastname",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 0.8,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "NAME",
+          "confidence": 0.3333333333333333,
+          "context": "NAME (First, M, Last)",
+          "lineNumber": 42
+        },
+        {
+          "label": "By   Print name   Date",
+          "confidence": 0.3333333333333333,
+          "context": "By:   Print name:   Date:",
+          "lineNumber": 317
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonMailingCity",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personmailingcity",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "ADDRESS  CITY",
+          "confidence": 0.3333333333333333,
+          "context": "ADDRESS  CITY",
+          "lineNumber": 126
+        },
+        {
+          "label": "ADDRESS   CITY   STATE",
+          "confidence": 0.3333333333333333,
+          "context": "ADDRESS   CITY   STATE",
+          "lineNumber": 150
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonMailingState",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personmailingstate",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "ADDRESS   CITY   STATE",
+          "confidence": 0.3333333333333333,
+          "context": "ADDRESS   CITY   STATE",
+          "lineNumber": 150
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonEmail",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personemail",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Email Address",
+          "confidence": 0.8,
+          "context": "Email Address:",
+          "lineNumber": 260
+        },
+        {
+          "label": "PHONE   EMAIL ADDRESS",
+          "confidence": 0.3333333333333333,
+          "context": "PHONE   EMAIL ADDRESS",
+          "lineNumber": 51
+        },
+        {
+          "label": "Select One",
+          "confidence": 0.3333333333333333,
+          "context": "Select One:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.BillingStreet",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Billingstreet",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.BillingCity",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Billingcity",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.Phone",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Phone",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Cell phone number",
+          "confidence": 0.8,
+          "context": "Cell phone number:",
+          "lineNumber": 313
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.BillingPostalCode",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Billingpostalcode",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.Fax",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Fax",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.BillingState",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Billingstate",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.Name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Name",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 0.8,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "PRESCRIBER NAME    OFFICE CONTACT",
+          "confidence": 0.3333333333333333,
+          "context": "PRESCRIBER NAME (First, Last)   OFFICE CONTACT",
+          "lineNumber": 124
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.FirstName",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Firstname",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 0.8,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "NAME",
+          "confidence": 0.3333333333333333,
+          "context": "NAME (First, M, Last)",
+          "lineNumber": 42
+        },
+        {
+          "label": "PRESCRIBER NAME    OFFICE CONTACT",
+          "confidence": 0.3333333333333333,
+          "context": "PRESCRIBER NAME (First, Last)   OFFICE CONTACT",
+          "lineNumber": 124
+        },
+        {
+          "label": "By   Print name   Date",
+          "confidence": 0.3333333333333333,
+          "context": "By:   Print name:   Date:",
+          "lineNumber": 317
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.NPI_Number",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Npi Number",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Cell phone number",
+          "confidence": 0.3333333333333333,
+          "context": "Cell phone number:",
+          "lineNumber": 313
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.LastName",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Lastname",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 0.8,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "NAME",
+          "confidence": 0.3333333333333333,
+          "context": "NAME (First, M, Last)",
+          "lineNumber": 42
+        },
+        {
+          "label": "PRESCRIBER NAME    OFFICE CONTACT",
+          "confidence": 0.3333333333333333,
+          "context": "PRESCRIBER NAME (First, Last)   OFFICE CONTACT",
+          "lineNumber": 124
+        },
+        {
+          "label": "By   Print name   Date",
+          "confidence": 0.3333333333333333,
+          "context": "By:   Print name:   Date:",
+          "lineNumber": 317
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.State_License_Number",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.State License Number",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "ADDRESS   CITY   STATE",
+          "confidence": 0.3333333333333333,
+          "context": "ADDRESS   CITY   STATE",
+          "lineNumber": 150
+        },
+        {
+          "label": "Cell phone number",
+          "confidence": 0.3333333333333333,
+          "context": "Cell phone number:",
+          "lineNumber": 313
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box29",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box29",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box30",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box30",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box31",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box31",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Pharmacy Insurance",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Pharmacy Insurance",
+    "description": "3. Clinical Information (REQUIRED)",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Pharmacy Insurance PCN#   GROUP#",
+          "confidence": 0.5,
+          "context": "Pharmacy Insurance PCN#   GROUP#",
+          "lineNumber": 60
+        },
+        {
+          "label": "Preferred pharmacy",
+          "confidence": 0.5,
+          "context": "Preferred pharmacy",
+          "lineNumber": 170
+        },
+        {
+          "label": "back of insurance cards.)",
+          "confidence": 0.3333333333333333,
+          "context": "back of insurance cards.)",
+          "lineNumber": 57
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "3. Clinical Information (REQUIRED)",
+          "confidence": 0.3999999999999999,
+          "location": "Line 63 (3 lines after field name)",
+          "lineNumber": 63
+        }
+      ]
+    }
+  },
+  {
+    "name": "Pharmacy Insurance PCN",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Pharmacy Insurance Pcn",
+    "description": "3. Clinical Information (REQUIRED)",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Pharmacy Insurance PCN#   GROUP#",
+          "confidence": 0.75,
+          "context": "Pharmacy Insurance PCN#   GROUP#",
+          "lineNumber": 60
+        },
+        {
+          "label": "back of insurance cards.)",
+          "confidence": 0.3333333333333333,
+          "context": "back of insurance cards.)",
+          "lineNumber": 57
+        },
+        {
+          "label": "Preferred pharmacy",
+          "confidence": 0.3333333333333333,
+          "context": "Preferred pharmacy",
+          "lineNumber": 170
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "3. Clinical Information (REQUIRED)",
+          "confidence": 0.3999999999999999,
+          "location": "Line 63 (3 lines after field name)",
+          "lineNumber": 63
+        }
+      ]
+    }
+  },
+  {
+    "name": "Pharmacy Insurance group",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Pharmacy Insurance Group",
+    "description": "3. Clinical Information (REQUIRED)",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Pharmacy Insurance PCN#   GROUP#",
+          "confidence": 0.75,
+          "context": "Pharmacy Insurance PCN#   GROUP#",
+          "lineNumber": 60
+        },
+        {
+          "label": "Medical Insurance  POLICY#   GROUP#",
+          "confidence": 0.5,
+          "context": "Medical Insurance  POLICY#   GROUP#",
+          "lineNumber": 58
+        },
+        {
+          "label": "back of insurance cards.)",
+          "confidence": 0.3333333333333333,
+          "context": "back of insurance cards.)",
+          "lineNumber": 57
+        },
+        {
+          "label": "Preferred pharmacy",
+          "confidence": 0.3333333333333333,
+          "context": "Preferred pharmacy",
+          "lineNumber": 170
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "3. Clinical Information (REQUIRED)",
+          "confidence": 0.3999999999999999,
+          "location": "Line 63 (3 lines after field name)",
+          "lineNumber": 63
+        }
+      ]
+    }
+  },
+  {
+    "name": "Prescriber office contact",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Prescriber Office Contact",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Nonprescriber’s Office",
+          "confidence": 0.6666666666666666,
+          "context": "Nonprescriber’s Office",
+          "lineNumber": 141
+        },
+        {
+          "label": "PRESCRIBER NAME    OFFICE CONTACT",
+          "confidence": 0.5,
+          "context": "PRESCRIBER NAME (First, Last)   OFFICE CONTACT",
+          "lineNumber": 124
+        },
+        {
+          "label": "4. Prescriber Information",
+          "confidence": 0.3333333333333333,
+          "context": "4. Prescriber Information (REQUIRED)",
+          "lineNumber": 123
+        },
+        {
+          "label": "PRESCRIBER SIGNATURE",
+          "confidence": 0.3333333333333333,
+          "context": "PRESCRIBER SIGNATURE",
+          "lineNumber": 163
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box21",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box21",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box22",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box22",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box23",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box23",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box24",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box24",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box25",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box25",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Provide name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Provide Name",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 0.8,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "TO BE COMPLETED BY PROVIDER",
+          "confidence": 0.5,
+          "context": "TO BE COMPLETED BY PROVIDER",
+          "lineNumber": 62
+        },
+        {
+          "label": "PHYSICIAN OR INFUSION PROVIDER NAME",
+          "confidence": 0.5,
+          "context": "PHYSICIAN OR INFUSION PROVIDER NAME",
+          "lineNumber": 148
+        },
+        {
+          "label": "•My Healthcare Providers",
+          "confidence": 0.5,
+          "context": "•My Healthcare Providers",
+          "lineNumber": 282
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Facility name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Facility Name",
+    "description": "PHYSICIAN OR INFUSION PROVIDER NAME",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 0.8,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "PRACTICE/FACILITY NAME   NPI #   TAX ID#",
+          "confidence": 0.4,
+          "context": "PRACTICE/FACILITY NAME   NPI #   TAX ID#",
+          "lineNumber": 149
+        },
+        {
+          "label": "NAME",
+          "confidence": 0.3333333333333333,
+          "context": "NAME (First, M, Last)",
+          "lineNumber": 42
+        },
+        {
+          "label": "By   Print name   Date",
+          "confidence": 0.3333333333333333,
+          "context": "By:   Print name:   Date:",
+          "lineNumber": 317
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "PHYSICIAN OR INFUSION PROVIDER NAME",
+          "confidence": 0.6000000000000001,
+          "location": "Line 148 (1 lines before field name)",
+          "lineNumber": 148
+        }
+      ]
+    }
+  },
+  {
+    "name": "Provier NPI",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Provier Npi",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Provier tax ID",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Provier Tax Id",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Facility address",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Facility Address",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Email Address",
+          "confidence": 0.8,
+          "context": "Email Address:",
+          "lineNumber": 260
+        },
+        {
+          "label": "ADDRESS",
+          "confidence": 0.5,
+          "context": "ADDRESS",
+          "lineNumber": 49
+        },
+        {
+          "label": "ADDRESS  CITY",
+          "confidence": 0.5,
+          "context": "ADDRESS  CITY",
+          "lineNumber": 126
+        },
+        {
+          "label": "PHONE   EMAIL ADDRESS",
+          "confidence": 0.3333333333333333,
+          "context": "PHONE   EMAIL ADDRESS",
+          "lineNumber": 51
+        },
+        {
+          "label": "ADDRESS   CITY   STATE",
+          "confidence": 0.3333333333333333,
+          "context": "ADDRESS   CITY   STATE",
+          "lineNumber": 150
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Facility city",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Facility City",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "ADDRESS  CITY",
+          "confidence": 0.5,
+          "context": "ADDRESS  CITY",
+          "lineNumber": 126
+        },
+        {
+          "label": "ADDRESS   CITY   STATE",
+          "confidence": 0.3333333333333333,
+          "context": "ADDRESS   CITY   STATE",
+          "lineNumber": 150
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Facility state",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Facility State",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "ADDRESS   CITY   STATE",
+          "confidence": 0.3333333333333333,
+          "context": "ADDRESS   CITY   STATE",
+          "lineNumber": 150
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Facility zip code",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Facility Zip Code",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "CITY   STATE   ZIP CODE",
+          "confidence": 0.5,
+          "context": "CITY   STATE   ZIP CODE",
+          "lineNumber": 50
+        },
+        {
+          "label": "ZIP CODE   PHONE   FAX",
+          "confidence": 0.5,
+          "context": "ZIP CODE   PHONE   FAX",
+          "lineNumber": 151
+        },
+        {
+          "label": "STATE   ZIP CODE   PHONE   FAX",
+          "confidence": 0.4,
+          "context": "STATE   ZIP CODE   PHONE   FAX",
+          "lineNumber": 127
+        },
+        {
+          "label": "Other ICD-10 Code",
+          "confidence": 0.3333333333333333,
+          "context": "Other ICD-10 Code",
+          "lineNumber": 72
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Facility phone",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Facility Phone",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Cell phone number",
+          "confidence": 0.8,
+          "context": "Cell phone number:",
+          "lineNumber": 313
+        },
+        {
+          "label": "Select One",
+          "confidence": 0.5,
+          "context": "Select One:",
+          "lineNumber": 68
+        },
+        {
+          "label": "PHONE   EMAIL ADDRESS",
+          "confidence": 0.3333333333333333,
+          "context": "PHONE   EMAIL ADDRESS",
+          "lineNumber": 51
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Facility fax",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Facility Fax",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box17",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box17",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Refills",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Refills",
+    "description": "(NOTE: REQUIRED IF DIFFERENT FROM PRESCRIBER’S OFFICE. Shipments cannot be sent to PO boxes.)",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": [
+        {
+          "text": "(NOTE: REQUIRED IF DIFFERENT FROM PRESCRIBER’S OFFICE. Shipments cannot be sent to PO boxes.)",
+          "confidence": 0.6,
+          "location": "Line 139 (2 lines after field name)",
+          "lineNumber": 139
+        }
+      ]
+    }
+  },
+  {
+    "name": "Check Box18",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box18",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Refills_2",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Refills 2",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box19",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box19",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Refills_3",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Refills 3",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box20",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box20",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Refills_4",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Refills 4",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Prescriber signature DATE",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Prescriber Signature Date",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Start date",
+          "confidence": 0.8,
+          "context": "Start date:",
+          "lineNumber": 74
+        },
+        {
+          "label": "Not yet started     If not yet started, estimated start date",
+          "confidence": 0.8,
+          "context": "Not yet started     If not yet started, estimated start date:",
+          "lineNumber": 76
+        },
+        {
+          "label": "Date",
+          "confidence": 0.8,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "PRESCRIBER SIGNATURE",
+          "confidence": 0.6666666666666666,
+          "context": "PRESCRIBER SIGNATURE",
+          "lineNumber": 163
+        },
+        {
+          "label": "Patient sign here   Date",
+          "confidence": 0.5,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "ContactFax",
+    "type": "PDFTextField",
+    "required": true,
+    "suggestedLabel": "Contactfax",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "kbSubmit",
+    "type": "PDFButton",
+    "required": false,
+    "suggestedLabel": "Kbsubmit",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Pharmacy Insurance cardholder",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Pharmacy Insurance Cardholder",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Pharmacy Insurance PCN#   GROUP#",
+          "confidence": 0.5,
+          "context": "Pharmacy Insurance PCN#   GROUP#",
+          "lineNumber": 60
+        },
+        {
+          "label": "back of insurance cards.)",
+          "confidence": 0.3333333333333333,
+          "context": "back of insurance cards.)",
+          "lineNumber": 57
+        },
+        {
+          "label": "CARDHOLDER",
+          "confidence": 0.3333333333333333,
+          "context": "CARDHOLDER",
+          "lineNumber": 59
+        },
+        {
+          "label": "CARDHOLDER   CARD/BIN#",
+          "confidence": 0.3333333333333333,
+          "context": "CARDHOLDER   CARD/BIN#",
+          "lineNumber": 61
+        },
+        {
+          "label": "Preferred pharmacy",
+          "confidence": 0.3333333333333333,
+          "context": "Preferred pharmacy",
+          "lineNumber": 170
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Pharmacy Insurance cardbin",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Pharmacy Insurance Cardbin",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Pharmacy Insurance PCN#   GROUP#",
+          "confidence": 0.5,
+          "context": "Pharmacy Insurance PCN#   GROUP#",
+          "lineNumber": 60
+        },
+        {
+          "label": "back of insurance cards.)",
+          "confidence": 0.3333333333333333,
+          "context": "back of insurance cards.)",
+          "lineNumber": 57
+        },
+        {
+          "label": "CARDHOLDER   CARD/BIN#",
+          "confidence": 0.3333333333333333,
+          "context": "CARDHOLDER   CARD/BIN#",
+          "lineNumber": 61
+        },
+        {
+          "label": "Preferred pharmacy",
+          "confidence": 0.3333333333333333,
+          "context": "Preferred pharmacy",
+          "lineNumber": 170
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "DATE OF DIAGNOSIS",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Date Of Diagnosis",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Start date",
+          "confidence": 0.8,
+          "context": "Start date:",
+          "lineNumber": 74
+        },
+        {
+          "label": "Not yet started     If not yet started, estimated start date",
+          "confidence": 0.8,
+          "context": "Not yet started     If not yet started, estimated start date:",
+          "lineNumber": 76
+        },
+        {
+          "label": "Date",
+          "confidence": 0.8,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "—DIAGNOSIS",
+          "confidence": 0.5,
+          "context": "—DIAGNOSIS",
+          "lineNumber": 66
+        },
+        {
+          "label": "UPDATE",
+          "confidence": 0.5,
+          "context": "UPDATE",
+          "lineNumber": 182
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "PREVIOUS TB TEST DATE",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Previous Tb Test Date",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Start date",
+          "confidence": 0.8,
+          "context": "Start date:",
+          "lineNumber": 74
+        },
+        {
+          "label": "Not yet started     If not yet started, estimated start date",
+          "confidence": 0.8,
+          "context": "Not yet started     If not yet started, estimated start date:",
+          "lineNumber": 76
+        },
+        {
+          "label": "Date",
+          "confidence": 0.8,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "DATE OF DIAGNOSIS OR YEARS WITH DISEASE   PREVIOUS TB TEST",
+          "confidence": 0.375,
+          "context": "DATE OF DIAGNOSIS OR YEARS WITH DISEASE   PREVIOUS TB TEST (DATE)",
+          "lineNumber": 67
+        },
+        {
+          "label": "UPDATE",
+          "confidence": 0.3333333333333333,
+          "context": "UPDATE",
+          "lineNumber": 182
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Other ICD10 Code",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Other Icd10 Code",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Other ICD-10 Code",
+          "confidence": 1,
+          "context": "Other ICD-10 Code",
+          "lineNumber": 72
+        },
+        {
+          "label": "Other",
+          "confidence": 0.3333333333333333,
+          "context": "Other",
+          "lineNumber": 92
+        },
+        {
+          "label": "Other requirements",
+          "confidence": 0.3333333333333333,
+          "context": "Other requirements",
+          "lineNumber": 219
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Preferred pharmacy",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Preferred Pharmacy",
+    "description": "actions described in the requirements for the patient. See program requirements on page 2.",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Preferred pharmacy",
+          "confidence": 1,
+          "context": "Preferred pharmacy",
+          "lineNumber": 170
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "actions described in the requirements for the patient. See program requirements on page 2.",
+          "confidence": 0.4,
+          "location": "Line 168 (2 lines before field name)",
+          "lineNumber": 168
+        },
+        {
+          "text": "PRESCRIBER SIGNATURE (NO STAMPS ALLOWED) REQUIRED TO VALIDATE PRESCRIPTION: I certify that therapy with",
+          "confidence": 0.3999999999999999,
+          "location": "Line 173 (3 lines after field name)",
+          "lineNumber": 173
+        }
+      ]
+    }
+  },
+  {
+    "name": "Check Box26",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box26",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box27",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box27",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Treatment start date",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Treatment Start Date",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Start date",
+          "confidence": 0.8,
+          "context": "Start date:",
+          "lineNumber": 74
+        },
+        {
+          "label": "Not yet started     If not yet started, estimated start date",
+          "confidence": 0.8,
+          "context": "Not yet started     If not yet started, estimated start date:",
+          "lineNumber": 76
+        },
+        {
+          "label": "Date",
+          "confidence": 0.8,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "When did the patient start treatment?",
+          "confidence": 0.3333333333333333,
+          "context": "When did the patient start treatment?",
+          "lineNumber": 73
+        },
+        {
+          "label": "UPDATE",
+          "confidence": 0.3333333333333333,
+          "context": "UPDATE",
+          "lineNumber": 182
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box28",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box28",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Treatment est start date",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Treatment Est Start Date",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Start date",
+          "confidence": 0.8,
+          "context": "Start date:",
+          "lineNumber": 74
+        },
+        {
+          "label": "Not yet started     If not yet started, estimated start date",
+          "confidence": 0.8,
+          "context": "Not yet started     If not yet started, estimated start date:",
+          "lineNumber": 76
+        },
+        {
+          "label": "Date",
+          "confidence": 0.8,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "When did the patient start treatment?",
+          "confidence": 0.3333333333333333,
+          "context": "When did the patient start treatment?",
+          "lineNumber": 73
+        },
+        {
+          "label": "Not yet started     If not yet started",
+          "confidence": 0.3333333333333333,
+          "context": "Not yet started     If not yet started, estimated start date:",
+          "lineNumber": 76
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Prescriber signature DATE 2",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Prescriber Signature Date 2",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Start date",
+          "confidence": 0.8,
+          "context": "Start date:",
+          "lineNumber": 74
+        },
+        {
+          "label": "Not yet started     If not yet started, estimated start date",
+          "confidence": 0.8,
+          "context": "Not yet started     If not yet started, estimated start date:",
+          "lineNumber": 76
+        },
+        {
+          "label": "Date",
+          "confidence": 0.8,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "PRESCRIBER SIGNATURE",
+          "confidence": 0.6666666666666666,
+          "context": "PRESCRIBER SIGNATURE",
+          "lineNumber": 163
+        },
+        {
+          "label": "Patient sign here   Date",
+          "confidence": 0.5,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box1",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box1",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box2",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box2",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box4",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box4",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box5",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box5",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box7",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box7",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box8",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box8",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box10",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box10",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box11",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box11",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box13",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box13",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box14",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box14",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box16",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box16",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Other medications",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Other Medications",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "PRIOR MEDICATIONS",
+          "confidence": 0.5,
+          "context": "PRIOR MEDICATIONS",
+          "lineNumber": 77
+        },
+        {
+          "label": "Other",
+          "confidence": 0.5,
+          "context": "Other",
+          "lineNumber": 92
+        },
+        {
+          "label": "Other requirements",
+          "confidence": 0.5,
+          "context": "Other requirements",
+          "lineNumber": 219
+        },
+        {
+          "label": "Other ICD-10 Code",
+          "confidence": 0.3333333333333333,
+          "context": "Other ICD-10 Code",
+          "lineNumber": 72
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box3",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box3",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box6",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box6",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box9",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box9",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box12",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box12",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Check Box15",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Check Box15",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "erx-Prescriber signature",
+    "type": "PDFSignature",
+    "required": false,
+    "suggestedLabel": "Erx-Prescriber Signature",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "PRESCRIBER SIGNATURE",
+          "confidence": 0.6666666666666666,
+          "context": "PRESCRIBER SIGNATURE",
+          "lineNumber": 163
+        },
+        {
+          "label": "4. Prescriber Information",
+          "confidence": 0.3333333333333333,
+          "context": "4. Prescriber Information (REQUIRED)",
+          "lineNumber": 123
+        },
+        {
+          "label": "Nonprescriber’s Office",
+          "confidence": 0.3333333333333333,
+          "context": "Nonprescriber’s Office",
+          "lineNumber": 141
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "erx-Prescriber signature 2",
+    "type": "PDFSignature",
+    "required": false,
+    "suggestedLabel": "Erx-Prescriber Signature 2",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "PRESCRIBER SIGNATURE",
+          "confidence": 0.6666666666666666,
+          "context": "PRESCRIBER SIGNATURE",
+          "lineNumber": 163
+        },
+        {
+          "label": "4. Prescriber Information",
+          "confidence": 0.3333333333333333,
+          "context": "4. Prescriber Information (REQUIRED)",
+          "lineNumber": 123
+        },
+        {
+          "label": "Nonprescriber’s Office",
+          "confidence": 0.3333333333333333,
+          "context": "Nonprescriber’s Office",
+          "lineNumber": 141
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Patient Name 2",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Patient Name 2",
+    "description": "Provider Portal, or completed Form may be faxed to 800-600-7226 or mailed to TREMFYA withMe, PO Box 15510, Pittsburgh, PA 15244",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Name",
+          "confidence": 1,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "Janssen Patien",
+          "confidence": 0.5,
+          "context": "Janssen Patien",
+          "lineNumber": 32
+        },
+        {
+          "label": "Hospital Outpatient",
+          "confidence": 0.5,
+          "context": "Hospital Outpatient",
+          "lineNumber": 143
+        },
+        {
+          "label": "1. Patient Information",
+          "confidence": 0.3333333333333333,
+          "context": "1. Patient Information (REQUIRED)",
+          "lineNumber": 41
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Provider Portal, or completed Form may be faxed to 800-600-7226 or mailed to TREMFYA withMe, PO Box 15510, Pittsburgh, PA 15244",
+          "confidence": 0.6000000000000001,
+          "location": "Line 258 (1 lines before field name)",
+          "lineNumber": 258
+        },
+        {
+          "text": "I give permission for each of my “Healthcare Providers” (eg, my physicians, pharmacists, specialty pharmacies, other healthcare providers, and their staff)",
+          "confidence": 0.6,
+          "location": "Line 261 (2 lines after field name)",
+          "lineNumber": 261
+        },
+        {
+          "text": "•Download a copy, print, check the desired boxes, and sign. Your healthcare provider may scan the completed Form and upload on",
+          "confidence": 0.4,
+          "location": "Line 257 (2 lines before field name)",
+          "lineNumber": 257
+        }
+      ]
+    }
+  },
+  {
+    "name": "Patient Email 2",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Patient Email 2",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Email Address",
+          "confidence": 0.8,
+          "context": "Email Address:",
+          "lineNumber": 260
+        },
+        {
+          "label": "Janssen Patien",
+          "confidence": 0.5,
+          "context": "Janssen Patien",
+          "lineNumber": 32
+        },
+        {
+          "label": "Hospital Outpatient",
+          "confidence": 0.5,
+          "context": "Hospital Outpatient",
+          "lineNumber": 143
+        },
+        {
+          "label": "Patient Name",
+          "confidence": 0.5,
+          "context": "Patient Name:",
+          "lineNumber": 259
+        },
+        {
+          "label": "1. Patient Information",
+          "confidence": 0.3333333333333333,
+          "context": "1. Patient Information (REQUIRED)",
+          "lineNumber": 41
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Yes I would like to receive communications relating to my Janssen medication",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Yes I Would Like To Receive Communications Relating To My Janssen Medication",
+    "description": "Yes, I would like to receive communications relating to other Janssen products and services.",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Yes",
+          "confidence": 1,
+          "context": "Yes, I would like to receive communications relating to my Janssen medication.",
+          "lineNumber": 304
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Yes, I would like to receive communications relating to other Janssen products and services.",
+          "confidence": 0.8,
+          "location": "Line 305 (1 lines after field name)",
+          "lineNumber": 305
+        },
+        {
+          "text": "Permission for communications outside of Janssen patient support programs:",
+          "confidence": 0.6000000000000001,
+          "location": "Line 303 (1 lines before field name)",
+          "lineNumber": 303
+        },
+        {
+          "text": "For privacy rights and choices specific to California residents, please see Janssen’s California privacy notice available",
+          "confidence": 0.6,
+          "location": "Line 306 (2 lines after field name)",
+          "lineNumber": 306
+        }
+      ]
+    }
+  },
+  {
+    "name": "Yes I would like to receive communications relating to other Janssen products and services",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Yes I Would Like To Receive Communications Relating To Other Janssen Products And Services",
+    "description": "For privacy rights and choices specific to California residents, please see Janssen’s California privacy notice available",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Yes",
+          "confidence": 1,
+          "context": "Yes, I would like to receive communications relating to other Janssen products and services.",
+          "lineNumber": 305
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "For privacy rights and choices specific to California residents, please see Janssen’s California privacy notice available",
+          "confidence": 0.8,
+          "location": "Line 306 (1 lines after field name)",
+          "lineNumber": 306
+        },
+        {
+          "text": "Yes, I would like to receive communications relating to my Janssen medication.",
+          "confidence": 0.6000000000000001,
+          "location": "Line 304 (1 lines before field name)",
+          "lineNumber": 304
+        },
+        {
+          "text": "Permission for communications outside of Janssen patient support programs:",
+          "confidence": 0.4,
+          "location": "Line 303 (2 lines before field name)",
+          "lineNumber": 303
+        }
+      ]
+    }
+  },
+  {
+    "name": "Yes I would like to receive text messages By selecting this option I agree to receive text messages as allowed by this Form to the cell phone number",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Yes I Would Like To Receive Text Messages By Selecting This Option I Agree To Receive Text Messages As Allowed By This Form To The Cell Phone Number",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Cell phone number",
+          "confidence": 0.8,
+          "context": "Cell phone number:",
+          "lineNumber": 313
+        },
+        {
+          "label": "text messages to participate in the Janssen patient support programs or to receive any other communications I have selected.",
+          "confidence": 0.35,
+          "context": "text messages to participate in the Janssen patient support programs or to receive any other communications I have selected.",
+          "lineNumber": 312
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Cell phone comm number",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Cell Phone Comm Number",
+    "description": "text messages to participate in the Janssen patient support programs or to receive any other communications I have selected.",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Cell phone number",
+          "confidence": 0.8,
+          "context": "Cell phone number:",
+          "lineNumber": 313
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "text messages to participate in the Janssen patient support programs or to receive any other communications I have selected.",
+          "confidence": 0.6000000000000001,
+          "location": "Line 312 (1 lines before field name)",
+          "lineNumber": 312
+        },
+        {
+          "text": "provided below. Message and data rates may apply. Message frequency varies. I understand I am not required to provide my permission to receive",
+          "confidence": 0.4,
+          "location": "Line 311 (2 lines before field name)",
+          "lineNumber": 311
+        },
+        {
+          "text": "If the patient cannot sign, patient’s legally authorized representative must sign below:",
+          "confidence": 0.3999999999999999,
+          "location": "Line 316 (3 lines after field name)",
+          "lineNumber": 316
+        }
+      ]
+    }
+  },
+  {
+    "name": "Patient name print",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Patient Name Print",
+    "description": "If the patient cannot sign, patient’s legally authorized representative must sign below:",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient name",
+          "confidence": 1,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "Patient name (print)",
+          "confidence": 0.8,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "By   Print name   Date",
+          "confidence": 0.6666666666666666,
+          "context": "By:   Print name:   Date:",
+          "lineNumber": 317
+        },
+        {
+          "label": "Janssen Patien",
+          "confidence": 0.3333333333333333,
+          "context": "Janssen Patien",
+          "lineNumber": 32
+        },
+        {
+          "label": "1. Patient Information",
+          "confidence": 0.3333333333333333,
+          "context": "1. Patient Information (REQUIRED)",
+          "lineNumber": 41
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "If the patient cannot sign, patient’s legally authorized representative must sign below:",
+          "confidence": 0.6,
+          "location": "Line 316 (2 lines after field name)",
+          "lineNumber": 316
+        },
+        {
+          "text": "text messages to participate in the Janssen patient support programs or to receive any other communications I have selected.",
+          "confidence": 0.4,
+          "location": "Line 312 (2 lines before field name)",
+          "lineNumber": 312
+        }
+      ]
+    }
+  },
+  {
+    "name": "Patient signature DATE",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Patient Signature Date",
+    "description": "If the patient cannot sign, patient’s legally authorized representative must sign below:",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Start date",
+          "confidence": 0.8,
+          "context": "Start date:",
+          "lineNumber": 74
+        },
+        {
+          "label": "Not yet started     If not yet started, estimated start date",
+          "confidence": 0.8,
+          "context": "Not yet started     If not yet started, estimated start date:",
+          "lineNumber": 76
+        },
+        {
+          "label": "Date",
+          "confidence": 0.8,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "Patient sign here   Date",
+          "confidence": 0.75,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "Janssen Patien",
+          "confidence": 0.3333333333333333,
+          "context": "Janssen Patien",
+          "lineNumber": 32
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "If the patient cannot sign, patient’s legally authorized representative must sign below:",
+          "confidence": 0.8,
+          "location": "Line 316 (1 lines after field name)",
+          "lineNumber": 316
+        },
+        {
+          "text": "(Signature of person legally authorized to sign for patient)",
+          "confidence": 0.3999999999999999,
+          "location": "Line 318 (3 lines after field name)",
+          "lineNumber": 318
+        }
+      ]
+    }
+  },
+  {
+    "name": "Patient AUTH signature",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Patient Auth Signature",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient sign here   Date",
+          "confidence": 0.5,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "Janssen Patien",
+          "confidence": 0.3333333333333333,
+          "context": "Janssen Patien",
+          "lineNumber": 32
+        },
+        {
+          "label": "1. Patient Information",
+          "confidence": 0.3333333333333333,
+          "context": "1. Patient Information (REQUIRED)",
+          "lineNumber": 41
+        },
+        {
+          "label": "Hospital Outpatient",
+          "confidence": 0.3333333333333333,
+          "context": "Hospital Outpatient",
+          "lineNumber": 143
+        },
+        {
+          "label": "PRESCRIBER SIGNATURE",
+          "confidence": 0.3333333333333333,
+          "context": "PRESCRIBER SIGNATURE",
+          "lineNumber": 163
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Patient AUTH signature PRINT",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Patient Auth Signature Print",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient name",
+          "confidence": 0.5,
+          "context": "Patient name (print):",
+          "lineNumber": 314
+        },
+        {
+          "label": "Patient sign here   Date",
+          "confidence": 0.5,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Patient AUTH signature DATE",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Patient Auth Signature Date",
+    "description": "If the patient cannot sign, patient’s legally authorized representative must sign below:",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Start date",
+          "confidence": 0.8,
+          "context": "Start date:",
+          "lineNumber": 74
+        },
+        {
+          "label": "Not yet started     If not yet started, estimated start date",
+          "confidence": 0.8,
+          "context": "Not yet started     If not yet started, estimated start date:",
+          "lineNumber": 76
+        },
+        {
+          "label": "Date",
+          "confidence": 0.8,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "Patient sign here   Date",
+          "confidence": 0.75,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "If the patient cannot sign, patient’s legally authorized representative must sign below:",
+          "confidence": 0.8,
+          "location": "Line 316 (1 lines after field name)",
+          "lineNumber": 316
+        },
+        {
+          "text": "(Signature of person legally authorized to sign for patient)",
+          "confidence": 0.3999999999999999,
+          "location": "Line 318 (3 lines after field name)",
+          "lineNumber": 318
+        }
+      ]
+    }
+  },
+  {
+    "name": "AUTH relationship",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Auth Relationship",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "p11-Patient signature",
+    "type": "PDFSignature",
+    "required": false,
+    "suggestedLabel": "P11-Patient Signature",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient sign here   Date",
+          "confidence": 0.5,
+          "context": "Patient sign here:   Date:",
+          "lineNumber": 315
+        },
+        {
+          "label": "Janssen Patien",
+          "confidence": 0.3333333333333333,
+          "context": "Janssen Patien",
+          "lineNumber": 32
+        },
+        {
+          "label": "1. Patient Information",
+          "confidence": 0.3333333333333333,
+          "context": "1. Patient Information (REQUIRED)",
+          "lineNumber": 41
+        },
+        {
+          "label": "Hospital Outpatient",
+          "confidence": 0.3333333333333333,
+          "context": "Hospital Outpatient",
+          "lineNumber": 143
+        },
+        {
+          "label": "PRESCRIBER SIGNATURE",
+          "confidence": 0.3333333333333333,
+          "context": "PRESCRIBER SIGNATURE",
+          "lineNumber": 163
+        }
+      ],
+      "descriptions": []
+    }
+  }
+]

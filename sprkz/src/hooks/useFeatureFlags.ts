@@ -216,6 +216,30 @@ export function useFormFeatures() {
 }
 
 /**
+ * Hook specifically for markup tools features
+ */
+export function useMarkupFeatures() {
+  const toolbar = useFeatureFlag(FEATURE_FLAGS.MARKUP_TOOLBAR);
+  const imageStamp = useFeatureFlag(FEATURE_FLAGS.MARKUP_IMAGE_STAMP);
+  const highlightArea = useFeatureFlag(FEATURE_FLAGS.MARKUP_HIGHLIGHT_AREA);
+  const signature = useFeatureFlag(FEATURE_FLAGS.MARKUP_SIGNATURE);
+  const dateTimeStamp = useFeatureFlag(FEATURE_FLAGS.MARKUP_DATE_TIME_STAMP);
+  const textArea = useFeatureFlag(FEATURE_FLAGS.MARKUP_TEXT_AREA);
+  const imageAttachment = useFeatureFlag(FEATURE_FLAGS.MARKUP_IMAGE_ATTACHMENT);
+  
+  return {
+    showMarkupToolbar: toolbar,
+    showImageStamp: imageStamp,
+    showHighlightArea: highlightArea,
+    showMarkupSignature: signature,
+    showDateTimeStamp: dateTimeStamp,
+    showTextArea: textArea,
+    showImageAttachment: imageAttachment,
+    hasAnyMarkupFeatures: toolbar || imageStamp || highlightArea || signature || dateTimeStamp || textArea || imageAttachment,
+  };
+}
+
+/**
  * Debug hook to log current feature state
  */
 export function useFeatureFlagDebug(componentName: string) {

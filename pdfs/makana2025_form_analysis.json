@@ -1,0 +1,2467 @@
+[
+  {
+    "name": "zStamps",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Zstamps",
+    "description": "Replace fax using a digital stamp solution to exchange documents and data through secure email and",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "zStamps",
+          "confidence": 1,
+          "context": "zStamps",
+          "lineNumber": 22
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Replace fax using a digital stamp solution to exchange documents and data through secure email and",
+          "confidence": 0.8,
+          "location": "Line 23 (1 lines after field name)",
+          "lineNumber": 23
+        },
+        {
+          "text": "Platform for Salesforce call 1-844-zMakana",
+          "confidence": 0.6000000000000001,
+          "location": "Line 84 (1 lines before field name)",
+          "lineNumber": 84
+        },
+        {
+          "text": "direct messaging, resulting in faster, more reliable communications and reduced transmission costs.",
+          "confidence": 0.6,
+          "location": "Line 24 (2 lines after field name)",
+          "lineNumber": 24
+        }
+      ]
+    }
+  },
+  {
+    "name": "YesAuthorize",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Yesauthorize",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Sprkz",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Sprkz",
+    "description": "Use Web 3.0 and FHIR capabilities to give patients more transparency, accessibility, and control over their",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Sprkz",
+          "confidence": 1,
+          "context": "Sprkz",
+          "lineNumber": 90
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Use Web 3.0 and FHIR capabilities to give patients more transparency, accessibility, and control over their",
+          "confidence": 0.8,
+          "location": "Line 91 (1 lines after field name)",
+          "lineNumber": 91
+        },
+        {
+          "text": "Platform for Salesforce call 1-844-zMakana",
+          "confidence": 0.6000000000000001,
+          "location": "Line 84 (1 lines before field name)",
+          "lineNumber": 84
+        },
+        {
+          "text": "Please fill out the highlighted fields and sign where appropriate.",
+          "confidence": 0.6000000000000001,
+          "location": "Line 89 (1 lines before field name)",
+          "lineNumber": 89
+        }
+      ]
+    }
+  },
+  {
+    "name": "whynofax",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Whynofax",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Preferred Fax #",
+          "confidence": 0.5,
+          "context": "Preferred Fax #:",
+          "lineNumber": 16
+        },
+        {
+          "label": "Primary Contact Fax #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Fax #:",
+          "lineNumber": 67
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "NoWorkFlows",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Noworkflows",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Current or Prior Workflows",
+          "confidence": 0.3333333333333333,
+          "context": "Current or Prior Workflows:",
+          "lineNumber": 18
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "45min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "45min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "5",
+          "confidence": 0.8,
+          "context": "5:",
+          "lineNumber": 29
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "70min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "70min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "60min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "60min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Male",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Male",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Female",
+          "confidence": 1,
+          "context": "Female",
+          "lineNumber": 6
+        },
+        {
+          "label": "Gender Male",
+          "confidence": 0.5,
+          "context": "Gender: Male",
+          "lineNumber": 5
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "20min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "20min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Other_Health_Conditions",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Other Health Conditions",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_Phone",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Phone",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.8,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.8,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Facility Phone #",
+          "confidence": 0.8,
+          "context": "Facility Phone #:",
+          "lineNumber": 72
+        },
+        {
+          "label": "Phone #Mobile #",
+          "confidence": 0.3333333333333333,
+          "context": "Phone #:Mobile #:",
+          "lineNumber": 12
+        },
+        {
+          "label": "No Insurance",
+          "confidence": 0.3333333333333333,
+          "context": "No Insurance",
+          "lineNumber": 37
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonMailingStreet",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personmailingstreet",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_Holder_Name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Holder Name",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.FirstName",
+    "type": "PDFTextField",
+    "required": true,
+    "suggestedLabel": "Case.Account.Firstname",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_Holder_DOB",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Holder Dob",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "No Insurance",
+          "confidence": 0.3333333333333333,
+          "context": "No Insurance",
+          "lineNumber": 37
+        },
+        {
+          "label": "Primary Insurance",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Insurance:",
+          "lineNumber": 38
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.3333333333333333,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        },
+        {
+          "label": "3 Insurance Information",
+          "confidence": 0.3333333333333333,
+          "context": "3: Insurance Information",
+          "lineNumber": 73
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_Group",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Group",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "No Insurance",
+          "confidence": 0.3333333333333333,
+          "context": "No Insurance",
+          "lineNumber": 37
+        },
+        {
+          "label": "Primary Insurance",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Insurance:",
+          "lineNumber": 38
+        },
+        {
+          "label": "Primary Group #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Group #:",
+          "lineNumber": 55
+        },
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        },
+        {
+          "label": "3 Insurance Information",
+          "confidence": 0.3333333333333333,
+          "context": "3: Insurance Information",
+          "lineNumber": 73
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_ID",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Id",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "No Insurance",
+          "confidence": 0.3333333333333333,
+          "context": "No Insurance",
+          "lineNumber": 37
+        },
+        {
+          "label": "Primary Insurance",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Insurance:",
+          "lineNumber": 38
+        },
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        },
+        {
+          "label": "3 Insurance Information",
+          "confidence": 0.3333333333333333,
+          "context": "3: Insurance Information",
+          "lineNumber": 73
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonHomePhone",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personhomephone",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.8,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.8,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Facility Phone #",
+          "confidence": 0.8,
+          "context": "Facility Phone #:",
+          "lineNumber": 72
+        },
+        {
+          "label": "Phone #Mobile #",
+          "confidence": 0.3333333333333333,
+          "context": "Phone #:Mobile #:",
+          "lineNumber": 12
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Caregiver_Name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Caregiver Name",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonMobilePhone",
+    "type": "PDFTextField",
+    "required": true,
+    "suggestedLabel": "Case.Account.Personmobilephone",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.8,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.8,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Facility Phone #",
+          "confidence": 0.8,
+          "context": "Facility Phone #:",
+          "lineNumber": 72
+        },
+        {
+          "label": "Phone #Mobile #",
+          "confidence": 0.3333333333333333,
+          "context": "Phone #:Mobile #:",
+          "lineNumber": 12
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonMailingPostalCode",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personmailingpostalcode",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Private_Insurance_Plan_Name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Private Insurance Plan Name",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Social_Security_Number",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Social Security Number",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Social Security #",
+          "confidence": 0.3333333333333333,
+          "context": "Social Security #:",
+          "lineNumber": 7
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Caregiver_Phone",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Caregiver Phone",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.8,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.8,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Facility Phone #",
+          "confidence": 0.8,
+          "context": "Facility Phone #:",
+          "lineNumber": 72
+        },
+        {
+          "label": "Phone #Mobile #",
+          "confidence": 0.3333333333333333,
+          "context": "Phone #:Mobile #:",
+          "lineNumber": 12
+        },
+        {
+          "label": "Caregiver #",
+          "confidence": 0.3333333333333333,
+          "context": "Caregiver #:",
+          "lineNumber": 13
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.LastName",
+    "type": "PDFTextField",
+    "required": true,
+    "suggestedLabel": "Case.Account.Lastname",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonMailingCity",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personmailingcity",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "City",
+          "confidence": 0.8,
+          "context": "City:",
+          "lineNumber": 71
+        },
+        {
+          "label": "CityStateZip",
+          "confidence": 0.3333333333333333,
+          "context": "City:State:Zip:",
+          "lineNumber": 10
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonMailingState",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personmailingstate",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Prescriber State License #",
+          "confidence": 0.8,
+          "context": "Prescriber State License #:",
+          "lineNumber": 96
+        },
+        {
+          "label": "CityStateZip",
+          "confidence": 0.3333333333333333,
+          "context": "City:State:Zip:",
+          "lineNumber": 10
+        },
+        {
+          "label": "StateZip",
+          "confidence": 0.3333333333333333,
+          "context": "State:Zip:",
+          "lineNumber": 15
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.PersonEmail",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Personemail",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Email",
+          "confidence": 0.8,
+          "context": "Email:",
+          "lineNumber": 11
+        },
+        {
+          "label": "Primary Contact Email",
+          "confidence": 0.8,
+          "context": "Primary Contact Email:",
+          "lineNumber": 63
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Account.Other_Medications",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Account.Other Medications",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.BillingStreet",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Billingstreet",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.BillingCity",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Billingcity",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "City",
+          "confidence": 0.8,
+          "context": "City:",
+          "lineNumber": 71
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.Phone",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Phone",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.8,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.8,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Facility Phone #",
+          "confidence": 0.8,
+          "context": "Facility Phone #:",
+          "lineNumber": 72
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.BillingPostalCode",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Billingpostalcode",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.Fax",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Fax",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Primary Contact Fax #",
+          "confidence": 0.5,
+          "context": "Primary Contact Fax #:",
+          "lineNumber": 67
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.BillingState",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Billingstate",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Prescriber State License #",
+          "confidence": 0.8,
+          "context": "Prescriber State License #:",
+          "lineNumber": 96
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Account.Name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Account.Name",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Email",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Email",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Email",
+          "confidence": 0.8,
+          "context": "Email:",
+          "lineNumber": 11
+        },
+        {
+          "label": "Primary Contact Email",
+          "confidence": 0.8,
+          "context": "Primary Contact Email:",
+          "lineNumber": 63
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Primary Contact Fax #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Fax #:",
+          "lineNumber": 67
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Phone",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Phone",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.8,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.8,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Facility Phone #",
+          "confidence": 0.8,
+          "context": "Facility Phone #:",
+          "lineNumber": 72
+        },
+        {
+          "label": "Phone #Mobile #",
+          "confidence": 0.3333333333333333,
+          "context": "Phone #:Mobile #:",
+          "lineNumber": 12
+        },
+        {
+          "label": "Primary Contact Email",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Email:",
+          "lineNumber": 63
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.FirstName",
+    "type": "PDFTextField",
+    "required": true,
+    "suggestedLabel": "Case.Contact.Firstname",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.NPI_Number",
+    "type": "PDFTextField",
+    "required": true,
+    "suggestedLabel": "Case.Contact.Npi Number",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Primary Contact Email",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Email:",
+          "lineNumber": 63
+        },
+        {
+          "label": "NPI #",
+          "confidence": 0.3333333333333333,
+          "context": "NPI #:",
+          "lineNumber": 66
+        },
+        {
+          "label": "Primary Contact Fax #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Fax #:",
+          "lineNumber": 67
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.LastName",
+    "type": "PDFTextField",
+    "required": true,
+    "suggestedLabel": "Case.Contact.Lastname",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Fax",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Fax",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Primary Contact Fax #",
+          "confidence": 0.6666666666666666,
+          "context": "Primary Contact Fax #:",
+          "lineNumber": 67
+        },
+        {
+          "label": "Preferred Fax #",
+          "confidence": 0.3333333333333333,
+          "context": "Preferred Fax #:",
+          "lineNumber": 16
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Primary Contact Email",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Email:",
+          "lineNumber": 63
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.State_License_Number",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.State License Number",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Prescriber State License #",
+          "confidence": 0.8,
+          "context": "Prescriber State License #:",
+          "lineNumber": 96
+        },
+        {
+          "label": "CityStateZip",
+          "confidence": 0.3333333333333333,
+          "context": "City:State:Zip:",
+          "lineNumber": 10
+        },
+        {
+          "label": "StateZip",
+          "confidence": 0.3333333333333333,
+          "context": "State:Zip:",
+          "lineNumber": 15
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Primary Contact Email",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Email:",
+          "lineNumber": 63
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Case.Contact.Name",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Case.Contact.Name",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "dbTablename",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Dbtablename",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "50min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "50min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "5",
+          "confidence": 0.8,
+          "context": "5:",
+          "lineNumber": 29
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "20min_2",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "20min 2",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "15hr_2",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "15hr 2",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "5",
+          "confidence": 0.8,
+          "context": "5:",
+          "lineNumber": 29
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Female",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Female",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Female",
+          "confidence": 1,
+          "context": "Female",
+          "lineNumber": 6
+        },
+        {
+          "label": "Gender Male",
+          "confidence": 0.5,
+          "context": "Gender: Male",
+          "lineNumber": 5
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "PatientSig",
+    "type": "PDFSignature",
+    "required": false,
+    "suggestedLabel": "Patientsig",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Patient Signature",
+          "confidence": 0.5,
+          "context": "Patient Signature",
+          "lineNumber": 3
+        },
+        {
+          "label": "1 Patient Information",
+          "confidence": 0.5,
+          "context": "1: Patient Information",
+          "lineNumber": 4
+        },
+        {
+          "label": "Patient Authorization",
+          "confidence": 0.5,
+          "context": "Patient Authorization",
+          "lineNumber": 97
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "25hr",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "25hr",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "5",
+          "confidence": 0.8,
+          "context": "5:",
+          "lineNumber": 29
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "zDocument360",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Zdocument360",
+    "description": "Manage large amounts of healthcare documents and data between multiple channels with a multi-channel,",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "zDocument360",
+          "confidence": 1,
+          "context": "zDocument360",
+          "lineNumber": 25
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Manage large amounts of healthcare documents and data between multiple channels with a multi-channel,",
+          "confidence": 0.8,
+          "location": "Line 26 (1 lines after field name)",
+          "lineNumber": 26
+        },
+        {
+          "text": "direct messaging, resulting in faster, more reliable communications and reduced transmission costs.",
+          "confidence": 0.6000000000000001,
+          "location": "Line 24 (1 lines before field name)",
+          "lineNumber": 24
+        },
+        {
+          "text": "document journey automation platform for Salesforce.",
+          "confidence": 0.6,
+          "location": "Line 27 (2 lines after field name)",
+          "lineNumber": 27
+        }
+      ]
+    }
+  },
+  {
+    "name": "X_buttonAction",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "X Buttonaction",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "40min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "40min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "YesWorkFlows",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Yesworkflows",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Current or Prior Workflows",
+          "confidence": 0.3333333333333333,
+          "context": "Current or Prior Workflows:",
+          "lineNumber": 18
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "NoAuthorize",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Noauthorize",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "erx0-PrescriberSig",
+    "type": "PDFSignature",
+    "required": false,
+    "suggestedLabel": "Erx0-Prescribersig",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Prescriber Authorization",
+          "confidence": 0.5,
+          "context": "Prescriber Authorization",
+          "lineNumber": 2
+        },
+        {
+          "label": "2 Prescriber Information",
+          "confidence": 0.5,
+          "context": "2: Prescriber Information",
+          "lineNumber": 14
+        },
+        {
+          "label": "Prescriber",
+          "confidence": 0.5,
+          "context": "Prescriber",
+          "lineNumber": 65
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.3333333333333333,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.3333333333333333,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "25hr_2",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "25hr 2",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "5",
+          "confidence": 0.8,
+          "context": "5:",
+          "lineNumber": 29
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "30min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "30min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "35hr",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "35hr",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "5",
+          "confidence": 0.8,
+          "context": "5:",
+          "lineNumber": 29
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "55min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "55min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "5",
+          "confidence": 0.8,
+          "context": "5:",
+          "lineNumber": 29
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "120min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "120min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "80min",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "80min",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "zPaper",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Zpaper",
+    "description": "Please complete the information below attach your supporting documents to this packet",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "zPaperTransport",
+          "confidence": 0.5,
+          "context": "zPaper:Transport",
+          "lineNumber": 93
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Please complete the information below attach your supporting documents to this packet",
+          "confidence": 0.8,
+          "location": "Line 34 (1 lines after field name)",
+          "lineNumber": 34
+        },
+        {
+          "text": "ORG. I understand that by doing this my Patient Services department will benefit from greater efficiency and patients staying on",
+          "confidence": 0.8,
+          "location": "Line 58 (1 lines after field name)",
+          "lineNumber": 58
+        },
+        {
+          "text": "going through the MSSA and security review.  I authorize z",
+          "confidence": 0.8,
+          "location": "Line 78 (1 lines after field name)",
+          "lineNumber": 78
+        }
+      ]
+    }
+  },
+  {
+    "name": "dbID",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Dbid",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "dbAction",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Dbaction",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "15hr",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "15hr",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "5",
+          "confidence": 0.8,
+          "context": "5:",
+          "lineNumber": 29
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "80min_2",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "80min 2",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "70 min",
+          "confidence": 1,
+          "context": "70 min",
+          "lineNumber": 1
+        },
+        {
+          "label": "20 min45 min",
+          "confidence": 0.5,
+          "context": "20 min45 min",
+          "lineNumber": 43
+        },
+        {
+          "label": "40 min80 min120 min",
+          "confidence": 0.3333333333333333,
+          "context": "40 min80 min120 min",
+          "lineNumber": 45
+        },
+        {
+          "label": "20 min50 min80 min",
+          "confidence": 0.3333333333333333,
+          "context": "20 min50 min80 min",
+          "lineNumber": 47
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "Transport",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "Transport",
+    "description": "Receive, generate, and send fax documents within an easy to use solution for Salesforce and ServiceNow.",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "zPaperTransport",
+          "confidence": 0.5,
+          "context": "zPaper:Transport",
+          "lineNumber": 93
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Receive, generate, and send fax documents within an easy to use solution for Salesforce and ServiceNow.",
+          "confidence": 0.8,
+          "location": "Line 94 (1 lines after field name)",
+          "lineNumber": 94
+        },
+        {
+          "text": "healthcare data and documents within a secure, centralized mobile experience.",
+          "confidence": 0.6000000000000001,
+          "location": "Line 92 (1 lines before field name)",
+          "lineNumber": 92
+        },
+        {
+          "text": "Get your faxes directly into Health Cloud automatically.",
+          "confidence": 0.6,
+          "location": "Line 95 (2 lines after field name)",
+          "lineNumber": 95
+        }
+      ]
+    }
+  },
+  {
+    "name": "3hr",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "3hr",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "No Insurance",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "No Insurance",
+    "description": "(a copy of the front and back of the insurance card and pharmacy benefit card)",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "No Insurance",
+          "confidence": 1,
+          "context": "No Insurance",
+          "lineNumber": 37
+        },
+        {
+          "label": "Primary Insurance",
+          "confidence": 0.5,
+          "context": "Primary Insurance:",
+          "lineNumber": 38
+        },
+        {
+          "label": "3 Insurance Information",
+          "confidence": 0.5,
+          "context": "3: Insurance Information",
+          "lineNumber": 73
+        },
+        {
+          "label": "Primary Insurance Phone #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Insurance Phone #:",
+          "lineNumber": 61
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "(a copy of the front and back of the insurance card and pharmacy benefit card)",
+          "confidence": 0.4,
+          "location": "Line 35 (2 lines before field name)",
+          "lineNumber": 35
+        }
+      ]
+    }
+  },
+  {
+    "name": "signPINhelp",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Signpinhelp",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "NPI #",
+          "confidence": 1,
+          "context": "NPI #:",
+          "lineNumber": 66
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "X_reviewedStatus",
+    "type": "PDFCheckBox",
+    "required": false,
+    "suggestedLabel": "X Reviewedstatus",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "ContactFax",
+    "type": "PDFTextField",
+    "required": true,
+    "suggestedLabel": "Contactfax",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Preferred Fax #",
+          "confidence": 0.5,
+          "context": "Preferred Fax #:",
+          "lineNumber": 16
+        },
+        {
+          "label": "Primary Contact Phone #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Phone #:",
+          "lineNumber": 62
+        },
+        {
+          "label": "Primary Contact Email",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Email:",
+          "lineNumber": 63
+        },
+        {
+          "label": "Primary Contact Fax #",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Fax #:",
+          "lineNumber": 67
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.3333333333333333,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "X_barcode",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "X Barcode",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "kbup",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Kbup",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "zPaper",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Zpaper",
+    "description": "Please complete the information below attach your supporting documents to this packet",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "zPaperTransport",
+          "confidence": 0.5,
+          "context": "zPaper:Transport",
+          "lineNumber": 93
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Please complete the information below attach your supporting documents to this packet",
+          "confidence": 0.8,
+          "location": "Line 34 (1 lines after field name)",
+          "lineNumber": 34
+        },
+        {
+          "text": "ORG. I understand that by doing this my Patient Services department will benefit from greater efficiency and patients staying on",
+          "confidence": 0.8,
+          "location": "Line 58 (1 lines after field name)",
+          "lineNumber": 58
+        },
+        {
+          "text": "going through the MSSA and security review.  I authorize z",
+          "confidence": 0.8,
+          "location": "Line 78 (1 lines after field name)",
+          "lineNumber": 78
+        }
+      ]
+    }
+  },
+  {
+    "name": "dbID",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Dbid",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "dbAction",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Dbaction",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "dbTablename",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "Dbtablename",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [
+        {
+          "label": "Last Name",
+          "confidence": 0.8,
+          "context": "First Name:Last Name:",
+          "lineNumber": 8
+        },
+        {
+          "label": "Prescriber Last Name",
+          "confidence": 0.8,
+          "context": "Prescriber Last Name:",
+          "lineNumber": 50
+        },
+        {
+          "label": "Policy Holder Name",
+          "confidence": 0.8,
+          "context": "Policy Holder Name:",
+          "lineNumber": 53
+        },
+        {
+          "label": "Prescriber First Name",
+          "confidence": 0.8,
+          "context": "Prescriber First Name:",
+          "lineNumber": 64
+        },
+        {
+          "label": "Primary Contact Name",
+          "confidence": 0.8,
+          "context": "Primary Contact Name:",
+          "lineNumber": 68
+        }
+      ],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "X_buttonAction",
+    "type": "PDFTextField",
+    "required": false,
+    "suggestedLabel": "X Buttonaction",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  },
+  {
+    "name": "kbSubmit",
+    "type": "PDFButton",
+    "required": false,
+    "suggestedLabel": "Kbsubmit",
+    "description": "",
+    "context": {
+      "nearby": [],
+      "potential_labels": [],
+      "descriptions": []
+    }
+  }
+]

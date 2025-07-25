@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  playwright:
+    build:
+      context: .
+      dockerfile: Dockerfile.playwright
+    container_name: sprkz-playwright
+    volumes:
+      # Mount current directory for file access
+      - .:/workspace
+      # Mount for screenshots and downloads
+      - ./playwright-output:/workspace/playwright-output
+      # Preserve browser cache between runs
+      - playwright-cache:/ms-playwright
+    ports:
+      # Expose port for potential browser debugging
+      - "9223:9222"
+      # Expose port for development server if needed
+      - "3001:3000"
+    network_mode: "host"
+    environment:
+      # Playwright configuration
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+      - DISPLAY=:99
+      # Ensure headless mode works properly
+      - PLAYWRIGHT_HEADLESS=true
+    # Keep container running for interactive use
+    tty: true
+    stdin_open: true
+    # Security context
+    security_opt:
+      - seccomp:unconfined
+    # Shared memory size for browser processes
+    shm_size: 2gb
+
+volumes:
+  playwright-cache:

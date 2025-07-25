@@ -1,0 +1,13 @@
+2025-07-23T06:11:22: 
+2025-07-23T06:11:22: > sprkz@0.1.0 start
+2025-07-23T06:11:22: > react-scripts start
+2025-07-23T06:11:22: 
+2025-07-23T06:11:23: Attempting to bind to HOST environment variable: 127.0.0.1
+2025-07-23T06:11:23: If this was unintentional, check that you haven't mistakenly set it in your shell.
+2025-07-23T06:11:23: Learn more here: https://cra.link/advanced-config
+2025-07-23T06:11:23: 
+2025-07-23T06:11:24: (node:9904) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:11:24: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
+2025-07-23T06:11:24: (node:9904) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-23T06:11:25: Starting the development server...
+2025-07-23T06:11:25: 
