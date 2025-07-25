@@ -15,6 +15,7 @@ import {
   Delete as DeleteIcon,
   Star as StarIcon,
   StarBorder as StarBorderIcon,
+  Edit as EditIcon,
 } from '@mui/icons-material';
 import { PDFFile } from '../../contexts/AdminContext';
 
@@ -25,6 +26,7 @@ interface PDFGridProps {
   onPreview: (filename: string) => void;
   onDelete: (filename: string) => void;
   onSetDefault: (filename: string) => void;
+  onEdit: (filename: string) => void;
 }
 
 const PDFGrid: React.FC<PDFGridProps> = ({
@@ -34,6 +36,7 @@ const PDFGrid: React.FC<PDFGridProps> = ({
   onPreview,
   onDelete,
   onSetDefault,
+  onEdit,
 }) => {
   if (loading) {
     return (
@@ -136,6 +139,15 @@ const PDFGrid: React.FC<PDFGridProps> = ({
                       title="Preview PDF"
                     >
                       <VisibilityIcon />
+                    </IconButton>
+                    
+                    <IconButton
+                      size="small"
+                      onClick={() => onEdit(pdf.filename)}
+                      color="secondary"
+                      title="Edit PDF fields and metadata"
+                    >
+                      <EditIcon />
                     </IconButton>
                     
                     <IconButton

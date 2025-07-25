@@ -13,10 +13,12 @@ import { useAdmin } from '../../contexts/AdminContext';
 import PDFGrid from './PDFGrid';
 import PDFUploadZone from './PDFUploadZone';
 import PDFPreviewModal from './PDFPreviewModal';
+import PDFEditDialog from './PDFEditDialog';
 
 const PDFManagement: React.FC = () => {
   const { state, actions } = useAdmin();
   const [previewPDF, setPreviewPDF] = useState<string | null>(null);
+  const [editPDF, setEditPDF] = useState<string | null>(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
@@ -61,6 +63,17 @@ const PDFManagement: React.FC = () => {
   const handleDefaultChange = async (event: React.ChangeEvent<{ value: unknown }>) => {
     const newDefault = event.target.value as string;
     await handleSetDefault(newDefault);
+  };
+
+  const handleEdit = (filename: string) => {
+    setEditPDF(filename);
+  };
+
+  const handleEditSave = (filename: string, updates: { metadata: Record<string, string>; fieldConfigs: Record<string, { status: string; label?: string; required?: boolean; placeholder?: string }> }) => {
+    // For now, just show success message
+    // In the future, this could save updates to a database or update PDF metadata
+    console.log('PDF edit updates:', { filename, updates });
+    showSnackbar(`PDF ${filename} metadata updated successfully!`, 'success');
   };
 
   const showSnackbar = (message: string, severity: 'success' | 'error') => {
@@ -118,6 +131,7 @@ const PDFManagement: React.FC = () => {
           onPreview={setPreviewPDF}
           onDelete={handleDelete}
           onSetDefault={handleSetDefault}
+          onEdit={handleEdit}
         />
       </Box>
 
@@ -126,6 +140,14 @@ const PDFManagement: React.FC = () => {
         filename={previewPDF}
         open={!!previewPDF}
         onClose={() => setPreviewPDF(null)}
+      />
+
+      {/* PDF Edit Dialog */}
+      <PDFEditDialog
+        filename={editPDF}
+        open={!!editPDF}
+        onClose={() => setEditPDF(null)}
+        onSave={handleEditSave}
       />
 
       {/* Snackbar for notifications */}
