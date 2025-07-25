@@ -91,9 +91,11 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
     setError(null);
 
     try {
-      const pdfUrl = `/pdfs/${filename}`;
+      // Construct full PDF URL from filename - handle both absolute and relative paths
+      const pdfUrl = filename.startsWith('/') ? filename : `/pdfs/${filename}`;
+      console.log('Loading PDF from URL:', pdfUrl);
       
-      // Load PDF document
+      // Load PDF document for metadata
       const pdfDoc = await pdfService.loadPDF(pdfUrl);
       
       // Extract metadata
@@ -112,13 +114,28 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
         },
       }));
 
-      // Extract form fields from all pages
-      const allFields = await formFieldService.extractAllFormFields(pdfDoc);
-      setPdfFields(allFields);
+      // Extract form fields using URL-based method (same as PDFFieldConfig)
+      const fieldsResult = await formFieldService.extractAllFormFields(pdfUrl);
+      
+      // Convert the fields result to the expected format
+      const formFields: FormField[] = fieldsResult.fields.map((fieldName, index) => {
+        const details = fieldsResult.fieldDetails[fieldName];
+        return {
+          id: `field_${index}`,
+          name: fieldName,
+          type: details.type as FormField['type'],
+          required: details.required,
+          pageNumber: details.pages[0] || 1,
+          readOnly: false,
+          rect: [0, 0, 0, 0], // Default rect since we don't have this info
+        };
+      });
+      
+      setPdfFields(formFields);
 
       // Initialize field configs
       const initialConfigs: PDFEditData['fieldConfigs'] = {};
-      allFields.forEach(field => {
+      formFields.forEach(field => {
         initialConfigs[field.name] = {
           status: field.readOnly ? 'read-only' : (field.hidden ? 'hidden' : 'normal'),
           label: field.name,
