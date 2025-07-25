@@ -25,7 +25,7 @@ class PDFService {
    */
   async loadPDF(url: string): Promise<PDFDocumentProxy> {
     try {
-      const loadingTask = pdfjsLib.getDocument(url);
+      const loadingTask = pdfjsLib.getDocument({ url });
       const pdfDocument = await loadingTask.promise;
       return pdfDocument;
     } catch (error) {

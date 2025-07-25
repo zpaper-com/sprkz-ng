@@ -734,7 +734,7 @@ class FormFieldService {
   }> {
     try {
       // Load PDF using PDF.js
-      const loadingTask = pdfjsLib.getDocument(pdfUrl);
+      const loadingTask = pdfjsLib.getDocument({ url: pdfUrl });
       const pdfDocument = await loadingTask.promise;
       
       const allFields = new Map<string, { type: string; required: boolean; pages: number[] }>();
