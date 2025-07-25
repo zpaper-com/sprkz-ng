@@ -22,6 +22,7 @@ export interface SignatureModalProps {
   onSave: (signatureDataUrl: string) => void;
   fieldName?: string;
   fieldDimensions?: { width: number; height: number };
+  initialSignature?: string; // Base64 image data for edit mode
 }
 
 export const SignatureModal: React.FC<SignatureModalProps> = ({
@@ -30,6 +31,7 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
   onSave,
   fieldName = 'Signature',
   fieldDimensions,
+  initialSignature,
 }) => {
   const [activeTab, setActiveTab] = useState(0);
   const [typedSignature, setTypedSignature] = useState('');
@@ -154,6 +156,24 @@ export const SignatureModal: React.FC<SignatureModalProps> = ({
       }
     }
   }, [canvasDimensions, open]);
+
+  // Load initial signature for edit mode
+  useEffect(() => {
+    if (open && initialSignature && canvasRef.current && canvasInitialized) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        const img = new Image();
+        img.onload = () => {
+          // Clear canvas first
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          // Draw the initial signature
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+        img.src = initialSignature;
+      }
+    }
+  }, [open, initialSignature, canvasInitialized]);
 
   // Get proper mouse coordinates accounting for canvas scaling
   const getMousePos = (

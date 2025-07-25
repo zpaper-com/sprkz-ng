@@ -4,12 +4,14 @@ import { Height, SwapHoriz, Visibility, VisibilityOff } from '@mui/icons-materia
 import { PDFViewer } from './PDFViewer';
 import { ThumbnailSidebar } from './ThumbnailSidebar';
 import { FormProvider, useForm } from '../../contexts/FormContext';
+import { MarkupProvider } from '../../contexts/MarkupContext';
+import { MarkupManager } from '../markup/MarkupManager';
 import { WizardButton, WizardStatus } from '../WizardButton';
 import { ProgressTracker } from '../ProgressTracker';
 import { FieldTooltip } from '../FieldTooltip';
 import { getPDFUrlFromParams } from '../../utils/urlParams';
 import { pdfService } from '../../services/pdfService';
-import { usePDFViewerFeatures, useWizardFeatures, useFormFeatures } from '../../hooks/useFeatureFlags';
+import { usePDFViewerFeatures, useWizardFeatures, useFormFeatures, useMarkupFeatures } from '../../hooks/useFeatureFlags';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import type { FormField as EnhancedFormField } from '../../services/formFieldService';
 
@@ -42,6 +44,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
   const pdfViewerFeatures = usePDFViewerFeatures();
   const wizardFeatures = useWizardFeatures();
   const formFeatures = useFormFeatures();
+  const markupFeatures = useMarkupFeatures();
 
   // Use form context
   const {
@@ -373,6 +376,15 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             fieldConfigs={dynamicConfig?.pdfFields}
           />
 
+          {/* Markup Manager */}
+          {markupFeatures.hasAnyMarkupFeatures && (
+            <MarkupManager
+              pageNumber={currentPage}
+              scale={1.0}
+              containerWidth={2000} // Large enough to cover PDF
+              containerHeight={2000} // Large enough to cover PDF
+            />
+          )}
         </Box>
       </Box>
 
@@ -405,7 +417,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
   );
 };
 
-// Main component wrapped with FormProvider
+// Main component wrapped with FormProvider and MarkupProvider
 export const PDFFormContainer: React.FC<PDFFormContainerProps> = (props) => {
   const handleSubmit = async (formData: Record<string, any>) => {
     console.log('Form submitted:', formData);
@@ -414,7 +426,9 @@ export const PDFFormContainer: React.FC<PDFFormContainerProps> = (props) => {
 
   return (
     <FormProvider onSubmit={handleSubmit}>
-      <PDFFormContainerInner {...props} />
+      <MarkupProvider>
+        <PDFFormContainerInner {...props} />
+      </MarkupProvider>
     </FormProvider>
   );
 };
