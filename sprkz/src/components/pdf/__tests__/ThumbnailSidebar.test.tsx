@@ -124,4 +124,85 @@ describe('ThumbnailSidebar', () => {
     expect(screen.getByTestId('thumbnail-sidebar')).toBeInTheDocument();
     expect(screen.queryByTestId(/thumbnail-\d+/)).not.toBeInTheDocument();
   });
+
+  describe('Collapse functionality', () => {
+    it('should render collapse button', () => {
+      render(<ThumbnailSidebar {...defaultProps} />);
+
+      const toggleButton = screen.getByTestId('thumbnail-toggle-button');
+      expect(toggleButton).toBeInTheDocument();
+    });
+
+    it('should start expanded by default', () => {
+      render(<ThumbnailSidebar {...defaultProps} />);
+
+      const sidebar = screen.getByTestId('thumbnail-sidebar');
+      expect(sidebar).toHaveStyle('width: 150px'); // Default width
+    });
+
+    it('should start collapsed when initialCollapsed is true', () => {
+      render(<ThumbnailSidebar {...defaultProps} initialCollapsed={true} />);
+
+      const sidebar = screen.getByTestId('thumbnail-sidebar');
+      expect(sidebar).toHaveStyle('width: 48px'); // Collapsed width
+    });
+
+    it('should toggle collapse state when button is clicked', () => {
+      render(<ThumbnailSidebar {...defaultProps} />);
+
+      const toggleButton = screen.getByTestId('thumbnail-toggle-button');
+      const sidebar = screen.getByTestId('thumbnail-sidebar');
+
+      // Initially expanded
+      expect(sidebar).toHaveStyle('width: 150px');
+
+      // Click to collapse
+      fireEvent.click(toggleButton);
+      expect(sidebar).toHaveStyle('width: 48px');
+
+      // Click to expand
+      fireEvent.click(toggleButton);
+      expect(sidebar).toHaveStyle('width: 150px');
+    });
+
+    it('should hide thumbnails when collapsed', () => {
+      render(<ThumbnailSidebar {...defaultProps} />);
+
+      const toggleButton = screen.getByTestId('thumbnail-toggle-button');
+
+      // Click to collapse
+      fireEvent.click(toggleButton);
+
+      // Thumbnails container should be hidden
+      const thumbnailsContainer = screen.getByTestId('thumbnail-sidebar').children[1];
+      expect(thumbnailsContainer).toHaveStyle('display: none');
+    });
+
+    it('should show correct icon based on collapse state', () => {
+      render(<ThumbnailSidebar {...defaultProps} />);
+
+      const toggleButton = screen.getByTestId('thumbnail-toggle-button');
+
+      // Initially expanded - should show ChevronLeft
+      expect(toggleButton.querySelector('[data-testid="ChevronLeftIcon"]')).toBeInTheDocument();
+
+      // Click to collapse - should show ChevronRight
+      fireEvent.click(toggleButton);
+      expect(toggleButton.querySelector('[data-testid="ChevronRightIcon"]')).toBeInTheDocument();
+    });
+
+    it('should use custom width when specified', () => {
+      render(<ThumbnailSidebar {...defaultProps} width={200} />);
+
+      const sidebar = screen.getByTestId('thumbnail-sidebar');
+      expect(sidebar).toHaveStyle('width: 200px');
+    });
+
+    it('should maintain collapsed width regardless of custom width', () => {
+      render(<ThumbnailSidebar {...defaultProps} width={300} initialCollapsed={true} />);
+
+      const sidebar = screen.getByTestId('thumbnail-sidebar');
+      expect(sidebar).toHaveStyle('width: 48px'); // Always 48px when collapsed
+    });
+  });
 });

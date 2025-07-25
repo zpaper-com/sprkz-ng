@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Paper, Typography, IconButton, Tooltip } from '@mui/material';
+import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { pdfService } from '../../services/pdfService';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 
@@ -8,6 +9,7 @@ export interface ThumbnailSidebarProps {
   currentPage: number;
   onPageSelect: (pageNumber: number) => void;
   width?: number;
+  initialCollapsed?: boolean;
 }
 
 interface ThumbnailData {
@@ -21,9 +23,14 @@ export const ThumbnailSidebar: React.FC<ThumbnailSidebarProps> = ({
   currentPage,
   onPageSelect,
   width = 150,
+  initialCollapsed = false,
 }) => {
   const [thumbnails, setThumbnails] = useState<ThumbnailData[]>([]);
+  const [isCollapsed, setIsCollapsed] = useState(initialCollapsed);
   const thumbnailRefs = useRef<Map<number, HTMLCanvasElement>>(new Map());
+  
+  const collapsedWidth = 48; // Width when collapsed (just for the toggle button)
+  const currentWidth = isCollapsed ? collapsedWidth : width;
 
   // Initialize thumbnails when PDF document loads
   useEffect(() => {
@@ -92,6 +99,10 @@ export const ThumbnailSidebar: React.FC<ThumbnailSidebarProps> = ({
     onPageSelect(pageNumber);
   };
 
+  const toggleCollapsed = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   if (!pdfDocument) {
     return null;
   }
@@ -100,84 +111,127 @@ export const ThumbnailSidebar: React.FC<ThumbnailSidebarProps> = ({
     <Box
       data-testid="thumbnail-sidebar"
       sx={{
-        width: width,
+        width: currentWidth,
         height: '100%',
-        overflowY: 'auto',
         backgroundColor: 'grey.100',
         borderRight: '1px solid',
         borderColor: 'divider',
-        p: 1,
+        transition: 'width 0.3s ease-in-out',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-      {thumbnails.map((thumbnail) => (
-        <Paper
-          key={thumbnail.pageNumber}
-          data-testid={`thumbnail-${thumbnail.pageNumber}`}
-          className={currentPage === thumbnail.pageNumber ? 'selected' : ''}
-          elevation={currentPage === thumbnail.pageNumber ? 3 : 1}
-          sx={{
-            mb: 1,
-            p: 1,
-            cursor: 'pointer',
-            border: currentPage === thumbnail.pageNumber ? 2 : 0,
-            borderColor:
-              currentPage === thumbnail.pageNumber
-                ? 'primary.main'
-                : 'transparent',
-            transition: 'all 0.2s ease-in-out',
-            '&:hover': {
-              elevation: 2,
-              backgroundColor: 'action.hover',
-            },
-          }}
-          onClick={() => handleThumbnailClick(thumbnail.pageNumber)}
+      {/* Collapse/Expand Button */}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: isCollapsed ? 'center' : 'flex-end',
+          p: 1,
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+        }}
+      >
+        <Tooltip 
+          title={isCollapsed ? 'Expand thumbnails' : 'Collapse thumbnails'}
+          placement="right"
         >
-          {/* Thumbnail Canvas */}
-          <Box display="flex" justifyContent="center" mb={1}>
-            <canvas
-              ref={(el) => {
-                if (
-                  el &&
-                  thumbnailRefs.current.get(thumbnail.pageNumber) !== el
-                ) {
-                  // Copy rendered content to displayed canvas
-                  const sourceCanvas = thumbnailRefs.current.get(
-                    thumbnail.pageNumber
-                  );
-                  if (sourceCanvas && thumbnail.isRendered) {
-                    el.width = sourceCanvas.width;
-                    el.height = sourceCanvas.height;
-                    const ctx = el.getContext('2d');
-                    if (ctx) {
-                      ctx.drawImage(sourceCanvas, 0, 0);
+          <IconButton
+            size="small"
+            onClick={toggleCollapsed}
+            data-testid="thumbnail-toggle-button"
+            sx={{
+              backgroundColor: 'background.paper',
+              boxShadow: 1,
+              '&:hover': {
+                backgroundColor: 'action.hover',
+                boxShadow: 2,
+              },
+            }}
+          >
+            {isCollapsed ? <ChevronRight /> : <ChevronLeft />}
+          </IconButton>
+        </Tooltip>
+      </Box>
+
+      {/* Thumbnails Container */}
+      <Box
+        sx={{
+          flex: 1,
+          overflowY: 'auto',
+          p: isCollapsed ? 0 : 1,
+          display: isCollapsed ? 'none' : 'block',
+        }}
+      >
+        {thumbnails.map((thumbnail) => (
+          <Paper
+            key={thumbnail.pageNumber}
+            data-testid={`thumbnail-${thumbnail.pageNumber}`}
+            className={currentPage === thumbnail.pageNumber ? 'selected' : ''}
+            elevation={currentPage === thumbnail.pageNumber ? 3 : 1}
+            sx={{
+              mb: 1,
+              p: 1,
+              cursor: 'pointer',
+              border: currentPage === thumbnail.pageNumber ? 2 : 0,
+              borderColor:
+                currentPage === thumbnail.pageNumber
+                  ? 'primary.main'
+                  : 'transparent',
+              transition: 'all 0.2s ease-in-out',
+              '&:hover': {
+                elevation: 2,
+                backgroundColor: 'action.hover',
+              },
+            }}
+            onClick={() => handleThumbnailClick(thumbnail.pageNumber)}
+          >
+            {/* Thumbnail Canvas */}
+            <Box display="flex" justifyContent="center" mb={1}>
+              <canvas
+                ref={(el) => {
+                  if (
+                    el &&
+                    thumbnailRefs.current.get(thumbnail.pageNumber) !== el
+                  ) {
+                    // Copy rendered content to displayed canvas
+                    const sourceCanvas = thumbnailRefs.current.get(
+                      thumbnail.pageNumber
+                    );
+                    if (sourceCanvas && thumbnail.isRendered) {
+                      el.width = sourceCanvas.width;
+                      el.height = sourceCanvas.height;
+                      const ctx = el.getContext('2d');
+                      if (ctx) {
+                        ctx.drawImage(sourceCanvas, 0, 0);
+                      }
                     }
                   }
-                }
-              }}
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-                border: '1px solid #ddd',
-                borderRadius: 2,
-              }}
-            />
-          </Box>
+                }}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                  border: '1px solid #ddd',
+                  borderRadius: 2,
+                }}
+              />
+            </Box>
 
-          {/* Page Number */}
-          <Typography
-            variant="caption"
-            align="center"
-            display="block"
-            color={
-              currentPage === thumbnail.pageNumber
-                ? 'primary'
-                : 'text.secondary'
-            }
-          >
-            {thumbnail.pageNumber}
-          </Typography>
-        </Paper>
-      ))}
+            {/* Page Number */}
+            <Typography
+              variant="caption"
+              align="center"
+              display="block"
+              color={
+                currentPage === thumbnail.pageNumber
+                  ? 'primary'
+                  : 'text.secondary'
+              }
+            >
+              {thumbnail.pageNumber}
+            </Typography>
+          </Paper>
+        ))}
+      </Box>
     </Box>
   );
 };
