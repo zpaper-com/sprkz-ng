@@ -9,7 +9,7 @@ class LayoutServiceImpl implements LayoutService {
   }
 
   private initializeLayouts(): void {
-    // Initialize with default layouts
+    // Initialize with default desktop layout only
     const defaultLayouts: LayoutFormData[] = [
       {
         name: 'Desktop Layout',
@@ -18,14 +18,6 @@ class LayoutServiceImpl implements LayoutService {
         viewport: '1920x1080',
         components: ['thumbnailSidebar', 'toolbar', 'progressTracker', 'wizardButton', 'fieldsButton', 'allMarkupTools'],
         notes: 'Default layout for desktop browsers with all UI components and full functionality'
-      },
-      {
-        name: 'Mobile Layout',
-        type: 'mobile',
-        description: 'Mobile-optimized layout with simplified navigation',
-        viewport: '375x667',
-        components: ['compactToolbar', 'bottomNavigation', 'swipeGesture', 'mobileWizard'],
-        notes: 'Simplified layout for mobile devices with touch-optimized controls and streamlined interface'
       }
     ];
 

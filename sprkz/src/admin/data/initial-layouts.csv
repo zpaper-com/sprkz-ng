@@ -1,3 +1,2 @@
 name,type,description,viewport,components,notes
 "Desktop Layout","desktop","Standard desktop layout with full feature set","1920x1080","thumbnailSidebar,toolbar,progressTracker,wizardButton,fieldsButton,allMarkupTools","Default layout for desktop browsers with all UI components and full functionality"
-"Mobile Layout","mobile","Mobile-optimized layout with simplified navigation","375x667","compactToolbar,bottomNavigation,swipeGesture,mobileWizard","Simplified layout for mobile devices with touch-optimized controls and streamlined interface"

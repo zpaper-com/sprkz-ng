@@ -38,10 +38,6 @@ export const AVAILABLE_COMPONENTS = [
   'wizardButton',
   'fieldsButton',
   'markupTools',
-  'compactToolbar',
-  'bottomNavigation',
-  'swipeGesture',
-  'mobileWizard',
   'allMarkupTools'
 ] as const;
 
