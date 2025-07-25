@@ -45,6 +45,7 @@ interface PDFEditDialogProps {
 }
 
 interface PDFEditData {
+  filename?: string;
   metadata: {
     title?: string;
     author?: string;
@@ -76,6 +77,7 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
   const [pdfFields, setPdfFields] = useState<FormField[]>([]);
   // Removed unused pdfMetadata state
   const [editData, setEditData] = useState<PDFEditData>({
+    filename: '',
     metadata: {},
     fieldConfigs: {},
   });
@@ -170,9 +172,22 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
 
   useEffect(() => {
     if (open && filename) {
+      // Initialize filename in edit data (remove .pdf extension for editing)
+      const filenameWithoutExtension = filename.replace(/\.pdf$/i, '');
+      setEditData(prev => ({
+        ...prev,
+        filename: filenameWithoutExtension
+      }));
       loadPDFData();
     }
   }, [open, filename, loadPDFData]);
+
+  const handleFilenameChange = (value: string) => {
+    setEditData(prev => ({
+      ...prev,
+      filename: value,
+    }));
+  };
 
   const handleMetadataChange = (field: string, value: string) => {
     setEditData(prev => ({
@@ -198,8 +213,14 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
   };
 
   const handleSave = () => {
-    if (filename && onSave) {
-      onSave(filename, editData);
+    if (onSave) {
+      // Use the edited filename if available, otherwise fall back to original
+      let finalFilename = editData.filename || filename || '';
+      // Ensure .pdf extension is present
+      if (finalFilename && !finalFilename.toLowerCase().endsWith('.pdf')) {
+        finalFilename += '.pdf';
+      }
+      onSave(finalFilename, editData);
     }
     onClose();
   };
@@ -247,7 +268,12 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
           <Box display="flex" alignItems="center" gap={1}>
             <EditIcon />
-            <Typography variant="h6">Edit PDF: {filename}</Typography>
+            <Typography variant="h6">Edit PDF File</Typography>
+            {filename && (
+              <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
+                ({filename})
+              </Typography>
+            )}
           </Box>
           <IconButton 
             onClick={onClose}
@@ -271,8 +297,37 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
           </Alert>
         ) : (
           <Box>
-            {/* PDF Metadata Section */}
+            {/* PDF Filename Section */}
             <Box mb={3}>
+              <Typography variant="h6" sx={{ mb: 2 }}>PDF File Information</Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={8}>
+                  <TextField
+                    fullWidth
+                    label="PDF Filename"
+                    value={editData.filename || ''}
+                    onChange={(e) => handleFilenameChange(e.target.value)}
+                    size="small"
+                    helperText="Change the PDF filename (without .pdf extension)"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    fullWidth
+                    label="File Extension"
+                    value=".pdf"
+                    size="small"
+                    InputProps={{ readOnly: true }}
+                    helperText="File type (read-only)"
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+
+            <Divider />
+
+            {/* PDF Metadata Section */}
+            <Box mt={3} mb={3}>
               <Box 
                 display="flex" 
                 alignItems="center" 

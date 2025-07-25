@@ -2163,3 +2163,23 @@
 2025-07-25T14:42:35: (node:233877) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 2025-07-25T14:42:35: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
 2025-07-25T14:42:35: (node:233877) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-25T14:44:25: (node:234873) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-25T14:44:25: (Use `node-18 --trace-deprecation ...` to show where the warning was created)
+2025-07-25T14:44:25: (node:234873) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+2025-07-25T14:44:25: /home/shawnstorie/sprkz-ng/sprkz/node_modules/webpack-dev-server/lib/Server.js:2557
+2025-07-25T14:44:25:         throw error;
+2025-07-25T14:44:25:         ^
+2025-07-25T14:44:25: 
+2025-07-25T14:44:25: Error: listen EADDRINUSE: address already in use 0.0.0.0:7779
+2025-07-25T14:44:25:     at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+2025-07-25T14:44:25:     at listenInCluster (node:net:1865:12)
+2025-07-25T14:44:25:     at doListen (node:net:2014:7)
+2025-07-25T14:44:25:     at process.processTicksAndRejections (node:internal/process/task_queues:83:21) {
+2025-07-25T14:44:25:   code: 'EADDRINUSE',
+2025-07-25T14:44:25:   errno: -98,
+2025-07-25T14:44:25:   syscall: 'listen',
+2025-07-25T14:44:25:   address: '0.0.0.0',
+2025-07-25T14:44:25:   port: 7779
+2025-07-25T14:44:25: }
+2025-07-25T14:44:25: 
+2025-07-25T14:44:25: Node.js v18.18.2
