@@ -94,13 +94,18 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
     try {
       // Construct full PDF URL from filename - handle both absolute and relative paths
       const pdfUrl = filename.startsWith('/') ? filename : `/pdfs/${filename}`;
-      console.log('Loading PDF from URL:', pdfUrl);
+      console.log('🔄 PDFEditDialog: Loading PDF from URL:', pdfUrl);
       
       // Load PDF document for metadata
+      console.log('📄 PDFEditDialog: Loading PDF document...');
       const pdfDoc = await pdfService.loadPDF(pdfUrl);
+      console.log('✅ PDFEditDialog: PDF document loaded successfully');
       
       // Extract metadata
+      console.log('📊 PDFEditDialog: Extracting metadata...');
       const metadata = await pdfDoc.getMetadata();
+      console.log('✅ PDFEditDialog: Metadata extracted:', metadata);
+      
       setEditData(prev => ({
         ...prev,
         metadata: {
@@ -116,7 +121,9 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
       }));
 
       // Extract form fields using URL-based method (same as PDFFieldConfig)
+      console.log('🔍 PDFEditDialog: Extracting form fields...');
       const fieldsResult = await formFieldService.extractAllFormFields(pdfUrl);
+      console.log('✅ PDFEditDialog: Form fields extracted:', fieldsResult);
       
       // Convert the fields result to the expected format
       const formFields: FormField[] = fieldsResult.fields.map((fieldName, index) => {
@@ -132,6 +139,7 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
         };
       });
       
+      console.log('🗂️ PDFEditDialog: Converted form fields:', formFields);
       setPdfFields(formFields);
 
       // Initialize field configs
@@ -149,9 +157,12 @@ const PDFEditDialog: React.FC<PDFEditDialogProps> = ({
         fieldConfigs: initialConfigs,
       }));
 
+      console.log('🎉 PDFEditDialog: All data loaded successfully');
+
     } catch (err) {
-      console.error('Error loading PDF data:', err);
-      setError('Failed to load PDF data. Please try again.');
+      console.error('❌ PDFEditDialog Error loading PDF data:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred';
+      setError(`Failed to load PDF data: ${errorMessage}`);
     } finally {
       setLoading(false);
     }
