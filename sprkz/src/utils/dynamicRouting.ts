@@ -1,7 +1,10 @@
 export interface URLConfig {
   path: string;
   pdfPath?: string;
-  features: { [featureId: number]: boolean };
+  desktopLayoutId?: number;
+  mobileLayoutId?: number;
+  desktopFeatures: { [featureId: number]: boolean };
+  mobileFeatures: { [featureId: number]: boolean };
   pdfFields: { [fieldName: string]: 'read-only' | 'hidden' | 'normal' };
 }
 
@@ -26,9 +29,11 @@ export class DynamicRoutingService {
     try {
       const response = await fetch('/api/url-configs');
       if (!response.ok) {
-        throw new Error(`Failed to fetch URL configurations: ${response.status}`);
+        throw new Error(
+          `Failed to fetch URL configurations: ${response.status}`
+        );
       }
-      
+
       this.urlConfigs = await response.json();
       this.isLoaded = true;
       console.log('Loaded URL configurations:', this.urlConfigs);
@@ -49,7 +54,7 @@ export class DynamicRoutingService {
       return null;
     }
 
-    return this.urlConfigs.find(config => config.path === path) || null;
+    return this.urlConfigs.find((config) => config.path === path) || null;
   }
 
   /**
@@ -63,7 +68,7 @@ export class DynamicRoutingService {
    * Get all configured paths
    */
   getAllPaths(): string[] {
-    return this.urlConfigs.map(config => config.path);
+    return this.urlConfigs.map((config) => config.path);
   }
 
   /**
@@ -71,27 +76,43 @@ export class DynamicRoutingService {
    */
   getPDFPath(routePath: string): string {
     const config = this.findURLConfig(routePath);
-    
+
     if (config?.pdfPath) {
       return `/pdfs/${config.pdfPath}`;
     }
-    
+
     // Fallback to default PDF
     return '/pdfs/makana2025.pdf';
   }
 
   /**
-   * Get feature toggles for a route
+   * Get feature toggles for a route based on device type
    */
-  getFeatures(routePath: string): { [featureId: number]: boolean } {
+  getFeatures(routePath: string, isMobile: boolean = false): { [featureId: number]: boolean } {
     const config = this.findURLConfig(routePath);
-    return config?.features || {};
+    if (!config) {
+      return {};
+    }
+    return isMobile ? config.mobileFeatures : config.desktopFeatures;
+  }
+
+  /**
+   * Get layout ID for a route based on device type
+   */
+  getLayoutId(routePath: string, isMobile: boolean = false): number | undefined {
+    const config = this.findURLConfig(routePath);
+    if (!config) {
+      return undefined;
+    }
+    return isMobile ? config.mobileLayoutId : config.desktopLayoutId;
   }
 
   /**
    * Get PDF field configurations for a route
    */
-  getPDFFields(routePath: string): { [fieldName: string]: 'read-only' | 'hidden' | 'normal' } {
+  getPDFFields(routePath: string): {
+    [fieldName: string]: 'read-only' | 'hidden' | 'normal';
+  } {
     const config = this.findURLConfig(routePath);
     return config?.pdfFields || {};
   }

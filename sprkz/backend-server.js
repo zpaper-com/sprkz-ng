@@ -131,15 +131,33 @@ const upload = multer({
 app.get('/api/url-configs', async (req, res) => {
   try {
     const db = await getDatabase();
-    const urls = await db.all(
-      'SELECT path, pdf_path as pdfPath, features, pdf_fields as pdfFields FROM url_configs'
-    );
+    const urls = await db.all(`
+      SELECT 
+        u.path, 
+        u.pdf_path as pdfPath, 
+        u.desktop_layout_id as desktopLayoutId,
+        u.mobile_layout_id as mobileLayoutId,
+        u.pdf_fields as pdfFields,
+        dl.features as desktopLayoutFeatures,
+        ml.features as mobileLayoutFeatures
+      FROM url_configs u
+      LEFT JOIN layouts dl ON u.desktop_layout_id = dl.id
+      LEFT JOIN layouts ml ON u.mobile_layout_id = ml.id
+    `);
+    
+    // Get default layout features for URLs without a specific layout
+    const defaultLayout = await db.get('SELECT features FROM layouts WHERE is_default = 1');
+    const defaultFeatures = defaultLayout ? JSON.parse(defaultLayout.features || '{}') : {};
+    
     // Parse JSON fields and return simplified structure
     const urlsWithParsedFields = urls.map((url) => ({
       path: url.path,
       pdfPath: url.pdfPath,
-      features: JSON.parse(url.features || '{}'),
+      desktopFeatures: url.desktopLayoutFeatures ? JSON.parse(url.desktopLayoutFeatures || '{}') : defaultFeatures,
+      mobileFeatures: url.mobileLayoutFeatures ? JSON.parse(url.mobileLayoutFeatures || '{}') : defaultFeatures,
       pdfFields: JSON.parse(url.pdfFields || '{}'),
+      desktopLayoutId: url.desktopLayoutId,
+      mobileLayoutId: url.mobileLayoutId,
     }));
     res.json(urlsWithParsedFields);
   } catch (error) {
@@ -217,14 +235,34 @@ app.delete('/api/admin/features/:id', async (req, res) => {
 app.get('/api/admin/urls', async (req, res) => {
   try {
     const db = await getDatabase();
-    const urls = await db.all(
-      'SELECT id, path, pdf_path as pdfPath, features, pdf_fields as pdfFields, created_at as createdAt FROM url_configs ORDER BY created_at DESC'
-    );
-    // Parse JSON fields
+    const urls = await db.all(`
+      SELECT 
+        u.id, u.path, u.pdf_path as pdfPath, 
+        u.desktop_layout_id as desktopLayoutId, u.mobile_layout_id as mobileLayoutId,
+        u.webhook_id as webhookId, u.automation_id as automationId,
+        u.pdf_fields as pdfFields, u.created_at as createdAt,
+        dl.name as desktopLayoutName, dl.features as desktopLayoutFeatures,
+        ml.name as mobileLayoutName, ml.features as mobileLayoutFeatures,
+        w.name as webhookName,
+        a.name as automationName
+      FROM url_configs u
+      LEFT JOIN layouts dl ON u.desktop_layout_id = dl.id
+      LEFT JOIN layouts ml ON u.mobile_layout_id = ml.id
+      LEFT JOIN webhooks w ON u.webhook_id = w.id
+      LEFT JOIN automations a ON u.automation_id = a.id
+      ORDER BY u.created_at DESC
+    `);
+    
+    // Get default layout features for URLs without a specific layout
+    const defaultLayout = await db.get('SELECT features FROM layouts WHERE is_default = 1');
+    const defaultFeatures = defaultLayout ? JSON.parse(defaultLayout.features || '{}') : {};
+    
+    // Parse JSON fields and include features
     const urlsWithParsedFields = urls.map((url) => ({
       ...url,
-      features: JSON.parse(url.features || '{}'),
       pdfFields: JSON.parse(url.pdfFields || '{}'),
+      desktopFeatures: url.desktopLayoutFeatures ? JSON.parse(url.desktopLayoutFeatures || '{}') : defaultFeatures,
+      mobileFeatures: url.mobileLayoutFeatures ? JSON.parse(url.mobileLayoutFeatures || '{}') : defaultFeatures,
     }));
     res.json(urlsWithParsedFields);
   } catch (error) {
@@ -235,25 +273,47 @@ app.get('/api/admin/urls', async (req, res) => {
 
 app.post('/api/admin/urls', async (req, res) => {
   try {
-    const { path, pdfPath, features, pdfFields } = req.body;
+    const { path, pdfPath, desktopLayoutId, mobileLayoutId, webhookId, automationId, pdfFields } = req.body;
     const db = await getDatabase();
     const result = await db.run(
-      'INSERT INTO url_configs (path, pdf_path, features, pdf_fields) VALUES (?, ?, ?, ?)',
+      'INSERT INTO url_configs (path, pdf_path, desktop_layout_id, mobile_layout_id, webhook_id, automation_id, pdf_fields) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [
         path,
         pdfPath,
-        JSON.stringify(features || {}),
+        desktopLayoutId || null,
+        mobileLayoutId || null,
+        webhookId || null,
+        automationId || null,
         JSON.stringify(pdfFields || {}),
       ]
     );
-    const url = await db.get(
-      'SELECT id, path, pdf_path as pdfPath, features, pdf_fields as pdfFields, created_at as createdAt FROM url_configs WHERE id = ?',
-      result.lastID
-    );
+    const url = await db.get(`
+      SELECT 
+        u.id, u.path, u.pdf_path as pdfPath, 
+        u.desktop_layout_id as desktopLayoutId, u.mobile_layout_id as mobileLayoutId,
+        u.webhook_id as webhookId, u.automation_id as automationId,
+        u.pdf_fields as pdfFields, u.created_at as createdAt,
+        dl.name as desktopLayoutName, dl.features as desktopLayoutFeatures,
+        ml.name as mobileLayoutName, ml.features as mobileLayoutFeatures,
+        w.name as webhookName,
+        a.name as automationName
+      FROM url_configs u
+      LEFT JOIN layouts dl ON u.desktop_layout_id = dl.id
+      LEFT JOIN layouts ml ON u.mobile_layout_id = ml.id
+      LEFT JOIN webhooks w ON u.webhook_id = w.id
+      LEFT JOIN automations a ON u.automation_id = a.id
+      WHERE u.id = ?
+    `, result.lastID);
+    
+    // Get default layout features if no specific layout
+    const defaultLayout = await db.get('SELECT features FROM layouts WHERE is_default = 1');
+    const defaultFeatures = defaultLayout ? JSON.parse(defaultLayout.features || '{}') : {};
+    
     res.json({
       ...url,
-      features: JSON.parse(url.features || '{}'),
       pdfFields: JSON.parse(url.pdfFields || '{}'),
+      desktopFeatures: url.desktopLayoutFeatures ? JSON.parse(url.desktopLayoutFeatures || '{}') : defaultFeatures,
+      mobileFeatures: url.mobileLayoutFeatures ? JSON.parse(url.mobileLayoutFeatures || '{}') : defaultFeatures,
     });
   } catch (error) {
     console.error('Error creating URL:', error);
@@ -264,26 +324,48 @@ app.post('/api/admin/urls', async (req, res) => {
 app.put('/api/admin/urls/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { path, pdfPath, features, pdfFields } = req.body;
+    const { path, pdfPath, desktopLayoutId, mobileLayoutId, webhookId, automationId, pdfFields } = req.body;
     const db = await getDatabase();
     await db.run(
-      'UPDATE url_configs SET path = ?, pdf_path = ?, features = ?, pdf_fields = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+      'UPDATE url_configs SET path = ?, pdf_path = ?, desktop_layout_id = ?, mobile_layout_id = ?, webhook_id = ?, automation_id = ?, pdf_fields = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
       [
         path,
         pdfPath,
-        JSON.stringify(features || {}),
+        desktopLayoutId || null,
+        mobileLayoutId || null,
+        webhookId || null,
+        automationId || null,
         JSON.stringify(pdfFields || {}),
         id,
       ]
     );
-    const url = await db.get(
-      'SELECT id, path, pdf_path as pdfPath, features, pdf_fields as pdfFields, created_at as createdAt FROM url_configs WHERE id = ?',
-      id
-    );
+    const url = await db.get(`
+      SELECT 
+        u.id, u.path, u.pdf_path as pdfPath, 
+        u.desktop_layout_id as desktopLayoutId, u.mobile_layout_id as mobileLayoutId,
+        u.webhook_id as webhookId, u.automation_id as automationId,
+        u.pdf_fields as pdfFields, u.created_at as createdAt,
+        dl.name as desktopLayoutName, dl.features as desktopLayoutFeatures,
+        ml.name as mobileLayoutName, ml.features as mobileLayoutFeatures,
+        w.name as webhookName,
+        a.name as automationName
+      FROM url_configs u
+      LEFT JOIN layouts dl ON u.desktop_layout_id = dl.id
+      LEFT JOIN layouts ml ON u.mobile_layout_id = ml.id
+      LEFT JOIN webhooks w ON u.webhook_id = w.id
+      LEFT JOIN automations a ON u.automation_id = a.id
+      WHERE u.id = ?
+    `, id);
+    
+    // Get default layout features if no specific layout
+    const defaultLayout = await db.get('SELECT features FROM layouts WHERE is_default = 1');
+    const defaultFeatures = defaultLayout ? JSON.parse(defaultLayout.features || '{}') : {};
+    
     res.json({
       ...url,
-      features: JSON.parse(url.features || '{}'),
       pdfFields: JSON.parse(url.pdfFields || '{}'),
+      desktopFeatures: url.desktopLayoutFeatures ? JSON.parse(url.desktopLayoutFeatures || '{}') : defaultFeatures,
+      mobileFeatures: url.mobileLayoutFeatures ? JSON.parse(url.mobileLayoutFeatures || '{}') : defaultFeatures,
     });
   } catch (error) {
     console.error('Error updating URL:', error);
@@ -395,6 +477,288 @@ app.put('/api/admin/settings', async (req, res) => {
   } catch (error) {
     console.error('Error updating settings:', error);
     res.status(500).json({ error: 'Failed to update settings' });
+  }
+});
+
+// Layouts API endpoints
+app.get('/api/admin/layouts', async (req, res) => {
+  try {
+    const db = await getDatabase();
+    const layouts = await db.all(`
+      SELECT 
+        id, name, type, description, viewport, components, features,
+        is_active, is_default, notes, created_at, updated_at
+      FROM layouts 
+      ORDER BY is_default DESC, name ASC
+    `);
+    
+    // Parse JSON fields
+    const layoutsWithParsedFields = layouts.map((layout) => ({
+      ...layout,
+      components: JSON.parse(layout.components || '[]'),
+      features: JSON.parse(layout.features || '{}'),
+      is_active: Boolean(layout.is_active),
+      is_default: Boolean(layout.is_default),
+      created_at: new Date(layout.created_at).toISOString(),
+      updated_at: new Date(layout.updated_at).toISOString(),
+    }));
+    
+    res.json(layoutsWithParsedFields);
+  } catch (error) {
+    console.error('Error fetching layouts:', error);
+    res.status(500).json({ error: 'Failed to fetch layouts' });
+  }
+});
+
+app.post('/api/admin/layouts', async (req, res) => {
+  try {
+    const { name, type, description, viewport, components, features, notes } = req.body;
+    const db = await getDatabase();
+    
+    const result = await db.run(`
+      INSERT INTO layouts (name, type, description, viewport, components, features, notes)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `, [
+      name,
+      type || 'desktop',
+      description || '',
+      viewport || '',
+      JSON.stringify(components || []),
+      JSON.stringify(features || {}),
+      notes || ''
+    ]);
+    
+    const newLayout = await db.get(`
+      SELECT 
+        id, name, type, description, viewport, components, features,
+        is_active, is_default, notes, created_at, updated_at
+      FROM layouts 
+      WHERE id = ?
+    `, [result.lastID]);
+    
+    const layoutWithParsedFields = {
+      ...newLayout,
+      components: JSON.parse(newLayout.components || '[]'),
+      features: JSON.parse(newLayout.features || '{}'),
+      is_active: Boolean(newLayout.is_active),
+      is_default: Boolean(newLayout.is_default),
+      created_at: new Date(newLayout.created_at).toISOString(),
+      updated_at: new Date(newLayout.updated_at).toISOString(),
+    };
+    
+    await logEvent({
+      event_type: 'admin_action',
+      event_category: 'admin_activity', 
+      event_name: 'Layout Created',
+      description: `Layout "${name}" was created`,
+      metadata: { layout_id: result.lastID, layout_name: name }
+    });
+    
+    res.status(201).json(layoutWithParsedFields);
+  } catch (error) {
+    console.error('Error creating layout:', error);
+    res.status(500).json({ error: 'Failed to create layout' });
+  }
+});
+
+app.put('/api/admin/layouts/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, type, description, viewport, components, features, notes } = req.body;
+    const db = await getDatabase();
+    
+    await db.run(`
+      UPDATE layouts 
+      SET name = ?, type = ?, description = ?, viewport = ?, components = ?, features = ?, notes = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `, [
+      name,
+      type,
+      description,
+      viewport,
+      JSON.stringify(components || []),
+      JSON.stringify(features || {}),
+      notes || '',
+      id
+    ]);
+    
+    const updatedLayout = await db.get(`
+      SELECT 
+        id, name, type, description, viewport, components, features,
+        is_active, is_default, notes, created_at, updated_at
+      FROM layouts 
+      WHERE id = ?
+    `, [id]);
+    
+    if (!updatedLayout) {
+      return res.status(404).json({ error: 'Layout not found' });
+    }
+    
+    const layoutWithParsedFields = {
+      ...updatedLayout,
+      components: JSON.parse(updatedLayout.components || '[]'),
+      features: JSON.parse(updatedLayout.features || '{}'),
+      is_active: Boolean(updatedLayout.is_active),
+      is_default: Boolean(updatedLayout.is_default),
+      created_at: new Date(updatedLayout.created_at).toISOString(),
+      updated_at: new Date(updatedLayout.updated_at).toISOString(),
+    };
+    
+    await logEvent({
+      event_type: 'admin_action',
+      event_category: 'admin_activity',
+      event_name: 'Layout Updated',
+      description: `Layout "${name}" was updated`,
+      metadata: { layout_id: id, layout_name: name }
+    });
+    
+    res.json(layoutWithParsedFields);
+  } catch (error) {
+    console.error('Error updating layout:', error);
+    res.status(500).json({ error: 'Failed to update layout' });
+  }
+});
+
+app.delete('/api/admin/layouts/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const db = await getDatabase();
+    
+    // Check if layout is default
+    const layout = await db.get('SELECT name, is_default FROM layouts WHERE id = ?', [id]);
+    if (!layout) {
+      return res.status(404).json({ error: 'Layout not found' });
+    }
+    
+    if (layout.is_default) {
+      return res.status(400).json({ error: 'Cannot delete default layout' });
+    }
+    
+    // Check if layout is being used by any URLs
+    const urlCount = await db.get('SELECT COUNT(*) as count FROM url_configs WHERE layout_id = ?', [id]);
+    if (urlCount.count > 0) {
+      return res.status(400).json({ error: 'Cannot delete layout that is being used by URL configurations' });
+    }
+    
+    await db.run('DELETE FROM layouts WHERE id = ?', [id]);
+    
+    await logEvent({
+      event_type: 'admin_action',
+      event_category: 'admin_activity',
+      event_name: 'Layout Deleted',
+      description: `Layout "${layout.name}" was deleted`,
+      metadata: { layout_id: id, layout_name: layout.name }
+    });
+    
+    res.status(204).send();
+  } catch (error) {
+    console.error('Error deleting layout:', error);
+    res.status(500).json({ error: 'Failed to delete layout' });
+  }
+});
+
+app.put('/api/admin/layouts/:id/default', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const db = await getDatabase();
+    
+    // Begin transaction
+    await db.run('BEGIN TRANSACTION');
+    
+    try {
+      // Remove default from all layouts
+      await db.run('UPDATE layouts SET is_default = 0');
+      
+      // Set new default
+      await db.run('UPDATE layouts SET is_default = 1, updated_at = CURRENT_TIMESTAMP WHERE id = ?', [id]);
+      
+      await db.run('COMMIT');
+      
+      const updatedLayout = await db.get(`
+        SELECT 
+          id, name, type, description, viewport, components, features,
+          is_active, is_default, notes, created_at, updated_at
+        FROM layouts 
+        WHERE id = ?
+      `, [id]);
+      
+      const layoutWithParsedFields = {
+        ...updatedLayout,
+        components: JSON.parse(updatedLayout.components || '[]'),
+        features: JSON.parse(updatedLayout.features || '{}'),
+        is_active: Boolean(updatedLayout.is_active),
+        is_default: Boolean(updatedLayout.is_default),
+        created_at: new Date(updatedLayout.created_at).toISOString(),
+        updated_at: new Date(updatedLayout.updated_at).toISOString(),
+      };
+      
+      await logEvent({
+        event_type: 'admin_action',
+        event_category: 'admin_activity',
+        event_name: 'Default Layout Changed',
+        description: `Layout "${updatedLayout.name}" was set as default`,
+        metadata: { layout_id: id, layout_name: updatedLayout.name }
+      });
+      
+      res.json(layoutWithParsedFields);
+    } catch (error) {
+      await db.run('ROLLBACK');
+      throw error;
+    }
+  } catch (error) {
+    console.error('Error setting default layout:', error);
+    res.status(500).json({ error: 'Failed to set default layout' });
+  }
+});
+
+app.put('/api/admin/layouts/:id/toggle', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const db = await getDatabase();
+    
+    const layout = await db.get('SELECT is_active, name FROM layouts WHERE id = ?', [id]);
+    if (!layout) {
+      return res.status(404).json({ error: 'Layout not found' });
+    }
+    
+    const newActiveState = layout.is_active ? 0 : 1;
+    
+    await db.run(`
+      UPDATE layouts 
+      SET is_active = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `, [newActiveState, id]);
+    
+    const updatedLayout = await db.get(`
+      SELECT 
+        id, name, type, description, viewport, components, features,
+        is_active, is_default, notes, created_at, updated_at
+      FROM layouts 
+      WHERE id = ?
+    `, [id]);
+    
+    const layoutWithParsedFields = {
+      ...updatedLayout,
+      components: JSON.parse(updatedLayout.components || '[]'),
+      features: JSON.parse(updatedLayout.features || '{}'),
+      is_active: Boolean(updatedLayout.is_active),
+      is_default: Boolean(updatedLayout.is_default),
+      created_at: new Date(updatedLayout.created_at).toISOString(),
+      updated_at: new Date(updatedLayout.updated_at).toISOString(),
+    };
+    
+    await logEvent({
+      event_type: 'admin_action',
+      event_category: 'admin_activity',
+      event_name: 'Layout Toggled',
+      description: `Layout "${layout.name}" was ${newActiveState ? 'activated' : 'deactivated'}`,
+      metadata: { layout_id: id, layout_name: layout.name, new_state: newActiveState ? 'active' : 'inactive' }
+    });
+    
+    res.json(layoutWithParsedFields);
+  } catch (error) {
+    console.error('Error toggling layout:', error);
+    res.status(500).json({ error: 'Failed to toggle layout' });
   }
 });
 

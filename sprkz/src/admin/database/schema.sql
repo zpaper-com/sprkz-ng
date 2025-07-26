@@ -10,15 +10,18 @@ CREATE TABLE IF NOT EXISTS features (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- URL Configurations table - stores URL path configurations with JSON fields
+-- URL Configurations table - stores URL path configurations with layout selection
 CREATE TABLE IF NOT EXISTS url_configs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     path TEXT NOT NULL UNIQUE,
     pdf_path TEXT,
-    features TEXT DEFAULT '{}',
+    desktop_layout_id INTEGER,
+    mobile_layout_id INTEGER,
     pdf_fields TEXT DEFAULT '{}',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (desktop_layout_id) REFERENCES layouts(id),
+    FOREIGN KEY (mobile_layout_id) REFERENCES layouts(id)
 );
 
 -- PDF Files table - stores uploaded PDF metadata
@@ -34,6 +37,22 @@ CREATE TABLE IF NOT EXISTS pdf_files (
 CREATE TABLE IF NOT EXISTS settings (
     key TEXT PRIMARY KEY,
     value TEXT,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Layouts table - stores layout configurations with features
+CREATE TABLE IF NOT EXISTS layouts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL DEFAULT 'desktop',
+    description TEXT,
+    viewport TEXT,
+    components TEXT DEFAULT '[]',
+    features TEXT DEFAULT '{}',
+    is_active BOOLEAN NOT NULL DEFAULT 1,
+    is_default BOOLEAN NOT NULL DEFAULT 0,
+    notes TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -184,3 +203,7 @@ CREATE INDEX IF NOT EXISTS idx_system_events_session_id ON system_events(session
 CREATE INDEX IF NOT EXISTS idx_system_events_user_id ON system_events(user_id);
 CREATE INDEX IF NOT EXISTS idx_event_sessions_session_id ON event_sessions(session_id);
 CREATE INDEX IF NOT EXISTS idx_event_sessions_created_at ON event_sessions(created_at);
+CREATE INDEX IF NOT EXISTS idx_url_configs_desktop_layout_id ON url_configs(desktop_layout_id);
+CREATE INDEX IF NOT EXISTS idx_url_configs_mobile_layout_id ON url_configs(mobile_layout_id);
+CREATE INDEX IF NOT EXISTS idx_layouts_is_default ON layouts(is_default);
+CREATE INDEX IF NOT EXISTS idx_layouts_is_active ON layouts(is_active);

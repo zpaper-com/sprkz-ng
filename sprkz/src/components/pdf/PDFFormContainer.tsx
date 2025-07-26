@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Alert, Button, Tooltip } from '@mui/material';
-import { Height, SwapHoriz, Visibility, VisibilityOff } from '@mui/icons-material';
+import {
+  Height,
+  SwapHoriz,
+  Visibility,
+  VisibilityOff,
+} from '@mui/icons-material';
 import { PDFViewer } from './PDFViewer';
 import { ThumbnailSidebar } from './ThumbnailSidebar';
 import { FormProvider, useForm } from '../../contexts/FormContext';
@@ -11,7 +16,12 @@ import { ProgressTracker } from '../ProgressTracker';
 import { FieldTooltip } from '../FieldTooltip';
 import { getPDFUrlFromParams } from '../../utils/urlParams';
 import { pdfService } from '../../services/pdfService';
-import { usePDFViewerFeatures, useWizardFeatures, useFormFeatures, useMarkupFeatures } from '../../hooks/useFeatureFlags';
+import {
+  usePDFViewerFeatures,
+  useWizardFeatures,
+  useFormFeatures,
+  useMarkupFeatures,
+} from '../../hooks/useFeatureFlags';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import type { FormField as EnhancedFormField } from '../../services/formFieldService';
 
@@ -19,6 +29,8 @@ export interface DynamicConfig {
   pdfPath: string;
   features: { [featureId: number]: boolean };
   pdfFields: { [fieldName: string]: 'read-only' | 'hidden' | 'normal' };
+  layoutId?: number;
+  deviceType?: 'mobile' | 'desktop';
 }
 
 export interface PDFFormContainerProps {
@@ -38,8 +50,10 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [showFieldNames, setShowFieldNames] = useState<boolean>(false);
   const [fieldsAlreadySet, setFieldsAlreadySet] = useState<boolean>(false);
-  const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>('default');
-  
+  const [pdfFitMode, setPdfFitMode] = useState<'default' | 'width' | 'height'>(
+    'default'
+  );
+
   // Feature flag hooks
   const pdfViewerFeatures = usePDFViewerFeatures();
   const wizardFeatures = useWizardFeatures();
@@ -74,7 +88,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
         pdfViewerFeatures,
         wizardFeatures,
         formFeatures,
-        route: window.location.pathname
+        route: window.location.pathname,
       });
     }
   }, [pdfViewerFeatures, wizardFeatures, formFeatures]);
@@ -110,23 +124,25 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
   const handleFormFieldsDetected = (fields: EnhancedFormField[]) => {
     // Prevent re-detection loop - only process fields once
     if (fieldsAlreadySet || fields.length === 0) {
-      console.log('🔄 Skipping field detection - already processed or no fields');
+      console.log(
+        '🔄 Skipping field detection - already processed or no fields'
+      );
       return;
     }
-    
+
     console.log('🔗 PDFFormContainer received fields:', fields.length);
-    
+
     // Convert fields to PageFormFields format for FormContext
     const pageFieldsMap = new Map<number, EnhancedFormField[]>();
-    
+
     // Group fields by page number
-    fields.forEach(field => {
+    fields.forEach((field) => {
       if (!pageFieldsMap.has(field.pageNumber)) {
         pageFieldsMap.set(field.pageNumber, []);
       }
       pageFieldsMap.get(field.pageNumber)!.push(field);
     });
-    
+
     // Convert to PageFormFields array
     const allPageFields = Array.from(pageFieldsMap.entries())
       .sort(([a], [b]) => a - b) // Sort by page number
@@ -135,17 +151,20 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
         fields: pageFields,
         radioGroups: [], // TODO: Handle radio groups if needed
       }));
-    
+
     console.log('🔗 Converted to PageFormFields:', {
       pages: allPageFields.length,
       totalFields: fields.length,
-      pageBreakdown: allPageFields.map(p => ({ page: p.pageNumber, fields: p.fields.length }))
+      pageBreakdown: allPageFields.map((p) => ({
+        page: p.pageNumber,
+        fields: p.fields.length,
+      })),
     });
-    
+
     // Set fields in FormContext (only once)
     setFormFields(allPageFields);
     setFieldsAlreadySet(true);
-    
+
     // Also call the original callback if provided
     if (onFormFieldsDetected) {
       onFormFieldsDetected(fields);
@@ -265,12 +284,13 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             <WizardStatus />
           )}
 
-
           {/* Controls */}
           <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
             {/* Show/Hide Field Names with Eye Icon */}
             {pdfViewerFeatures.showFieldsToggle && (
-              <Tooltip title={showFieldNames ? 'Hide field names' : 'Show field names'}>
+              <Tooltip
+                title={showFieldNames ? 'Hide field names' : 'Show field names'}
+              >
                 <Button
                   variant="outlined"
                   size="small"
@@ -280,7 +300,9 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
                     minWidth: 'auto',
                     px: 1,
                   }}
-                  startIcon={showFieldNames ? <Visibility /> : <VisibilityOff />}
+                  startIcon={
+                    showFieldNames ? <Visibility /> : <VisibilityOff />
+                  }
                 >
                   Fields
                 </Button>
@@ -297,7 +319,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
                     setPdfFitMode(pdfFitMode === 'width' ? 'default' : 'width');
                   }}
                   color={pdfFitMode === 'width' ? 'primary' : 'inherit'}
-                  sx={{ 
+                  sx={{
                     minWidth: 'auto',
                     px: 1,
                   }}
@@ -314,10 +336,12 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
                   variant="outlined"
                   size="small"
                   onClick={() => {
-                    setPdfFitMode(pdfFitMode === 'height' ? 'default' : 'height');
+                    setPdfFitMode(
+                      pdfFitMode === 'height' ? 'default' : 'height'
+                    );
                   }}
                   color={pdfFitMode === 'height' ? 'primary' : 'inherit'}
-                  sx={{ 
+                  sx={{
                     minWidth: 'auto',
                     px: 1,
                   }}
@@ -327,10 +351,10 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
                 </Button>
               </Tooltip>
             )}
-            
+
             {/* Wizard Button */}
             {wizardFeatures.showWizardButton && (
-              <WizardButton 
+              <WizardButton
                 size="medium"
                 showProgress={wizardFeatures.showMiniProgress}
               />
@@ -339,9 +363,7 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
         </Box>
 
         {/* Progress Tracker */}
-        {wizardFeatures.showProgressTracker && (
-          <ProgressTracker />
-        )}
+        {wizardFeatures.showProgressTracker && <ProgressTracker />}
 
         {/* PDF Viewer */}
         <Box
@@ -401,8 +423,8 @@ const PDFFormContainerInner: React.FC<PDFFormContainerProps> = ({
             overflow: 'hidden',
           }}
         >
-          <ProgressTracker 
-            variant="detailed" 
+          <ProgressTracker
+            variant="detailed"
             showSteps={true}
             allowNavigation={true}
             collapsible={false}

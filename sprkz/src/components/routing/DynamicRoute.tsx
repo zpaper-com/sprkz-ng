@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Box, CircularProgress, Alert, Button, Typography } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  Alert,
+  Button,
+  Typography,
+} from '@mui/material';
 import { PDFFormContainer } from '../pdf/PDFFormContainer';
 import { dynamicRoutingService, URLConfig } from '../../utils/dynamicRouting';
+import { isMobileBrowser } from '../../utils/mobileDetection';
 
 interface DynamicRouteProps {
   children?: React.ReactNode;
@@ -36,19 +43,21 @@ export const DynamicRoute: React.FC<DynamicRouteProps> = ({ children }) => {
         await dynamicRoutingService.loadURLConfigs();
 
         const currentPath = location.pathname;
-        
+
         // Check if current path matches a dynamic route
         const config = dynamicRoutingService.findURLConfig(currentPath);
-        
+
         if (config) {
           // Check if the associated PDF exists
           const pdfPath = dynamicRoutingService.getPDFPath(currentPath);
           const pdfExists = await checkPDFExists(pdfPath);
-          
+
           if (pdfExists) {
             setUrlConfig(config);
             setPdfError(false);
-            console.log(`Dynamic route matched: ${currentPath} → ${config.pdfPath || 'default PDF'}`);
+            console.log(
+              `Dynamic route matched: ${currentPath} → ${config.pdfPath || 'default PDF'}`
+            );
           } else {
             setError(`PDF file not found: ${config.pdfPath || 'default PDF'}`);
             setPdfError(true);
@@ -56,13 +65,13 @@ export const DynamicRoute: React.FC<DynamicRouteProps> = ({ children }) => {
         } else {
           // Path not found in dynamic routes
           setUrlConfig(null);
-          
+
           // Only show error for non-reserved paths
           const reservedPaths = ['/mobile', '/admin', '/', '/health'];
-          const isReservedPath = reservedPaths.some(path => 
-            currentPath === path || currentPath.startsWith(path + '/')
+          const isReservedPath = reservedPaths.some(
+            (path) => currentPath === path || currentPath.startsWith(path + '/')
           );
-          
+
           if (!isReservedPath) {
             setError(`Route not found: ${currentPath}`);
           }
@@ -94,45 +103,38 @@ export const DynamicRoute: React.FC<DynamicRouteProps> = ({ children }) => {
   if (error) {
     return (
       <Box p={3} maxWidth={600} mx="auto" mt={4}>
-        <Alert 
-          severity={pdfError ? "warning" : "error"}
-          sx={{ mb: 2 }}
-        >
+        <Alert severity={pdfError ? 'warning' : 'error'} sx={{ mb: 2 }}>
           {error}
         </Alert>
-        
+
         {pdfError && (
           <Box mt={2}>
             <Typography variant="body2" color="text.secondary" mb={2}>
-              The route exists but the associated PDF file could not be found. 
-              This might be a temporary issue or the PDF may have been moved or deleted.
+              The route exists but the associated PDF file could not be found.
+              This might be a temporary issue or the PDF may have been moved or
+              deleted.
             </Typography>
             <Box display="flex" gap={2}>
-              <Button 
-                variant="outlined" 
+              <Button
+                variant="outlined"
                 onClick={() => window.location.reload()}
               >
                 Retry
               </Button>
-              <Button 
-                variant="text" 
-                onClick={() => navigate('/')}
-              >
+              <Button variant="text" onClick={() => navigate('/')}>
                 Go to Home
               </Button>
             </Box>
           </Box>
         )}
-        
+
         {!pdfError && (
           <Box mt={2}>
             <Typography variant="body2" color="text.secondary" mb={2}>
-              The requested route was not found. Available routes are configured in the admin interface.
+              The requested route was not found. Available routes are configured
+              in the admin interface.
             </Typography>
-            <Button 
-              variant="text" 
-              onClick={() => navigate('/')}
-            >
+            <Button variant="text" onClick={() => navigate('/')}>
               Go to Home
             </Button>
           </Box>
@@ -142,6 +144,11 @@ export const DynamicRoute: React.FC<DynamicRouteProps> = ({ children }) => {
   }
 
   if (urlConfig) {
+    // Detect device type and get appropriate features
+    const isMobile = isMobileBrowser();
+    const features = dynamicRoutingService.getFeatures(location.pathname, isMobile);
+    const layoutId = dynamicRoutingService.getLayoutId(location.pathname, isMobile);
+    
     // Render PDF form with the configured PDF and settings
     return (
       <Box
@@ -151,11 +158,13 @@ export const DynamicRoute: React.FC<DynamicRouteProps> = ({ children }) => {
           backgroundColor: 'background.default',
         }}
       >
-        <PDFFormContainer 
+        <PDFFormContainer
           dynamicConfig={{
             pdfPath: dynamicRoutingService.getPDFPath(location.pathname),
-            features: urlConfig.features,
-            pdfFields: urlConfig.pdfFields
+            features,
+            pdfFields: urlConfig.pdfFields,
+            layoutId,
+            deviceType: isMobile ? 'mobile' : 'desktop',
           }}
         />
       </Box>

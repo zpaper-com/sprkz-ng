@@ -22,16 +22,14 @@ const App: React.FC = () => {
       <CssBaseline />
       <Router>
         <Routes>
-          <Route 
-            path="/mobile" 
-            element={<MobileInterface />} 
-          />
-          <Route 
-            path="/admin/*" 
-            element={<AdminInterface />} 
-          />
-          <Route 
-            path="/" 
+          <Route path="/mobile" element={<MobileInterface />} />
+          <Route path="/admin/*" element={
+            <AdminProvider>
+              <AdminInterface />
+            </AdminProvider>
+          } />
+          <Route
+            path="/"
             element={
               <AdminProvider>
                 <DynamicRoute>
@@ -46,15 +44,15 @@ const App: React.FC = () => {
                   </Box>
                 </DynamicRoute>
               </AdminProvider>
-            } 
+            }
           />
-          <Route 
-            path="*" 
+          <Route
+            path="*"
             element={
               <AdminProvider>
                 <DynamicRoute />
               </AdminProvider>
-            } 
+            }
           />
         </Routes>
       </Router>

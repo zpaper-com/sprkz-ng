@@ -24,9 +24,16 @@ export interface URLConfig {
   id: number;
   path: string;
   pdfPath?: string;
+  desktopLayoutId?: number;
+  mobileLayoutId?: number;
+  webhookId?: number;
+  automationId?: number;
   createdAt: string;
-  features: { [featureId: number]: boolean };
   pdfFields: { [fieldName: string]: 'read-only' | 'hidden' | 'normal' };
+  desktopLayoutName?: string;
+  mobileLayoutName?: string;
+  webhookName?: string;
+  automationName?: string;
 }
 
 export interface PDFFile {
@@ -88,14 +95,14 @@ function adminReducer(state: AdminState, action: AdminAction): AdminState {
     case 'UPDATE_FEATURE':
       return {
         ...state,
-        features: state.features.map(f =>
+        features: state.features.map((f) =>
           f.id === action.payload.id ? action.payload : f
         ),
       };
     case 'DELETE_FEATURE':
       return {
         ...state,
-        features: state.features.filter(f => f.id !== action.payload),
+        features: state.features.filter((f) => f.id !== action.payload),
       };
     case 'SET_URLS':
       return { ...state, urls: action.payload };
@@ -104,14 +111,14 @@ function adminReducer(state: AdminState, action: AdminAction): AdminState {
     case 'UPDATE_URL':
       return {
         ...state,
-        urls: state.urls.map(u =>
+        urls: state.urls.map((u) =>
           u.id === action.payload.id ? action.payload : u
         ),
       };
     case 'DELETE_URL':
       return {
         ...state,
-        urls: state.urls.filter(u => u.id !== action.payload),
+        urls: state.urls.filter((u) => u.id !== action.payload),
       };
     case 'SET_PDFS':
       return { ...state, pdfs: action.payload };
@@ -120,7 +127,7 @@ function adminReducer(state: AdminState, action: AdminAction): AdminState {
     case 'DELETE_PDF':
       return {
         ...state,
-        pdfs: state.pdfs.filter(p => p.filename !== action.payload),
+        pdfs: state.pdfs.filter((p) => p.filename !== action.payload),
       };
     case 'SET_SETTINGS':
       return { ...state, settings: action.payload };
@@ -139,7 +146,9 @@ interface AdminContextType {
   dispatch: React.Dispatch<AdminAction>;
   actions: {
     loadInitialData: () => Promise<void>;
-    createFeature: (feature: Omit<Feature, 'id' | 'creationDate'>) => Promise<void>;
+    createFeature: (
+      feature: Omit<Feature, 'id' | 'creationDate'>
+    ) => Promise<void>;
     updateFeature: (id: number, feature: Partial<Feature>) => Promise<void>;
     deleteFeature: (id: number) => Promise<void>;
     createURL: (url: Omit<URLConfig, 'id' | 'createdAt'>) => Promise<void>;
@@ -156,7 +165,9 @@ interface AdminContextType {
     getCurrentURLConfig: () => URLConfig | null;
     getURLConfig: (path: string) => URLConfig | null;
     getEnabledFeatures: (path: string) => FeatureFlagId[];
-    getFeatureConfigSummary: (path: string) => ReturnType<typeof getFeatureConfigSummary>;
+    getFeatureConfigSummary: (
+      path: string
+    ) => ReturnType<typeof getFeatureConfigSummary>;
     FEATURE_FLAGS: typeof FEATURE_FLAGS;
   };
 }
@@ -171,7 +182,9 @@ export const useAdmin = () => {
   return context;
 };
 
-export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [state, dispatch] = useReducer(adminReducer, initialState);
 
   // WebSocket handlers
@@ -210,11 +223,11 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         // Load real data from API
         const [features, urls, pdfs, settings] = await Promise.all([
           adminAPI.getFeatures(),
-          adminAPI.getURLs(), 
+          adminAPI.getURLs(),
           adminAPI.getPDFs(),
-          adminAPI.getSettings()
+          adminAPI.getSettings(),
         ]);
-        
+
         dispatch({ type: 'SET_FEATURES', payload: features });
         dispatch({ type: 'SET_URLS', payload: urls });
         dispatch({ type: 'SET_PDFS', payload: pdfs });
@@ -264,7 +277,10 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         dispatch({ type: 'ADD_URL', payload: newURL });
       } catch (error) {
         console.error('Failed to create URL:', error);
-        dispatch({ type: 'SET_ERROR', payload: 'Failed to create URL configuration' });
+        dispatch({
+          type: 'SET_ERROR',
+          payload: 'Failed to create URL configuration',
+        });
       }
     },
 
@@ -274,7 +290,10 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         dispatch({ type: 'UPDATE_URL', payload: updatedURL });
       } catch (error) {
         console.error('Failed to update URL:', error);
-        dispatch({ type: 'SET_ERROR', payload: 'Failed to update URL configuration' });
+        dispatch({
+          type: 'SET_ERROR',
+          payload: 'Failed to update URL configuration',
+        });
       }
     },
 
@@ -284,7 +303,10 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         dispatch({ type: 'DELETE_URL', payload: id });
       } catch (error) {
         console.error('Failed to delete URL:', error);
-        dispatch({ type: 'SET_ERROR', payload: 'Failed to delete URL configuration' });
+        dispatch({
+          type: 'SET_ERROR',
+          payload: 'Failed to delete URL configuration',
+        });
       }
     },
 
@@ -325,14 +347,14 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   // Feature flag utilities
   const featureFlags = {
-    isFeatureEnabled: (path: string, featureId: FeatureFlagId) => 
+    isFeatureEnabled: (path: string, featureId: FeatureFlagId) =>
       isFeatureEnabled(state.urls, path, featureId),
-    isCurrentFeatureEnabled: (featureId: FeatureFlagId) => 
+    isCurrentFeatureEnabled: (featureId: FeatureFlagId) =>
       isCurrentFeatureEnabled(state.urls, featureId),
     getCurrentURLConfig: () => getCurrentURLConfig(state.urls),
     getURLConfig: (path: string) => getURLConfig(state.urls, path),
     getEnabledFeatures: (path: string) => getEnabledFeatures(state.urls, path),
-    getFeatureConfigSummary: (path: string) => 
+    getFeatureConfigSummary: (path: string) =>
       getFeatureConfigSummary(state.urls, state.features, path),
     FEATURE_FLAGS,
   };
